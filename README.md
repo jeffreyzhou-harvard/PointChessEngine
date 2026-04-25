@@ -666,6 +666,12 @@ Then open: `http://127.0.0.1:8765`
 
 ## Appendix: Testing and Champion commands
 
+<p align="center">
+  <img src="figures/TestingOutput.png" alt="Terminal screenshot of a fastchess self-play match (RLM_1 vs RLM_2) finishing the last few games of a 100-game run, followed by the result block: Elo 14.19 +/- 29.33, LOS 82.93%, 98 games, 33 wins / 29 losses / 36 draws (52.04% score), pentanomial [0, 6, 34, 8, 1]." width="85%" />
+</p>
+
+<p align="center"><em>Sample fastchess output from one of the matches in this appendix: an RLM self-play sanity run (logs in <code>reports/semifinals/game_rlm_vs_rlm*</code>). Every test command below produces output in this format.</em></p>
+
 ### Engine/package tests
 
 ```bash
