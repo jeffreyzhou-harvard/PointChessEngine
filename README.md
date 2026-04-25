@@ -412,6 +412,23 @@ Standings from `tournament_results.json`:
 | 4 | `chainofthought` | 2.5 | 0 | 5 | 3 |
 | 5 | `oneshot_nocontext` | 2.0 | 0 | 4 | 4 |
 
+### Full round-robin (all 8 engines, fastchess)
+
+We then re-ran the round-robin under [`fastchess`](https://github.com/Disservin/fastchess) with all eight engines included, longer per-engine sample sizes, and proper Elo error bars. Each engine's Elo is reported relative to the field; "Score" is the points percentage (1 win = 1 point, 1 draw = 0.5), and "Draws" is the share of games drawn. Logs in `reports/round_robin/`.
+
+| rank | engine | Elo (±)              | games | score   | draws  |
+|-----:|--------|----------------------|------:|---------|-------:|
+| 1    | `ensemble`              | **+443.1 ± 180.1** |   76 |  92.8 % | 13.2 % |
+| 2    | `oneshot_contextualized`| **+315.0 ± 149.4** |   82 |  86.0 % | 12.2 % |
+| 3    | `debate`                | **+218.4 ± 136.9** |   70 |  77.9 % | 11.4 % |
+| 4    | `langgraph`             |   −53.5 ± 106.7   |   72 |  42.4 % |  8.3 % |
+| 5    | `rlm`                   |   −86.2 ± 112.1   |   74 |  37.8 % |  8.1 % |
+| 6    | `chainofthought`        |  −217.6 ± 119.3   |   72 |  22.2 % | 11.1 % |
+| 7    | `oneshot_react`         |  −237.9 ± 130.5   |   74 |  20.3 % |  5.4 % |
+| 8    | `oneshot_nocontext`     |  −297.6 ± 141.7   |   72 |  15.3 % | 11.1 % |
+
+The standings split cleanly into three tiers: a top group (`ensemble`, `oneshot_contextualized`, `debate`) that wins ≥78 % of points, a middle pair (`langgraph`, `rlm`) clustered near even, and a bottom group (`chainofthought`, `oneshot_react`, `oneshot_nocontext`) where adding reasoning or tool loops on top of a single prompt did *not* recover the gap left by missing repo context. The 1↔2 and 4↔5 gaps are inside their respective error bars, so treat those as ties; everything else is well-separated.
+
 ### Targeted head-to-head matches (cutechess-cli, fast TC)
 
 To complement the round-robin above, we ran seven focused engine-vs-engine matches in [`cutechess-cli`](https://github.com/cutechess/cutechess) at `tc=10+0.1` using the `data/openings/8mvs_+90_+99.epd` opening book. Each cell below is the W / D / L from the perspective of the first-named engine; the elo column is from the same perspective.
