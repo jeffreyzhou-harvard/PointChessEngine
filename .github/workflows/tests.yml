@@ -61,6 +61,9 @@ jobs:
       - name: classical benchmark tests (engines.oneshot_nocontext)
         run: pytest -q tests/classical
 
+      - name: contract tests (every engine in arena.engines.REGISTRY)
+        run: pytest -q tests/contract
+
       - name: oneshot_nocontext engine tests
         run: pytest -q engines/oneshot_nocontext/tests
 
