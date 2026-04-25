@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Chain-of-Thought Chess</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root {
+    --light: #f0d9b5;
+    --dark: #b58863;
+    --hi-from: #c8e6c9;
+    --hi-to: #a5d6a7;
+    --hi-check: #ef9a9a;
+    --bg: #1f1f23;
+    --panel: #2a2a2f;
+    --text: #e6e6e8;
+    --muted: #9a9aa1;
+    --accent: #8ab4f8;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg); color: var(--text);
+    font: 14px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  }
+  h1 { font-size: 20px; margin: 0 0 8px 0; }
+  h2 { font-size: 14px; margin: 16px 0 6px 0; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+  .layout { display: grid; grid-template-columns: auto 320px; gap: 24px; padding: 24px; max-width: 1100px; margin: 0 auto; }
+  @media (max-width: 760px) { .layout { grid-template-columns: 1fr; } }
+
+  /* Board */
+  .board {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    width: min(80vmin, 560px);
+    aspect-ratio: 1;
+    border: 2px solid #000;
+    user-select: none;
+  }
+  .sq {
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    font-size: clamp(22px, 5vmin, 44px);
+    line-height: 1;
+  }
+  .sq.light { background: var(--light); }
+  .sq.dark  { background: var(--dark); }
+  .sq.selected { outline: 3px solid var(--accent); outline-offset: -3px; }
+  .sq.hi-to::after {
+    content: ""; position: absolute;
+    width: 28%; height: 28%; border-radius: 50%;
+    background: rgba(0,0,0,0.25);
+  }
+  .sq.hi-cap::after {
+    content: ""; position: absolute;
+    inset: 6%;
+    border: 4px solid rgba(0,0,0,0.35);
+    border-radius: 50%;
+    background: transparent;
+  }
+  .sq.king-check { background: var(--hi-check) !important; }
+  .sq.last-from, .sq.last-to {
+    box-shadow: inset 0 0 0 3px rgba(255, 235, 59, 0.6);
+  }
+  .piece.white { color: #fff; text-shadow: 0 0 1px #000, 0 1px 0 #000, 0 -1px 0 #000, 1px 0 #000, -1px 0 #000; }
+  .piece.black { color: #111; text-shadow: 0 0 1px #fff; }
+
+  .coord-file, .coord-rank {
+    position: absolute; font-size: 10px; color: rgba(0,0,0,0.55); pointer-events: none;
+  }
+  .coord-file { right: 3px; bottom: 1px; }
+  .coord-rank { left: 3px; top: 1px; }
+
+  /* Side panel */
+  .panel {
+    background: var(--panel);
+    border-radius: 8px;
+    padding: 16px;
+    overflow: hidden;
+  }
+  label { display: block; margin: 6px 0 2px; color: var(--muted); font-size: 12px; }
+  input[type="range"] { width: 100%; }
+  .row { display: flex; gap: 8px; align-items: center; }
+  button {
+    background: #3a3a40; color: var(--text); border: 1px solid #4a4a52;
+    padding: 8px 12px; border-radius: 6px; cursor: pointer; font: inherit;
+  }
+  button:hover { background: #4a4a52; }
+  button.primary { background: var(--accent); color: #111; border-color: transparent; }
+  button.primary:hover { background: #6fa3f7; }
+  button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  .status { margin-top: 8px; font-weight: 600; min-height: 1.2em; }
+  .substatus { color: var(--muted); font-size: 12px; min-height: 1em; }
+
+  .moves {
+    margin-top: 6px;
+    height: 200px; overflow-y: auto;
+    background: #1c1c20; border-radius: 6px; padding: 6px 8px;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 12px;
+  }
+  .moves table { border-collapse: collapse; width: 100%; }
+  .moves td { padding: 1px 4px; }
+  .moves td.num { color: var(--muted); width: 2.5em; }
+
+  /* Promotion modal */
+  .modal-bg {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+    display: none; align-items: center; justify-content: center; z-index: 10;
+  }
+  .modal-bg.show { display: flex; }
+  .modal {
+    background: var(--panel); padding: 16px; border-radius: 8px;
+    display: flex; flex-direction: column; gap: 8px; min-width: 220px;
+  }
+  .promo-row { display: flex; gap: 8px; }
+  .promo-piece {
+    flex: 1; aspect-ratio: 1; font-size: 32px; line-height: 1;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--light); border-radius: 4px; cursor: pointer;
+  }
+  .promo-piece:hover { background: #f5e2c0; }
+</style>
+</head>
+<body>
+  <div class="layout">
+    <div>
+      <h1>Chain-of-Thought Chess</h1>
+      <div id="board" class="board" role="grid" aria-label="chess board"></div>
+      <div class="status" id="status">Loading...</div>
+      <div class="substatus" id="substatus"></div>
+    </div>
+
+    <div class="panel">
+      <h2>New Game</h2>
+      <div class="row">
+        <label style="flex:1; margin:0">
+          <input type="radio" name="color" value="white" checked> Play White
+        </label>
+        <label style="flex:1; margin:0">
+          <input type="radio" name="color" value="black"> Play Black
+        </label>
+      </div>
+
+      <label for="elo">Engine ELO: <span id="eloValue">1500</span></label>
+      <input type="range" id="elo" min="400" max="2400" step="50" value="1500">
+
+      <div class="row" style="margin-top:10px">
+        <button id="newGame" class="primary" style="flex:1">New Game</button>
+        <button id="resign" style="flex:1">Resign</button>
+      </div>
+
+      <h2>Moves</h2>
+      <div id="moves" class="moves"><em>No moves yet.</em></div>
+
+      <h2>Engine</h2>
+      <div id="engineInfo" class="substatus">—</div>
+
+      <h2>Export</h2>
+      <a id="pgnLink" href="/api/pgn" download="game.pgn">Download PGN</a>
+    </div>
+  </div>
+
+  <!-- Promotion picker -->
+  <div id="promoModal" class="modal-bg" role="dialog" aria-label="promotion">
+    <div class="modal">
+      <div>Promote to:</div>
+      <div class="promo-row" id="promoRow"></div>
+    </div>
+  </div>
+
+<script>
+"use strict";
+
+// ---------------------------------------------------------------------------
+// Pieces & board model (read-only renderers; the server is source of truth).
+// ---------------------------------------------------------------------------
+
+const GLYPHS = {
+  K:"\u2654", Q:"\u2655", R:"\u2656", B:"\u2657", N:"\u2658", P:"\u2659",
+  k:"\u265A", q:"\u265B", r:"\u265C", b:"\u265D", n:"\u265E", p:"\u265F",
+};
+
+function parsePiecePlacement(fen) {
+  // Returns an 8x8 array of single chars or null. board[0] = rank 8.
+  const placement = fen.split(" ")[0];
+  const rows = placement.split("/");
+  return rows.map(row => {
+    const out = [];
+    for (const ch of row) {
+      if (/[1-8]/.test(ch)) {
+        for (let i = 0; i < parseInt(ch, 10); i++) out.push(null);
+      } else {
+        out.push(ch);
+      }
+    }
+    return out;
+  });
+}
+
+function alg(fileIdx, rankIdx) {
+  // fileIdx 0..7 = a..h, rankIdx 0..7 = rank 1..8
+  return String.fromCharCode(97 + fileIdx) + (rankIdx + 1);
+}
+
+// ---------------------------------------------------------------------------
+// State + DOM.
+// ---------------------------------------------------------------------------
+
+const state = {
+  fen: null,
+  legal: {},          // { fromSq: [toSq, ...] }
+  selected: null,     // alg square
+  userColor: "white",
+  isUserTurn: false,
+  flipped: false,     // visual flip when user is black
+  history_san: [],
+  status: "",
+  result: "*",
+  game_over: false,
+  in_check: false,
+  lastMove: null,     // {from, to}
+  pendingPromo: null, // {from, to}
+};
+
+const boardEl = document.getElementById("board");
+const statusEl = document.getElementById("status");
+const subStatusEl = document.getElementById("substatus");
+const movesEl = document.getElementById("moves");
+const engineInfoEl = document.getElementById("engineInfo");
+const eloEl = document.getElementById("elo");
+const eloValueEl = document.getElementById("eloValue");
+const newGameBtn = document.getElementById("newGame");
+const resignBtn = document.getElementById("resign");
+const promoModal = document.getElementById("promoModal");
+const promoRow = document.getElementById("promoRow");
+
+// ---------------------------------------------------------------------------
+// API.
+// ---------------------------------------------------------------------------
+
+async function api(method, path, body) {
+  const opts = {method, headers: {}};
+  if (body !== undefined) {
+    opts.headers["Content-Type"] = "application/json";
+    opts.body = JSON.stringify(body);
+  }
+  const resp = await fetch(path, opts);
+  const text = await resp.text();
+  let data;
+  try { data = text ? JSON.parse(text) : {}; }
+  catch (e) { throw new Error(`bad JSON from ${path}: ${text}`); }
+  if (!resp.ok) throw new Error(data.error || `${resp.status}`);
+  return data;
+}
+
+// ---------------------------------------------------------------------------
+// Apply a server state object to the local model + DOM.
+// ---------------------------------------------------------------------------
+
+function apply(s) {
+  state.fen = s.fen;
+  state.legal = s.legal_moves || {};
+  state.userColor = s.user_color;
+  state.flipped = (s.user_color === "black");
+  state.isUserTurn = s.is_user_turn;
+  state.history_san = s.history_san;
+  state.status = s.status;
+  state.result = s.result;
+  state.game_over = s.game_over;
+  state.in_check = s.in_check;
+  state.selected = null;
+
+  // Track last move from history if present.
+  if (s.history_uci && s.history_uci.length) {
+    const last = s.history_uci[s.history_uci.length - 1];
+    state.lastMove = { from: last.slice(0,2), to: last.slice(2,4) };
+  } else {
+    state.lastMove = null;
+  }
+
+  // ELO + slider sync.
+  eloValueEl.textContent = s.elo;
+  if (parseInt(eloEl.value) !== s.elo) eloEl.value = s.elo;
+
+  render();
+
+  // Engine info pane.
+  const info = s.engine_move || s.last_engine_info;
+  if (info) {
+    let line = `${info.san} (${info.uci})  d${info.depth}`;
+    if (info.mate_in !== null && info.mate_in !== undefined) {
+      line += `  M${info.mate_in}`;
+    } else if (info.score_cp !== null && info.score_cp !== undefined) {
+      const sign = info.score_cp >= 0 ? "+" : "";
+      line += `  ${sign}${(info.score_cp/100).toFixed(2)}`;
+    }
+    line += `  ${info.nodes}n  ${info.time_ms}ms`;
+    engineInfoEl.textContent = line;
+  } else {
+    engineInfoEl.textContent = "—";
+  }
+
+  resignBtn.disabled = s.game_over;
+}
+
+function render() {
+  boardEl.innerHTML = "";
+  const placement = state.fen ? parsePiecePlacement(state.fen) : [];
+  // placement[0] is rank 8, placement[7] is rank 1.
+  // We render top-to-bottom rows. White on bottom = rank 1 at bottom.
+  // If flipped, swap orientation.
+  const ranks = state.flipped ? [0,1,2,3,4,5,6,7] : [7,6,5,4,3,2,1,0];
+  const files = state.flipped ? [7,6,5,4,3,2,1,0] : [0,1,2,3,4,5,6,7];
+
+  // Find king for check highlight.
+  let checkedKingSquare = null;
+  if (state.in_check && placement.length) {
+    const sideToMove = (state.fen.split(" ")[1] || "w");
+    const kingChar = sideToMove === "w" ? "K" : "k";
+    for (let r = 0; r < 8; r++) {
+      for (let f = 0; f < 8; f++) {
+        if (placement[r][f] === kingChar) {
+          checkedKingSquare = alg(f, 7 - r);
+        }
+      }
+    }
+  }
+
+  for (const rankIdx of ranks) {
+    for (const fileIdx of files) {
+      const placementRow = 7 - rankIdx;
+      const piece = placement.length ? placement[placementRow][fileIdx] : null;
+      const sqAlg = alg(fileIdx, rankIdx);
+      const isLight = (fileIdx + rankIdx) % 2 === 1;
+
+      const sq = document.createElement("div");
+      sq.className = "sq " + (isLight ? "light" : "dark");
+      sq.dataset.sq = sqAlg;
+      sq.setAttribute("role", "gridcell");
+      sq.setAttribute("aria-label", sqAlg);
+
+      if (piece) {
+        const pe = document.createElement("span");
+        pe.className = "piece " + (piece === piece.toUpperCase() ? "white" : "black");
+        pe.textContent = GLYPHS[piece];
+        sq.appendChild(pe);
+      }
+
+      // Rank/file coordinate labels on the edges only.
+      if (fileIdx === (state.flipped ? 7 : 0)) {
+        const label = document.createElement("span");
+        label.className = "coord-rank";
+        label.textContent = String(rankIdx + 1);
+        sq.appendChild(label);
+      }
+      if (rankIdx === (state.flipped ? 7 : 0)) {
+        const label = document.createElement("span");
+        label.className = "coord-file";
+        label.textContent = String.fromCharCode(97 + fileIdx);
+        sq.appendChild(label);
+      }
+
+      // Highlights.
+      if (state.lastMove
+          && (sqAlg === state.lastMove.from || sqAlg === state.lastMove.to)) {
+        sq.classList.add(sqAlg === state.lastMove.from ? "last-from" : "last-to");
+      }
+      if (state.selected === sqAlg) sq.classList.add("selected");
+      if (state.selected && state.legal[state.selected]
+          && state.legal[state.selected].includes(sqAlg)) {
+        sq.classList.add(piece ? "hi-cap" : "hi-to");
+      }
+      if (checkedKingSquare === sqAlg) sq.classList.add("king-check");
+
+      sq.addEventListener("click", () => onSquareClick(sqAlg));
+      boardEl.appendChild(sq);
+    }
+  }
+
+  statusEl.textContent = state.status;
+  if (state.game_over) {
+    subStatusEl.textContent = `Result: ${state.result}`;
+  } else if (state.isUserTurn) {
+    subStatusEl.textContent = "Your move.";
+  } else {
+    subStatusEl.textContent = "Engine thinking...";
+  }
+
+  // Move list.
+  if (!state.history_san.length) {
+    movesEl.innerHTML = "<em>No moves yet.</em>";
+  } else {
+    const rows = [];
+    for (let i = 0; i < state.history_san.length; i += 2) {
+      const num = (i / 2) + 1;
+      const w = state.history_san[i] || "";
+      const b = state.history_san[i + 1] || "";
+      rows.push(`<tr><td class="num">${num}.</td><td>${w}</td><td>${b}</td></tr>`);
+    }
+    movesEl.innerHTML = `<table>${rows.join("")}</table>`;
+    movesEl.scrollTop = movesEl.scrollHeight;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Click handling.
+// ---------------------------------------------------------------------------
+
+function isPromotionMove(fromSq, toSq) {
+  // Inspect FEN for pawn on from-sq moving to last rank.
+  const placement = parsePiecePlacement(state.fen);
+  const fileIdx = fromSq.charCodeAt(0) - 97;
+  const rankIdx = parseInt(fromSq[1], 10) - 1;
+  const piece = placement[7 - rankIdx][fileIdx];
+  if (piece !== "P" && piece !== "p") return false;
+  const toRank = parseInt(toSq[1], 10);
+  return (piece === "P" && toRank === 8) || (piece === "p" && toRank === 1);
+}
+
+function onSquareClick(sqAlg) {
+  if (state.game_over || !state.isUserTurn) return;
+
+  // If something is selected and this is a legal destination -> play.
+  if (state.selected && state.legal[state.selected]
+      && state.legal[state.selected].includes(sqAlg)) {
+    const from = state.selected;
+    const to = sqAlg;
+    if (isPromotionMove(from, to)) {
+      openPromotionModal(from, to);
+      return;
+    }
+    sendMove(from + to);
+    return;
+  }
+
+  // Otherwise, treat as a (re-)selection if this square has legal moves.
+  if (state.legal[sqAlg] && state.legal[sqAlg].length) {
+    state.selected = sqAlg;
+    render();
+    return;
+  }
+
+  // Click on something un-selectable -> clear selection.
+  if (state.selected) {
+    state.selected = null;
+    render();
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Promotion modal.
+// ---------------------------------------------------------------------------
+
+function openPromotionModal(from, to) {
+  state.pendingPromo = { from, to };
+  promoRow.innerHTML = "";
+  const isWhite = (state.userColor === "white");
+  const pieces = ["q", "r", "b", "n"];
+  for (const p of pieces) {
+    const cell = document.createElement("div");
+    cell.className = "promo-piece";
+    cell.textContent = GLYPHS[isWhite ? p.toUpperCase() : p];
+    cell.addEventListener("click", () => {
+      promoModal.classList.remove("show");
+      sendMove(from + to + p);
+      state.pendingPromo = null;
+    });
+    promoRow.appendChild(cell);
+  }
+  promoModal.classList.add("show");
+}
+
+// ---------------------------------------------------------------------------
+// Server interactions.
+// ---------------------------------------------------------------------------
+
+async function sendMove(uci) {
+  try {
+    const s1 = await api("POST", "/api/move", { uci });
+    apply(s1);
+    if (state.game_over) return;
+    // Engine replies.
+    const s2 = await api("POST", "/api/engine_move");
+    apply(s2);
+  } catch (e) {
+    statusEl.textContent = "Error: " + e.message;
+  }
+}
+
+async function newGame() {
+  const color = document.querySelector('input[name="color"]:checked').value;
+  const elo = parseInt(eloEl.value, 10);
+  try {
+    const s = await api("POST", "/api/new", { color, elo });
+    apply(s);
+  } catch (e) {
+    statusEl.textContent = "Error: " + e.message;
+  }
+}
+
+async function resign() {
+  if (!confirm("Resign this game?")) return;
+  try {
+    const s = await api("POST", "/api/resign");
+    apply(s);
+  } catch (e) {
+    statusEl.textContent = "Error: " + e.message;
+  }
+}
+
+let eloDebounce = null;
+eloEl.addEventListener("input", () => {
+  eloValueEl.textContent = eloEl.value;
+  clearTimeout(eloDebounce);
+  eloDebounce = setTimeout(async () => {
+    try { await api("POST", "/api/elo", { elo: parseInt(eloEl.value, 10) }); }
+    catch (e) { console.warn(e); }
+  }, 200);
+});
+
+newGameBtn.addEventListener("click", newGame);
+resignBtn.addEventListener("click", resign);
+
+// ---------------------------------------------------------------------------
+// Bootstrap.
+// ---------------------------------------------------------------------------
+
+(async () => {
+  try {
+    const s = await api("GET", "/api/state");
+    apply(s);
+  } catch (e) {
+    statusEl.textContent = "Failed to load: " + e.message;
+  }
+})();
+</script>
+</body>
+</html>
