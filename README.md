@@ -5,6 +5,19 @@
 <h1 align="center">Chess by Committee</h1>
 <p align="center"><em>A methodology-driven experimental framework for AI-generated chess engines</em></p>
 
+<p align="center">
+  <a href="https://github.com/jeffreyzhou-harvard/PointChessEngine/stargazers">
+    <img src="https://img.shields.io/github/stars/jeffreyzhou-harvard/PointChessEngine?style=social" alt="GitHub stars">
+  </a>
+  <a href="https://github.com/jeffreyzhou-harvard/PointChessEngine/network/members">
+    <img src="https://img.shields.io/github/forks/jeffreyzhou-harvard/PointChessEngine?style=social" alt="GitHub forks">
+  </a>
+  <a href="https://github.com/jeffreyzhou-harvard/PointChessEngine/actions/workflows/tests.yml">
+    <img src="https://img.shields.io/github/actions/workflow/status/jeffreyzhou-harvard/PointChessEngine/tests.yml?branch=main&label=tests" alt="CI status">
+  </a>
+  <img src="https://img.shields.io/github/last-commit/jeffreyzhou-harvard/PointChessEngine" alt="last commit">
+</p>
+
 We did not build a single chess engine.
 We built a structured experimental apparatus for generating and comparing chess engines under different AI methodologies, then measured the methodologies themselves.
 
