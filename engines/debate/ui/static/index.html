@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>CouncilEngine</title>
+<link rel="stylesheet" href="/static/board.css">
+</head>
+<body>
+<div id="app">
+  <header>
+    <h1>CouncilEngine</h1>
+    <div class="status" id="status">white to move</div>
+  </header>
+
+  <main>
+    <div class="board-wrap">
+      <div id="board" class="board"></div>
+    </div>
+
+    <aside class="controls">
+      <fieldset>
+        <legend>Game</legend>
+        <button id="btn-new">New game</button>
+        <button id="btn-engine-move">Engine move</button>
+        <button id="btn-stop">Stop</button>
+      </fieldset>
+
+      <fieldset>
+        <legend>Strength</legend>
+        <label>
+          <input type="checkbox" id="limit-strength" checked>
+          Limit strength
+        </label>
+        <label>
+          ELO: <span id="elo-val">1600</span>
+          <input type="range" id="elo" min="400" max="2400" step="50" value="1600">
+        </label>
+        <label>
+          Engine think time:
+          <select id="movetime">
+            <option value="200">0.2 s</option>
+            <option value="500" selected>0.5 s</option>
+            <option value="1000">1 s</option>
+            <option value="2000">2 s</option>
+            <option value="5000">5 s</option>
+          </select>
+        </label>
+      </fieldset>
+
+      <fieldset>
+        <legend>Status</legend>
+        <div>Depth: <span id="depth">-</span></div>
+        <div>Score: <span id="score">-</span> cp</div>
+        <div>PV: <span id="pv">-</span></div>
+        <div>Last engine: <span id="last">-</span></div>
+        <div>Result: <span id="result">in progress</span></div>
+      </fieldset>
+    </aside>
+  </main>
+</div>
+<script src="/static/board.js"></script>
+</body>
+</html>
