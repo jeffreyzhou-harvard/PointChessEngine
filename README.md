@@ -1,167 +1,301 @@
-# PointChess Engine
+# Chess by Committee
+## A methodology-driven experimental framework for AI-generated chess engines
 
-A complete chess engine with browser-based UI, UCI protocol support, and adjustable ELO strength (400-2400).
+We did not build a single chess engine.
+We built a structured experimental apparatus for generating and comparing chess engines under different AI methodologies, then measured the methodologies themselves.
 
-## Quick Start
+---
+
+## Overview
+
+This repository investigates a core question:
+
+**When an AI system builds a chess engine, which AI-usage methodology yields the strongest result for the lowest cost?**
+
+The engine artifact is the output, not the endpoint. The endpoint is controlled comparison across:
+
+- prompting patterns
+- multi-agent topologies
+- orchestration runtimes
+- model choices
+- parallelization strategies
+
+Every approach is implemented end-to-end, evaluated in a unified harness, and reported on a multi-axis scorecard (quality, cost, latency, robustness, and engineering process).
+
+---
+
+## Why this project matters
+
+Most chess+LLM work reports playing strength from one methodology. That conflates model quality with system design quality.
+
+This project separates those variables. Chess is a clean evaluation domain:
+
+- fixed rules
+- strong oracle (`stockfish`)
+- well-studied search space
+- measurable failure modes (illegal moves, hallucinated board state, protocol errors)
+
+That makes it a practical benchmark for the broader engineering question:
+
+**How should AI teams structure their LLM workflows to maximize output quality per dollar?**
+
+---
+
+## Current repository scope
+
+This repo currently contains multiple concrete engine implementations plus orchestration/testing infrastructure.
+
+### Engine implementations
+
+- `oneshot_nocontext_engine/`
+- `oneshot_contextualized_engine/`
+- `chainofthought_engine/`
+- `oneshot_react_engine/`
+- `langgraph_engine/` (in-progress orchestration-oriented branch)
+
+Each engine supports UCI mode so it can be tournament-evaluated in a common pipeline.
+
+### Interactive dashboard (new)
+
+- `dashboard/backend/` - FastAPI backend + WebSocket streaming + local persistence
+- `dashboard/frontend/` - React + Vite UI for live matches and result exploration
+- `dashboard/results/` - persisted match artifacts
+
+Dashboard supports:
+
+- engine-vs-engine (fixed four LLM engines)
+- engine-vs-stockfish
+- live boards/charts/cross-table
+- replay/export from saved history
+
+For dashboard-specific details, see `dashboard/README.md`.
+
+### Evaluation and orchestration assets
+
+- `agents/` - methodology/process protocols and parallelization plans
+- `orchestrators/` - orchestration schemas and debate runtime notes
+- `scripts/` - candidate scoring, champion tests, report generation
+- `tasks/` - work plans and protocol docs
+- `reports/` - run/eval/comparison outputs
+- `tests/` - classical/contract/dashboard tests
+
+---
+
+## Judging criteria alignment
+
+### Creativity
+
+- Heterogeneous debate personas and orchestration exploration in `orchestrators/debate/`
+- Stockfish-referenced decision loops in engine variants and eval scripts
+- Persona/rating-aware behavior explored across approach families
+- Geometric and format robustness treated as a separate eval concern from raw Elo
+
+### Rigor
+
+- Reproducible protocol docs in `agents/` and `tasks/`
+- Tournament and candidate-stage automation in `scripts/`
+- Structured comparisons and reporting in `reports/comparisons/`
+- Contract and integration-level tests under `tests/`
+
+### Ingenuity
+
+- Three-layer parallelization strategy (within-process, game-level, matrix-level)
+- Multiple methodology families under one repo contract (one-shot, CoT, ReAct, graph/debate)
+- Cost-aware experimentation and model/routing flexibility
+
+### Engineering
+
+- Modular engine packages with UCI adapters
+- Shared orchestration protocols and stage gates
+- Automated candidate/champion evaluation scripts
+- Interactive local dashboard for live experiments
+
+---
+
+## System architecture (repository-aligned)
+
+The framework has five replaceable layers:
+
+1. **Engine implementations**  
+   Engine packages listed above expose UCI-compatible behavior.
+
+2. **Harness/orchestration glue**  
+   Protocol and orchestration definitions in `orchestrators/`, `agents/`, `tasks/`, and `scripts/`.
+
+3. **Tournament/evaluation**  
+   Candidate/champion evaluation workflow in `scripts/`, with artifacts in `reports/`.
+
+4. **Parallel execution**  
+   Strategy docs in `agents/PARALLELIZATION_PLAN.md` plus branch-specific parallel demos.
+
+5. **UI surface**  
+   - Engine-specific web UIs inside each engine package  
+   - Unified experiment dashboard in `dashboard/`
+
+---
+
+## AI methodology used in this project
+
+This project treats AI as three separate roles:
+
+1. **AI as builder**: helps produce harness/eval/UI code
+2. **AI as player**: powers LLM-driven chess engines
+3. **AI as judge/critic**: evaluates reasoning quality and process outputs where applicable
+
+A central principle is human-reviewed iteration:
+
+- proposed changes are tested and compared, not blindly accepted
+- orchestration decisions are documented as protocols and stage gates
+- performance/cost tradeoffs are measured, not assumed
+
+---
+
+## Experimental framework (approach spectrum)
+
+Core families represented in this repo:
+
+- One-shot baseline (`oneshot_nocontext_engine/`)
+- One-shot contextualized (`oneshot_contextualized_engine/`)
+- Structured reasoning / chain-of-thought (`chainofthought_engine/`)
+- Tool-using ReAct (`oneshot_react_engine/`)
+- Graph/orchestration-focused variants (`langgraph_engine/`, orchestrator docs)
+
+These are evaluated comparatively through shared run scripts and reporting outputs.
+
+---
+
+## Parallelization strategy
+
+Three distinct bottlenecks are handled separately:
+
+1. **LLM calls inside one game** (network bound)  
+   Async concurrency and rate-limited orchestration
+
+2. **Many games at once** (CPU/process bound)  
+   Multi-game runners and engine process pools
+
+3. **Full experiment matrix** (orchestration bound)  
+   Batch workflows, staged candidate pipelines, and scheduled comparisons
+
+See `agents/PARALLELIZATION_PLAN.md` and `scripts/` for concrete process flow.
+
+---
+
+## Setup and run
+
+### Prerequisites
+
+- Python 3.11+
+- Node 20+ (for dashboard/frontend)
+- Optional but recommended: `stockfish` on PATH or set `STOCKFISH_PATH`
+
+### Install core Python deps
 
 ```bash
-# Start the web UI
-python -m oneshot_nocontext_engine
-
-# Open http://localhost:8000 in your browser
-
-# Or run in UCI mode (for chess GUIs like Arena, CuteChess, etc.)
-python -m oneshot_nocontext_engine --uci
+python3 -m venv .venv
+.venv/bin/pip install -r requirements.txt
 ```
 
-No external dependencies required — pure Python 3.
+### Run an engine directly
 
-## Architecture
+```bash
+# Example: no-context engine UI
+.venv/bin/python -m oneshot_nocontext_engine
 
-```
-oneshot_nocontext_engine/
-├── core/               # Chess rules & board representation
-│   ├── types.py        # Color, PieceType, Piece, Move, Square
-│   └── board.py        # Board state, legal move generation, FEN/PGN
-├── search/             # Engine search & evaluation
-│   ├── evaluation.py   # Position evaluation (material, PST, structure)
-│   ├── engine.py       # Alpha-beta search with iterative deepening
-│   └── elo.py          # ELO-to-engine-parameters mapping
-├── uci/                # UCI protocol layer
-│   └── protocol.py     # UCI command handling
-├── ui/                 # Browser-based interface
-│   ├── server.py       # HTTP server & JSON API
-│   └── static/         # HTML/CSS/JS frontend
-├── tests/              # Automated test suite
-└── __main__.py         # Entry point
+# Example: UCI mode
+.venv/bin/python -m oneshot_nocontext_engine --uci
 ```
 
-## Engine Design
+### Run interactive dashboard (recommended)
 
-### Search
-- **Minimax with alpha-beta pruning** — standard game tree search
-- **Iterative deepening** — searches depth 1, 2, 3... up to the limit, using the best move from shallower searches to improve move ordering
-- **Quiescence search** — extends search on capture sequences to avoid the horizon effect
-- **Transposition table** — caches evaluated positions to avoid redundant work
-- **Move ordering** — TT move first, then captures (MVV-LVA), promotions, killer moves
-
-### Evaluation
-- **Material balance** — standard piece values (P=100, N=320, B=330, R=500, Q=900)
-- **Piece-square tables** — positional bonuses for each piece type, with separate king tables for middlegame vs endgame
-- **Pawn structure** — penalties for doubled/isolated pawns, bonuses for passed pawns
-- **Mobility** — number of squares available to pieces
-- **King safety** — pawn shield bonus in the middlegame
-- **Bishop pair** — 30cp bonus for having both bishops
-
-## ELO Scaling
-
-The ELO slider (400-2400) maps to four engine parameters:
-
-| ELO Range | Depth | Eval Noise | Blunder % | Time/Move |
-|-----------|-------|------------|-----------|-----------|
-| 400-800   | 1-2   | ±200cp     | 25-12%    | 0.5-1.0s  |
-| 800-1200  | 2-3   | ±100cp     | 12-6%     | 1.0-2.0s  |
-| 1200-1600 | 3-4   | ±50cp      | 6-2%      | 2.0-4.0s  |
-| 1600-2000 | 4-5   | ±20cp      | 2-0.5%    | 4.0-7.0s  |
-| 2000-2400 | 5-7   | ~0cp       | ~0%       | 7.0-10.0s |
-
-**How blunders work:** Instead of picking random moves, the engine evaluates the top 5 moves and picks from the 2nd-5th best, weighted toward better options. This produces human-like mistakes rather than absurd blunders.
-
-Parameters interpolate linearly within brackets. See `oneshot_nocontext_engine/search/elo.py` for the exact formulas.
-
-## UCI Support
-
-The engine implements the UCI protocol and can be loaded into any UCI-compatible GUI:
-
-```
-uci              → identifies engine, lists options
-isready          → synchronization
-ucinewgame       → clears transposition table
-position         → set position (startpos/FEN + moves)
-go               → search (supports depth, movetime, wtime/btime)
-stop             → stop searching
-quit             → exit
-setoption        → set Skill Level or UCI_Elo (400-2400)
+```bash
+make dashboard-install
+make dashboard
 ```
 
-Example UCI session:
-```
-> uci
-id name PointChess
-id author PointChess Team
-option name Skill Level type spin default 1500 min 400 max 2400
-uciok
-> isready
-readyok
-> position startpos moves e2e4 e7e5
-> go depth 5
-info depth 5 nodes 12345 time 234 nps 52778 score cp 25
-bestmove d2d4
-```
+Then open: `http://127.0.0.1:5173`
 
-## Web UI Features
+### Dashboard environment variables
 
-- Click-to-move with legal move indicators
-- Choose side (white/black)
-- Adjustable engine ELO slider
-- Move list display
-- Check/checkmate/stalemate detection
-- Pawn promotion dialog
-- Undo moves
-- Resign
-- Export PGN
-- Responsive design
+- `STOCKFISH_PATH` (required for engine-vs-stockfish tab)
+- model provider keys required by selected engine(s)
+
+---
 
 ## Testing
 
+### Engine/package tests
+
 ```bash
-# Run all tests
-python -m pytest oneshot_nocontext_engine/tests/ -v
-
-# Run specific test files
-python -m pytest oneshot_nocontext_engine/tests/test_board.py -v   # Move generation, special rules
-python -m pytest oneshot_nocontext_engine/tests/test_engine.py -v   # Search, evaluation, ELO
-python -m pytest oneshot_nocontext_engine/tests/test_uci.py -v      # UCI protocol
+.venv/bin/python -m pytest oneshot_nocontext_engine/tests -v
+.venv/bin/python -m pytest oneshot_contextualized_engine/tests -v
 ```
 
-The test suite includes:
-- FEN parsing and roundtrip
-- Legal move generation (starting position = 20 moves)
-- Special moves: en passant, castling (both sides), promotion
-- Castling restrictions (through check, in check, rights lost)
-- Check, checkmate, stalemate detection
-- Insufficient material, fifty-move rule
-- Move undo (including special moves)
-- **Perft tests** — verifying move generation against known node counts:
-  - Starting position: depth 1=20, depth 2=400, depth 3=8902
-  - Kiwipete position: depth 1=48, depth 2=2039
-- SAN and PGN generation
-- Engine search (mate-in-1, captures, no blunders)
-- ELO settings validation
-- UCI command handling
+### Dashboard backend test
 
-## Known Limitations
-
-- **Performance:** Pure Python is ~100x slower than C/C++ engines. Search depth is limited to ~5-7 plies in reasonable time. At maximum ELO the engine plays at roughly 1600-1800 human strength.
-- **Opening book:** No opening book — the engine calculates from scratch every move.
-- **Endgame tablebases:** Not supported — endgame play relies solely on evaluation.
-- **Threefold repetition:** Detected but the engine doesn't actively avoid/seek draws.
-- **Time management:** Basic time allocation (2% of remaining time); no pondering.
-
-## Sample Positions
-
-Test the engine with these FEN strings:
-
+```bash
+.venv/bin/python -m pytest tests/dashboard/test_backend_ws.py -q
 ```
-# Scholar's mate setup (White to play Qxf7#)
-r1bqkb1r/pppp1ppp/2n2n2/4p2Q/2B1P3/8/PPPP1PPP/RNB1K1NR w KQkq - 4 4
 
-# Mate in 1 (Qh7#)
-6k1/5ppp/8/8/8/8/8/4K2Q w - - 0 1
+### Candidate/champion workflow
 
-# Complex middlegame (Kiwipete)
-r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 0 1
+See scripts:
 
-# Endgame: King + Rook vs King
-8/8/8/8/8/4k3/8/R3K3 w - - 0 1
+- `scripts/run_candidate_tests.py`
+- `scripts/run_champion_stage.py`
+- `scripts/score_candidates.py`
+- `scripts/write_comparison_report.py`
+
+---
+
+## Repository map (current)
+
+```text
+PointChessEngine/
+├── chainofthought_engine/
+├── oneshot_contextualized_engine/
+├── oneshot_nocontext_engine/
+├── oneshot_react_engine/
+├── langgraph_engine/
+├── dashboard/
+│   ├── backend/
+│   ├── frontend/
+│   └── results/
+├── agents/
+├── orchestrators/
+├── scripts/
+├── reports/
+├── tasks/
+├── tests/
+├── Makefile
+└── README.md
 ```
+
+---
+
+## Known limitations
+
+- LLM-driven approaches are prompt-sensitive and can have wide Elo confidence intervals
+- Cost/latency variance is substantial for agentic and debate-style approaches
+- Cross-approach transitivity assumptions in Elo are imperfect
+- Some orchestration/eval components are still evolving and documented as protocol-first
+
+---
+
+## Future work
+
+- Broader model grid runs with tighter confidence bounds
+- Additional framework-isolation experiments (same model/prompt, different runtime)
+- Expanded robustness suite (metamorphic + adversarial probes)
+- More complete cost-Elo Pareto reporting across all approach families
+
+---
+
+## Related docs in this repo
+
+- `dashboard/README.md` - interactive dashboard usage
+- `agents/` - methodology and operational protocols
+- `orchestrators/` - orchestration schemas and runtime docs
+- `tasks/START_HERE.md` - guided task entrypoint
+
+If you want the README to mirror your whitepaper structure even more closely, the next step is adding dedicated top-level docs (`WHITEPAPER.md`, `RELATED_WORK.md`, `decisions/log.md`, and `/docs` figures) and linking them from here.
