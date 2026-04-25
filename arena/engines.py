@@ -258,11 +258,21 @@ class UCIClient:
         self._send("isready")
         self._wait_for("readyok", timeout=10)
 
-    def go(self, moves_uci: list[str], movetime_ms: int) -> tuple[str, list[dict]]:
-        """Send the position + go, return (bestmove_uci, list_of_info_dicts)."""
-        cmd = "position startpos"
-        if moves_uci:
-            cmd += " moves " + " ".join(moves_uci)
+    def go(self, moves_uci: list[str], movetime_ms: int,
+           fen: str | None = None) -> tuple[str, list[dict]]:
+        """Send the position + go, return (bestmove_uci, list_of_info_dicts).
+
+        If ``fen`` is provided, use ``position fen <fen>`` (with optional
+        moves applied on top); otherwise default to ``position startpos``.
+        """
+        if fen:
+            cmd = f"position fen {fen}"
+            if moves_uci:
+                cmd += " moves " + " ".join(moves_uci)
+        else:
+            cmd = "position startpos"
+            if moves_uci:
+                cmd += " moves " + " ".join(moves_uci)
         self._send(cmd)
         self._send(f"go movetime {movetime_ms}")
         infos: list[dict] = []

@@ -8,12 +8,16 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlparse
 
+from arena.analysis import analyze
 from arena.engines import REGISTRY, populate_static_metadata
 from arena.match import Match, _engine_dict
+from arena.tournament import Tournament
 
 STATIC_DIR = Path(__file__).parent / "static"
 MATCHES: dict[str, Match] = {}
 MATCHES_LOCK = threading.Lock()
+TOURNAMENTS: dict[str, Tournament] = {}
+TOURNAMENTS_LOCK = threading.Lock()
 
 
 def _engines_payload() -> list[dict]:
@@ -71,6 +75,10 @@ class Handler(BaseHTTPRequestHandler):
             mid = path.split("/")[3]
             self._stream_match(mid)
             return
+        if path.startswith("/api/tournament/") and path.endswith("/stream"):
+            tid = path.split("/")[3]
+            self._stream_tournament(tid)
+            return
         self.send_error(404, "not found")
 
     # ----- POST ---------------------------------------------------------------
@@ -108,6 +116,65 @@ class Handler(BaseHTTPRequestHandler):
             m.stop()
             self._json(200, {"ok": True})
             return
+
+        # ----- Tournament ----------------------------------------------------
+        if url.path == "/api/tournament":
+            length = int(self.headers.get("Content-Length", "0"))
+            try:
+                body = json.loads(self.rfile.read(length) or b"{}")
+            except json.JSONDecodeError:
+                self._json(400, {"error": "invalid json"})
+                return
+            engine_ids = body.get("engines") or []
+            unknown = [e for e in engine_ids if e not in REGISTRY]
+            if unknown:
+                self._json(400, {"error": f"unknown engine ids: {unknown}"})
+                return
+            if len(engine_ids) < 2:
+                self._json(400, {"error": "need at least 2 engines"})
+                return
+            try:
+                t = Tournament(
+                    engine_ids=engine_ids,
+                    movetime_ms=int(body.get("movetime_ms", 200)),
+                    max_plies=int(body.get("max_plies", 60)),
+                    games_per_pair=int(body.get("games_per_pair", 1)),
+                )
+            except ValueError as exc:
+                self._json(400, {"error": str(exc)})
+                return
+            with TOURNAMENTS_LOCK:
+                TOURNAMENTS[t.id] = t
+            threading.Thread(target=t.run, daemon=True).start()
+            self._json(200, {"tournament_id": t.id, "total_games": len(t.games)})
+            return
+        if url.path.startswith("/api/tournament/") and url.path.endswith("/stop"):
+            tid = url.path.split("/")[3]
+            with TOURNAMENTS_LOCK:
+                t = TOURNAMENTS.get(tid)
+            if not t:
+                self._json(404, {"error": "no such tournament"})
+                return
+            t.stop()
+            self._json(200, {"ok": True})
+            return
+
+        # ----- Analyze (sync) ------------------------------------------------
+        if url.path == "/api/analyze":
+            length = int(self.headers.get("Content-Length", "0"))
+            try:
+                body = json.loads(self.rfile.read(length) or b"{}")
+            except json.JSONDecodeError:
+                self._json(400, {"error": "invalid json"})
+                return
+            payload = analyze(
+                fen=str(body.get("fen", "")).strip(),
+                engine_ids=list(body.get("engines") or []),
+                movetime_ms=int(body.get("movetime_ms", 500)),
+            )
+            self._json(200, payload)
+            return
+
         self.send_error(404, "not found")
 
     # ----- SSE ----------------------------------------------------------------
@@ -117,6 +184,19 @@ class Handler(BaseHTTPRequestHandler):
         if not match:
             self.send_error(404, "no such match")
             return
+        self._stream(match)
+
+    def _stream_tournament(self, tid: str) -> None:
+        with TOURNAMENTS_LOCK:
+            t = TOURNAMENTS.get(tid)
+        if not t:
+            self.send_error(404, "no such tournament")
+            return
+        self._stream(t)
+
+    def _stream(self, source) -> None:
+        """Generic SSE pump shared by Match and Tournament (both expose
+        subscribe()/unsubscribe()/done)."""
         self.send_response(200)
         self.send_header("Content-Type", "text/event-stream")
         self.send_header("Cache-Control", "no-store")
@@ -124,7 +204,7 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header("X-Accel-Buffering", "no")
         self.end_headers()
 
-        q = match.subscribe()
+        q = source.subscribe()
         try:
             while True:
                 try:
@@ -135,12 +215,12 @@ class Handler(BaseHTTPRequestHandler):
                     continue
                 self.wfile.write(chunk.encode())
                 self.wfile.flush()
-                if match.done and q.empty():
+                if source.done and q.empty():
                     break
         except (BrokenPipeError, ConnectionResetError):
             pass
         finally:
-            match.unsubscribe(q)
+            source.unsubscribe(q)
 
 
 def serve(host: str = "127.0.0.1", port: int = 8765) -> None:

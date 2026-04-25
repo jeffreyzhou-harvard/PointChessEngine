@@ -21,14 +21,14 @@
       </div>
     </div>
     <nav class="nav-tabs">
-      <button class="tab active">Match</button>
-      <button class="tab" disabled>Tournament</button>
-      <button class="tab" disabled>Analysis</button>
+      <button class="tab active" data-pane="match">Match</button>
+      <button class="tab" data-pane="tournament">Tournament</button>
+      <button class="tab" data-pane="analysis">Analysis</button>
     </nav>
     <div class="status-pill" id="status"><span class="dot"></span><span id="status-text">idle</span></div>
   </header>
 
-  <main class="layout">
+  <main class="layout pane-match" id="pane-match">
     <!-- LEFT: setup -->
     <aside class="side side-left">
       <div class="card">
@@ -167,6 +167,77 @@
         </div>
       </div>
     </aside>
+  </main>
+
+  <!-- ============================ TOURNAMENT ============================ -->
+  <main class="layout-narrow pane-tournament" id="pane-tournament" hidden>
+    <section class="card setup-card">
+      <h2>Tournament setup</h2>
+      <div class="multi-select" id="t-engine-list"></div>
+      <div class="setup-row">
+        <label>Movetime <input id="t-movetime" type="number" min="50" max="30000" step="50" value="200" /> ms</label>
+        <label>Max plies <input id="t-maxplies" type="number" min="2" max="600" step="2" value="60" /></label>
+        <label>Games / pair <input id="t-games-per-pair" type="number" min="1" max="6" step="1" value="1" /></label>
+        <button id="t-start-btn" class="primary">Start tournament</button>
+        <button id="t-stop-btn" class="ghost" disabled>Stop</button>
+      </div>
+      <div class="t-progress" id="t-progress">no tournament running</div>
+    </section>
+
+    <div class="t-grid">
+      <section class="card">
+        <h2>Standings</h2>
+        <table class="data-table" id="t-standings">
+          <thead><tr><th>#</th><th>engine</th><th>played</th><th>W</th><th>D</th><th>L</th><th>pts</th><th>win %</th></tr></thead>
+          <tbody><tr><td colspan="8" class="empty">Pick engines and start a tournament.</td></tr></tbody>
+        </table>
+      </section>
+      <section class="card">
+        <h2>Cross-table</h2>
+        <div class="cross-wrap">
+          <table class="cross-table" id="t-crosstable">
+            <thead><tr><th></th></tr></thead>
+            <tbody><tr><td class="empty">No games yet.</td></tr></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <section class="card">
+      <h2>Recent games</h2>
+      <div class="t-log" id="t-log"></div>
+    </section>
+  </main>
+
+  <!-- ============================ ANALYSIS ============================ -->
+  <main class="layout-narrow pane-analysis" id="pane-analysis" hidden>
+    <section class="card setup-card">
+      <h2>Position</h2>
+      <textarea id="a-fen" rows="2"
+                placeholder="Paste a FEN, or leave blank for the starting position">rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1</textarea>
+      <div class="a-fen-buttons">
+        <button class="ghost small" id="a-fen-startpos">Start position</button>
+        <button class="ghost small" id="a-fen-kiwipete">Kiwipete</button>
+        <button class="ghost small" id="a-fen-mate1">Mate-in-1</button>
+      </div>
+    </section>
+
+    <section class="card setup-card">
+      <h2>Engines</h2>
+      <div class="multi-select" id="a-engine-list"></div>
+      <div class="setup-row">
+        <label>Movetime <input id="a-movetime" type="number" min="50" max="30000" step="50" value="500" /> ms</label>
+        <button id="a-run-btn" class="primary">Analyze</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Results</h2>
+      <table class="data-table" id="a-results">
+        <thead><tr><th>engine</th><th>bestmove</th><th>eval</th><th>depth</th><th>nodes</th><th>NPS</th><th>wall ms</th><th>pv</th></tr></thead>
+        <tbody><tr><td colspan="8" class="empty">No analysis yet.</td></tr></tbody>
+      </table>
+    </section>
   </main>
 
   <script src="/static/pieces.js"></script>
