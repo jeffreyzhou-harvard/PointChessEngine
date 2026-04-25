@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>PointChess ReAct</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <header>
+    <h1>PointChess <span class="muted">ReAct</span></h1>
+    <p class="tagline">Built with the ReAct (Reasoning + Acting) prompting workflow.</p>
+  </header>
+
+  <main>
+    <section class="board-pane">
+      <div class="board-wrapper">
+        <div id="board" role="grid" aria-label="chess board"></div>
+        <div id="status" class="status" aria-live="polite">Loading…</div>
+      </div>
+    </section>
+
+    <aside class="side-pane">
+      <section class="panel">
+        <h2>Game</h2>
+        <div class="control-row">
+          <label for="side-select">Play as</label>
+          <select id="side-select">
+            <option value="w">White</option>
+            <option value="b">Black</option>
+          </select>
+        </div>
+        <div class="control-row">
+          <label for="elo-slider">Engine ELO: <span id="elo-value">1500</span></label>
+          <input id="elo-slider" type="range" min="400" max="2400" step="50" value="1500" />
+        </div>
+        <div class="button-row">
+          <button id="new-game">New Game</button>
+          <button id="undo-btn">Undo</button>
+          <button id="resign-btn">Resign</button>
+          <button id="pgn-btn">Export PGN</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Moves</h2>
+        <ol id="move-list" class="move-list"></ol>
+      </section>
+
+      <section class="panel">
+        <h2>Engine</h2>
+        <div id="engine-info" class="engine-info">
+          <p class="muted">No engine moves yet.</p>
+        </div>
+      </section>
+    </aside>
+  </main>
+
+  <!-- Pawn promotion picker -->
+  <div id="promotion-modal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <h3>Promote to:</h3>
+      <div class="promo-options">
+        <button data-promo="q">&#9819;</button>
+        <button data-promo="r">&#9820;</button>
+        <button data-promo="b">&#9821;</button>
+        <button data-promo="n">&#9822;</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+# PointChess ReAct - sample positions
+# Paste any of these FEN strings into the "New Game" dialog (forthcoming)
+# or use them via the UCI `position fen ...` command.
+
+# Mate in 1: White to play, Qa8# (the h7 pawn blocks the king's escape).
+6k1/5ppp/8/8/8/8/8/4K2Q w - - 0 1
+
+# Scholar's mate setup: White to play Qxf7#.
+r1bqkb1r/pppp1ppp/2n2n2/4p2Q/2B1P3/8/PPPP1PPP/RNB1K1NR w KQkq - 4 4
+
+# Kiwipete: tactical middlegame for perft and engine stress-tests.
+r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 0 1
+
+# Endgame: King + Rook vs King.
+8/8/8/8/8/4k3/8/R3K3 w - - 0 1
+
+# Endgame: Pawn promotion race.
+8/P7/8/8/8/8/8/k6K w - - 0 1
+
+# Stalemate trap (Black to move, no legal moves, not in check).
+7k/5Q2/6K1/8/8/8/8/8 b - - 0 1
+
+# Position 3 from chessprogramming.org perft references.
+8/2p5/3p4/KP5r/1R3p1k/8/4P1P1/8 w - - 0 1
