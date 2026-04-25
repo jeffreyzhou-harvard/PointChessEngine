@@ -33,7 +33,7 @@ jobs:
         run: |
           if find . -path '*/tests/*' -type f \( -name 'test_*.py' -o -name '*_test.py' \) | grep -q .; then
             if python -c "import pytest" 2>/dev/null; then
-              pytest
+              pytest -q
             else
               echo "pytest is not installed; falling back to unittest discovery."
               python -m unittest discover -v
@@ -50,9 +50,12 @@ jobs:
             echo "::warning::No executable contract tests found yet."
           fi
 
-      - name: Champion script smoke check
+      - name: Champion current-engine UCI smoke
         run: |
-          python scripts/run_champion_stage.py \
-            --task C3_STATIC_EVALUATION \
-            --config configs/champion/C3_STATIC_EVALUATION.yaml.example \
-            --dry-run
+          python infra/scripts/run_champion_stage.py \
+            --task CURRENT_ENGINES \
+            --config infra/configs/champion/CURRENT_ENGINES.yaml \
+            --run-tests \
+            --score \
+            --write-report \
+            --jobs 6

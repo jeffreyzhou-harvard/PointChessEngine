@@ -2,7 +2,7 @@
 
 This directory documents stable interfaces for generated engine candidates. It does not contain engine logic.
 
-Public interfaces are frozen unless changed through `/tasks/evals/E6_INTERFACE_CHANGE_PROTOCOL.md` if that file exists. If it does not exist, create and approve such a protocol before changing shared contracts.
+Public interfaces are frozen unless changed through `/infra/tasks/evals/E6_INTERFACE_CHANGE_PROTOCOL.md` if that file exists. If it does not exist, create and approve such a protocol before changing shared contracts.
 
 Agents may change internals but must satisfy shared interfaces. Candidate implementations may use adapters if their internals differ.
 

@@ -1,0 +1,45 @@
+{
+  "baseline_commit": "",
+  "benchmark_score": null,
+  "bestmove": "g1f3",
+  "branch": "main",
+  "candidate_id": "CURRENT_oneshot_contextualized",
+  "commands": [
+    {
+      "command": "/usr/local/bin/python infra/scripts/uci_smoke.py --engine oneshot_contextualized --movetime-ms 75",
+      "dry_run": false,
+      "duration_seconds": 0.471,
+      "returncode": 0,
+      "stderr_log": "/repo/reports/comparisons/CURRENT_ENGINES/CURRENT_oneshot_contextualized/command_1.stderr.log",
+      "stdout_log": "/repo/reports/comparisons/CURRENT_ENGINES/CURRENT_oneshot_contextualized/command_1.stdout.log",
+      "timed_out": false
+    }
+  ],
+  "contract_tests_passed": true,
+  "cost_estimate_usd": null,
+  "dry_run": false,
+  "duration_seconds": 0.471,
+  "engine_id": "oneshot_contextualized",
+  "execution_environment": "local_repo",
+  "latency_minutes": null,
+  "legal_from_startpos": true,
+  "model_assignments": {
+    "builder": "claude"
+  },
+  "observations": [
+    {
+      "bestmove": "g1f3",
+      "duration_seconds": 0.319,
+      "engine": "oneshot_contextualized",
+      "info_count": 3,
+      "legal_from_startpos": true
+    }
+  ],
+  "orchestration_type": "one_shot_with_context",
+  "promotion_status": "candidate",
+  "review_score": null,
+  "task_id": "CURRENT_ENGINES",
+  "tests_passed": 1,
+  "tests_total": 1,
+  "timestamp": "2026-04-25T15:38:08.591773+00:00"
+}

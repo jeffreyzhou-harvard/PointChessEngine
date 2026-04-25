@@ -1,0 +1,45 @@
+{
+  "baseline_commit": "",
+  "benchmark_score": null,
+  "bestmove": "b1a3",
+  "branch": "main",
+  "candidate_id": "CURRENT_chainofthought",
+  "commands": [
+    {
+      "command": "/usr/local/bin/python infra/scripts/uci_smoke.py --engine chainofthought --movetime-ms 75",
+      "dry_run": false,
+      "duration_seconds": 1.512,
+      "returncode": 0,
+      "stderr_log": "/repo/reports/comparisons/CURRENT_ENGINES/CURRENT_chainofthought/command_1.stderr.log",
+      "stdout_log": "/repo/reports/comparisons/CURRENT_ENGINES/CURRENT_chainofthought/command_1.stdout.log",
+      "timed_out": false
+    }
+  ],
+  "contract_tests_passed": true,
+  "cost_estimate_usd": null,
+  "dry_run": false,
+  "duration_seconds": 1.512,
+  "engine_id": "chainofthought",
+  "execution_environment": "local_repo",
+  "latency_minutes": null,
+  "legal_from_startpos": true,
+  "model_assignments": {
+    "builder": "claude"
+  },
+  "observations": [
+    {
+      "bestmove": "b1a3",
+      "duration_seconds": 1.326,
+      "engine": "chainofthought",
+      "info_count": 1,
+      "legal_from_startpos": true
+    }
+  ],
+  "orchestration_type": "chain_of_thought_decomposition",
+  "promotion_status": "candidate",
+  "review_score": null,
+  "task_id": "CURRENT_ENGINES",
+  "tests_passed": 1,
+  "tests_total": 1,
+  "timestamp": "2026-04-25T15:38:09.634687+00:00"
+}

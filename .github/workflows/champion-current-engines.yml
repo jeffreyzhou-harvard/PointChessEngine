@@ -1,0 +1,149 @@
+name: Champion Current Engines
+
+on:
+  workflow_dispatch:
+    inputs:
+      runner_target:
+        description: "Where to run the Dockerized Champion jobs"
+        required: true
+        default: github-hosted
+        type: choice
+        options:
+          - github-hosted
+          - champion-vm
+  pull_request:
+    paths:
+      - ".github/workflows/champion-current-engines.yml"
+      - "arena/**"
+      - "engines/**"
+      - "infra/configs/champion/CURRENT_ENGINES.yaml"
+      - "infra/docker/**"
+      - "infra/scripts/**"
+      - "requirements.txt"
+
+env:
+  CHAMPION_IMAGE: pointchess/champion:ci
+  CHAMPION_IMAGE_TAR: champion-image.tar
+  CHAMPION_CONFIG: infra/configs/champion/CURRENT_ENGINES.yaml
+  CHAMPION_TASK: CURRENT_ENGINES
+
+jobs:
+  build-image:
+    name: Build Champion Docker Image
+    runs-on: ${{ fromJSON((github.event_name == 'workflow_dispatch' && inputs.runner_target == 'champion-vm') && '["self-hosted","champion-vm"]' || '["ubuntu-latest"]') }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: |
+          docker build \
+            -f infra/docker/Dockerfile.champion \
+            -t "$CHAMPION_IMAGE" \
+            .
+
+      - name: Save Docker image
+        run: docker save "$CHAMPION_IMAGE" -o "$CHAMPION_IMAGE_TAR"
+
+      - name: Upload Docker image artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: champion-docker-image
+          path: ${{ env.CHAMPION_IMAGE_TAR }}
+          retention-days: 1
+
+  candidate-smoke:
+    name: ${{ matrix.candidate_id }}
+    needs: build-image
+    runs-on: ${{ fromJSON((github.event_name == 'workflow_dispatch' && inputs.runner_target == 'champion-vm') && '["self-hosted","champion-vm"]' || '["ubuntu-latest"]') }}
+    strategy:
+      fail-fast: false
+      matrix:
+        candidate_id:
+          - CURRENT_oneshot_nocontext
+          - CURRENT_oneshot_contextualized
+          - CURRENT_oneshot_react
+          - CURRENT_chainofthought
+          - CURRENT_langgraph
+          - CURRENT_debate
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Download Docker image artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: champion-docker-image
+
+      - name: Load Docker image
+        run: docker load -i "$CHAMPION_IMAGE_TAR"
+
+      - name: Run candidate Champion smoke
+        run: |
+          docker run --rm \
+            -v "$PWD:/repo" \
+            -w /repo \
+            "$CHAMPION_IMAGE" \
+            python infra/scripts/run_candidate_tests.py \
+              --config "$CHAMPION_CONFIG" \
+              --candidate "${{ matrix.candidate_id }}"
+
+      - name: Upload candidate artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: champion-${{ matrix.candidate_id }}
+          path: reports/comparisons/CURRENT_ENGINES/${{ matrix.candidate_id }}/
+          if-no-files-found: warn
+          retention-days: 7
+
+  aggregate:
+    name: Aggregate Champion Report
+    needs: candidate-smoke
+    if: always()
+    runs-on: ${{ fromJSON((github.event_name == 'workflow_dispatch' && inputs.runner_target == 'champion-vm') && '["self-hosted","champion-vm"]' || '["ubuntu-latest"]') }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Download candidate artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: champion-CURRENT_*
+          path: .champion-artifacts
+
+      - name: Merge candidate artifacts
+        run: |
+          python infra/scripts/aggregate_champion_artifacts.py \
+            --config "$CHAMPION_CONFIG" \
+            --artifact-root .champion-artifacts \
+            --summary-path ""
+
+      - name: Score and write comparison
+        run: |
+          python infra/scripts/score_candidates.py --config "$CHAMPION_CONFIG"
+          python infra/scripts/write_comparison_report.py --config "$CHAMPION_CONFIG"
+
+      - name: Write GitHub summary
+        run: |
+          python infra/scripts/aggregate_champion_artifacts.py \
+            --config "$CHAMPION_CONFIG" \
+            --artifact-root .champion-artifacts
+
+      - name: Upload aggregate report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: champion-current-engines-report
+          path: reports/comparisons/CURRENT_ENGINES/
+          retention-days: 14

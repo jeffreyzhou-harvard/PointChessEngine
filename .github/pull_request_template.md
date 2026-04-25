@@ -51,7 +51,7 @@ Reports/logs generated:
 
 ## Code Review
 
-Self-review completed with `tasks/evals/E4_CODE_REVIEW_RUBRIC.md`:
+Self-review completed with `infra/tasks/evals/E4_CODE_REVIEW_RUBRIC.md`:
 
 - Score:
 - Decision:

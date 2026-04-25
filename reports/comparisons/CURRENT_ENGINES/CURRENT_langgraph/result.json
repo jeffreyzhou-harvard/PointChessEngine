@@ -1,0 +1,46 @@
+{
+  "baseline_commit": "",
+  "benchmark_score": null,
+  "bestmove": "b1c3",
+  "branch": "main",
+  "candidate_id": "CURRENT_langgraph",
+  "commands": [
+    {
+      "command": "/usr/local/bin/python infra/scripts/uci_smoke.py --engine langgraph --movetime-ms 75",
+      "dry_run": false,
+      "duration_seconds": 1.479,
+      "returncode": 0,
+      "stderr_log": "/repo/reports/comparisons/CURRENT_ENGINES/CURRENT_langgraph/command_1.stderr.log",
+      "stdout_log": "/repo/reports/comparisons/CURRENT_ENGINES/CURRENT_langgraph/command_1.stdout.log",
+      "timed_out": false
+    }
+  ],
+  "contract_tests_passed": true,
+  "cost_estimate_usd": null,
+  "dry_run": false,
+  "duration_seconds": 1.479,
+  "engine_id": "langgraph",
+  "execution_environment": "local_repo",
+  "latency_minutes": null,
+  "legal_from_startpos": true,
+  "model_assignments": {
+    "builder": "claude",
+    "orchestrator": "langgraph"
+  },
+  "observations": [
+    {
+      "bestmove": "b1c3",
+      "duration_seconds": 1.305,
+      "engine": "langgraph",
+      "info_count": 1,
+      "legal_from_startpos": true
+    }
+  ],
+  "orchestration_type": "gstack",
+  "promotion_status": "candidate",
+  "review_score": null,
+  "task_id": "CURRENT_ENGINES",
+  "tests_passed": 1,
+  "tests_total": 1,
+  "timestamp": "2026-04-25T15:38:09.601405+00:00"
+}

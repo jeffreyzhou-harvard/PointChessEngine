@@ -14,7 +14,17 @@ except ImportError:  # pragma: no cover - exercised only without dependency inst
     yaml = None
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
+
+
+def resolve_input_path(path_text: str) -> Path:
+    path = Path(path_text)
+    if path.is_absolute():
+        return path
+    cwd_path = Path.cwd() / path
+    if cwd_path.exists():
+        return cwd_path
+    return ROOT / path
 
 
 def load_config(path: Path) -> dict:
@@ -45,7 +55,7 @@ def main() -> int:
     parser.add_argument("--dry-run", action="store_true", help="Print commands without running them")
     args = parser.parse_args()
 
-    config = load_config(Path(args.config))
+    config = load_config(resolve_input_path(args.config))
     baseline = config.get("baseline_branch", "main")
     candidates = config.get("candidates", [])
     if args.candidate:
@@ -58,6 +68,9 @@ def main() -> int:
         branch = candidate.get("branch_name")
         worktree = candidate.get("worktree_path")
         candidate_id = candidate.get("candidate_id", "<unknown>")
+        if candidate.get("execution_environment") == "local_repo":
+            print(f"Skipping {candidate_id}: existing local repo candidate does not need a worktree")
+            continue
         if not branch or not worktree:
             print(f"Skipping {candidate_id}: missing branch_name or worktree_path")
             continue

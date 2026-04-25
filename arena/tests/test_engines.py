@@ -1,6 +1,7 @@
 """Tests for arena/engines.py: parse_info, EngineSpec, UCIClient subprocess."""
 from __future__ import annotations
 
+import shutil
 from pathlib import Path
 
 import pytest
@@ -103,6 +104,11 @@ class TestUCIClient:
 # --------------------------------------------------------------------------- #
 
 class TestStaticMetadata:
+    def test_registered_engine_python_commands_are_launchable(self):
+        for spec in REGISTRY.values():
+            executable = spec.cmd[0]
+            assert Path(executable).exists() or shutil.which(executable), spec.id
+
     def test_count_loc_skips_pycache_and_venv(self, tmp_path: Path):
         (tmp_path / "core").mkdir()
         (tmp_path / "core" / "a.py").write_text("a = 1\nb = 2\nc = 3\n")

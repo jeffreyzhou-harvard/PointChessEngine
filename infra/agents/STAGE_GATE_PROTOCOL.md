@@ -25,7 +25,7 @@ Candidates are created by Codex, Claude, Replit Agent, Cursor, or other tools in
 
 Local manual mode is the recommended MVP.
 
-See `agents/LOCAL_CHAMPION_SETUP.md`.
+See `infra/agents/LOCAL_CHAMPION_SETUP.md`.
 
 ## VM Manual Mode
 
@@ -42,7 +42,7 @@ Use manual candidate creation plus local evaluation/scoring/promotion:
 1. Human freezes task and baseline.
 2. Agents create candidate branches.
 3. Local runner creates worktrees for candidate branches.
-4. Local runner runs `scripts/run_champion_stage.py`.
+4. Local runner runs `infra/scripts/run_champion_stage.py`.
 5. Human reviews comparison report.
 6. Human confirms promotion.
 

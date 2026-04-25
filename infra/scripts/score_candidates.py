@@ -14,7 +14,7 @@ except ImportError:  # pragma: no cover
     yaml = None
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_WEIGHTS = {
     "correctness_tests": 35,
     "code_review_quality": 20,
@@ -30,6 +30,16 @@ def load_config(path: Path) -> dict:
         raise SystemExit("PyYAML is required. Run: pip install -r requirements.txt")
     with path.open("r", encoding="utf-8") as f:
         return yaml.safe_load(f) or {}
+
+
+def resolve_input_path(path_text: str) -> Path:
+    path = Path(path_text)
+    if path.is_absolute():
+        return path
+    cwd_path = Path.cwd() / path
+    if cwd_path.exists():
+        return cwd_path
+    return ROOT / path
 
 
 def clamp(value: float, low: float = 0.0, high: float = 1.0) -> float:
@@ -75,7 +85,7 @@ def main() -> int:
     parser.add_argument("--results-dir", help="Override result directory")
     args = parser.parse_args()
 
-    config = load_config(Path(args.config))
+    config = load_config(resolve_input_path(args.config))
     task_id = config.get("task_id", "UNKNOWN_TASK")
     weights = DEFAULT_WEIGHTS | (config.get("score_weights") or {})
     report_root = Path(args.results_dir) if args.results_dir else ROOT / config.get("report_root", "reports/comparisons") / task_id

@@ -34,7 +34,7 @@ Move to an Ubuntu VM later only when you need a cleaner machine, isolated hardwa
 
 ## Terminology
 
-- Task spec: a `/tasks/*.md` file defining a milestone.
+- Task spec: an `/infra/tasks/*.md` file defining a milestone.
 - Ground truth tests: unit tests, contract tests, perft tests, UCI tests, tournament evals.
 - Canonical baseline: current best merged engine state.
 - Candidate implementation: one framework/model setup's attempt at a milestone.

@@ -46,8 +46,8 @@ mkdir -p ../worktrees
 Use the config for the milestone:
 
 ```bash
-python scripts/create_candidate_worktrees.py \
-  --config configs/champion/C3_STATIC_EVALUATION.yaml.example
+python infra/scripts/create_candidate_worktrees.py \
+  --config infra/configs/champion/C3_STATIC_EVALUATION.yaml.example
 ```
 
 This creates worktrees such as:
@@ -81,9 +81,9 @@ experiments/<task>/<candidate>
 After candidate branches are ready:
 
 ```bash
-python scripts/run_champion_stage.py \
+python infra/scripts/run_champion_stage.py \
   --task C3_STATIC_EVALUATION \
-  --config configs/champion/C3_STATIC_EVALUATION.yaml.example \
+  --config infra/configs/champion/C3_STATIC_EVALUATION.yaml.example \
   --run-tests \
   --score \
   --write-report
@@ -92,9 +92,9 @@ python scripts/run_champion_stage.py \
 Or use the local convenience wrapper:
 
 ```bash
-python scripts/run_local_champion.py \
+python infra/scripts/run_local_champion.py \
   --task C3_STATIC_EVALUATION \
-  --config configs/champion/C3_STATIC_EVALUATION.yaml.example
+  --config infra/configs/champion/C3_STATIC_EVALUATION.yaml.example
 ```
 
 Reports are written under:
@@ -108,8 +108,8 @@ reports/comparisons/<task_id>/
 Promotion is never automatic. After reviewing the comparison report:
 
 ```bash
-python scripts/promote_candidate.py \
-  --config configs/champion/C3_STATIC_EVALUATION.yaml.example \
+python infra/scripts/promote_candidate.py \
+  --config infra/configs/champion/C3_STATIC_EVALUATION.yaml.example \
   --candidate-id C3_codex_agent \
   --confirm
 ```
@@ -123,3 +123,54 @@ By default this prints the safe merge commands. Add `--execute` only after revie
 - Never promote without passing tests and a comparison report.
 - Never delete loser branches automatically.
 - Keep cost/time and model assignment records for every candidate.
+
+## Evaluate Current Engines in Parallel
+
+To compare the engine artifacts already checked into the repo:
+
+```bash
+python infra/scripts/run_local_champion.py \
+  --task CURRENT_ENGINES \
+  --config infra/configs/champion/CURRENT_ENGINES.yaml \
+  --jobs 6 \
+  --skip-create-worktrees \
+  --continue-on-failure
+```
+
+This runs the registered UCI engines concurrently and writes results under
+`reports/comparisons/CURRENT_ENGINES/`.
+
+## Dockerized Champion POC
+
+Build the same image used by GitHub Actions:
+
+```bash
+docker build -f infra/docker/Dockerfile.champion -t pointchess/champion:local .
+```
+
+Run the current-engine Champion stage inside Docker:
+
+```bash
+docker run --rm \
+  -v "$PWD:/repo" \
+  -w /repo \
+  pointchess/champion:local \
+  python infra/scripts/run_local_champion.py \
+    --task CURRENT_ENGINES \
+    --config infra/configs/champion/CURRENT_ENGINES.yaml \
+    --jobs 6 \
+    --skip-create-worktrees
+```
+
+Run one engine smoke check:
+
+```bash
+docker run --rm \
+  -v "$PWD:/repo" \
+  -w /repo \
+  pointchess/champion:local \
+  python infra/scripts/uci_smoke.py --engine debate
+```
+
+The Docker path is intentionally the same command shape as GitHub Actions and
+the optional self-hosted VM runner.

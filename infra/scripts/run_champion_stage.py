@@ -14,7 +14,18 @@ except ImportError:  # pragma: no cover
     yaml = None
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
+SCRIPT_DIR = Path(__file__).resolve().parent
+
+
+def resolve_input_path(path_text: str) -> Path:
+    path = Path(path_text)
+    if path.is_absolute():
+        return path
+    cwd_path = Path.cwd() / path
+    if cwd_path.exists():
+        return cwd_path
+    return ROOT / path
 
 
 def load_config(path: Path) -> dict:
@@ -39,7 +50,7 @@ def validate_config(config: dict, requested_task: str) -> list[str]:
 
 
 def run_script(script: str, args: list[str]) -> int:
-    command = [sys.executable, str(ROOT / "scripts" / script), *args]
+    command = [sys.executable, str(SCRIPT_DIR / script), *args]
     print("+", " ".join(command))
     return subprocess.run(command, cwd=ROOT).returncode
 
@@ -55,12 +66,14 @@ def main() -> int:
     parser.add_argument("--promote", action="store_true")
     parser.add_argument("--candidate", help="Optional candidate_id filter for worktree creation/testing")
     parser.add_argument("--candidate-id", help="Candidate to promote")
+    parser.add_argument("--jobs", type=int, help="Candidate test parallelism")
     parser.add_argument("--confirm", action="store_true")
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--allow-missing-worktrees", action="store_true")
+    parser.add_argument("--continue-on-failure", action="store_true")
     args = parser.parse_args()
 
-    config_path = Path(args.config)
+    config_path = resolve_input_path(args.config)
     config = load_config(config_path)
     errors = validate_config(config, args.task)
     if errors:
@@ -73,7 +86,7 @@ def main() -> int:
     print(f"Candidates: {len(config.get('candidates') or [])}")
 
     if args.create_worktrees:
-        script_args = ["--config", args.config]
+        script_args = ["--config", str(config_path)]
         if args.candidate:
             script_args += ["--candidate", args.candidate]
         if args.dry_run:
@@ -83,26 +96,30 @@ def main() -> int:
             return code
 
     if args.run_tests:
-        script_args = ["--config", args.config]
+        script_args = ["--config", str(config_path)]
         if args.candidate:
             script_args += ["--candidate", args.candidate]
         if args.dry_run:
             script_args.append("--dry-run")
         if args.allow_missing_worktrees:
             script_args.append("--allow-missing-worktrees")
+        if args.jobs:
+            script_args += ["--jobs", str(args.jobs)]
         code = run_script("run_candidate_tests.py", script_args)
-        if code:
+        if code and not args.continue_on_failure:
             return code
+        if code:
+            print("One or more candidates failed; continuing because --continue-on-failure was set.")
     else:
         print("Tests not run. Use --run-tests when candidate worktrees/branches are ready.")
 
     if args.score:
-        code = run_script("score_candidates.py", ["--config", args.config])
+        code = run_script("score_candidates.py", ["--config", str(config_path)])
         if code:
             return code
 
     if args.write_report:
-        code = run_script("write_comparison_report.py", ["--config", args.config])
+        code = run_script("write_comparison_report.py", ["--config", str(config_path)])
         if code:
             return code
 
@@ -113,7 +130,7 @@ def main() -> int:
         if not args.candidate_id:
             print("Refusing promotion without --candidate-id.")
             return 1
-        code = run_script("promote_candidate.py", ["--config", args.config, "--candidate-id", args.candidate_id, "--confirm"])
+        code = run_script("promote_candidate.py", ["--config", str(config_path), "--candidate-id", args.candidate_id, "--confirm"])
         if code:
             return code
     else:

@@ -74,20 +74,18 @@ Each engine supports UCI mode so it can be tournament-evaluated in a common pipe
 
 - `methodologies/langgraph/` - LangGraph multi-agent orchestrator that builds an engine into `engines/langgraph/`
 
-### Interactive dashboard (new)
+### Interactive arena
 
-- `dashboard/backend/` - FastAPI backend + WebSocket streaming + local persistence
-- `dashboard/frontend/` - React + Vite UI for live matches and result exploration
-- `dashboard/results/` - persisted match artifacts
+- `arena/` - local web UI for engine-vs-engine matches with live metrics
 
-Dashboard supports:
+Arena supports:
 
 - engine-vs-engine (fixed four LLM engines)
-- engine-vs-stockfish
-- live boards/charts/cross-table
-- replay/export from saved history
+- live board updates
+- depth, nodes, NPS, score, and wall-time metrics
+- build-cost metadata display
 
-For dashboard-specific details, see `dashboard/README.md`.
+For arena-specific details, see `arena/README.md`.
 
 ### Evaluation and orchestration assets
 
@@ -225,19 +223,17 @@ python3 -m venv .venv
 .venv/bin/python -m engines.oneshot_nocontext --uci
 ```
 
-### Run interactive dashboard (recommended)
+### Run interactive arena
 
 ```bash
-make dashboard-install
-make dashboard
+.venv/bin/python -m arena
 ```
 
-Then open: `http://127.0.0.1:5173`
+Then open: `http://127.0.0.1:8765`
 
-### Dashboard environment variables
+### Arena environment variables
 
-- `STOCKFISH_PATH` (required for engine-vs-stockfish tab)
-- model provider keys required by selected engine(s)
+- `POINTCHESS_PYTHON` optionally overrides the Python executable used to launch registered engines.
 
 ---
 
@@ -250,20 +246,48 @@ Then open: `http://127.0.0.1:5173`
 .venv/bin/python -m pytest engines/oneshot_contextualized/tests -v
 ```
 
-### Dashboard backend test
+### Arena tests
 
 ```bash
-.venv/bin/python -m pytest tests/dashboard/test_backend_ws.py -q
+.venv/bin/python -m pytest arena/tests -q
 ```
 
 ### Candidate/champion workflow
 
 See scripts:
 
-- `scripts/run_candidate_tests.py`
-- `scripts/run_champion_stage.py`
-- `scripts/score_candidates.py`
-- `scripts/write_comparison_report.py`
+- `infra/scripts/run_candidate_tests.py`
+- `infra/scripts/run_champion_stage.py`
+- `infra/scripts/aggregate_champion_artifacts.py`
+- `infra/scripts/score_candidates.py`
+- `infra/scripts/write_comparison_report.py`
+
+Run the current engines in parallel:
+
+```bash
+.venv/bin/python infra/scripts/run_local_champion.py \
+  --task CURRENT_ENGINES \
+  --config infra/configs/champion/CURRENT_ENGINES.yaml \
+  --jobs 6 \
+  --skip-create-worktrees
+```
+
+Run the Dockerized Champion POC locally:
+
+```bash
+docker build -f infra/docker/Dockerfile.champion -t pointchess/champion:local .
+docker run --rm -v "$PWD:/repo" -w /repo pointchess/champion:local \
+  python infra/scripts/run_local_champion.py \
+    --task CURRENT_ENGINES \
+    --config infra/configs/champion/CURRENT_ENGINES.yaml \
+    --jobs 6 \
+    --skip-create-worktrees
+```
+
+GitHub Actions workflow:
+
+- `Champion Current Engines` runs each current engine as a separate Dockerized matrix job.
+- The aggregate job writes `reports/comparisons/CURRENT_ENGINES/comparison.md` and a GitHub summary.
 
 ---
 
@@ -276,17 +300,14 @@ PointChessEngine/
 ├── engines/oneshot_nocontext/
 ├── engines/oneshot_react/
 ├── methodologies/langgraph/
-├── dashboard/
-│   ├── backend/
-│   ├── frontend/
-│   └── results/
-├── agents/
-├── orchestrators/
-├── scripts/
+├── arena/
+├── infra/
+│   ├── agents/
+│   ├── orchestrators/
+│   ├── scripts/
+│   └── tasks/
 ├── reports/
-├── tasks/
 ├── tests/
-├── Makefile
 └── README.md
 ```
 
@@ -312,9 +333,9 @@ PointChessEngine/
 
 ## Related docs in this repo
 
-- `dashboard/README.md` - interactive dashboard usage
+- `arena/README.md` - interactive arena usage
 - `infra/agents/` - methodology and operational protocols
 - `infra/orchestrators/` - orchestration schemas and runtime docs
-- `tasks/START_HERE.md` - guided task entrypoint
+- `infra/tasks/START_HERE.md` - guided task entrypoint
 
 If you want the README to mirror your whitepaper structure even more closely, the next step is adding dedicated top-level docs (`WHITEPAPER.md`, `RELATED_WORK.md`, `decisions/log.md`, and `/docs` figures) and linking them from here.

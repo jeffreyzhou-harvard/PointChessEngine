@@ -15,7 +15,7 @@ Orchestrators may:
 
 Candidate implementations are evaluated by Champion mode. Champion mode owns test execution, scoring, comparison reports, and promotion decisions.
 
-For the MVP, run orchestrators locally by pointing each framework at a separate git worktree. See `agents/LOCAL_CHAMPION_SETUP.md`.
+For the MVP, run orchestrators locally by pointing each framework at a separate git worktree. See `infra/agents/LOCAL_CHAMPION_SETUP.md`.
 
 Supported orchestration patterns include:
 

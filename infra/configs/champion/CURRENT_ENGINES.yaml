@@ -1,0 +1,99 @@
+# Champion mode config for evaluating the engines currently checked into the repo.
+#
+# This is not a candidate-generation milestone. It treats each existing engine
+# artifact as a candidate so the Champion runner can execute them in parallel,
+# record logs, score basic UCI readiness, and write a comparison report.
+
+task_id: CURRENT_ENGINES
+baseline_branch: main
+canonical_branch: main
+candidate_root: .
+report_root: reports/comparisons
+parallel_jobs: 6
+command_timeout_seconds: 45
+
+test_commands:
+  - "{python} infra/scripts/uci_smoke.py --engine {engine_id} --movetime-ms 75"
+
+score_weights:
+  correctness_tests: 35
+  code_review_quality: 20
+  interface_compatibility: 15
+  performance_engine_impact: 15
+  cost_time_efficiency: 10
+  documentation_report_quality: 5
+
+candidates:
+  - candidate_id: CURRENT_oneshot_nocontext
+    task_id: CURRENT_ENGINES
+    engine_id: oneshot_nocontext
+    orchestration_type: one_shot_no_context
+    model_assignments:
+      builder: claude
+    execution_environment: local_repo
+    branch_name: main
+    worktree_path: .
+    output_report_path: reports/tasks/CURRENT_oneshot_nocontext.md
+    notes: Existing one-shot no-context engine artifact.
+
+  - candidate_id: CURRENT_oneshot_contextualized
+    task_id: CURRENT_ENGINES
+    engine_id: oneshot_contextualized
+    orchestration_type: one_shot_with_context
+    model_assignments:
+      builder: claude
+    execution_environment: local_repo
+    branch_name: main
+    worktree_path: .
+    output_report_path: reports/tasks/CURRENT_oneshot_contextualized.md
+    notes: Existing one-shot contextualized engine artifact.
+
+  - candidate_id: CURRENT_oneshot_react
+    task_id: CURRENT_ENGINES
+    engine_id: oneshot_react
+    orchestration_type: react
+    model_assignments:
+      builder: claude
+    execution_environment: local_repo
+    branch_name: main
+    worktree_path: .
+    output_report_path: reports/tasks/CURRENT_oneshot_react.md
+    notes: Existing ReAct-style engine artifact.
+
+  - candidate_id: CURRENT_chainofthought
+    task_id: CURRENT_ENGINES
+    engine_id: chainofthought
+    orchestration_type: chain_of_thought_decomposition
+    model_assignments:
+      builder: claude
+    execution_environment: local_repo
+    branch_name: main
+    worktree_path: .
+    output_report_path: reports/tasks/CURRENT_chainofthought.md
+    notes: Existing chain-of-thought engine artifact.
+
+  - candidate_id: CURRENT_langgraph
+    task_id: CURRENT_ENGINES
+    engine_id: langgraph
+    orchestration_type: gstack
+    model_assignments:
+      builder: claude
+      orchestrator: langgraph
+    execution_environment: local_repo
+    branch_name: main
+    worktree_path: .
+    output_report_path: reports/tasks/CURRENT_langgraph.md
+    notes: Existing LangGraph-built engine artifact.
+
+  - candidate_id: CURRENT_debate
+    task_id: CURRENT_ENGINES
+    engine_id: debate
+    orchestration_type: debate_ensemble
+    model_assignments:
+      council: openai_grok_gemini_deepseek_kimi
+      builder: claude
+    execution_environment: local_repo
+    branch_name: main
+    worktree_path: .
+    output_report_path: reports/tasks/CURRENT_debate.md
+    notes: Existing debate-built engine artifact.

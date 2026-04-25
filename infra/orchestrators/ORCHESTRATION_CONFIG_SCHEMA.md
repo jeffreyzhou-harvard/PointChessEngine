@@ -1,6 +1,6 @@
 # Orchestration Config Schema
 
-Champion mode config files live under `configs/champion/`.
+Champion mode config files live under `infra/configs/champion/`.
 
 Required fields:
 

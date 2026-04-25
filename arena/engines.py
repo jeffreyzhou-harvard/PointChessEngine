@@ -4,12 +4,14 @@ from __future__ import annotations
 import os
 import queue
 import subprocess
+import sys
 import threading
 import time
 from dataclasses import dataclass, field
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
+PYTHON = os.environ.get("POINTCHESS_PYTHON", sys.executable)
 
 
 @dataclass
@@ -32,7 +34,7 @@ REGISTRY: dict[str, EngineSpec] = {
         id="oneshot_nocontext",
         label="One-shot (no context)",
         blurb="Single Claude prompt, no project context.",
-        cmd=["python", "-m", "engines.oneshot_nocontext", "--uci"],
+        cmd=[PYTHON, "-m", "engines.oneshot_nocontext", "--uci"],
         cwd=str(REPO_ROOT),
         build_pattern="one-shot · no context",
     ),
@@ -40,7 +42,7 @@ REGISTRY: dict[str, EngineSpec] = {
         id="oneshot_contextualized",
         label="One-shot (contextualized)",
         blurb="Single prompt with curated project context.",
-        cmd=["python", "run_uci.py"],
+        cmd=[PYTHON, "run_uci.py"],
         cwd=str(REPO_ROOT / "engines" / "oneshot_contextualized"),
         build_pattern="one-shot · contextualized",
     ),
@@ -48,7 +50,7 @@ REGISTRY: dict[str, EngineSpec] = {
         id="oneshot_react",
         label="One-shot ReAct",
         blurb="Single ReAct-style prompt with tool access.",
-        cmd=["python", "-m", "engines.oneshot_react", "--uci"],
+        cmd=[PYTHON, "-m", "engines.oneshot_react", "--uci"],
         cwd=str(REPO_ROOT),
         build_pattern="one-shot · ReAct",
     ),
@@ -56,7 +58,7 @@ REGISTRY: dict[str, EngineSpec] = {
         id="chainofthought",
         label="Chain-of-thought",
         blurb="Built incrementally via chain-of-thought prompting.",
-        cmd=["python", "-m", "engines.chainofthought", "--uci"],
+        cmd=[PYTHON, "-m", "engines.chainofthought", "--uci"],
         cwd=str(REPO_ROOT),
         build_pattern="incremental · CoT",
     ),
@@ -64,7 +66,7 @@ REGISTRY: dict[str, EngineSpec] = {
         id="langgraph",
         label="LangGraph multi-agent",
         blurb="LangGraph-supervised multi-agent Claude system.",
-        cmd=["python", "-m", "uci.main"],
+        cmd=[PYTHON, "-m", "uci.main"],
         cwd=str(REPO_ROOT / "engines" / "langgraph"),
         build_pattern="multi-agent · LangGraph",
     ),
@@ -72,7 +74,7 @@ REGISTRY: dict[str, EngineSpec] = {
         id="debate",
         label="Council debate",
         blurb="Multi-model debate (OpenAI, Grok, Gemini, DeepSeek, Kimi) → Claude builds.",
-        cmd=["python", "main.py", "--uci"],
+        cmd=[PYTHON, "main.py", "--uci"],
         cwd=str(REPO_ROOT / "engines" / "debate"),
         build_pattern="multi-model · debate",
     ),

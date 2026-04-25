@@ -14,7 +14,7 @@ except ImportError:  # pragma: no cover
     yaml = None
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 
 
 def load_config(path: Path) -> dict:
@@ -24,6 +24,16 @@ def load_config(path: Path) -> dict:
         return yaml.safe_load(f) or {}
 
 
+def resolve_input_path(path_text: str) -> Path:
+    path = Path(path_text)
+    if path.is_absolute():
+        return path
+    cwd_path = Path.cwd() / path
+    if cwd_path.exists():
+        return cwd_path
+    return ROOT / path
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", required=True)
@@ -31,7 +41,7 @@ def main() -> int:
     parser.add_argument("--reason", default="", help="Reason for promotion")
     args = parser.parse_args()
 
-    config = load_config(Path(args.config))
+    config = load_config(resolve_input_path(args.config))
     task_id = config.get("task_id", "UNKNOWN_TASK")
     baseline = config.get("baseline_commit") or config.get("baseline_branch", "main")
     report_root = ROOT / config.get("report_root", "reports/comparisons") / task_id
@@ -82,7 +92,14 @@ def main() -> int:
     for i, item in enumerate(scores, start=1):
         lines.append(f"{i}. `{item.get('candidate_id')}` - {item.get('total_score')}")
 
-    winner = args.winner or (scores[0]["candidate_id"] if scores else "")
+    if args.winner:
+        winner = args.winner
+    elif scores:
+        top_score = scores[0].get("total_score")
+        tied = [item.get("candidate_id") for item in scores if item.get("total_score") == top_score]
+        winner = scores[0]["candidate_id"] if len(tied) == 1 else "No winner selected. Top score tie: " + ", ".join(tied)
+    else:
+        winner = ""
     lines.extend(
         [
             "",

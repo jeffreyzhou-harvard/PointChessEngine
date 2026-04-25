@@ -15,7 +15,7 @@ except ImportError:  # pragma: no cover
     yaml = None
 
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 
 
 def load_config(path: Path) -> dict:
@@ -23,6 +23,16 @@ def load_config(path: Path) -> dict:
         raise SystemExit("PyYAML is required. Run: pip install -r requirements.txt")
     with path.open("r", encoding="utf-8") as f:
         return yaml.safe_load(f) or {}
+
+
+def resolve_input_path(path_text: str) -> Path:
+    path = Path(path_text)
+    if path.is_absolute():
+        return path
+    cwd_path = Path.cwd() / path
+    if cwd_path.exists():
+        return cwd_path
+    return ROOT / path
 
 
 def main() -> int:
@@ -37,7 +47,7 @@ def main() -> int:
         print("Refusing promotion without --confirm.")
         return 1
 
-    config = load_config(Path(args.config))
+    config = load_config(resolve_input_path(args.config))
     task_id = config.get("task_id", "UNKNOWN_TASK")
     candidate = next((c for c in config.get("candidates", []) if c.get("candidate_id") == args.candidate_id), None)
     if not candidate:
