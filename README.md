@@ -22,6 +22,21 @@ Before implementing any methodology, we conducted extensive prior-art research a
 
 ---
 
+## Contents
+
+- [**Overview**](#overview) — what this repo is and the research question
+- [**Our initial hypothesis**](#our-initial-hypothesis) — what we expected before running anything
+- [**Sneak peek**](#sneak-peek) — quick visual highlights (engines playing, tournament running)
+- [**Current repository scope**](#current-repository-scope) — top-level layout, the eight engines, methodologies, arena UI
+- [**What we measured, and how**](#what-we-measured-and-how) — telemetry layers and instrumentation
+- [**Results (current snapshot)**](#results-current-snapshot) — round-robin standings, head-to-head matches, build-cost figures
+- [**Setup and run**](#setup-and-run) — install, run the arena, run engines as UCI
+- [**Testing**](#testing) — unit, perft, contract, and integration tests
+- [**Repository map**](#repository-map-current) — directory-by-directory navigation
+- [**Appendix: Judging criteria alignment**](#appendix-judging-criteria-alignment) — creativity, rigor, ingenuity, engineering
+
+---
+
 ## Overview
 
 This repository investigates a core research question:
