@@ -25,19 +25,25 @@ We built a structured experimental apparatus for generating and comparing chess 
 
 ## Overview
 
-This repository investigates a core question:
+This repository investigates a core research question:
 
-**When an AI system builds a chess engine, which AI-usage methodology yields the strongest result for the lowest cost?**
+**How do different meta-prompting methods (one-shot, contextualized one-shot, chain-of-thought, ReAct, recursive-LM decomposition) and agentic development frameworks (LangGraph specialist orchestration, multi-model judge-mediated debate, multi-model peer-vote ensembles) affect the resulting chess engine's playing strength, search efficiency, build cost, and runtime behavior?**
 
-The engine artifact is the output, not the endpoint. The endpoint is controlled comparison across:
+The chess engine artifact is the *unit of measurement* — not the endpoint. The endpoint is a controlled comparison along several axes that are usually conflated:
 
-- prompting patterns
-- multi-agent topologies
-- orchestration runtimes
-- model choices
-- parallelization strategies
+- **meta-prompting method** — one prompt vs. CoT vs. ReAct vs. recursive decomposition
+- **agentic framework** — none vs. LangGraph specialists vs. multi-model debate vs. peer-vote ensemble
+- **decision rule** — single judge vs. plurality vote vs. per-role specialist
+- **model mix** — single-provider (Claude) vs. multi-provider (OpenAI / Grok / Gemini / DeepSeek / Kimi / Claude)
+- **parallelization strategy** — within-process / game-level / matrix-level
 
-Every approach is implemented end-to-end, evaluated in a unified harness, and reported on a multi-axis scorecard (quality, cost, latency, robustness, and engineering process).
+Each of the eight engines holds the *task* constant (build a complete UCI chess engine satisfying the same brief) and varies one or more of these axes. Every engine is then graded on the same multi-axis scorecard:
+
+- **playing strength** — head-to-head results in `arena/`, contract-test pass rate, classical-milestone score
+- **search efficiency** — depth reached, nodes searched, NPS, eval quality per move
+- **runtime cost** — wall time per move, cumulative game time
+- **build cost** — total $ spent, total tokens, lines of code produced, build wall time
+- **robustness** — illegal-move rate, UCI-compliance failures, crash/timeout behavior
 
 ---
 
@@ -54,7 +60,7 @@ This project separates those variables. Chess is a clean evaluation domain:
 
 That makes it a practical benchmark for the broader engineering question:
 
-**How should AI teams structure their LLM workflows to maximize output quality per dollar?**
+**Given a fixed engineering task, which combination of meta-prompting method + agentic framework + model mix maximizes output quality per dollar — and is the marginal cost of more orchestration ever justified?**
 
 ---
 
