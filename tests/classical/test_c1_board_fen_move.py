@@ -2,7 +2,7 @@
 
 from oneshot_nocontext_engine.core.types import Color, Move, Piece, PieceType, Square
 
-from tests.classical.helpers import Board, ClassicalTestCase, STARTING_FEN
+from helpers import Board, ClassicalTestCase, STARTING_FEN
 
 
 class TestC1_1Representation(ClassicalTestCase):

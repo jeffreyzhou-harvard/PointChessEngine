@@ -5,7 +5,7 @@ import random
 from oneshot_nocontext_engine.search.elo import EloSettings
 from oneshot_nocontext_engine.search.engine import Engine
 
-from tests.classical.helpers import Board, ClassicalTestCase, legal_uci_moves, run_in_memory_uci
+from helpers import Board, ClassicalTestCase, legal_uci_moves, run_in_memory_uci
 
 
 class TestC8_1StrengthConfig(ClassicalTestCase):

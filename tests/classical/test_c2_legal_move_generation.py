@@ -2,7 +2,7 @@
 
 from oneshot_nocontext_engine.core.types import Color, Move, PieceType, Square
 
-from tests.classical.helpers import Board, ClassicalTestCase, legal_uci_moves
+from helpers import Board, ClassicalTestCase, legal_uci_moves
 
 
 class TestC2_1AttackDetection(ClassicalTestCase):

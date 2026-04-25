@@ -2,7 +2,7 @@
 
 from oneshot_nocontext_engine.search.engine import Engine
 
-from tests.classical.helpers import Board, ClassicalTestCase, legal_uci_moves
+from helpers import Board, ClassicalTestCase, legal_uci_moves
 
 
 class TestC4_1SearchApi(ClassicalTestCase):

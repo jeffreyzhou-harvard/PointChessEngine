@@ -2,7 +2,7 @@
 
 import json
 
-from tests.classical.helpers import ClassicalTestCase, run_uci_subprocess_commands
+from helpers import ClassicalTestCase, run_uci_subprocess_commands
 
 
 class TestC0_1ProcessContract(ClassicalTestCase):

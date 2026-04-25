@@ -1,0 +1,115 @@
+# Champion mode config for C3_STATIC_EVALUATION.
+#
+# Candidate schema:
+# - candidate_id: <task_id>_<orchestration>_<model_setup>
+# - orchestration_type: one of the supported patterns in agents/MULTI_MODEL_POLICY.md
+# - model_assignments: role -> model/provider label
+# - execution_environment: local_worktree, codex_execution, replit_external, cursor_external, etc.
+# - branch_name: experiments/<task>/<candidate>
+# - worktree_path: local worktree path
+# - allowed_tools: tool names available to the agent/framework
+# - budget: max_minutes and max_cost_usd
+# - output_report_path: candidate report path
+# - notes: free-form notes
+
+task_id: C3_STATIC_EVALUATION
+baseline_branch: main
+canonical_branch: main
+candidate_root: ../worktrees
+report_root: reports/comparisons
+
+test_commands:
+  - python3 -m unittest discover -s tests/classical -p 'test_c1_board_fen_move.py' -v
+  - python3 -m unittest discover -s tests/classical -p 'test_c2_legal_move_generation.py' -v
+  - python3 -m unittest discover -s tests/classical -p 'test_c3_static_evaluation.py' -v
+
+score_weights:
+  correctness_tests: 35
+  code_review_quality: 20
+  interface_compatibility: 15
+  performance_engine_impact: 15
+  cost_time_efficiency: 10
+  documentation_report_quality: 5
+
+candidates:
+  - candidate_id: C3_react_claude
+    task_id: C3_STATIC_EVALUATION
+    orchestration_type: react
+    model_assignments:
+      builder: claude
+      reviewer: claude
+    execution_environment: local_worktree
+    branch_name: experiments/C3/react_claude
+    worktree_path: ../worktrees/C3-react-claude
+    allowed_tools: [repo_edit, unittest, git_diff]
+    budget:
+      max_minutes: 45
+      max_cost_usd: 15
+    output_report_path: reports/tasks/C3_react_claude.md
+    notes: React-style single model candidate.
+
+  - candidate_id: C3_debate_heterogeneous_claude_gpt_gemini
+    task_id: C3_STATIC_EVALUATION
+    orchestration_type: debate_ensemble
+    model_assignments:
+      architect: claude
+      skeptic: gemini
+      builder: gpt
+      reviewer: claude
+    execution_environment: local_worktree
+    branch_name: experiments/C3/debate_heterogeneous
+    worktree_path: ../worktrees/C3-debate-heterogeneous
+    allowed_tools: [repo_edit, unittest, git_diff]
+    budget:
+      max_minutes: 45
+      max_cost_usd: 15
+    output_report_path: reports/tasks/C3_debate_heterogeneous.md
+    notes: Heterogeneous debate candidate.
+
+  - candidate_id: C3_codex_agent
+    task_id: C3_STATIC_EVALUATION
+    orchestration_type: codex_agent
+    model_assignments:
+      builder: codex
+      reviewer: codex
+    execution_environment: codex_execution
+    branch_name: experiments/C3/codex_agent
+    worktree_path: ../worktrees/C3-codex-agent
+    allowed_tools: [repo_edit, unittest, git_diff]
+    budget:
+      max_minutes: 45
+      max_cost_usd: 10
+    output_report_path: reports/tasks/C3_codex_agent.md
+    notes: Codex candidate.
+
+  - candidate_id: C3_replit_agent
+    task_id: C3_STATIC_EVALUATION
+    orchestration_type: replit_agent
+    model_assignments:
+      builder: replit_agent
+    execution_environment: replit_external
+    branch_name: experiments/C3/replit_agent
+    worktree_path: ../worktrees/C3-replit-agent
+    allowed_tools: [repo_edit, unittest, git_diff]
+    budget:
+      max_minutes: 60
+      max_cost_usd: 10
+    output_report_path: reports/tasks/C3_replit_agent.md
+    notes: Replit-generated branch evaluated locally.
+
+  - candidate_id: C3_custom_parallel
+    task_id: C3_STATIC_EVALUATION
+    orchestration_type: custom_langchain_parallel
+    model_assignments:
+      planner: gpt
+      builder: claude
+      reviewer: gemini
+    execution_environment: local_worktree
+    branch_name: experiments/C3/custom_parallel
+    worktree_path: ../worktrees/C3-custom-parallel
+    allowed_tools: [repo_edit, unittest, git_diff]
+    budget:
+      max_minutes: 60
+      max_cost_usd: 20
+    output_report_path: reports/tasks/C3_custom_parallel.md
+    notes: Custom parallel multi-model candidate.

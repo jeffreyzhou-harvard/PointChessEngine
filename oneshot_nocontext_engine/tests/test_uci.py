@@ -22,7 +22,7 @@ class TestUCI(unittest.TestCase):
         self.assertIn('uciok', output)
 
     def test_isready(self):
-        output = self._run_commands(['isready', 'quit'])
+        output = self._run_commands(['isready', 'quit']) 
         self.assertIn('readyok', output)
 
     def test_position_startpos(self):

@@ -2,7 +2,7 @@
 
 from oneshot_nocontext_engine.search.evaluation import evaluate
 
-from tests.classical.helpers import Board, ClassicalTestCase
+from helpers import Board, ClassicalTestCase
 
 
 class TestC3_1ScoreConvention(ClassicalTestCase):

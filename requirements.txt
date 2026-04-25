@@ -1,0 +1,4 @@
+PyYAML>=6.0
+python-chess>=1.999
+flask>=2.3
+pytest>=8.0

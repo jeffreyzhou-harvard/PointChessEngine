@@ -1,6 +1,6 @@
 """C7.* tests for production UCI compatibility."""
 
-from tests.classical.helpers import ClassicalTestCase, run_in_memory_uci
+from helpers import ClassicalTestCase, run_in_memory_uci
 
 
 class TestC7_1Entrypoint(ClassicalTestCase):
