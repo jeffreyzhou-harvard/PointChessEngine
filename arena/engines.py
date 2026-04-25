@@ -78,6 +78,14 @@ REGISTRY: dict[str, EngineSpec] = {
         cwd=str(REPO_ROOT / "engines" / "debate"),
         build_pattern="multi-model · debate",
     ),
+    "ensemble": EngineSpec(
+        id="ensemble",
+        label="Ensemble vote",
+        blurb="Same advisors as debate but plurality-vote on the design (no judge), then Claude builds.",
+        cmd=["python", "main.py", "--uci"],
+        cwd=str(REPO_ROOT / "engines" / "ensemble"),
+        build_pattern="multi-model · vote",
+    ),
 }
 
 
@@ -103,6 +111,7 @@ _ENGINE_DIRS = {
     "chainofthought":         REPO_ROOT / "engines" / "chainofthought",
     "langgraph":              REPO_ROOT / "engines" / "langgraph",
     "debate":                 REPO_ROOT / "engines" / "debate",
+    "ensemble":               REPO_ROOT / "engines" / "ensemble",
 }
 
 
