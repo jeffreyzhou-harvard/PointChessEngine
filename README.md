@@ -59,13 +59,19 @@ The project is structured to *test* that hypothesis rather than assume it: every
 
 ---
 
-## Early demo
+## Sneak peek
 
 <p align="center">
   <img src="EngineHeadToHeadGIF.gif" alt="Two of the generated engines playing head-to-head inside our own tournament software" />
 </p>
 
-<p align="center"><em>Early demo: two of our final generated engines going head-to-head inside our own tournament software (the <code>arena/</code> web UI).</em></p>
+<p align="center"><em>Two of our final generated engines going head-to-head inside our own tournament software (the <code>arena/</code> web UI).</em></p>
+
+<p align="center">
+  <img src="ChessTournament.gif" alt="Tournament mode running across all 8 final generated engines" />
+</p>
+
+<p align="center"><em>Tournament mode running for all 8 final generated engines.</em></p>
 
 ---
 
