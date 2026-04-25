@@ -1,0 +1,8 @@
+{
+  "_comment": "Edit these per-engine to populate the build-cost panel. Any field on EngineSpec is supported (build_cost_usd, build_tokens, build_model, build_pattern).",
+  "oneshot_nocontext":     { "build_model": "claude-sonnet-4-5" },
+  "oneshot_contextualized":{ "build_model": "claude-sonnet-4-5" },
+  "oneshot_react":         { "build_model": "claude-sonnet-4-5" },
+  "chainofthought":        { "build_model": "claude-sonnet-4-5" },
+  "langgraph":             { "build_model": "claude-sonnet-4-5" }
+}

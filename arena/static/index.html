@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PointChess Arena</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M5 21h14v-2H5v2zm2-4h10l1-6-3 2-3-5-3 5-3-2 1 6z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+      </svg>
+      <div class="brand-text">
+        <h1>PointChess Arena</h1>
+        <p>engine vs engine — live</p>
+      </div>
+    </div>
+    <nav class="nav-tabs">
+      <button class="tab active">Match</button>
+      <button class="tab" disabled>Tournament</button>
+      <button class="tab" disabled>Analysis</button>
+    </nav>
+    <div class="status-pill" id="status"><span class="dot"></span><span id="status-text">idle</span></div>
+  </header>
+
+  <main class="layout">
+    <!-- LEFT: setup -->
+    <aside class="side side-left">
+      <div class="card">
+        <div class="card-head">
+          <h2>Engines</h2>
+          <button id="swap-btn" class="icon-btn" title="Swap colors" aria-label="Swap colors">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4 3 8l4 4"/><path d="M3 8h13"/><path d="m17 20 4-4-4-4"/><path d="M21 16H8"/></svg>
+          </button>
+        </div>
+
+        <div class="engine-row" id="row-black">
+          <div class="engine-color">
+            <span class="piece-icon black-king">♚</span>
+            <span class="color-label">Black</span>
+          </div>
+          <select id="black-select" class="engine-select"></select>
+          <div class="engine-meta" id="black-meta"></div>
+        </div>
+
+        <div class="engine-row" id="row-white">
+          <div class="engine-color">
+            <span class="piece-icon white-king">♔</span>
+            <span class="color-label">White</span>
+          </div>
+          <select id="white-select" class="engine-select"></select>
+          <div class="engine-meta" id="white-meta"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Settings</h2>
+        <div class="setting-row">
+          <label for="movetime">Time / move</label>
+          <div class="input-with-unit">
+            <input id="movetime" type="number" min="50" max="30000" step="50" value="500" />
+            <span>ms</span>
+          </div>
+        </div>
+        <div class="setting-row">
+          <label for="maxplies">Max plies</label>
+          <input id="maxplies" type="number" min="2" max="600" step="2" value="200" />
+        </div>
+        <div class="action-row">
+          <button id="start-btn" class="primary">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            Start
+          </button>
+          <button id="stop-btn" class="ghost" disabled>
+            <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="1"/></svg>
+            Stop
+          </button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Build cost</h2>
+        <table class="cost-table" id="cost-table">
+          <thead><tr><th></th><th>cost</th><th>tokens</th><th>LOC</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </aside>
+
+    <!-- CENTER: board + clocks -->
+    <section class="board-area">
+      <div class="player-bar player-top" id="player-top">
+        <div class="player-info">
+          <span class="player-color-dot black"></span>
+          <div>
+            <div class="player-name" id="black-name">—</div>
+            <div class="player-tag" id="black-tag">—</div>
+          </div>
+          <div class="captures" id="black-captures"></div>
+        </div>
+        <div class="clock" id="black-clock">0.0s</div>
+      </div>
+
+      <div class="board-and-eval">
+        <div class="eval-bar" title="Last eval (white perspective)">
+          <div class="eval-fill" id="eval-fill"></div>
+          <div class="eval-text" id="eval-text">0.00</div>
+        </div>
+        <div class="board-wrap">
+          <div class="board" id="board"></div>
+          <div class="board-overlay" id="result-banner" hidden>
+            <div class="banner-content">
+              <div class="banner-result" id="banner-result"></div>
+              <div class="banner-reason" id="banner-reason"></div>
+              <button class="primary" id="banner-rematch">Rematch</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="player-bar player-bottom" id="player-bottom">
+        <div class="player-info">
+          <span class="player-color-dot white"></span>
+          <div>
+            <div class="player-name" id="white-name">—</div>
+            <div class="player-tag" id="white-tag">—</div>
+          </div>
+          <div class="captures" id="white-captures"></div>
+        </div>
+        <div class="clock" id="white-clock">0.0s</div>
+      </div>
+    </section>
+
+    <!-- RIGHT: live metrics + moves -->
+    <aside class="side side-right">
+      <div class="card metrics-card">
+        <h2>Live metrics</h2>
+        <div class="metrics-grid">
+          <div class="metric-row">
+            <span class="m-color"><span class="player-color-dot white"></span><span id="m-white-name">white</span></span>
+            <div class="m-stats" id="white-stats"></div>
+          </div>
+          <div class="metric-row">
+            <span class="m-color"><span class="player-color-dot black"></span><span id="m-black-name">black</span></span>
+            <div class="m-stats" id="black-stats"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card moves-card">
+        <h2>Moves</h2>
+        <div class="movelog" id="movelog">
+          <div class="movelog-empty">No moves yet</div>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <script src="/static/pieces.js"></script>
+  <script src="/static/app.js"></script>
+</body>
+</html>
