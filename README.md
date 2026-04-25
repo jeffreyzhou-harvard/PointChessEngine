@@ -268,7 +268,7 @@ Run the current engines in parallel:
 .venv/bin/python infra/scripts/run_local_champion.py \
   --task CURRENT_ENGINES \
   --config infra/configs/champion/CURRENT_ENGINES.yaml \
-  --jobs 6 \
+  --jobs 7 \
   --skip-create-worktrees
 ```
 
@@ -280,7 +280,7 @@ docker run --rm -v "$PWD:/repo" -w /repo pointchess/champion:local \
   python infra/scripts/run_local_champion.py \
     --task CURRENT_ENGINES \
     --config infra/configs/champion/CURRENT_ENGINES.yaml \
-    --jobs 6 \
+    --jobs 7 \
     --skip-create-worktrees
 ```
 
@@ -299,7 +299,9 @@ PointChessEngine/
 ├── engines/oneshot_contextualized/
 ├── engines/oneshot_nocontext/
 ├── engines/oneshot_react/
+├── engines/rlm/
 ├── methodologies/langgraph/
+├── methodologies/rlm/
 ├── arena/
 ├── infra/
 │   ├── agents/

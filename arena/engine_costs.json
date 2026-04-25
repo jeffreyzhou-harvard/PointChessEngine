@@ -4,5 +4,8 @@
   "oneshot_contextualized":{ "build_model": "claude-sonnet-4-5" },
   "oneshot_react":         { "build_model": "claude-sonnet-4-5" },
   "chainofthought":        { "build_model": "claude-sonnet-4-5" },
-  "langgraph":             { "build_model": "claude-sonnet-4-5" }
+  "langgraph":             { "build_model": "claude-sonnet-4-5" },
+  "debate":                { "build_model": "multi-model council + claude-sonnet-4-5" },
+  "ensemble":              { "build_model": "multi-model vote + claude-sonnet-4-5" },
+  "rlm":                   { "build_model": "RLM methodology reference + codex implementation" }
 }

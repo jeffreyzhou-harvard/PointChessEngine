@@ -73,6 +73,9 @@ jobs:
       - name: chainofthought engine tests
         run: pytest -q engines/chainofthought/tests
 
+      - name: rlm engine tests
+        run: pytest -q engines/rlm/tests
+
       # ---- Engine trees that use unqualified imports (need their own cwd) ---- #
       - name: oneshot_contextualized engine tests
         working-directory: engines/oneshot_contextualized

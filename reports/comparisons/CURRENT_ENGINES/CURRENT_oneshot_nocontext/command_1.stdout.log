@@ -1,1 +1,1 @@
-{"bestmove": "b2b4", "duration_seconds": 0.18, "engine": "oneshot_nocontext", "info_count": 1, "legal_from_startpos": true}
+{"bestmove": "a2a3", "duration_seconds": 0.178, "engine": "oneshot_nocontext", "info_count": 1, "legal_from_startpos": true}

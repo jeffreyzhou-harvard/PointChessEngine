@@ -1,14 +1,14 @@
 {
   "baseline_commit": "",
   "benchmark_score": null,
-  "bestmove": "h2h4",
+  "bestmove": "e2e3",
   "branch": "main",
   "candidate_id": "CURRENT_oneshot_react",
   "commands": [
     {
       "command": "/usr/local/bin/python infra/scripts/uci_smoke.py --engine oneshot_react --movetime-ms 75",
       "dry_run": false,
-      "duration_seconds": 0.431,
+      "duration_seconds": 0.484,
       "returncode": 0,
       "stderr_log": "/repo/reports/comparisons/CURRENT_ENGINES/CURRENT_oneshot_react/command_1.stderr.log",
       "stdout_log": "/repo/reports/comparisons/CURRENT_ENGINES/CURRENT_oneshot_react/command_1.stdout.log",
@@ -18,7 +18,7 @@
   "contract_tests_passed": true,
   "cost_estimate_usd": null,
   "dry_run": false,
-  "duration_seconds": 0.431,
+  "duration_seconds": 0.484,
   "engine_id": "oneshot_react",
   "execution_environment": "local_repo",
   "latency_minutes": null,
@@ -28,8 +28,8 @@
   },
   "observations": [
     {
-      "bestmove": "h2h4",
-      "duration_seconds": 0.279,
+      "bestmove": "e2e3",
+      "duration_seconds": 0.324,
       "engine": "oneshot_react",
       "info_count": 2,
       "legal_from_startpos": true
@@ -41,5 +41,5 @@
   "task_id": "CURRENT_ENGINES",
   "tests_passed": 1,
   "tests_total": 1,
-  "timestamp": "2026-04-25T15:38:08.551557+00:00"
+  "timestamp": "2026-04-25T16:23:04.922743+00:00"
 }

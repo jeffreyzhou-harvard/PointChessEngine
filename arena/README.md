@@ -23,6 +23,9 @@ The registry in `arena/engines.py` knows how to launch each engine in UCI mode:
 | `oneshot_react`          | `python -m engines.oneshot_react --uci`    |
 | `chainofthought`         | `python -m engines.chainofthought --uci`   |
 | `langgraph`              | `python -m uci.main` (cwd = `engines/langgraph`) |
+| `debate`                 | `python main.py --uci` (cwd = `engines/debate`) |
+| `ensemble`               | `python main.py --uci` (cwd = `engines/ensemble`) |
+| `rlm`                    | `python -m engines.rlm --uci`        |
 
 To add another engine, append an `EngineSpec(...)` to `REGISTRY`.
 

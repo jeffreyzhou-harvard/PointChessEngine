@@ -9,7 +9,7 @@ baseline_branch: main
 canonical_branch: main
 candidate_root: .
 report_root: reports/comparisons
-parallel_jobs: 6
+parallel_jobs: 7
 command_timeout_seconds: 45
 
 test_commands:
@@ -97,3 +97,16 @@ candidates:
     worktree_path: .
     output_report_path: reports/tasks/CURRENT_debate.md
     notes: Existing debate-built engine artifact.
+
+  - candidate_id: CURRENT_rlm
+    task_id: CURRENT_ENGINES
+    engine_id: rlm
+    orchestration_type: rlm
+    model_assignments:
+      methodology_reference: alexzhang13/rlm
+      builder: codex
+    execution_environment: local_repo
+    branch_name: main
+    worktree_path: .
+    output_report_path: reports/tasks/CURRENT_rlm.md
+    notes: RLM-inspired recursive decomposition engine artifact with API-free runtime.

@@ -70,5 +70,17 @@
     "promotion_status": "candidate",
     "result_path": "/repo/reports/comparisons/CURRENT_ENGINES/CURRENT_oneshot_react/result.json",
     "total_score": 55.0
+  },
+  {
+    "candidate_id": "CURRENT_rlm",
+    "code_review_quality": 0.0,
+    "correctness_tests": 35.0,
+    "cost_time_efficiency": 0.0,
+    "documentation_report_quality": 5,
+    "interface_compatibility": 15,
+    "performance_engine_impact": 0.0,
+    "promotion_status": "candidate",
+    "result_path": "/repo/reports/comparisons/CURRENT_ENGINES/CURRENT_rlm/result.json",
+    "total_score": 55.0
   }
 ]

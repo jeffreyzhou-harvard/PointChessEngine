@@ -3,43 +3,44 @@
   "benchmark_score": null,
   "bestmove": "e2e4",
   "branch": "main",
-  "candidate_id": "CURRENT_chainofthought",
+  "candidate_id": "CURRENT_rlm",
   "commands": [
     {
-      "command": "/usr/local/bin/python infra/scripts/uci_smoke.py --engine chainofthought --movetime-ms 75",
+      "command": "/usr/local/bin/python infra/scripts/uci_smoke.py --engine rlm --movetime-ms 75",
       "dry_run": false,
-      "duration_seconds": 0.447,
+      "duration_seconds": 0.341,
       "returncode": 0,
-      "stderr_log": "/repo/reports/comparisons/CURRENT_ENGINES/CURRENT_chainofthought/command_1.stderr.log",
-      "stdout_log": "/repo/reports/comparisons/CURRENT_ENGINES/CURRENT_chainofthought/command_1.stdout.log",
+      "stderr_log": "/repo/reports/comparisons/CURRENT_ENGINES/CURRENT_rlm/command_1.stderr.log",
+      "stdout_log": "/repo/reports/comparisons/CURRENT_ENGINES/CURRENT_rlm/command_1.stdout.log",
       "timed_out": false
     }
   ],
   "contract_tests_passed": true,
   "cost_estimate_usd": null,
   "dry_run": false,
-  "duration_seconds": 0.447,
-  "engine_id": "chainofthought",
+  "duration_seconds": 0.341,
+  "engine_id": "rlm",
   "execution_environment": "local_repo",
   "latency_minutes": null,
   "legal_from_startpos": true,
   "model_assignments": {
-    "builder": "claude"
+    "builder": "codex",
+    "methodology_reference": "alexzhang13/rlm"
   },
   "observations": [
     {
       "bestmove": "e2e4",
-      "duration_seconds": 0.284,
-      "engine": "chainofthought",
+      "duration_seconds": 0.197,
+      "engine": "rlm",
       "info_count": 1,
       "legal_from_startpos": true
     }
   ],
-  "orchestration_type": "chain_of_thought_decomposition",
+  "orchestration_type": "rlm",
   "promotion_status": "candidate",
   "review_score": null,
   "task_id": "CURRENT_ENGINES",
   "tests_passed": 1,
   "tests_total": 1,
-  "timestamp": "2026-04-25T16:23:04.886134+00:00"
+  "timestamp": "2026-04-25T16:24:44.724083+00:00"
 }

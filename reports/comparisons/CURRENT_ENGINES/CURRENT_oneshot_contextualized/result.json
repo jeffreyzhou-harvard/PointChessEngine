@@ -8,7 +8,7 @@
     {
       "command": "/usr/local/bin/python infra/scripts/uci_smoke.py --engine oneshot_contextualized --movetime-ms 75",
       "dry_run": false,
-      "duration_seconds": 0.471,
+      "duration_seconds": 0.518,
       "returncode": 0,
       "stderr_log": "/repo/reports/comparisons/CURRENT_ENGINES/CURRENT_oneshot_contextualized/command_1.stderr.log",
       "stdout_log": "/repo/reports/comparisons/CURRENT_ENGINES/CURRENT_oneshot_contextualized/command_1.stdout.log",
@@ -18,7 +18,7 @@
   "contract_tests_passed": true,
   "cost_estimate_usd": null,
   "dry_run": false,
-  "duration_seconds": 0.471,
+  "duration_seconds": 0.518,
   "engine_id": "oneshot_contextualized",
   "execution_environment": "local_repo",
   "latency_minutes": null,
@@ -29,7 +29,7 @@
   "observations": [
     {
       "bestmove": "g1f3",
-      "duration_seconds": 0.319,
+      "duration_seconds": 0.349,
       "engine": "oneshot_contextualized",
       "info_count": 3,
       "legal_from_startpos": true
@@ -41,5 +41,5 @@
   "task_id": "CURRENT_ENGINES",
   "tests_passed": 1,
   "tests_total": 1,
-  "timestamp": "2026-04-25T15:38:08.591773+00:00"
+  "timestamp": "2026-04-25T16:23:04.955993+00:00"
 }

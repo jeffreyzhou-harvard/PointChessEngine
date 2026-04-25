@@ -82,9 +82,17 @@ REGISTRY: dict[str, EngineSpec] = {
         id="ensemble",
         label="Ensemble vote",
         blurb="Same advisors as debate but plurality-vote on the design (no judge), then Claude builds.",
-        cmd=["python", "main.py", "--uci"],
+        cmd=[PYTHON, "main.py", "--uci"],
         cwd=str(REPO_ROOT / "engines" / "ensemble"),
         build_pattern="multi-model · vote",
+    ),
+    "rlm": EngineSpec(
+        id="rlm",
+        label="RLM recursive",
+        blurb="Recursive Language Model-inspired decomposition with local deterministic UCI runtime.",
+        cmd=[PYTHON, "-m", "engines.rlm", "--uci"],
+        cwd=str(REPO_ROOT),
+        build_pattern="recursive LM · RLM",
     ),
 }
 
@@ -112,6 +120,7 @@ _ENGINE_DIRS = {
     "langgraph":              REPO_ROOT / "engines" / "langgraph",
     "debate":                 REPO_ROOT / "engines" / "debate",
     "ensemble":               REPO_ROOT / "engines" / "ensemble",
+    "rlm":                    REPO_ROOT / "engines" / "rlm",
 }
 
 

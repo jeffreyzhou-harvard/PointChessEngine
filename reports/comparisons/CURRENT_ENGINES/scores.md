@@ -8,3 +8,4 @@
 | 4 | CURRENT_oneshot_contextualized | 55.0 |
 | 5 | CURRENT_oneshot_nocontext | 55.0 |
 | 6 | CURRENT_oneshot_react | 55.0 |
+| 7 | CURRENT_rlm | 55.0 |

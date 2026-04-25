@@ -8,7 +8,7 @@
     {
       "command": "/usr/local/bin/python infra/scripts/uci_smoke.py --engine debate --movetime-ms 75",
       "dry_run": false,
-      "duration_seconds": 0.436,
+      "duration_seconds": 0.395,
       "returncode": 0,
       "stderr_log": "/repo/reports/comparisons/CURRENT_ENGINES/CURRENT_debate/command_1.stderr.log",
       "stdout_log": "/repo/reports/comparisons/CURRENT_ENGINES/CURRENT_debate/command_1.stdout.log",
@@ -18,7 +18,7 @@
   "contract_tests_passed": true,
   "cost_estimate_usd": null,
   "dry_run": false,
-  "duration_seconds": 0.436,
+  "duration_seconds": 0.395,
   "engine_id": "debate",
   "execution_environment": "local_repo",
   "latency_minutes": null,
@@ -30,7 +30,7 @@
   "observations": [
     {
       "bestmove": "g1f3",
-      "duration_seconds": 0.285,
+      "duration_seconds": 0.231,
       "engine": "debate",
       "info_count": 3,
       "legal_from_startpos": true
@@ -42,5 +42,5 @@
   "task_id": "CURRENT_ENGINES",
   "tests_passed": 1,
   "tests_total": 1,
-  "timestamp": "2026-04-25T15:38:08.557526+00:00"
+  "timestamp": "2026-04-25T16:23:04.833338+00:00"
 }

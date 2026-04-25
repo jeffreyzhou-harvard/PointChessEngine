@@ -66,6 +66,7 @@ jobs:
           - CURRENT_chainofthought
           - CURRENT_langgraph
           - CURRENT_debate
+          - CURRENT_rlm
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
