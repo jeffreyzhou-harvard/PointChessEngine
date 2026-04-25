@@ -302,6 +302,12 @@ When adding these paper figures, include a one-line citation under each image wi
 - Tournament and candidate-stage automation in `infra/scripts/`
 - Structured comparisons and reporting in `reports/comparisons/`
 - Contract and integration-level tests under `tests/`
+- Early milestone gating for `C1` and `C2` to reject unstable baselines before downstream orchestration
+- Multi-stage noise reduction via subtask-level unit tests (including sub-sub-task checks), explicitly designed to filter weak intermediate outputs before they contaminate later stages
+- Hard pre-build test barrier: perft + unit tests must pass before LLM-generated modules advance to integration
+- LLM-assisted eval screening used as a fast triage layer, with deterministic tests remaining the final authority
+
+Noise reduction worked particularly well in practice because it was enforced as a pipeline, not a one-time check. Every candidate path passed through (1) `C1`/`C2` milestone gates for structural correctness, (2) localized unit checks at module and sub-module boundaries, (3) perft and protocol checks as hard promotion barriers, and only then (4) integration and tournament runs. This prevented low-signal, partially-correct LLM outputs from propagating into expensive downstream comparisons. In effect, we reduced eval noise early, so later strength/cost metrics reflected real engine differences rather than test-harness instability or hidden legality defects.
 
 ### Ingenuity
 
