@@ -68,6 +68,14 @@ REGISTRY: dict[str, EngineSpec] = {
         cwd=str(REPO_ROOT / "engines" / "langgraph"),
         build_pattern="multi-agent · LangGraph",
     ),
+    "debate": EngineSpec(
+        id="debate",
+        label="Council debate",
+        blurb="Multi-model debate (OpenAI, Grok, Gemini, DeepSeek, Kimi) → Claude builds.",
+        cmd=["python", "main.py", "--uci"],
+        cwd=str(REPO_ROOT / "engines" / "debate"),
+        build_pattern="multi-model · debate",
+    ),
 }
 
 
@@ -92,6 +100,7 @@ _ENGINE_DIRS = {
     "oneshot_react":          REPO_ROOT / "engines" / "oneshot_react",
     "chainofthought":         REPO_ROOT / "engines" / "chainofthought",
     "langgraph":              REPO_ROOT / "engines" / "langgraph",
+    "debate":                 REPO_ROOT / "engines" / "debate",
 }
 
 
