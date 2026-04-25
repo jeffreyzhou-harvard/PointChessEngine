@@ -18,8 +18,7 @@
   <img src="https://img.shields.io/github/last-commit/jeffreyzhou-harvard/PointChessEngine" alt="last commit">
 </p>
 
-We did not build a single chess engine.
-We built a structured experimental apparatus for generating and comparing chess engines under different AI methodologies, then measured the methodologies themselves.
+Before implementing any methodology, we conducted extensive prior-art research and translated it into a controlled experimental framework for generating and comparing chess engines, so the primary result is not a single engine but a rigorous evaluation of the AI methodologies themselves.
 
 ---
 
