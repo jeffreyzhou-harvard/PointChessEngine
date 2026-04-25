@@ -70,6 +70,15 @@ def run_stage(task_id: str, config_path: Path, args: argparse.Namespace) -> dict
         command.append("--create-worktrees")
     if args.run_orchestration:
         command.extend(["--run-orchestration", "--orchestration-mode", args.orchestration_mode])
+        command.extend(["--orchestration-timeout", str(args.orchestration_timeout)])
+    if args.run_builders:
+        command.append("--run-builders")
+    if args.builder_provider:
+        command.extend(["--builder-provider", args.builder_provider])
+    if args.builder_timeout:
+        command.extend(["--builder-timeout", str(args.builder_timeout)])
+    if args.commit_builds:
+        command.append("--commit-builds")
     if args.allow_missing_worktrees:
         command.append("--allow-missing-worktrees")
     if args.require_candidate_changes:
@@ -114,6 +123,10 @@ def run_stage(task_id: str, config_path: Path, args: argparse.Namespace) -> dict
     if orchestration_metrics.exists():
         stage_result["orchestration_metrics_path"] = str(orchestration_metrics.relative_to(ROOT))
         stage_result["orchestration_metrics"] = json.loads(orchestration_metrics.read_text(encoding="utf-8"))
+    builder_metrics = ROOT / "reports" / "builders" / task_id / "metrics.json"
+    if builder_metrics.exists():
+        stage_result["builder_metrics_path"] = str(builder_metrics.relative_to(ROOT))
+        stage_result["builder_metrics"] = json.loads(builder_metrics.read_text(encoding="utf-8"))
     (output_dir / "result.json").write_text(json.dumps(stage_result, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     return stage_result
 
@@ -125,6 +138,7 @@ def write_ladder_reports(results: list[dict], args: argparse.Namespace) -> None:
     for result in results:
         metrics = result.get("metrics") or {}
         orchestration_metrics = result.get("orchestration_metrics") or {}
+        builder_metrics = result.get("builder_metrics") or {}
         serial_seconds += float(result.get("duration_seconds") or 0.0)
         candidate_count = metrics.get("candidate_count", 0)
         passed_count = metrics.get("passed_count", 0)
@@ -145,9 +159,13 @@ def write_ladder_reports(results: list[dict], args: argparse.Namespace) -> None:
                 "top_score": result.get("top_score", "") if stage_passed else "",
                 "orchestration_runs": orchestration_metrics.get("candidate_count", 0),
                 "orchestration_failed": orchestration_metrics.get("failed_count", 0),
+                "builder_runs": builder_metrics.get("candidate_count", 0),
+                "builder_passed": builder_metrics.get("passed_count", 0),
+                "builder_failed": builder_metrics.get("failed_count", 0),
                 "metrics_path": result.get("metrics_path", ""),
                 "scores_path": result.get("scores_path", ""),
                 "orchestration_metrics_path": result.get("orchestration_metrics_path", ""),
+                "builder_metrics_path": result.get("builder_metrics_path", ""),
             }
         )
 
@@ -171,9 +189,13 @@ def write_ladder_reports(results: list[dict], args: argparse.Namespace) -> None:
                 "top_score",
                 "orchestration_runs",
                 "orchestration_failed",
+                "builder_runs",
+                "builder_passed",
+                "builder_failed",
                 "metrics_path",
                 "scores_path",
                 "orchestration_metrics_path",
+                "builder_metrics_path",
             ],
         )
         writer.writeheader()
@@ -208,6 +230,7 @@ def write_ladder_reports(results: list[dict], args: argparse.Namespace) -> None:
         "",
         f"- Tier: `{args.tier}`",
         f"- Orchestration: `{args.orchestration_mode if args.run_orchestration else 'disabled'}`",
+        f"- Builders: `{'enabled' if args.run_builders else 'disabled'}`",
         f"- Passed stages: {summary['passed_stage_count']}/{summary['task_count']}",
         f"- Candidate passes: {summary['total_candidate_passes']}/{summary['total_candidates']}",
         f"- Estimated serial runtime: {summary['estimated_serial_seconds']:.3f}s",
@@ -227,6 +250,11 @@ def main() -> int:
     parser.add_argument("--create-worktrees", action="store_true")
     parser.add_argument("--run-orchestration", action="store_true")
     parser.add_argument("--orchestration-mode", default="audit", choices=["audit", "live"])
+    parser.add_argument("--orchestration-timeout", type=float, default=300, help="Seconds before one live orchestration command is stopped")
+    parser.add_argument("--run-builders", action="store_true")
+    parser.add_argument("--builder-provider", choices=["claude_cli", "codex_cli", "openai", "anthropic", "rlm"])
+    parser.add_argument("--builder-timeout", type=float, default=1800, help="Seconds before one candidate builder is stopped")
+    parser.add_argument("--commit-builds", action="store_true")
     parser.add_argument("--allow-missing-worktrees", action="store_true")
     parser.add_argument("--require-candidate-changes", action="store_true", default=True)
     parser.add_argument("--no-require-candidate-changes", action="store_false", dest="require_candidate_changes")

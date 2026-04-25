@@ -7,6 +7,8 @@ import argparse
 import concurrent.futures
 import csv
 import json
+import os
+import signal
 import shlex
 import subprocess
 import sys
@@ -77,6 +79,33 @@ def format_command(template: str, config_task_id: str, candidate: dict, args: ar
         }
     )
     return template.format_map(context)
+
+
+def run_shell_command(command: str, timeout: float | None) -> tuple[int, str, str, bool]:
+    process = subprocess.Popen(
+        command,
+        cwd=ROOT,
+        shell=True,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        start_new_session=True,
+    )
+    try:
+        stdout, stderr = process.communicate(timeout=timeout)
+        return process.returncode, stdout or "", stderr or "", False
+    except subprocess.TimeoutExpired:
+        try:
+            os.killpg(process.pid, signal.SIGTERM)
+            stdout, stderr = process.communicate(timeout=5)
+        except Exception:
+            try:
+                os.killpg(process.pid, signal.SIGKILL)
+            except Exception:
+                pass
+            stdout, stderr = process.communicate()
+        timeout_message = f"\nTIMEOUT after {timeout} seconds\n" if timeout else "\nTIMEOUT\n"
+        return 124, stdout or "", (stderr or "") + timeout_message, True
 
 
 def write_unconfigured_record(config_task_id: str, candidate: dict, args: argparse.Namespace, output_dir: Path) -> dict:
@@ -162,6 +191,8 @@ def run_one(config: dict, candidate: dict, args: argparse.Namespace) -> tuple[in
     stdout_path = output_dir / "orchestration.stdout.log"
     stderr_path = output_dir / "orchestration.stderr.log"
     started = time.monotonic()
+    timeout = candidate.get("orchestration_timeout_seconds") or config.get("orchestration_timeout_seconds") or args.timeout
+    timeout = float(timeout) if timeout else None
     if args.dry_run:
         stdout_path.write_text(f"DRY RUN: {command}\n", encoding="utf-8")
         stderr_path.write_text("", encoding="utf-8")
@@ -181,24 +212,25 @@ def run_one(config: dict, candidate: dict, args: argparse.Namespace) -> tuple[in
         (output_dir / "orchestration_command.json").write_text(json.dumps(record, indent=2, sort_keys=True) + "\n", encoding="utf-8")
         return 0, f"{candidate_id}: dry-run orchestration command recorded", record
 
-    completed = subprocess.run(command, cwd=ROOT, shell=True, text=True, capture_output=True)
-    stdout_path.write_text(completed.stdout, encoding="utf-8")
-    stderr_path.write_text(completed.stderr, encoding="utf-8")
+    returncode, stdout, stderr, timed_out = run_shell_command(command, timeout)
+    stdout_path.write_text(stdout, encoding="utf-8")
+    stderr_path.write_text(stderr, encoding="utf-8")
     record = {
         "task_id": args.task or config_task_id,
         "candidate_id": candidate_id,
         "orchestration_type": candidate.get("orchestration_type"),
         "mode": args.mode,
         "command": command,
-        "returncode": completed.returncode,
-        "status": "passed" if completed.returncode == 0 else "failed",
+        "returncode": returncode,
+        "status": "timeout" if timed_out else ("passed" if returncode == 0 else "failed"),
+        "timed_out": timed_out,
         "stdout_log": str(stdout_path),
         "stderr_log": str(stderr_path),
         "duration_seconds": round(time.monotonic() - started, 3),
         "timestamp": datetime.now(timezone.utc).isoformat(),
     }
     (output_dir / "orchestration_command.json").write_text(json.dumps(record, indent=2, sort_keys=True) + "\n", encoding="utf-8")
-    return completed.returncode, f"{candidate_id}: orchestration {record['status']} ({record['duration_seconds']}s)", record
+    return returncode, f"{candidate_id}: orchestration {record['status']} ({record['duration_seconds']}s)", record
 
 
 def write_orchestration_metrics(task_id: str, records: list[dict]) -> None:
@@ -225,7 +257,7 @@ def write_orchestration_metrics(task_id: str, records: list[dict]) -> None:
         "task_id": task_id,
         "candidate_count": len(rows),
         "passed_count": sum(1 for row in rows if row["status"] in {"passed", "audit_completed", "live_completed", "not_configured", "dry_run"}),
-        "failed_count": sum(1 for row in rows if row["status"] == "failed"),
+        "failed_count": sum(1 for row in rows if row["status"] in {"failed", "timeout"}),
         "estimated_serial_seconds": round(sum(float(row["duration_seconds"] or 0) for row in rows), 3),
         "runs": rows,
     }
@@ -259,6 +291,7 @@ def main() -> int:
     parser.add_argument("--task", help="Milestone task to feed to the orchestrator")
     parser.add_argument("--mode", default="audit", choices=["audit", "live"])
     parser.add_argument("--jobs", type=int)
+    parser.add_argument("--timeout", type=float, default=300, help="Seconds before one live orchestration command is stopped")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
 

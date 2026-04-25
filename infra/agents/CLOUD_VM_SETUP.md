@@ -7,7 +7,7 @@ The selected stretch infrastructure for later reproducible runs is:
 ```text
 GitHub repo
    |
-   |-- Codex / Claude / Replit Agent / Cursor create candidate branches
+   |-- Claude-first / Replit Agent / Cursor / optional comparison agents create candidate branches
    |
 Ubuntu VM
    |
@@ -140,7 +140,7 @@ The default `runner_target = github-hosted` requires no VM.
 
 ## VM Flow
 
-The VM flow uses the same Docker image and Champion configs as GitHub-hosted Actions. Manual candidate branches can still be created by Codex, Claude, Replit, Cursor, or other agent tools.
+The VM flow uses the same Docker image and Champion configs as GitHub-hosted Actions. Manual candidate branches should usually be created by Claude/Anthropic-backed builders, with Replit, Cursor, RLM, and other agent tools used as comparison arms.
 
 The VM evaluates candidates:
 
@@ -151,4 +151,4 @@ The VM evaluates candidates:
 5. Write comparison report.
 6. Promote only with explicit confirmation.
 
-Later automation can call model APIs directly. Replit remains optional UI/dashboard infrastructure, not core orchestration.
+Later automation can call model APIs directly. Prefer `POINTCHESS_DEFAULT_BUILDER_PROVIDER=anthropic` in Docker/GitHub, which uses Anthropic for Claude-style builders while leaving RLM candidates on the `rlms` path. Use `claude_cli` on a VM where Claude Code is installed and authenticated. Replit remains optional UI/dashboard infrastructure, not core orchestration.

@@ -36,6 +36,31 @@ on:
         required: true
         default: true
         type: boolean
+      run_builders:
+        description: "Run model-backed builders before evaluation"
+        required: true
+        default: false
+        type: boolean
+      builder_provider:
+        description: "Builder provider override. candidate_default uses Anthropic for non-RLM and rlms for RLM."
+        required: false
+        default: candidate_default
+        type: choice
+        options:
+          - candidate_default
+          - claude_cli
+          - openai
+          - anthropic
+          - rlm
+      builder_timeout_seconds:
+        description: "Maximum seconds per candidate builder invocation"
+        required: true
+        default: "1800"
+      commit_builds:
+        description: "Commit builder diffs inside candidate worktrees"
+        required: true
+        default: true
+        type: boolean
       orchestration_mode:
         description: "audit is no-secrets; live may call model APIs"
         required: true
@@ -44,6 +69,10 @@ on:
         options:
           - audit
           - live
+      orchestration_timeout_seconds:
+        description: "Maximum seconds per live orchestration command"
+        required: true
+        default: "300"
       allow_missing_worktrees:
         description: "Record missing candidates and keep running"
         required: true
@@ -80,13 +109,19 @@ jobs:
       - name: Run Champion candidate ladder
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPEN_AI_KEY: ${{ secrets.OPEN_AI_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           ANTHROPIC_KEY: ${{ secrets.ANTHROPIC_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_KEY: ${{ secrets.GEMINI_KEY }}
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
           XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
+          GROK_KEY: ${{ secrets.GROK_KEY }}
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          DEEPSEEK_KEY: ${{ secrets.DEEPSEEK_KEY }}
           MOONSHOT_API_KEY: ${{ secrets.MOONSHOT_API_KEY }}
+          KIMI_KEY: ${{ secrets.KIMI_KEY }}
+          POINTCHESS_DEFAULT_BUILDER_PROVIDER: anthropic
         run: |
           args=(
             python infra/scripts/run_champion_ladder.py
@@ -98,7 +133,17 @@ jobs:
             args+=(--create-worktrees)
           fi
           if [ "${{ inputs.run_orchestration }}" = "true" ]; then
-            args+=(--run-orchestration --orchestration-mode "${{ inputs.orchestration_mode }}")
+            args+=(--run-orchestration --orchestration-mode "${{ inputs.orchestration_mode }}" --orchestration-timeout "${{ inputs.orchestration_timeout_seconds }}")
+          fi
+          if [ "${{ inputs.run_builders }}" = "true" ]; then
+            args+=(--run-builders)
+          fi
+          if [ -n "${{ inputs.builder_provider }}" ] && [ "${{ inputs.builder_provider }}" != "candidate_default" ]; then
+            args+=(--builder-provider "${{ inputs.builder_provider }}")
+          fi
+          args+=(--builder-timeout "${{ inputs.builder_timeout_seconds }}")
+          if [ "${{ inputs.commit_builds }}" = "true" ]; then
+            args+=(--commit-builds)
           fi
           if [ "${{ inputs.allow_missing_worktrees }}" = "true" ]; then
             args+=(--allow-missing-worktrees)
@@ -112,13 +157,19 @@ jobs:
             -v "$PWD/../worktrees:/worktrees" \
             -w /repo \
             -e OPENAI_API_KEY \
+            -e OPEN_AI_KEY \
             -e ANTHROPIC_API_KEY \
             -e ANTHROPIC_KEY \
             -e GEMINI_API_KEY \
+            -e GEMINI_KEY \
             -e GOOGLE_API_KEY \
             -e XAI_API_KEY \
+            -e GROK_KEY \
             -e DEEPSEEK_API_KEY \
+            -e DEEPSEEK_KEY \
             -e MOONSHOT_API_KEY \
+            -e KIMI_KEY \
+            -e POINTCHESS_DEFAULT_BUILDER_PROVIDER \
             "$CHAMPION_IMAGE" \
             "${args[@]}"
 
@@ -138,4 +189,6 @@ jobs:
             reports/comparisons/CHAMPION_LADDER/
             reports/comparisons/C*_*/
             reports/orchestration/C*_*/
+            reports/builders/C*_*/
+            reports/builds/C*_*/
           retention-days: 14

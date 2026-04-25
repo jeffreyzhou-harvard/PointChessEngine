@@ -19,6 +19,14 @@ from methodologies.rlm.prompts import SYSTEM_PROMPT, TASK_DECOMPOSITION_PROMPT
 ROOT = Path(__file__).resolve().parents[2]
 
 
+def load_local_env() -> None:
+    try:
+        from dotenv import load_dotenv
+    except ImportError:
+        return
+    load_dotenv(ROOT / ".env")
+
+
 def display_path(path: Path) -> str:
     try:
         return str(path.relative_to(ROOT))
@@ -135,6 +143,7 @@ def live_response(prompt: str, backend: str, model_name: str, verbose: bool, tra
 
 
 def main() -> int:
+    load_local_env()
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--task", required=True)
     parser.add_argument("--candidate-id", required=True)

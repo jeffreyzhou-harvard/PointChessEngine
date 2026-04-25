@@ -4,7 +4,7 @@
 # - candidate_id: <task_id>_<orchestration>_<model_setup>
 # - orchestration_type: one of the supported patterns in agents/MULTI_MODEL_POLICY.md
 # - model_assignments: role -> model/provider label
-# - execution_environment: local_worktree, codex_execution, replit_external, cursor_external, etc.
+# - execution_environment: local_worktree, replit_external, cursor_external, etc.
 # - branch_name: experiments/<task>/<candidate>
 # - worktree_path: local worktree path
 # - allowed_tools: tool names available to the agent/framework
@@ -64,21 +64,21 @@ candidates:
     output_report_path: reports/tasks/C0_debate_heterogeneous.md
     notes: Heterogeneous debate candidate.
 
-  - candidate_id: C0_codex_agent
+  - candidate_id: C0_claude_cli_agent
     task_id: C0_ENGINE_INTERFACE
-    orchestration_type: codex_agent
+    orchestration_type: claude_cli_agent
     model_assignments:
-      builder: codex
-      reviewer: codex
-    execution_environment: codex_execution
-    branch_name: experiments/C0/codex_agent
-    worktree_path: ../worktrees/C0-codex-agent
+      builder: claude
+      reviewer: claude
+    execution_environment: local_worktree
+    branch_name: experiments/C0/claude_cli_agent
+    worktree_path: ../worktrees/C0-claude-agent
     allowed_tools: [repo_edit, unittest, git_diff]
     budget:
       max_minutes: 45
       max_cost_usd: 10
-    output_report_path: reports/tasks/C0_codex_agent.md
-    notes: Codex candidate.
+    output_report_path: reports/tasks/C0_claude_cli_agent.md
+    notes: Claude CLI candidate.
 
   - candidate_id: C0_replit_agent
     task_id: C0_ENGINE_INTERFACE

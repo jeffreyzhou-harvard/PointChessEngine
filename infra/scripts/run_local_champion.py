@@ -32,6 +32,11 @@ def main() -> int:
     parser.add_argument("--milestone-task")
     parser.add_argument("--run-orchestration", action="store_true")
     parser.add_argument("--orchestration-mode", default="audit", choices=["audit", "live"])
+    parser.add_argument("--orchestration-timeout", type=float, default=300)
+    parser.add_argument("--run-builders", action="store_true")
+    parser.add_argument("--builder-provider", choices=["claude_cli", "codex_cli", "openai", "anthropic", "rlm"])
+    parser.add_argument("--builder-timeout", type=float, default=1800)
+    parser.add_argument("--commit-builds", action="store_true")
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--jobs", type=int, help="Candidate test parallelism")
     parser.add_argument("--skip-create-worktrees", action="store_true")
@@ -60,6 +65,15 @@ def main() -> int:
     if args.run_orchestration:
         command.append("--run-orchestration")
         command.extend(["--orchestration-mode", args.orchestration_mode])
+        command.extend(["--orchestration-timeout", str(args.orchestration_timeout)])
+    if args.run_builders:
+        command.append("--run-builders")
+    if args.builder_provider:
+        command.extend(["--builder-provider", args.builder_provider])
+    if args.builder_timeout:
+        command.extend(["--builder-timeout", str(args.builder_timeout)])
+    if args.commit_builds:
+        command.append("--commit-builds")
     if not args.skip_score:
         command.append("--score")
     if not args.skip_report:

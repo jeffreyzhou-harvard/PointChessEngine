@@ -55,7 +55,10 @@ from a live model-generated candidate run.
 
 ## Local Manual Mode
 
-Candidates are created by Codex, Claude, Replit Agent, Cursor, or other tools in local git worktrees. The local Champion scripts evaluate existing branches/worktrees, write reports, score candidates, and optionally print promotion commands.
+Candidates are created primarily by Claude/Anthropic-backed builders, with
+Replit Agent, Cursor, RLM, and other tools available as comparison arms in local
+git worktrees. The local Champion scripts evaluate existing branches/worktrees,
+write reports, score candidates, and optionally print promotion commands.
 
 Local manual mode is the recommended MVP.
 
@@ -67,7 +70,11 @@ The Ubuntu VM version is the same workflow on a clean remote machine. Use it lat
 
 ## Automated Mode
 
-The local runner or VM orchestrator may later call model APIs directly. Automated mode still must use the same candidate branch naming, tests, scoring, and promotion gates.
+The local runner, GitHub workflow, or VM orchestrator may call model APIs
+directly. In GitHub/Docker, use the `anthropic` builder provider by default. On
+a local machine or self-hosted runner with Claude Code installed, use
+`claude_cli`. Automated mode still must use the same candidate branch naming,
+tests, scoring, and promotion gates.
 
 ## Recommended MVP
 

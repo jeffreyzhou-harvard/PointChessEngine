@@ -72,7 +72,7 @@ Examples:
 
 - `C3_react_claude`
 - `C3_debate_heterogeneous_claude_gpt_gemini`
-- `C4_codex_agent`
+- `C4_claude_cli_agent`
 - `C8_replit_agent`
 
 ## Reporting Location

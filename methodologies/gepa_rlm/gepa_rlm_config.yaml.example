@@ -1,0 +1,62 @@
+candidate_id: C3_gepa_rlm_claude_gpt_gemini
+task_id: C3_STATIC_EVALUATION
+base_orchestration: rlm_lite
+methodology: gepa_rlm
+baseline_branch: main
+canonical_branch: main
+branch_name: experiments/C3/gepa_rlm
+worktree_path: ../worktrees/C3-gepa-rlm
+task_spec_path: infra/tasks/classical/C3_STATIC_EVALUATION.md
+trace_output_dir: reports/gepa_rlm/C3_STATIC_EVALUATION/traces
+report_output_path: reports/gepa_rlm/C3_STATIC_EVALUATION/report.md
+result_output_path: reports/gepa_rlm/C3_STATIC_EVALUATION/result.json
+mutation_log_path: reports/gepa_rlm/C3_STATIC_EVALUATION/prompt_mutations.json
+selection_report_path: reports/gepa_rlm/C3_STATIC_EVALUATION/selection.md
+
+model_assignments:
+  root: claude
+  interface_inspector: gpt
+  test_designer: claude
+  edge_case_analyst: gemini
+  implementation_planner: gpt
+  reviewer: claude
+  reflector: gemini
+  selector: claude
+
+budget:
+  max_reflection_rounds: 2
+  max_prompt_mutations: 6
+  max_recursive_calls_per_round: 8
+  max_cost_usd: 20
+  max_minutes: 45
+
+allowed_mutations:
+  - root
+  - interface_inspector
+  - test_designer
+  - edge_case_analyst
+  - implementation_planner
+  - reviewer
+
+forbidden_mutations:
+  - task_spec
+  - tests_to_make_passing_by_deletion
+  - scoring_weights
+  - public_interfaces_without_protocol
+  - benchmark_expected_outputs
+
+feedback_sources:
+  - pytest_logs
+  - contract_test_logs
+  - code_review_comments
+  - benchmark_results
+  - candidate_score_json
+  - human_notes
+
+selection_metrics:
+  correctness_tests: 35
+  code_review_quality: 20
+  interface_compatibility: 15
+  performance_engine_impact: 15
+  cost_time_efficiency: 10
+  documentation_report_quality: 5

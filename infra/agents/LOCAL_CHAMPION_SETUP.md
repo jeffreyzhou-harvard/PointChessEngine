@@ -9,7 +9,7 @@ Local machine
    |
    |-- PointChessEngine canonical checkout
    |-- ../worktrees/<candidate> git worktrees
-   |-- Codex / Claude / Cursor / Replit-generated branches
+   |-- Claude-first / Cursor / Replit-generated branches
    |-- Champion scripts
    |-- tests, reports, scoring, promotion
 ```
@@ -55,7 +55,6 @@ This creates worktrees such as:
 ```text
 ../worktrees/C3-react-claude
 ../worktrees/C3-debate-heterogeneous
-../worktrees/C3-codex-agent
 ../worktrees/C3-replit-agent
 ../worktrees/C3-custom-parallel
 ```
@@ -64,11 +63,12 @@ This creates worktrees such as:
 
 Point each agent at a different worktree:
 
-- Codex: `../worktrees/C3-codex-agent`
-- Claude or Cursor: `../worktrees/C3-react-claude`
-- debate ensemble: `../worktrees/C3-debate-heterogeneous`
+- Claude Code / Claude CLI: `../worktrees/C3-react-claude`
+- Claude-led debate ensemble: `../worktrees/C3-debate-heterogeneous`
 - Replit-generated branch: `../worktrees/C3-replit-agent`
-- custom parallel runner: `../worktrees/C3-custom-parallel`
+- custom parallel runner, usually Claude as builder with other models as critics: `../worktrees/C3-custom-parallel`
+
+Codex is kept only as an optional adapter in the scripts. The default config examples are Claude-first. The recommended local builder is Claude CLI. The recommended Docker/GitHub setup is `POINTCHESS_DEFAULT_BUILDER_PROVIDER=anthropic`, which uses Anthropic for Claude-style candidates while preserving RLM candidates on the `rlms` path.
 
 Each candidate branch should use:
 
@@ -110,7 +110,7 @@ Promotion is never automatic. After reviewing the comparison report:
 ```bash
 python infra/scripts/promote_candidate.py \
   --config infra/configs/champion/C3_STATIC_EVALUATION.yaml.example \
-  --candidate-id C3_codex_agent \
+  --candidate-id C3_react_claude \
   --confirm
 ```
 
@@ -178,6 +178,27 @@ docker run --rm \
 ```
 
 Run the orchestration audit before evaluating the RLM candidate:
+
+```bash
+python infra/scripts/run_agent_orchestration.py \
+  --config infra/configs/champion/CURRENT_ENGINES.yaml \
+  --candidate CURRENT_rlm \
+  --task C0_ENGINE_INTERFACE \
+  --mode audit
+```
+
+Run a live Claude-backed candidate builder locally:
+
+```bash
+python infra/scripts/run_local_champion.py \
+  --task C3_STATIC_EVALUATION \
+  --config infra/configs/champion/C3_STATIC_EVALUATION.yaml.example \
+  --candidate C3_react_claude \
+  --run-builders \
+  --builder-provider claude_cli \
+  --commit-builds \
+  --builder-timeout 1800
+```
 
 ```bash
 docker run --rm \

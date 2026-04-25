@@ -67,6 +67,11 @@ def main() -> int:
     parser.add_argument("--milestone-task", help="Milestone task ID for milestone/perft gates")
     parser.add_argument("--run-orchestration", action="store_true", help="Run configured agent orchestration before tests")
     parser.add_argument("--orchestration-mode", default="audit", choices=["audit", "live"], help="audit is no-secrets; live may call model APIs")
+    parser.add_argument("--orchestration-timeout", type=float, default=300, help="Seconds before one live orchestration command is stopped")
+    parser.add_argument("--run-builders", action="store_true", help="Run configured agent builders before tests")
+    parser.add_argument("--builder-provider", choices=["claude_cli", "codex_cli", "openai", "anthropic", "rlm"], help="Optional builder provider filter")
+    parser.add_argument("--builder-timeout", type=float, default=1800, help="Seconds before one candidate builder is stopped")
+    parser.add_argument("--commit-builds", action="store_true", help="Commit candidate builder diffs inside each worktree")
     parser.add_argument("--promote", action="store_true")
     parser.add_argument("--candidate", help="Optional candidate_id filter for worktree creation/testing")
     parser.add_argument("--candidate-id", help="Candidate to promote")
@@ -111,6 +116,7 @@ def main() -> int:
             script_args += ["--task", args.task]
         if args.jobs:
             script_args += ["--jobs", str(args.jobs)]
+        script_args += ["--timeout", str(args.orchestration_timeout)]
         if args.dry_run:
             script_args.append("--dry-run")
         code = run_script("run_agent_orchestration.py", script_args)
@@ -118,6 +124,29 @@ def main() -> int:
             return code
         if code:
             print("One or more orchestration runs failed; continuing because --continue-on-failure was set.")
+
+    if args.run_builders:
+        script_args = ["--config", str(config_path)]
+        if args.candidate:
+            script_args += ["--candidate", args.candidate]
+        if args.milestone_task:
+            script_args += ["--task", args.milestone_task]
+        else:
+            script_args += ["--task", args.task]
+        if args.jobs:
+            script_args += ["--jobs", str(args.jobs)]
+        if args.builder_provider:
+            script_args += ["--provider", args.builder_provider]
+        script_args += ["--timeout", str(args.builder_timeout)]
+        if args.commit_builds:
+            script_args.append("--commit")
+        if args.dry_run:
+            script_args.append("--dry-run")
+        code = run_script("run_agent_builders.py", script_args)
+        if code and not args.continue_on_failure:
+            return code
+        if code:
+            print("One or more builders failed; continuing because --continue-on-failure was set.")
 
     if args.run_tests:
         script_args = ["--config", str(config_path)]

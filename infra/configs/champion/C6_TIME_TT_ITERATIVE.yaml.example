@@ -20,17 +20,17 @@ score_weights:
   documentation_report_quality: 5
 
 candidates:
-  - candidate_id: C6_codex_agent
+  - candidate_id: C6_claude_cli_agent
     task_id: C6_TIME_TT_ITERATIVE
-    orchestration_type: codex_agent
-    model_assignments: {builder: codex, reviewer: codex}
-    execution_environment: codex_execution
-    branch_name: experiments/C6/codex_agent
-    worktree_path: ../worktrees/C6-codex-agent
+    orchestration_type: claude_cli_agent
+    model_assignments: {builder: claude, reviewer: claude}
+    execution_environment: local_worktree
+    branch_name: experiments/C6/claude_cli_agent
+    worktree_path: ../worktrees/C6-claude-agent
     allowed_tools: [repo_edit, pytest, git_diff]
     budget: {max_minutes: 90, max_cost_usd: 20}
-    output_report_path: reports/tasks/C6_codex_agent.md
-    notes: Codex candidate for time management and TT.
+    output_report_path: reports/tasks/C6_claude_cli_agent.md
+    notes: Claude CLI candidate for time management and TT.
 
   - candidate_id: C6_rlm_openai
     task_id: C6_TIME_TT_ITERATIVE

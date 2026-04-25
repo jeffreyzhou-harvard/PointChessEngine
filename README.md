@@ -672,6 +672,85 @@ docker run --rm \
     --jobs 4
 ```
 
+Run the actual builder plane before evaluation:
+
+```bash
+set -a
+source .env
+set +a
+
+docker run --rm \
+  -v "$PWD:/repo" \
+  -v "$PWD/../worktrees:/worktrees" \
+  -w /repo \
+  -e POINTCHESS_DEFAULT_BUILDER_PROVIDER=anthropic \
+  -e OPENAI_API_KEY \
+  -e OPEN_AI_KEY \
+  -e ANTHROPIC_API_KEY \
+  -e ANTHROPIC_KEY \
+  -e GEMINI_API_KEY \
+  -e GEMINI_KEY \
+  -e XAI_API_KEY \
+  -e GROK_KEY \
+  -e MOONSHOT_API_KEY \
+  -e KIMI_KEY \
+  -e DEEPSEEK_API_KEY \
+  -e DEEPSEEK_KEY \
+  pointchess/champion:local \
+  python infra/scripts/run_champion_ladder.py \
+    --tasks C0_ENGINE_INTERFACE \
+    --create-worktrees \
+    --run-builders \
+    --builder-timeout 1800 \
+    --commit-builds \
+    --run-orchestration \
+    --orchestration-mode audit \
+    --continue-on-failure \
+    --jobs 4
+```
+
+Or use the wrapper that does the same Dockerized live run after loading `.env`:
+
+```bash
+TASKS=C0_ENGINE_INTERFACE JOBS=4 TIER=smoke \
+  infra/scripts/run_parallel_live_champion.sh
+```
+
+For a GIF-friendly live terminal dashboard, open a second terminal while the
+run is active:
+
+```bash
+python infra/scripts/watch_champion.py \
+  --config infra/configs/champion/C0_ENGINE_INTERFACE.yaml.example \
+  --task C0_ENGINE_INTERFACE \
+  --jobs 4
+```
+
+For local agent builds, use Claude Code directly. Docker/GitHub should usually
+set `POINTCHESS_DEFAULT_BUILDER_PROVIDER=anthropic`; that sends non-RLM
+candidates through Anthropic while keeping RLM candidates on the `rlms` path.
+Local development can use `claude_cli` because host Claude auth is outside the
+Champion image:
+
+```bash
+python infra/scripts/run_champion_ladder.py \
+  --tasks C0_ENGINE_INTERFACE \
+  --create-worktrees \
+  --run-builders \
+  --builder-provider claude_cli \
+  --builder-timeout 1800 \
+  --commit-builds \
+  --run-orchestration \
+  --orchestration-mode audit \
+  --continue-on-failure \
+  --jobs 4
+```
+
+Use `.env.example` as the local template, but never commit real provider keys.
+For GitHub runs, store keys in repository secrets such as `ANTHROPIC_KEY`,
+`OPENAI_API_KEY`, `GEMINI_API_KEY`, `XAI_API_KEY`, `MOONSHOT_API_KEY`, and
+`DEEPSEEK_API_KEY`.
+
 This produces `reports/comparisons/CHAMPION_LADDER/summary.md`. A task is only
 considered promotable when at least one real candidate worktree passes; audit
 traces alone do not count as implementation wins. By default, C* candidate

@@ -25,7 +25,8 @@ Supported orchestration patterns include:
 - `chain_of_thought_decomposition`
 - `gstack`
 - `cursor_agents`
-- `codex_agent`
+- `claude_cli_agent`
+- `codex_agent` as an optional comparison adapter only
 - `replit_agent`
 - `debate_ensemble`
 - `debate_non_ensemble`
@@ -34,3 +35,9 @@ Supported orchestration patterns include:
 - `custom_openai_agents_sdk`
 
 Orchestration pattern is separate from model provider and execution environment.
+
+For the current benchmark, the default builder is Claude:
+
+- use `claude_cli` locally or on a self-hosted runner with Claude Code installed
+- use `anthropic` in Docker/GitHub Actions where API credentials are available
+- use OpenAI/Gemini/Grok/Kimi/DeepSeek mainly as critics, advisors, or comparison arms

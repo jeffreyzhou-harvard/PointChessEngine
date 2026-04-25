@@ -20,17 +20,17 @@ score_weights:
   documentation_report_quality: 5
 
 candidates:
-  - candidate_id: C7_codex_agent
+  - candidate_id: C7_claude_cli_agent
     task_id: C7_UCI_COMPATIBILITY
-    orchestration_type: codex_agent
-    model_assignments: {builder: codex, reviewer: codex}
-    execution_environment: codex_execution
-    branch_name: experiments/C7/codex_agent
-    worktree_path: ../worktrees/C7-codex-agent
+    orchestration_type: claude_cli_agent
+    model_assignments: {builder: claude, reviewer: claude}
+    execution_environment: local_worktree
+    branch_name: experiments/C7/claude_cli_agent
+    worktree_path: ../worktrees/C7-claude-agent
     allowed_tools: [repo_edit, pytest, git_diff]
     budget: {max_minutes: 90, max_cost_usd: 20}
-    output_report_path: reports/tasks/C7_codex_agent.md
-    notes: Codex candidate for production UCI compatibility.
+    output_report_path: reports/tasks/C7_claude_cli_agent.md
+    notes: Claude CLI candidate for production UCI compatibility.
 
   - candidate_id: C7_rlm_openai
     task_id: C7_UCI_COMPATIBILITY

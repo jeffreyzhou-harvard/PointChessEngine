@@ -58,7 +58,13 @@ Workstreams may run in parallel only when dependencies and public interfaces are
 
 ### 2. AI-Agent Task Parallelization
 
-Codex, Claude, Replit Agent, Cursor agents, and custom runners may work on separate branches or worktrees. Each agent must follow the assigned task file, write reports, run tests, and preserve a reviewable git history.
+Claude is the primary builder for this project. Replit Agent, Cursor agents,
+RLM, custom runners, and other providers may work on separate branches or
+worktrees as comparison arms. Codex is optional only; do not treat it as the
+default builder.
+
+Each agent must follow the assigned task file, write reports, run tests, and
+preserve a reviewable git history.
 
 ### 3. Candidate-Solution Parallelization
 
@@ -73,7 +79,7 @@ Examples:
 ```text
 experiments/C3/react_claude
 experiments/C3/debate_heterogeneous_claude_gpt_gemini
-experiments/C4/codex_agent
+experiments/C4/custom_parallel_claude
 ```
 
 ### 4. Evaluation/Tournament Parallelization
@@ -120,7 +126,7 @@ Neural candidates must still pass legality and interface gates before promotion.
 - `chain_of_thought_decomposition`
 - `gstack`
 - `cursor_agents`
-- `codex_agent`
+- `codex_agent` (optional comparison only)
 - `replit_agent`
 - `debate_ensemble`
 - `debate_non_ensemble`
@@ -140,5 +146,5 @@ Examples:
 
 - `C3_react_claude`
 - `C3_debate_heterogeneous_claude_gpt_gemini`
-- `C4_codex_agent`
+- `C4_custom_parallel_claude`
 - `C8_replit_agent`

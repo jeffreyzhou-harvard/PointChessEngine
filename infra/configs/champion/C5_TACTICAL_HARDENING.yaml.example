@@ -20,17 +20,17 @@ score_weights:
   documentation_report_quality: 5
 
 candidates:
-  - candidate_id: C5_codex_agent
+  - candidate_id: C5_claude_cli_agent
     task_id: C5_TACTICAL_HARDENING
-    orchestration_type: codex_agent
-    model_assignments: {builder: codex, reviewer: codex}
-    execution_environment: codex_execution
-    branch_name: experiments/C5/codex_agent
-    worktree_path: ../worktrees/C5-codex-agent
+    orchestration_type: claude_cli_agent
+    model_assignments: {builder: claude, reviewer: claude}
+    execution_environment: local_worktree
+    branch_name: experiments/C5/claude_cli_agent
+    worktree_path: ../worktrees/C5-claude-agent
     allowed_tools: [repo_edit, pytest, git_diff]
     budget: {max_minutes: 90, max_cost_usd: 20}
-    output_report_path: reports/tasks/C5_codex_agent.md
-    notes: Codex candidate for tactical hardening.
+    output_report_path: reports/tasks/C5_claude_cli_agent.md
+    notes: Claude CLI candidate for tactical hardening.
 
   - candidate_id: C5_rlm_openai
     task_id: C5_TACTICAL_HARDENING

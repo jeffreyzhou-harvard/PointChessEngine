@@ -94,6 +94,14 @@ REGISTRY: dict[str, EngineSpec] = {
         cwd=str(REPO_ROOT),
         build_pattern="recursive LM · RLM",
     ),
+    "gepa_rlm": EngineSpec(
+        id="gepa_rlm",
+        label="GEPA-RLM evolved recursive",
+        blurb="GEPA-style reflective prompt evolution wrapped around the RLM runtime baseline.",
+        cmd=[PYTHON, "-m", "engines.gepa_rlm", "--uci"],
+        cwd=str(REPO_ROOT),
+        build_pattern="recursive LM · GEPA-RLM",
+    ),
 }
 
 
@@ -121,6 +129,7 @@ _ENGINE_DIRS = {
     "debate":                 REPO_ROOT / "engines" / "debate",
     "ensemble":               REPO_ROOT / "engines" / "ensemble",
     "rlm":                    REPO_ROOT / "engines" / "rlm",
+    "gepa_rlm":               REPO_ROOT / "engines" / "gepa_rlm",
 }
 
 
