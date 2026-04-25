@@ -23,6 +23,14 @@ from methodologies.langgraph.runner import _load_env_key, default_brief, run, su
 def clean_env(monkeypatch) -> None:
     monkeypatch.delenv("ANTHROPIC_KEY", raising=False)
     monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
+    # _load_env_key calls dotenv.load_dotenv(), which would re-populate
+    # ANTHROPIC_* from a developer's local .env and defeat the test.
+    # Stub it to a no-op so the test only sees env vars it sets itself.
+    try:
+        import dotenv  # type: ignore
+        monkeypatch.setattr(dotenv, "load_dotenv", lambda *a, **kw: False)
+    except ImportError:
+        pass
 
 
 class TestLoadEnvKey:

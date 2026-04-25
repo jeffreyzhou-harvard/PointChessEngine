@@ -1,0 +1,84 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  # Lets you re-run the suite manually from the Actions tab.
+  workflow_dispatch:
+
+# Cancel a previous in-flight run for the same ref when a new push lands.
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pytest:
+    name: pytest (py${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          # Top-level deps (python-chess, pyyaml, flask, pytest).
+          pip install -r requirements.txt
+          # Per-methodology deps. We install both so every test tree can
+          # be collected without `ModuleNotFoundError`.
+          pip install -r methodologies/debate/requirements.txt
+          pip install -r methodologies/langgraph/requirements.txt
+
+      - name: Show versions
+        run: |
+          python --version
+          pip --version
+          pytest --version
+
+      # ---- Repo-root test trees: importable as `engines.*` packages ---- #
+      - name: arena tests
+        run: pytest -q arena/tests
+
+      - name: debate methodology tests (chat patched out, no API calls)
+        run: pytest -q methodologies/debate/tests
+
+      - name: langgraph methodology tests (LLM patched out, no API calls)
+        run: pytest -q methodologies/langgraph/tests
+
+      - name: classical benchmark tests (engines.oneshot_nocontext)
+        run: pytest -q tests/classical
+
+      - name: oneshot_nocontext engine tests
+        run: pytest -q engines/oneshot_nocontext/tests
+
+      - name: oneshot_react engine tests
+        run: pytest -q engines/oneshot_react/tests
+
+      - name: chainofthought engine tests
+        run: pytest -q engines/chainofthought/tests
+
+      # ---- Engine trees that use unqualified imports (need their own cwd) ---- #
+      - name: oneshot_contextualized engine tests
+        working-directory: engines/oneshot_contextualized
+        run: pytest -q tests
+
+      - name: langgraph engine tests
+        working-directory: engines/langgraph
+        run: pytest -q tests
+
+      - name: debate engine tests
+        working-directory: engines/debate
+        run: pytest -q tests
