@@ -124,6 +124,12 @@ chess engine. What changes is **how it was produced.**
 | `engines/ensemble/`                   | multi-model design *vote* (same advisors, no judge) → Claude builds | plurality   | Claude             |
 | `engines/rlm/`                        | Recursive Language Model-inspired decomposition                    | Claude      | Claude             |
 
+<p align="center">
+  <img src="DebateArchitectureEngine.png" alt="Observability and chain-of-thought trace for the debate / ensemble architecture" width="85%" />
+</p>
+
+<p align="center"><em>Observability and chain-of-thought trace for the debate / ensemble architecture.</em></p>
+
 Each engine is registered in `arena/engines.py::REGISTRY`, so adding
 a ninth engine is a one-line addition: every cross-engine test, the
 arena UI, and the contract suite pick it up automatically.
