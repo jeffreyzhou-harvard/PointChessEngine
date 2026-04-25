@@ -782,4 +782,8 @@ These aren't wired in yet but inform where the eval / monitoring layer is headin
 
 If you want the README to mirror your whitepaper structure even more closely, the next step is adding dedicated top-level docs (`WHITEPAPER.md`, `RELATED_WORK.md`, `decisions/log.md`, and `/docs` figures) and linking them from here.
 
+---
 
+## License
+
+Released under the [MIT License](LICENSE). Copyright (c) 2026 Jeffrey Zhou, Maher Harp, Suraj Reddy, and Rohan Singh.
