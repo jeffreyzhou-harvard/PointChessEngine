@@ -59,6 +59,16 @@ The project is structured to *test* that hypothesis rather than assume it: every
 
 ---
 
+## Early demo
+
+<p align="center">
+  <img src="EngineHeadToHeadGIF.gif" alt="Two of the generated engines playing head-to-head inside our own tournament software" />
+</p>
+
+<p align="center"><em>Early demo: two of our final generated engines going head-to-head inside our own tournament software (the <code>arena/</code> web UI).</em></p>
+
+---
+
 ## Why this project matters
 
 Most chess+LLM work reports playing strength from one methodology. That conflates model quality with system design quality.
