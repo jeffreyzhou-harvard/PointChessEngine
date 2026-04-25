@@ -92,6 +92,103 @@ That makes it a practical benchmark for the broader engineering question:
 
 ---
 
+## Current repository scope
+
+This repo currently contains multiple concrete engine implementations plus orchestration/testing infrastructure.
+
+### Top-level layout
+
+```
+engines/         the chess-engine artifacts being compared (each speaks UCI)
+methodologies/   the builders that produce engines (orchestration runtimes)
+arena/           web UI for engine-vs-engine matches with live metrics
+infra/           configs, scripts, agent/task/orchestrator protocol docs
+reports/         run, eval, and comparison artifacts
+tests/           cross-engine classical / contract tests
+```
+
+### The eight engines and their construction methods
+
+The whole point of the repo is the controlled A/B/C/... across these.
+Every engine is a complete, UCI-speaking, pure-Python alpha-beta
+chess engine. What changes is **how it was produced.**
+
+| engine                                | construction method                                                | who decided | who wrote the code |
+|---------------------------------------|--------------------------------------------------------------------|-------------|--------------------|
+| `engines/oneshot_nocontext/`          | one Claude prompt, no project context                              | Claude      | Claude             |
+| `engines/oneshot_contextualized/`     | one Claude prompt with curated repo context                        | Claude      | Claude             |
+| `engines/oneshot_react/`              | one ReAct-style prompt with tool access                            | Claude      | Claude             |
+| `engines/chainofthought/`             | incremental chain-of-thought prompting                             | Claude      | Claude             |
+| `engines/langgraph/`                  | LangGraph multi-agent orchestration: per-role specialists          | per-role    | per-role           |
+| `engines/debate/`                     | multi-model design *debate* (OpenAI · Grok · Gemini · DeepSeek · Kimi) → Claude judges & builds | Claude (judge) | Claude             |
+| `engines/ensemble/`                   | multi-model design *vote* (same advisors, no judge) → Claude builds | plurality   | Claude             |
+| `engines/rlm/`                        | Recursive Language Model-inspired decomposition                    | Claude      | Claude             |
+
+<p align="center">
+  <img src="figures/DebateArchitectureEngine.png" alt="Observability and chain-of-thought trace for the debate / ensemble architecture" width="85%" />
+</p>
+
+<p align="center"><em>Observability and chain-of-thought trace for the debate / ensemble architecture.</em></p>
+
+Each engine is registered in `arena/engines.py::REGISTRY`, so adding
+a ninth engine is a one-line addition: every cross-engine test, the
+arena UI, and the contract suite pick it up automatically.
+
+<p align="center">
+  <img src="figures/EngineLOC.png" alt="Bar chart of lines of Python per generated engine, color-coded by methodology family" width="85%" />
+</p>
+
+<p align="center"><em>Lines of Python per generated engine (excludes tests, <code>__pycache__</code>, vendored deps), color-coded by methodology family. Regenerate with <code>python -m infra.scripts.plot_loc --csv</code>.</em></p>
+
+### Methodologies (engine builders)
+
+The build orchestrators that produce each non-trivial engine artifact:
+
+- `methodologies/langgraph/` - LangGraph multi-agent specialists →
+  `engines/langgraph/`
+- `methodologies/debate/`    - multi-model debate with Claude as judge →
+  `engines/debate/`
+- `methodologies/ensemble/`  - multi-model voting with no judge →
+  `engines/ensemble/`
+- `methodologies/rlm/`       - Recursive-LM-style prompting recipe →
+  `engines/rlm/`
+
+The four `oneshot_*` and `chainofthought` engines are direct prompt
+recipes; their methodology is captured in their own READMEs rather
+than in a separate orchestrator module.
+
+### Interactive arena: pit them against each other, see the numbers
+
+`arena/` is a local web UI (`python -m arena` → `http://127.0.0.1:8765`)
+that pits any two registered engines against each other in real time
+and streams every metric you'd want for the comparison:
+
+| metric                                  | source                                  |
+|-----------------------------------------|-----------------------------------------|
+| game result (W/D/L) and reason          | [python-chess](https://python-chess.readthedocs.io/) + arena rules |
+| per-move depth, nodes, NPS, score (cp / mate) | each engine's `info` UCI line     |
+| per-move wall time                      | arena timer around `go`                 |
+| cumulative engine clocks                | arena scoreboard                        |
+| [chess.com](https://www.chess.com/)-style move arrows + eval bar | arena UI                |
+| build cost ($), tokens, model           | `arena/engine_costs.json` (per engine)  |
+| lines of code                           | computed by arena from each engine tree |
+
+The arena is the live counterpart to the batch tournament harness in
+`infra/scripts/`; both feed the same comparison reports.
+
+For arena-specific details, see `arena/README.md`.
+
+### Evaluation and orchestration assets
+
+- `infra/agents/` - methodology/process protocols and parallelization plans
+- `infra/orchestrators/` - orchestration schemas and debate runtime notes
+- `infra/scripts/` - candidate scoring, champion tests, report generation
+- `infra/tasks/` - work plans and protocol docs
+- `reports/` - run/eval/comparison outputs
+- `tests/` - classical/contract/dashboard tests
+
+---
+
 ## What we measured, and how
 
 Beyond raw playing strength, the comparison hinges on instrumentation. Each engine is wired up to surface five layers of telemetry:
@@ -187,103 +284,6 @@ To keep this README reproducible and attribution-safe, we currently link to sour
 - **Chess as measurement substrate (`arXiv:2502.13295`)** — figure/table motivating chess as a controlled systems benchmark. Place directly before the scorecard section to justify why we track protocol robustness and perft in addition to Elo-like strength.
 
 When adding these paper figures, include a one-line citation under each image with source link and license note.
-
----
-
-## Current repository scope
-
-This repo currently contains multiple concrete engine implementations plus orchestration/testing infrastructure.
-
-### Top-level layout
-
-```
-engines/         the chess-engine artifacts being compared (each speaks UCI)
-methodologies/   the builders that produce engines (orchestration runtimes)
-arena/           web UI for engine-vs-engine matches with live metrics
-infra/           configs, scripts, agent/task/orchestrator protocol docs
-reports/         run, eval, and comparison artifacts
-tests/           cross-engine classical / contract tests
-```
-
-### The eight engines and their construction methods
-
-The whole point of the repo is the controlled A/B/C/... across these.
-Every engine is a complete, UCI-speaking, pure-Python alpha-beta
-chess engine. What changes is **how it was produced.**
-
-| engine                                | construction method                                                | who decided | who wrote the code |
-|---------------------------------------|--------------------------------------------------------------------|-------------|--------------------|
-| `engines/oneshot_nocontext/`          | one Claude prompt, no project context                              | Claude      | Claude             |
-| `engines/oneshot_contextualized/`     | one Claude prompt with curated repo context                        | Claude      | Claude             |
-| `engines/oneshot_react/`              | one ReAct-style prompt with tool access                            | Claude      | Claude             |
-| `engines/chainofthought/`             | incremental chain-of-thought prompting                             | Claude      | Claude             |
-| `engines/langgraph/`                  | LangGraph multi-agent orchestration: per-role specialists          | per-role    | per-role           |
-| `engines/debate/`                     | multi-model design *debate* (OpenAI · Grok · Gemini · DeepSeek · Kimi) → Claude judges & builds | Claude (judge) | Claude             |
-| `engines/ensemble/`                   | multi-model design *vote* (same advisors, no judge) → Claude builds | plurality   | Claude             |
-| `engines/rlm/`                        | Recursive Language Model-inspired decomposition                    | Claude      | Claude             |
-
-<p align="center">
-  <img src="figures/DebateArchitectureEngine.png" alt="Observability and chain-of-thought trace for the debate / ensemble architecture" width="85%" />
-</p>
-
-<p align="center"><em>Observability and chain-of-thought trace for the debate / ensemble architecture.</em></p>
-
-Each engine is registered in `arena/engines.py::REGISTRY`, so adding
-a ninth engine is a one-line addition: every cross-engine test, the
-arena UI, and the contract suite pick it up automatically.
-
-<p align="center">
-  <img src="figures/EngineLOC.png" alt="Bar chart of lines of Python per generated engine, color-coded by methodology family" width="85%" />
-</p>
-
-<p align="center"><em>Lines of Python per generated engine (excludes tests, <code>__pycache__</code>, vendored deps), color-coded by methodology family. Regenerate with <code>python -m infra.scripts.plot_loc --csv</code>.</em></p>
-
-### Methodologies (engine builders)
-
-The build orchestrators that produce each non-trivial engine artifact:
-
-- `methodologies/langgraph/` - LangGraph multi-agent specialists →
-  `engines/langgraph/`
-- `methodologies/debate/`    - multi-model debate with Claude as judge →
-  `engines/debate/`
-- `methodologies/ensemble/`  - multi-model voting with no judge →
-  `engines/ensemble/`
-- `methodologies/rlm/`       - Recursive-LM-style prompting recipe →
-  `engines/rlm/`
-
-The four `oneshot_*` and `chainofthought` engines are direct prompt
-recipes; their methodology is captured in their own READMEs rather
-than in a separate orchestrator module.
-
-### Interactive arena: pit them against each other, see the numbers
-
-`arena/` is a local web UI (`python -m arena` → `http://127.0.0.1:8765`)
-that pits any two registered engines against each other in real time
-and streams every metric you'd want for the comparison:
-
-| metric                                  | source                                  |
-|-----------------------------------------|-----------------------------------------|
-| game result (W/D/L) and reason          | [python-chess](https://python-chess.readthedocs.io/) + arena rules |
-| per-move depth, nodes, NPS, score (cp / mate) | each engine's `info` UCI line     |
-| per-move wall time                      | arena timer around `go`                 |
-| cumulative engine clocks                | arena scoreboard                        |
-| [chess.com](https://www.chess.com/)-style move arrows + eval bar | arena UI                |
-| build cost ($), tokens, model           | `arena/engine_costs.json` (per engine)  |
-| lines of code                           | computed by arena from each engine tree |
-
-The arena is the live counterpart to the batch tournament harness in
-`infra/scripts/`; both feed the same comparison reports.
-
-For arena-specific details, see `arena/README.md`.
-
-### Evaluation and orchestration assets
-
-- `infra/agents/` - methodology/process protocols and parallelization plans
-- `infra/orchestrators/` - orchestration schemas and debate runtime notes
-- `infra/scripts/` - candidate scoring, champion tests, report generation
-- `infra/tasks/` - work plans and protocol docs
-- `reports/` - run/eval/comparison outputs
-- `tests/` - classical/contract/dashboard tests
 
 ---
 
