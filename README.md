@@ -1,5 +1,9 @@
-# Chess by Committee
-## A methodology-driven experimental framework for AI-generated chess engines
+<p align="center">
+  <img src="ChessLogo.png" alt="Chess by Committee" width="200" />
+</p>
+
+<h1 align="center">Chess by Committee</h1>
+<p align="center"><em>A methodology-driven experimental framework for AI-generated chess engines</em></p>
 
 We did not build a single chess engine.
 We built a structured experimental apparatus for generating and comparing chess engines under different AI methodologies, then measured the methodologies themselves.
