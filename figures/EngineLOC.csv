@@ -1,0 +1,9 @@
+engine,family,lines_of_code
+chainofthought,single-prompt + reasoning/tools,4422
+langgraph,multi-agent orchestration,4134
+oneshot_react,single-prompt + reasoning/tools,2616
+debate,multi-model collaboration,2567
+ensemble,multi-model collaboration,2117
+oneshot_nocontext,single-prompt baseline,2038
+oneshot_contextualized,single-prompt baseline,1937
+rlm,single-prompt + reasoning/tools,553

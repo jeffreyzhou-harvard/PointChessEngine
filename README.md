@@ -134,6 +134,12 @@ Each engine is registered in `arena/engines.py::REGISTRY`, so adding
 a ninth engine is a one-line addition: every cross-engine test, the
 arena UI, and the contract suite pick it up automatically.
 
+<p align="center">
+  <img src="figures/EngineLOC.png" alt="Bar chart of lines of Python per generated engine, color-coded by methodology family" width="85%" />
+</p>
+
+<p align="center"><em>Lines of Python per generated engine (excludes tests, <code>__pycache__</code>, vendored deps), color-coded by methodology family. Regenerate with <code>python -m infra.scripts.plot_loc --csv</code>.</em></p>
+
 ### Methodologies (engine builders)
 
 The build orchestrators that produce each non-trivial engine artifact:
