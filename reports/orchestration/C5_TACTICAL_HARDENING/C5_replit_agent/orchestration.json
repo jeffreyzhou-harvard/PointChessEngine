@@ -1,0 +1,13 @@
+{
+  "candidate_id": "C5_replit_agent",
+  "live_model_used": false,
+  "mode": "audit",
+  "notes": "Audit trace written. No live orchestration command is configured for this candidate.",
+  "orchestration_type": "replit_agent",
+  "prompt_path": "reports/orchestration/C5_TACTICAL_HARDENING/C5_replit_agent/prompt.md",
+  "response_path": "reports/orchestration/C5_TACTICAL_HARDENING/C5_replit_agent/response.md",
+  "status": "audit_completed",
+  "task_file": "infra/tasks/classical/C5_TACTICAL_HARDENING.md",
+  "task_id": "C5_TACTICAL_HARDENING",
+  "timestamp": "2026-04-25T17:14:23.890951+00:00"
+}

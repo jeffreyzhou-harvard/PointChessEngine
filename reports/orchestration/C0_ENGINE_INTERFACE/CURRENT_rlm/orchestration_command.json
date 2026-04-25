@@ -1,0 +1,13 @@
+{
+  "candidate_id": "CURRENT_rlm",
+  "command": "/usr/local/bin/python -m methodologies.rlm.runner --task C0_ENGINE_INTERFACE --candidate-id CURRENT_rlm --mode audit --output-root reports/orchestration --task-root infra/tasks",
+  "duration_seconds": 0.127,
+  "mode": "audit",
+  "orchestration_type": "rlm",
+  "returncode": 0,
+  "status": "passed",
+  "stderr_log": "/repo/reports/orchestration/C0_ENGINE_INTERFACE/CURRENT_rlm/orchestration.stderr.log",
+  "stdout_log": "/repo/reports/orchestration/C0_ENGINE_INTERFACE/CURRENT_rlm/orchestration.stdout.log",
+  "task_id": "C0_ENGINE_INTERFACE",
+  "timestamp": "2026-04-25T17:01:55.032032+00:00"
+}

@@ -1,0 +1,14 @@
+{
+  "candidate_id": "C3_rlm_openai",
+  "duration_seconds": 0.002,
+  "live_model_used": false,
+  "mode": "audit",
+  "notes": "Audit mode produced orchestration evidence without model calls or repo edits.",
+  "orchestration_type": "rlm",
+  "prompt_path": "reports/orchestration/C3_STATIC_EVALUATION/C3_rlm_openai/prompt.md",
+  "response_path": "reports/orchestration/C3_STATIC_EVALUATION/C3_rlm_openai/response.md",
+  "status": "audit_completed",
+  "task_file": "infra/tasks/classical/C3_STATIC_EVALUATION.md",
+  "task_id": "C3_STATIC_EVALUATION",
+  "trajectory_log_dir": null
+}

@@ -1,0 +1,141 @@
+name: Champion Candidate Ladder
+
+on:
+  workflow_dispatch:
+    inputs:
+      runner_target:
+        description: "Where to run the Dockerized Champion ladder"
+        required: true
+        default: github-hosted
+        type: choice
+        options:
+          - github-hosted
+          - champion-vm
+      tasks:
+        description: "'all' or comma-separated C* task IDs"
+        required: true
+        default: all
+      tier:
+        description: "Champion gate to run for each task config"
+        required: true
+        default: smoke
+        type: choice
+        options:
+          - smoke
+          - contract
+          - milestone
+          - perft
+          - tournament
+      create_worktrees:
+        description: "Create candidate worktrees from configured branches"
+        required: true
+        default: true
+        type: boolean
+      run_orchestration:
+        description: "Run configured/audited agent orchestration before evaluation"
+        required: true
+        default: true
+        type: boolean
+      orchestration_mode:
+        description: "audit is no-secrets; live may call model APIs"
+        required: true
+        default: audit
+        type: choice
+        options:
+          - audit
+          - live
+      allow_missing_worktrees:
+        description: "Record missing candidates and keep running"
+        required: true
+        default: false
+        type: boolean
+      continue_on_failure:
+        description: "Run all tasks even when a stage fails"
+        required: true
+        default: true
+        type: boolean
+
+env:
+  CHAMPION_IMAGE: pointchess/champion:ci
+
+jobs:
+  ladder:
+    name: C0-C8 Candidate Ladder
+    runs-on: ${{ fromJSON((inputs.runner_target == 'champion-vm') && '["self-hosted","champion-vm"]' || '["ubuntu-latest"]') }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch experiment branches
+        run: git fetch --all --prune
+
+      - name: Build Docker image
+        run: docker build -f infra/docker/Dockerfile.champion -t "$CHAMPION_IMAGE" .
+
+      - name: Prepare host worktree volume
+        run: mkdir -p ../worktrees
+
+      - name: Run Champion candidate ladder
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_KEY: ${{ secrets.ANTHROPIC_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          MOONSHOT_API_KEY: ${{ secrets.MOONSHOT_API_KEY }}
+        run: |
+          args=(
+            python infra/scripts/run_champion_ladder.py
+            --tasks "${{ inputs.tasks }}"
+            --tier "${{ inputs.tier }}"
+            --jobs 4
+          )
+          if [ "${{ inputs.create_worktrees }}" = "true" ]; then
+            args+=(--create-worktrees)
+          fi
+          if [ "${{ inputs.run_orchestration }}" = "true" ]; then
+            args+=(--run-orchestration --orchestration-mode "${{ inputs.orchestration_mode }}")
+          fi
+          if [ "${{ inputs.allow_missing_worktrees }}" = "true" ]; then
+            args+=(--allow-missing-worktrees)
+          fi
+          if [ "${{ inputs.continue_on_failure }}" = "true" ]; then
+            args+=(--continue-on-failure)
+          fi
+
+          docker run --rm \
+            -v "$PWD:/repo" \
+            -v "$PWD/../worktrees:/worktrees" \
+            -w /repo \
+            -e OPENAI_API_KEY \
+            -e ANTHROPIC_API_KEY \
+            -e ANTHROPIC_KEY \
+            -e GEMINI_API_KEY \
+            -e GOOGLE_API_KEY \
+            -e XAI_API_KEY \
+            -e DEEPSEEK_API_KEY \
+            -e MOONSHOT_API_KEY \
+            "$CHAMPION_IMAGE" \
+            "${args[@]}"
+
+      - name: Append GitHub summary
+        if: always()
+        run: |
+          if [ -f reports/comparisons/CHAMPION_LADDER/summary.md ]; then
+            cat reports/comparisons/CHAMPION_LADDER/summary.md >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Upload ladder artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: champion-candidate-ladder-report
+          path: |
+            reports/comparisons/CHAMPION_LADDER/
+            reports/comparisons/C*_*/
+            reports/orchestration/C*_*/
+          retention-days: 14

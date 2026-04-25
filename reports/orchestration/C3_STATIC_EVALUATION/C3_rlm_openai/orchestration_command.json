@@ -1,0 +1,13 @@
+{
+  "candidate_id": "C3_rlm_openai",
+  "command": "/usr/local/bin/python -m methodologies.rlm.runner --task C3_STATIC_EVALUATION --candidate-id C3_rlm_openai --mode audit --output-root reports/orchestration --task-root infra/tasks",
+  "duration_seconds": 0.1,
+  "mode": "audit",
+  "orchestration_type": "rlm",
+  "returncode": 0,
+  "status": "passed",
+  "stderr_log": "/repo/reports/orchestration/C3_STATIC_EVALUATION/C3_rlm_openai/orchestration.stderr.log",
+  "stdout_log": "/repo/reports/orchestration/C3_STATIC_EVALUATION/C3_rlm_openai/orchestration.stdout.log",
+  "task_id": "C3_STATIC_EVALUATION",
+  "timestamp": "2026-04-25T17:14:22.564994+00:00"
+}

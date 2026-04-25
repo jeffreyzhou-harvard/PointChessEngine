@@ -1,0 +1,13 @@
+{
+  "candidate_id": "C4_rlm_openai",
+  "command": "/usr/local/bin/python -m methodologies.rlm.runner --task C4_ALPHA_BETA_SEARCH --candidate-id C4_rlm_openai --mode audit --output-root reports/orchestration --task-root infra/tasks",
+  "duration_seconds": 0.1,
+  "mode": "audit",
+  "orchestration_type": "rlm",
+  "returncode": 0,
+  "status": "passed",
+  "stderr_log": "/repo/reports/orchestration/C4_ALPHA_BETA_SEARCH/C4_rlm_openai/orchestration.stderr.log",
+  "stdout_log": "/repo/reports/orchestration/C4_ALPHA_BETA_SEARCH/C4_rlm_openai/orchestration.stdout.log",
+  "task_id": "C4_ALPHA_BETA_SEARCH",
+  "timestamp": "2026-04-25T17:14:23.289543+00:00"
+}

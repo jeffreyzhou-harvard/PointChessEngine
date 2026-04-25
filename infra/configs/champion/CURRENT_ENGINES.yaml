@@ -15,6 +15,28 @@ command_timeout_seconds: 45
 test_commands:
   - "{python} infra/scripts/uci_smoke.py --engine {engine_id} --movetime-ms 75"
 
+tiers:
+  smoke:
+    description: Fast Docker matrix for PRs. Starts each registered engine and checks one legal UCI bestmove.
+    test_commands:
+      - "{python} infra/scripts/uci_smoke.py --engine {engine_id} --movetime-ms 75"
+  contract:
+    description: Shared UCI contract suite for each registered engine.
+    test_commands:
+      - "{python} infra/scripts/run_contract_for_engine.py --engine {engine_id}"
+  milestone:
+    description: Classical milestone gate selected by --milestone-task, including previous C* regressions.
+    test_commands:
+      - "{python} infra/scripts/run_milestone_tests.py --task {milestone_task_id}"
+  perft:
+    description: Current canonical perft gate; deeper per-engine perft requires a future debug/perft UCI extension.
+    test_commands:
+      - "{python} infra/scripts/run_perft_gate.py --engine {engine_id}"
+  tournament:
+    description: Manual/scheduled FastChess and Stockfish calibration gate.
+    test_commands:
+      - "{python} infra/scripts/run_tournament_gate.py --engine {engine_id}"
+
 score_weights:
   correctness_tests: 35
   code_review_quality: 20
@@ -108,5 +130,6 @@ candidates:
     execution_environment: local_repo
     branch_name: main
     worktree_path: .
+    orchestration_command: "{python} -m methodologies.rlm.runner --task {milestone_task_id} --candidate-id {candidate_id} --mode {orchestration_mode} --output-root reports/orchestration --task-root infra/tasks"
     output_report_path: reports/tasks/CURRENT_rlm.md
     notes: RLM-inspired recursive decomposition engine artifact with API-free runtime.

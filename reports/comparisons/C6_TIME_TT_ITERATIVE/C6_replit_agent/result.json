@@ -1,0 +1,41 @@
+{
+  "baseline_commit": "",
+  "benchmark_score": null,
+  "bestmove": null,
+  "branch": "experiments/C6/replit_agent",
+  "candidate_id": "C6_replit_agent",
+  "commands": [
+    {
+      "command": "<worktree missing>",
+      "dry_run": true,
+      "duration_seconds": 0.0,
+      "error": "worktree missing at /worktrees/C6-replit-agent",
+      "returncode": 127,
+      "stderr_log": "",
+      "stdout_log": ""
+    }
+  ],
+  "contract_tests_passed": false,
+  "cost_estimate_usd": null,
+  "dry_run": false,
+  "duration_seconds": 0.0,
+  "engine_id": null,
+  "execution_environment": "replit_external",
+  "latency_minutes": null,
+  "legal_from_startpos": null,
+  "milestone_task_id": "C6_TIME_TT_ITERATIVE",
+  "model_assignments": {
+    "builder": "replit_agent"
+  },
+  "observations": [
+    {}
+  ],
+  "orchestration_type": "replit_agent",
+  "promotion_status": "candidate",
+  "review_score": null,
+  "task_id": "C6_TIME_TT_ITERATIVE",
+  "tests_passed": 0,
+  "tests_total": 1,
+  "tier": "smoke",
+  "timestamp": "2026-04-25T17:14:24.800866+00:00"
+}

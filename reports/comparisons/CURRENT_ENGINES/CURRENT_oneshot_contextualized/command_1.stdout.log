@@ -1,1 +1,1 @@
-{"bestmove": "g1f3", "duration_seconds": 0.349, "engine": "oneshot_contextualized", "info_count": 3, "legal_from_startpos": true}
+{"bestmove": "g1f3", "duration_seconds": 0.324, "engine": "oneshot_contextualized", "info_count": 3, "legal_from_startpos": true}

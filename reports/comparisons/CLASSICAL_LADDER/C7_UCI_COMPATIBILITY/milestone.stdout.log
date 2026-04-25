@@ -1,0 +1,3 @@
+....................................................               [100%]
+52 passed, 6 subtests passed in 1.59s
+{"duration_seconds": 2.36, "milestone_task_id": "C7_UCI_COMPATIBILITY", "passed": true, "test_files": ["tests/classical/test_c0_uci_contract.py", "tests/classical/test_c1_board_fen_move.py", "tests/classical/test_c2_legal_move_generation.py", "tests/classical/test_c3_static_evaluation.py", "tests/classical/test_c4_alpha_beta_search.py", "tests/classical/test_c5_tactical_hardening.py", "tests/classical/test_c6_time_tt_iterative.py", "tests/classical/test_c7_uci_compatibility.py"], "tier": "milestone"}

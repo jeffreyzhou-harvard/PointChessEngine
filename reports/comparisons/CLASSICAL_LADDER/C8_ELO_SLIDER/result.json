@@ -1,0 +1,27 @@
+{
+  "command": "/usr/local/bin/python infra/scripts/run_milestone_tests.py --task C8_ELO_SLIDER",
+  "duration_seconds": 2.453,
+  "observation": {
+    "duration_seconds": 2.369,
+    "milestone_task_id": "C8_ELO_SLIDER",
+    "passed": true,
+    "test_files": [
+      "tests/classical/test_c0_uci_contract.py",
+      "tests/classical/test_c1_board_fen_move.py",
+      "tests/classical/test_c2_legal_move_generation.py",
+      "tests/classical/test_c3_static_evaluation.py",
+      "tests/classical/test_c4_alpha_beta_search.py",
+      "tests/classical/test_c5_tactical_hardening.py",
+      "tests/classical/test_c6_time_tt_iterative.py",
+      "tests/classical/test_c7_uci_compatibility.py",
+      "tests/classical/test_c8_elo_slider.py"
+    ],
+    "tier": "milestone"
+  },
+  "passed": true,
+  "returncode": 0,
+  "stderr_log": "/repo/reports/comparisons/CLASSICAL_LADDER/C8_ELO_SLIDER/milestone.stderr.log",
+  "stdout_log": "/repo/reports/comparisons/CLASSICAL_LADDER/C8_ELO_SLIDER/milestone.stdout.log",
+  "task_id": "C8_ELO_SLIDER",
+  "tier": "milestone"
+}

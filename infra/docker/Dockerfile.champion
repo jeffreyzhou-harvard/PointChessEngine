@@ -14,8 +14,16 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt /tmp/pointchess-requirements.txt
+COPY methodologies/debate/requirements.txt /tmp/pointchess-methodology-debate.txt
+COPY methodologies/langgraph/requirements.txt /tmp/pointchess-methodology-langgraph.txt
+COPY methodologies/ensemble/requirements.txt /tmp/pointchess-methodology-ensemble.txt
+COPY methodologies/rlm/requirements.txt /tmp/pointchess-methodology-rlm.txt
 RUN python -m pip install --no-cache-dir --upgrade pip \
-    && python -m pip install --no-cache-dir -r /tmp/pointchess-requirements.txt
+    && python -m pip install --no-cache-dir -r /tmp/pointchess-requirements.txt \
+    && python -m pip install --no-cache-dir -r /tmp/pointchess-methodology-debate.txt \
+    && python -m pip install --no-cache-dir -r /tmp/pointchess-methodology-langgraph.txt \
+    && python -m pip install --no-cache-dir -r /tmp/pointchess-methodology-ensemble.txt \
+    && python -m pip install --no-cache-dir -r /tmp/pointchess-methodology-rlm.txt
 
 WORKDIR /repo
 

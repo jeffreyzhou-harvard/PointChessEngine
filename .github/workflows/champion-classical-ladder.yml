@@ -1,0 +1,143 @@
+name: Champion Classical Ladder
+
+on:
+  workflow_dispatch:
+    inputs:
+      runner_target:
+        description: "Where to run the Dockerized ladder jobs"
+        required: true
+        default: github-hosted
+        type: choice
+        options:
+          - github-hosted
+          - champion-vm
+  pull_request:
+    paths:
+      - ".github/workflows/champion-classical-ladder.yml"
+      - "infra/docker/**"
+      - "infra/scripts/**"
+      - "tests/classical/**"
+      - "engines/**"
+      - "requirements.txt"
+
+env:
+  CHAMPION_IMAGE: pointchess/champion:ci
+  CHAMPION_IMAGE_TAR: champion-image.tar
+
+jobs:
+  build-image:
+    name: Build Champion Docker Image
+    runs-on: ${{ fromJSON((github.event_name == 'workflow_dispatch' && inputs.runner_target == 'champion-vm') && '["self-hosted","champion-vm"]' || '["ubuntu-latest"]') }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -f infra/docker/Dockerfile.champion -t "$CHAMPION_IMAGE" .
+
+      - name: Save Docker image
+        run: docker save "$CHAMPION_IMAGE" -o "$CHAMPION_IMAGE_TAR"
+
+      - name: Upload Docker image artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: champion-docker-image
+          path: ${{ env.CHAMPION_IMAGE_TAR }}
+          retention-days: 1
+
+  milestone:
+    name: ${{ matrix.task_id }}
+    needs: build-image
+    runs-on: ${{ fromJSON((github.event_name == 'workflow_dispatch' && inputs.runner_target == 'champion-vm') && '["self-hosted","champion-vm"]' || '["ubuntu-latest"]') }}
+    strategy:
+      fail-fast: false
+      matrix:
+        task_id:
+          - C0_ENGINE_INTERFACE
+          - C1_BOARD_FEN_MOVE
+          - C2_LEGAL_MOVE_GENERATION
+          - C3_STATIC_EVALUATION
+          - C4_ALPHA_BETA_SEARCH
+          - C5_TACTICAL_HARDENING
+          - C6_TIME_TT_ITERATIVE
+          - C7_UCI_COMPATIBILITY
+          - C8_ELO_SLIDER
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Download Docker image artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: champion-docker-image
+
+      - name: Load Docker image
+        run: docker load -i "$CHAMPION_IMAGE_TAR"
+
+      - name: Run milestone gate
+        run: |
+          docker run --rm \
+            -v "$PWD:/repo" \
+            -w /repo \
+            "$CHAMPION_IMAGE" \
+            python infra/scripts/run_classical_ladder.py --task "${{ matrix.task_id }}"
+
+      - name: Upload milestone artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: classical-ladder-${{ matrix.task_id }}
+          path: reports/comparisons/CLASSICAL_LADDER/${{ matrix.task_id }}/
+          if-no-files-found: warn
+          retention-days: 7
+
+  aggregate:
+    name: Aggregate Classical Ladder
+    needs: milestone
+    if: always()
+    runs-on: ${{ fromJSON((github.event_name == 'workflow_dispatch' && inputs.runner_target == 'champion-vm') && '["self-hosted","champion-vm"]' || '["ubuntu-latest"]') }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Download ladder artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: classical-ladder-*
+          path: reports/comparisons/CLASSICAL_LADDER
+          merge-multiple: false
+
+      - name: Normalize downloaded artifacts
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+          root = Path("reports/comparisons/CLASSICAL_LADDER")
+          for result in list(root.rglob("result.json")):
+              payload = json.loads(result.read_text())
+              task = payload["task_id"]
+              target = root / task
+              target.mkdir(parents=True, exist_ok=True)
+              for item in result.parent.iterdir():
+                  if item.is_file():
+                      item.replace(target / item.name)
+          PY
+
+      - name: Write ladder summary
+        run: python infra/scripts/run_classical_ladder.py --summarize-only
+
+      - name: Append GitHub summary
+        run: cat reports/comparisons/CLASSICAL_LADDER/summary.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload aggregate ladder report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: champion-classical-ladder-report
+          path: reports/comparisons/CLASSICAL_LADDER/
+          retention-days: 14

@@ -1,0 +1,5 @@
+task_id,candidate_id,orchestration_type,mode,status,returncode,duration_seconds,live_model_used,timestamp
+C5_TACTICAL_HARDENING,C5_codex_agent,codex_agent,audit,audit_completed,,0,False,2026-04-25T17:14:23.891026+00:00
+C5_TACTICAL_HARDENING,C5_custom_parallel,custom_langchain_parallel,audit,audit_completed,,0,False,2026-04-25T17:14:23.891322+00:00
+C5_TACTICAL_HARDENING,C5_replit_agent,replit_agent,audit,audit_completed,,0,False,2026-04-25T17:14:23.890951+00:00
+C5_TACTICAL_HARDENING,C5_rlm_openai,rlm,audit,passed,0,0.1,False,2026-04-25T17:14:23.987762+00:00

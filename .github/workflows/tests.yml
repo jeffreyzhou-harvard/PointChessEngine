@@ -58,6 +58,9 @@ jobs:
       - name: langgraph methodology tests (LLM patched out, no API calls)
         run: pytest -q methodologies/langgraph/tests
 
+      - name: rlm methodology tests (audit mode, no API calls)
+        run: pytest -q methodologies/rlm/tests
+
       - name: classical benchmark tests (engines.oneshot_nocontext)
         run: pytest -q tests/classical
 

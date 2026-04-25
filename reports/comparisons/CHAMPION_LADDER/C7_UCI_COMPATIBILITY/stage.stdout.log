@@ -1,0 +1,31 @@
+Champion stage: C7_UCI_COMPATIBILITY
+Tier: smoke
+Baseline: main -> canonical main
+Candidates: 4
++ /usr/local/bin/python /repo/infra/scripts/run_agent_orchestration.py --config /repo/infra/configs/champion/C7_UCI_COMPATIBILITY.yaml.example --mode audit --task C7_UCI_COMPATIBILITY --jobs 4
+C7_codex_agent: audit_completed
+C7_replit_agent: audit_completed
+C7_custom_parallel: audit_completed
+C7_rlm_openai: orchestration passed (0.104s)
++ /usr/local/bin/python /repo/infra/scripts/run_candidate_tests.py --config /repo/infra/configs/champion/C7_UCI_COMPATIBILITY.yaml.example --tier smoke --milestone-task C7_UCI_COMPATIBILITY --allow-missing-worktrees --require-candidate-changes --jobs 4
+Testing 4 candidates with 4 parallel workers.
+C7_rlm_openai: worktree missing at /worktrees/C7-rlm-openai
+C7_custom_parallel: worktree missing at /worktrees/C7-custom-parallel
+C7_codex_agent: worktree missing at /worktrees/C7-codex-agent
+C7_rlm_openai: 0/1 commands passed; result=/repo/reports/comparisons/C7_UCI_COMPATIBILITY/C7_rlm_openai/result.json
+C7_replit_agent: worktree missing at /worktrees/C7-replit-agent
+C7_custom_parallel: 0/1 commands passed; result=/repo/reports/comparisons/C7_UCI_COMPATIBILITY/C7_custom_parallel/result.json
+C7_codex_agent: 0/1 commands passed; result=/repo/reports/comparisons/C7_UCI_COMPATIBILITY/C7_codex_agent/result.json
+C7_replit_agent: 0/1 commands passed; result=/repo/reports/comparisons/C7_UCI_COMPATIBILITY/C7_replit_agent/result.json
+One or more candidates failed; continuing because --continue-on-failure was set.
++ /usr/local/bin/python /repo/infra/scripts/score_candidates.py --config /repo/infra/configs/champion/C7_UCI_COMPATIBILITY.yaml.example
+/repo/reports/comparisons/C7_UCI_COMPATIBILITY/scores.md
++ /usr/local/bin/python /repo/infra/scripts/write_comparison_report.py --config /repo/infra/configs/champion/C7_UCI_COMPATIBILITY.yaml.example
+/repo/reports/comparisons/C7_UCI_COMPATIBILITY/comparison.md
++ /usr/local/bin/python /repo/infra/scripts/aggregate_champion_artifacts.py --config /repo/infra/configs/champion/C7_UCI_COMPATIBILITY.yaml.example --summary-path 
+/repo/reports/comparisons/C7_UCI_COMPATIBILITY/parallel_summary.md
+Promotion not attempted. Use --promote --candidate-id <id> --confirm after human review.
+Next manual steps:
+1. Review reports/comparisons/<task>/comparison.md.
+2. Confirm the winner and promotion rationale.
+3. Run promote_candidate.py with --confirm if appropriate.

@@ -1,0 +1,31 @@
+Champion stage: C8_ELO_SLIDER
+Tier: smoke
+Baseline: main -> canonical main
+Candidates: 4
++ /usr/local/bin/python /repo/infra/scripts/run_agent_orchestration.py --config /repo/infra/configs/champion/C8_ELO_SLIDER.yaml.example --mode audit --task C8_ELO_SLIDER --jobs 4
+C8_replit_agent: audit_completed
+C8_codex_agent: audit_completed
+C8_custom_parallel: audit_completed
+C8_rlm_openai: orchestration passed (0.1s)
++ /usr/local/bin/python /repo/infra/scripts/run_candidate_tests.py --config /repo/infra/configs/champion/C8_ELO_SLIDER.yaml.example --tier smoke --milestone-task C8_ELO_SLIDER --allow-missing-worktrees --require-candidate-changes --jobs 4
+Testing 4 candidates with 4 parallel workers.
+C8_replit_agent: worktree missing at /worktrees/C8-replit-agent
+C8_custom_parallel: worktree missing at /worktrees/C8-custom-parallel
+C8_rlm_openai: worktree missing at /worktrees/C8-rlm-openai
+C8_replit_agent: 0/1 commands passed; result=/repo/reports/comparisons/C8_ELO_SLIDER/C8_replit_agent/result.json
+C8_codex_agent: worktree missing at /worktrees/C8-codex-agent
+C8_custom_parallel: 0/1 commands passed; result=/repo/reports/comparisons/C8_ELO_SLIDER/C8_custom_parallel/result.json
+C8_rlm_openai: 0/1 commands passed; result=/repo/reports/comparisons/C8_ELO_SLIDER/C8_rlm_openai/result.json
+C8_codex_agent: 0/1 commands passed; result=/repo/reports/comparisons/C8_ELO_SLIDER/C8_codex_agent/result.json
+One or more candidates failed; continuing because --continue-on-failure was set.
++ /usr/local/bin/python /repo/infra/scripts/score_candidates.py --config /repo/infra/configs/champion/C8_ELO_SLIDER.yaml.example
+/repo/reports/comparisons/C8_ELO_SLIDER/scores.md
++ /usr/local/bin/python /repo/infra/scripts/write_comparison_report.py --config /repo/infra/configs/champion/C8_ELO_SLIDER.yaml.example
+/repo/reports/comparisons/C8_ELO_SLIDER/comparison.md
++ /usr/local/bin/python /repo/infra/scripts/aggregate_champion_artifacts.py --config /repo/infra/configs/champion/C8_ELO_SLIDER.yaml.example --summary-path 
+/repo/reports/comparisons/C8_ELO_SLIDER/parallel_summary.md
+Promotion not attempted. Use --promote --candidate-id <id> --confirm after human review.
+Next manual steps:
+1. Review reports/comparisons/<task>/comparison.md.
+2. Confirm the winner and promotion rationale.
+3. Run promote_candidate.py with --confirm if appropriate.

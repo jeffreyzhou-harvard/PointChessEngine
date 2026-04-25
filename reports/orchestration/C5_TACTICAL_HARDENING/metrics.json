@@ -1,0 +1,53 @@
+{
+  "candidate_count": 4,
+  "estimated_serial_seconds": 0.1,
+  "failed_count": 0,
+  "passed_count": 4,
+  "runs": [
+    {
+      "candidate_id": "C5_codex_agent",
+      "duration_seconds": 0,
+      "live_model_used": false,
+      "mode": "audit",
+      "orchestration_type": "codex_agent",
+      "returncode": "",
+      "status": "audit_completed",
+      "task_id": "C5_TACTICAL_HARDENING",
+      "timestamp": "2026-04-25T17:14:23.891026+00:00"
+    },
+    {
+      "candidate_id": "C5_custom_parallel",
+      "duration_seconds": 0,
+      "live_model_used": false,
+      "mode": "audit",
+      "orchestration_type": "custom_langchain_parallel",
+      "returncode": "",
+      "status": "audit_completed",
+      "task_id": "C5_TACTICAL_HARDENING",
+      "timestamp": "2026-04-25T17:14:23.891322+00:00"
+    },
+    {
+      "candidate_id": "C5_replit_agent",
+      "duration_seconds": 0,
+      "live_model_used": false,
+      "mode": "audit",
+      "orchestration_type": "replit_agent",
+      "returncode": "",
+      "status": "audit_completed",
+      "task_id": "C5_TACTICAL_HARDENING",
+      "timestamp": "2026-04-25T17:14:23.890951+00:00"
+    },
+    {
+      "candidate_id": "C5_rlm_openai",
+      "duration_seconds": 0.1,
+      "live_model_used": false,
+      "mode": "audit",
+      "orchestration_type": "rlm",
+      "returncode": 0,
+      "status": "passed",
+      "task_id": "C5_TACTICAL_HARDENING",
+      "timestamp": "2026-04-25T17:14:23.987762+00:00"
+    }
+  ],
+  "task_id": "C5_TACTICAL_HARDENING"
+}

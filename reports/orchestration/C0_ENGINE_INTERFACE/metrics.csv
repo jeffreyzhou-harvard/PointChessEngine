@@ -1,0 +1,7 @@
+task_id,candidate_id,orchestration_type,mode,status,returncode,duration_seconds,live_model_used,timestamp
+C0_ENGINE_INTERFACE,C0_codex_agent,codex_agent,audit,audit_completed,,0,False,2026-04-25T17:14:20.343447+00:00
+C0_ENGINE_INTERFACE,C0_custom_parallel,custom_langchain_parallel,audit,audit_completed,,0,False,2026-04-25T17:14:20.347177+00:00
+C0_ENGINE_INTERFACE,C0_debate_heterogeneous_claude_gpt_gemini,debate_ensemble,audit,audit_completed,,0,False,2026-04-25T17:14:20.343289+00:00
+C0_ENGINE_INTERFACE,C0_react_claude,react,audit,audit_completed,,0,False,2026-04-25T17:14:20.343767+00:00
+C0_ENGINE_INTERFACE,C0_replit_agent,replit_agent,audit,audit_completed,,0,False,2026-04-25T17:14:20.343701+00:00
+C0_ENGINE_INTERFACE,C0_rlm_openai,rlm,audit,passed,0,0.106,False,2026-04-25T17:14:20.450798+00:00

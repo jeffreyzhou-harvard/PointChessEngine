@@ -1,0 +1,24 @@
+{
+  "command": "/usr/local/bin/python infra/scripts/run_milestone_tests.py --task C5_TACTICAL_HARDENING",
+  "duration_seconds": 1.967,
+  "observation": {
+    "duration_seconds": 1.874,
+    "milestone_task_id": "C5_TACTICAL_HARDENING",
+    "passed": true,
+    "test_files": [
+      "tests/classical/test_c0_uci_contract.py",
+      "tests/classical/test_c1_board_fen_move.py",
+      "tests/classical/test_c2_legal_move_generation.py",
+      "tests/classical/test_c3_static_evaluation.py",
+      "tests/classical/test_c4_alpha_beta_search.py",
+      "tests/classical/test_c5_tactical_hardening.py"
+    ],
+    "tier": "milestone"
+  },
+  "passed": true,
+  "returncode": 0,
+  "stderr_log": "/repo/reports/comparisons/CLASSICAL_LADDER/C5_TACTICAL_HARDENING/milestone.stderr.log",
+  "stdout_log": "/repo/reports/comparisons/CLASSICAL_LADDER/C5_TACTICAL_HARDENING/milestone.stdout.log",
+  "task_id": "C5_TACTICAL_HARDENING",
+  "tier": "milestone"
+}

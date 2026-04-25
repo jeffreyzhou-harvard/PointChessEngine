@@ -1,0 +1,22 @@
+{
+  "command": "/usr/local/bin/python infra/scripts/run_milestone_tests.py --task C3_STATIC_EVALUATION",
+  "duration_seconds": 1.472,
+  "observation": {
+    "duration_seconds": 1.385,
+    "milestone_task_id": "C3_STATIC_EVALUATION",
+    "passed": true,
+    "test_files": [
+      "tests/classical/test_c0_uci_contract.py",
+      "tests/classical/test_c1_board_fen_move.py",
+      "tests/classical/test_c2_legal_move_generation.py",
+      "tests/classical/test_c3_static_evaluation.py"
+    ],
+    "tier": "milestone"
+  },
+  "passed": true,
+  "returncode": 0,
+  "stderr_log": "/repo/reports/comparisons/CLASSICAL_LADDER/C3_STATIC_EVALUATION/milestone.stderr.log",
+  "stdout_log": "/repo/reports/comparisons/CLASSICAL_LADDER/C3_STATIC_EVALUATION/milestone.stdout.log",
+  "task_id": "C3_STATIC_EVALUATION",
+  "tier": "milestone"
+}

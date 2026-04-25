@@ -1,0 +1,42 @@
+{
+  "baseline_commit": "",
+  "benchmark_score": null,
+  "bestmove": null,
+  "branch": "experiments/C0/rlm_openai",
+  "candidate_id": "C0_rlm_openai",
+  "commands": [
+    {
+      "command": "<worktree missing>",
+      "dry_run": true,
+      "duration_seconds": 0.0,
+      "error": "worktree missing at /worktrees/C0-rlm-openai",
+      "returncode": 127,
+      "stderr_log": "",
+      "stdout_log": ""
+    }
+  ],
+  "contract_tests_passed": false,
+  "cost_estimate_usd": null,
+  "dry_run": false,
+  "duration_seconds": 0.0,
+  "engine_id": null,
+  "execution_environment": "local_worktree",
+  "latency_minutes": null,
+  "legal_from_startpos": null,
+  "milestone_task_id": "C0_ENGINE_INTERFACE",
+  "model_assignments": {
+    "methodology_reference": "alexzhang13/rlm",
+    "recursive_agent": "openai"
+  },
+  "observations": [
+    {}
+  ],
+  "orchestration_type": "rlm",
+  "promotion_status": "candidate",
+  "review_score": null,
+  "task_id": "C0_ENGINE_INTERFACE",
+  "tests_passed": 0,
+  "tests_total": 1,
+  "tier": "smoke",
+  "timestamp": "2026-04-25T17:14:20.572172+00:00"
+}

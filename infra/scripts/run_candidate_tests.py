@@ -51,17 +51,31 @@ def resolve_worktree(path_text: str | None) -> Path:
     return path if path.is_absolute() else (ROOT / path).resolve()
 
 
-def format_command(command: str, task_id: str, candidate: dict) -> str:
+def format_command(command: str, task_id: str, candidate: dict, args: argparse.Namespace) -> str:
     context = SafeFormatDict(candidate.copy())
     context.update(
         {
             "task_id": task_id,
             "candidate_id": candidate.get("candidate_id", ""),
+            "tier": args.tier or "smoke",
+            "milestone_task_id": args.milestone_task or task_id,
             "python": shlex.quote(sys.executable),
             "repo_root": shlex.quote(str(ROOT)),
         }
     )
     return command.format_map(context)
+
+
+def commands_for_tier(config: dict, tier: str | None, fallback_commands: list[str]) -> list[str]:
+    if not tier:
+        return fallback_commands
+    tiers = config.get("tiers") or {}
+    if not tiers and tier == "smoke":
+        return fallback_commands
+    tier_config = tiers.get(tier)
+    if not tier_config:
+        raise SystemExit(f"Unknown Champion tier {tier!r}. Available tiers: {', '.join(sorted(tiers)) or 'none'}")
+    return tier_config.get("test_commands") or fallback_commands
 
 
 def run_command(command: str, cwd: Path, output_dir: Path, index: int, dry_run: bool, timeout: float | None) -> dict:
@@ -104,6 +118,19 @@ def run_command(command: str, cwd: Path, output_dir: Path, index: int, dry_run: 
     }
 
 
+def candidate_has_changes(cwd: Path, baseline: str) -> bool:
+    if not (cwd / ".git").exists():
+        return False
+    status = subprocess.run(["git", "status", "--porcelain"], cwd=cwd, text=True, capture_output=True)
+    if status.stdout.strip():
+        return True
+    merge_base = subprocess.run(["git", "merge-base", baseline, "HEAD"], cwd=cwd, text=True, capture_output=True)
+    if merge_base.returncode != 0:
+        return False
+    diff = subprocess.run(["git", "diff", "--quiet", merge_base.stdout.strip(), "HEAD"], cwd=cwd)
+    return diff.returncode == 1
+
+
 def parse_command_observation(command_result: dict) -> dict:
     stdout_log = command_result.get("stdout_log")
     if not stdout_log:
@@ -135,28 +162,43 @@ def evaluate_candidate(config: dict, task_id: str, report_root: Path, config_com
     timeout = candidate.get("command_timeout_seconds", config.get("command_timeout_seconds"))
     timeout = float(timeout) if timeout else None
     missing_worktree = not cwd.exists()
-    dry_run = args.dry_run or not commands or (missing_worktree and args.allow_missing_worktrees)
+    dry_run = args.dry_run or not commands
+    baseline = config.get("baseline_branch", "main")
+    require_changes = args.require_candidate_changes and candidate.get("execution_environment") != "local_repo"
     if not cwd.exists():
         print(f"{candidate_id}: worktree missing at {cwd}")
 
     if not commands:
         print(f"{candidate_id}: no test_commands configured; defaulting to dry-run result record.")
 
-    if missing_worktree and not dry_run:
+    if missing_worktree:
         command_results = [
             {
                 "command": "<worktree missing>",
                 "returncode": 127,
                 "stdout_log": "",
                 "stderr_log": "",
-                "dry_run": False,
+                "dry_run": bool(args.allow_missing_worktrees),
                 "error": f"worktree missing at {cwd}",
+                "duration_seconds": 0.0,
+            }
+        ]
+    elif require_changes and not candidate_has_changes(cwd, baseline):
+        command_results = [
+            {
+                "command": "<candidate has no changes from baseline>",
+                "returncode": 126,
+                "stdout_log": "",
+                "stderr_log": "",
+                "dry_run": False,
+                "error": f"candidate worktree has no committed or uncommitted changes from {baseline}",
+                "duration_seconds": 0.0,
             }
         ]
     else:
         command_results = []
         for i, command_template in enumerate(commands or ["<no test_commands configured>"], start=1):
-            command = format_command(command_template, task_id, candidate)
+            command = format_command(command_template, task_id, candidate, args)
             command_results.append(run_command(command, cwd if cwd.exists() else ROOT, output_dir, i, dry_run, timeout))
 
     passed = sum(1 for item in command_results if item["returncode"] == 0)
@@ -169,6 +211,8 @@ def evaluate_candidate(config: dict, task_id: str, report_root: Path, config_com
     duration_seconds = round(sum(float(item.get("duration_seconds") or 0.0) for item in command_results), 3)
     result = {
         "task_id": task_id,
+        "tier": args.tier or "smoke",
+        "milestone_task_id": args.milestone_task or task_id,
         "candidate_id": candidate_id,
         "orchestration_type": candidate.get("orchestration_type"),
         "model_assignments": candidate.get("model_assignments", {}),
@@ -202,8 +246,11 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", required=True, help="Champion config YAML")
     parser.add_argument("--candidate", help="Optional candidate_id filter")
+    parser.add_argument("--tier", default="smoke", help="Champion tier to run: smoke, contract, milestone, perft, tournament")
+    parser.add_argument("--milestone-task", help="Milestone task used by tier commands, e.g. C3_STATIC_EVALUATION")
     parser.add_argument("--dry-run", action="store_true", help="Do not execute commands")
     parser.add_argument("--jobs", type=int, help="Number of candidates to test in parallel")
+    parser.add_argument("--require-candidate-changes", action="store_true", help="Fail non-local candidates whose worktree has no diff from baseline")
     parser.add_argument(
         "--allow-missing-worktrees",
         action="store_true",
@@ -214,7 +261,7 @@ def main() -> int:
     config = load_config(resolve_input_path(args.config))
     task_id = config.get("task_id", "UNKNOWN_TASK")
     report_root = Path(config.get("report_root", "reports/comparisons"))
-    commands = config.get("test_commands") or []
+    commands = commands_for_tier(config, args.tier, config.get("test_commands") or [])
     candidates = config.get("candidates") or []
 
     if args.candidate:

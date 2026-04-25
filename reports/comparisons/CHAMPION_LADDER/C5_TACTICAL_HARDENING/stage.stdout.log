@@ -1,0 +1,31 @@
+Champion stage: C5_TACTICAL_HARDENING
+Tier: smoke
+Baseline: main -> canonical main
+Candidates: 4
++ /usr/local/bin/python /repo/infra/scripts/run_agent_orchestration.py --config /repo/infra/configs/champion/C5_TACTICAL_HARDENING.yaml.example --mode audit --task C5_TACTICAL_HARDENING --jobs 4
+C5_codex_agent: audit_completed
+C5_replit_agent: audit_completed
+C5_custom_parallel: audit_completed
+C5_rlm_openai: orchestration passed (0.1s)
++ /usr/local/bin/python /repo/infra/scripts/run_candidate_tests.py --config /repo/infra/configs/champion/C5_TACTICAL_HARDENING.yaml.example --tier smoke --milestone-task C5_TACTICAL_HARDENING --allow-missing-worktrees --require-candidate-changes --jobs 4
+Testing 4 candidates with 4 parallel workers.
+C5_rlm_openai: worktree missing at /worktrees/C5-rlm-openai
+C5_codex_agent: worktree missing at /worktrees/C5-codex-agent
+C5_rlm_openai: 0/1 commands passed; result=/repo/reports/comparisons/C5_TACTICAL_HARDENING/C5_rlm_openai/result.json
+C5_replit_agent: worktree missing at /worktrees/C5-replit-agent
+C5_custom_parallel: worktree missing at /worktrees/C5-custom-parallel
+C5_codex_agent: 0/1 commands passed; result=/repo/reports/comparisons/C5_TACTICAL_HARDENING/C5_codex_agent/result.json
+C5_replit_agent: 0/1 commands passed; result=/repo/reports/comparisons/C5_TACTICAL_HARDENING/C5_replit_agent/result.json
+C5_custom_parallel: 0/1 commands passed; result=/repo/reports/comparisons/C5_TACTICAL_HARDENING/C5_custom_parallel/result.json
+One or more candidates failed; continuing because --continue-on-failure was set.
++ /usr/local/bin/python /repo/infra/scripts/score_candidates.py --config /repo/infra/configs/champion/C5_TACTICAL_HARDENING.yaml.example
+/repo/reports/comparisons/C5_TACTICAL_HARDENING/scores.md
++ /usr/local/bin/python /repo/infra/scripts/write_comparison_report.py --config /repo/infra/configs/champion/C5_TACTICAL_HARDENING.yaml.example
+/repo/reports/comparisons/C5_TACTICAL_HARDENING/comparison.md
++ /usr/local/bin/python /repo/infra/scripts/aggregate_champion_artifacts.py --config /repo/infra/configs/champion/C5_TACTICAL_HARDENING.yaml.example --summary-path 
+/repo/reports/comparisons/C5_TACTICAL_HARDENING/parallel_summary.md
+Promotion not attempted. Use --promote --candidate-id <id> --confirm after human review.
+Next manual steps:
+1. Review reports/comparisons/<task>/comparison.md.
+2. Confirm the winner and promotion rationale.
+3. Run promote_candidate.py with --confirm if appropriate.

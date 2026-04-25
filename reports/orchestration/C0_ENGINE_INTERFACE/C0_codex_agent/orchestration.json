@@ -1,0 +1,13 @@
+{
+  "candidate_id": "C0_codex_agent",
+  "live_model_used": false,
+  "mode": "audit",
+  "notes": "Audit trace written. No live orchestration command is configured for this candidate.",
+  "orchestration_type": "codex_agent",
+  "prompt_path": "reports/orchestration/C0_ENGINE_INTERFACE/C0_codex_agent/prompt.md",
+  "response_path": "reports/orchestration/C0_ENGINE_INTERFACE/C0_codex_agent/response.md",
+  "status": "audit_completed",
+  "task_file": "infra/tasks/classical/C0_ENGINE_INTERFACE.md",
+  "task_id": "C0_ENGINE_INTERFACE",
+  "timestamp": "2026-04-25T17:14:20.343447+00:00"
+}

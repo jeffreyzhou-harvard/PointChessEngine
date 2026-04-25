@@ -1,0 +1,5 @@
+task_id,candidate_id,orchestration_type,mode,status,returncode,duration_seconds,live_model_used,timestamp
+C7_UCI_COMPATIBILITY,C7_codex_agent,codex_agent,audit,audit_completed,,0,False,2026-04-25T17:14:25.275304+00:00
+C7_UCI_COMPATIBILITY,C7_custom_parallel,custom_langchain_parallel,audit,audit_completed,,0,False,2026-04-25T17:14:25.275499+00:00
+C7_UCI_COMPATIBILITY,C7_replit_agent,replit_agent,audit,audit_completed,,0,False,2026-04-25T17:14:25.275362+00:00
+C7_UCI_COMPATIBILITY,C7_rlm_openai,rlm,audit,passed,0,0.104,False,2026-04-25T17:14:25.375252+00:00

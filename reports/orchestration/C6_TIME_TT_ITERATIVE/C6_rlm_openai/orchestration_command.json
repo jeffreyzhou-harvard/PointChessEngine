@@ -1,0 +1,13 @@
+{
+  "candidate_id": "C6_rlm_openai",
+  "command": "/usr/local/bin/python -m methodologies.rlm.runner --task C6_TIME_TT_ITERATIVE --candidate-id C6_rlm_openai --mode audit --output-root reports/orchestration --task-root infra/tasks",
+  "duration_seconds": 0.104,
+  "mode": "audit",
+  "orchestration_type": "rlm",
+  "returncode": 0,
+  "status": "passed",
+  "stderr_log": "/repo/reports/orchestration/C6_TIME_TT_ITERATIVE/C6_rlm_openai/orchestration.stderr.log",
+  "stdout_log": "/repo/reports/orchestration/C6_TIME_TT_ITERATIVE/C6_rlm_openai/orchestration.stdout.log",
+  "task_id": "C6_TIME_TT_ITERATIVE",
+  "timestamp": "2026-04-25T17:14:24.677995+00:00"
+}

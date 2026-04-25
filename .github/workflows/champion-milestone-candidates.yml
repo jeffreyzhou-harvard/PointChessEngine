@@ -1,0 +1,243 @@
+name: Champion Milestone Candidates
+
+on:
+  workflow_dispatch:
+    inputs:
+      task_id:
+        description: "Champion task ID, e.g. C3_STATIC_EVALUATION"
+        required: true
+        default: C3_STATIC_EVALUATION
+      config_path:
+        description: "Champion config YAML"
+        required: true
+        default: infra/configs/champion/C3_STATIC_EVALUATION.yaml.example
+      runner_target:
+        description: "Where to run Dockerized Champion jobs"
+        required: true
+        default: github-hosted
+        type: choice
+        options:
+          - github-hosted
+          - champion-vm
+      create_worktrees:
+        description: "Create candidate worktrees before orchestration/tests"
+        required: true
+        default: true
+        type: boolean
+      run_orchestration:
+        description: "Run configured agent orchestration before evaluation"
+        required: true
+        default: false
+        type: boolean
+      orchestration_mode:
+        description: "audit is reproducible/no-secrets; live may call model APIs"
+        required: true
+        default: audit
+        type: choice
+        options:
+          - audit
+          - live
+      continue_on_failure:
+        description: "Continue aggregate scoring even if candidate tests fail"
+        required: true
+        default: true
+        type: boolean
+
+env:
+  CHAMPION_IMAGE: pointchess/champion:ci
+  CHAMPION_IMAGE_TAR: champion-image.tar
+
+jobs:
+  plan:
+    name: Read Champion Config
+    runs-on: ${{ fromJSON((inputs.runner_target == 'champion-vm') && '["self-hosted","champion-vm"]' || '["ubuntu-latest"]') }}
+    outputs:
+      candidates: ${{ steps.candidates.outputs.candidates }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: List candidates
+        id: candidates
+        run: |
+          python infra/scripts/list_champion_candidates.py \
+            --config "${{ inputs.config_path }}" \
+            --github-output-name candidates
+
+  build-image:
+    name: Build Champion Docker Image
+    needs: plan
+    runs-on: ${{ fromJSON((inputs.runner_target == 'champion-vm') && '["self-hosted","champion-vm"]' || '["ubuntu-latest"]') }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -f infra/docker/Dockerfile.champion -t "$CHAMPION_IMAGE" .
+
+      - name: Save Docker image
+        run: docker save "$CHAMPION_IMAGE" -o "$CHAMPION_IMAGE_TAR"
+
+      - name: Upload Docker image artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: champion-docker-image
+          path: ${{ env.CHAMPION_IMAGE_TAR }}
+          retention-days: 1
+
+  candidate:
+    name: ${{ matrix.candidate_id }}
+    needs:
+      - plan
+      - build-image
+    runs-on: ${{ fromJSON((inputs.runner_target == 'champion-vm') && '["self-hosted","champion-vm"]' || '["ubuntu-latest"]') }}
+    strategy:
+      fail-fast: false
+      matrix:
+        candidate_id: ${{ fromJSON(needs.plan.outputs.candidates) }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch experiment branches
+        run: git fetch --all --prune
+
+      - name: Download Docker image artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: champion-docker-image
+
+      - name: Load Docker image
+        run: docker load -i "$CHAMPION_IMAGE_TAR"
+
+      - name: Prepare host worktree volume
+        run: mkdir -p ../worktrees
+
+      - name: Create candidate worktree
+        if: inputs.create_worktrees
+        run: |
+          docker run --rm \
+            -v "$PWD:/repo" \
+            -v "$PWD/../worktrees:/worktrees" \
+            -w /repo \
+            "$CHAMPION_IMAGE" \
+            python infra/scripts/create_candidate_worktrees.py \
+              --config "${{ inputs.config_path }}" \
+              --candidate "${{ matrix.candidate_id }}"
+
+      - name: Run candidate orchestration
+        if: inputs.run_orchestration
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_KEY: ${{ secrets.ANTHROPIC_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+        run: |
+          docker run --rm \
+            -v "$PWD:/repo" \
+            -v "$PWD/../worktrees:/worktrees" \
+            -w /repo \
+            -e OPENAI_API_KEY \
+            -e ANTHROPIC_API_KEY \
+            -e ANTHROPIC_KEY \
+            -e GEMINI_API_KEY \
+            -e GOOGLE_API_KEY \
+            "$CHAMPION_IMAGE" \
+            python infra/scripts/run_agent_orchestration.py \
+              --config "${{ inputs.config_path }}" \
+              --candidate "${{ matrix.candidate_id }}" \
+              --task "${{ inputs.task_id }}" \
+              --mode "${{ inputs.orchestration_mode }}"
+
+      - name: Run Champion candidate tests
+        run: |
+          docker run --rm \
+            -v "$PWD:/repo" \
+            -v "$PWD/../worktrees:/worktrees" \
+            -w /repo \
+            "$CHAMPION_IMAGE" \
+            python infra/scripts/run_candidate_tests.py \
+              --config "${{ inputs.config_path }}" \
+              --candidate "${{ matrix.candidate_id }}" \
+              --tier smoke \
+              --milestone-task "${{ inputs.task_id }}" \
+              --require-candidate-changes
+
+      - name: Upload candidate artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: champion-${{ inputs.task_id }}-${{ matrix.candidate_id }}
+          path: |
+            reports/comparisons/${{ inputs.task_id }}/${{ matrix.candidate_id }}/
+            reports/orchestration/${{ inputs.task_id }}/${{ matrix.candidate_id }}/
+          if-no-files-found: warn
+          retention-days: 7
+
+  aggregate:
+    name: Aggregate Milestone Comparison
+    needs:
+      - plan
+      - candidate
+    if: always()
+    runs-on: ${{ fromJSON((inputs.runner_target == 'champion-vm') && '["self-hosted","champion-vm"]' || '["ubuntu-latest"]') }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Download candidate artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: champion-${{ inputs.task_id }}-*
+          path: .champion-artifacts
+
+      - name: Merge candidate artifacts
+        run: |
+          python infra/scripts/aggregate_champion_artifacts.py \
+            --config "${{ inputs.config_path }}" \
+            --artifact-root .champion-artifacts \
+            --summary-path ""
+
+      - name: Score and write comparison
+        run: |
+          python infra/scripts/score_candidates.py --config "${{ inputs.config_path }}"
+          python infra/scripts/write_comparison_report.py --config "${{ inputs.config_path }}"
+
+      - name: Append GitHub summary
+        run: |
+          python infra/scripts/aggregate_champion_artifacts.py \
+            --config "${{ inputs.config_path }}" \
+            --artifact-root .champion-artifacts
+
+      - name: Upload aggregate milestone report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: champion-${{ inputs.task_id }}-report
+          path: |
+            reports/comparisons/${{ inputs.task_id }}/
+            reports/orchestration/${{ inputs.task_id }}/
+          retention-days: 14

@@ -1,0 +1,5 @@
+task_id,candidate_id,orchestration_type,mode,status,returncode,duration_seconds,live_model_used,timestamp
+C6_TIME_TT_ITERATIVE,C6_codex_agent,codex_agent,audit,audit_completed,,0,False,2026-04-25T17:14:24.578012+00:00
+C6_TIME_TT_ITERATIVE,C6_custom_parallel,custom_langchain_parallel,audit,audit_completed,,0,False,2026-04-25T17:14:24.578162+00:00
+C6_TIME_TT_ITERATIVE,C6_replit_agent,replit_agent,audit,audit_completed,,0,False,2026-04-25T17:14:24.578313+00:00
+C6_TIME_TT_ITERATIVE,C6_rlm_openai,rlm,audit,passed,0,0.104,False,2026-04-25T17:14:24.677995+00:00

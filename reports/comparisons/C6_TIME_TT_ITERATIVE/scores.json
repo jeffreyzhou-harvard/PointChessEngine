@@ -1,0 +1,50 @@
+[
+  {
+    "candidate_id": "C6_codex_agent",
+    "code_review_quality": 0.0,
+    "correctness_tests": 0.0,
+    "cost_time_efficiency": 0.0,
+    "documentation_report_quality": 5,
+    "interface_compatibility": 0.0,
+    "performance_engine_impact": 0.0,
+    "promotion_status": "candidate",
+    "result_path": "/repo/reports/comparisons/C6_TIME_TT_ITERATIVE/C6_codex_agent/result.json",
+    "total_score": 5.0
+  },
+  {
+    "candidate_id": "C6_custom_parallel",
+    "code_review_quality": 0.0,
+    "correctness_tests": 0.0,
+    "cost_time_efficiency": 0.0,
+    "documentation_report_quality": 5,
+    "interface_compatibility": 0.0,
+    "performance_engine_impact": 0.0,
+    "promotion_status": "candidate",
+    "result_path": "/repo/reports/comparisons/C6_TIME_TT_ITERATIVE/C6_custom_parallel/result.json",
+    "total_score": 5.0
+  },
+  {
+    "candidate_id": "C6_replit_agent",
+    "code_review_quality": 0.0,
+    "correctness_tests": 0.0,
+    "cost_time_efficiency": 0.0,
+    "documentation_report_quality": 5,
+    "interface_compatibility": 0.0,
+    "performance_engine_impact": 0.0,
+    "promotion_status": "candidate",
+    "result_path": "/repo/reports/comparisons/C6_TIME_TT_ITERATIVE/C6_replit_agent/result.json",
+    "total_score": 5.0
+  },
+  {
+    "candidate_id": "C6_rlm_openai",
+    "code_review_quality": 0.0,
+    "correctness_tests": 0.0,
+    "cost_time_efficiency": 0.0,
+    "documentation_report_quality": 5,
+    "interface_compatibility": 0.0,
+    "performance_engine_impact": 0.0,
+    "promotion_status": "candidate",
+    "result_path": "/repo/reports/comparisons/C6_TIME_TT_ITERATIVE/C6_rlm_openai/result.json",
+    "total_score": 5.0
+  }
+]

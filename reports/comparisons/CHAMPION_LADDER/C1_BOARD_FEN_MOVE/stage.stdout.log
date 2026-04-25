@@ -1,0 +1,37 @@
+Champion stage: C1_BOARD_FEN_MOVE
+Tier: smoke
+Baseline: main -> canonical main
+Candidates: 6
++ /usr/local/bin/python /repo/infra/scripts/run_agent_orchestration.py --config /repo/infra/configs/champion/C1_BOARD_FEN_MOVE.yaml.example --mode audit --task C1_BOARD_FEN_MOVE --jobs 4
+C1_debate_heterogeneous_claude_gpt_gemini: audit_completed
+C1_react_claude: audit_completed
+C1_codex_agent: audit_completed
+C1_replit_agent: audit_completed
+C1_custom_parallel: audit_completed
+C1_rlm_openai: orchestration passed (0.101s)
++ /usr/local/bin/python /repo/infra/scripts/run_candidate_tests.py --config /repo/infra/configs/champion/C1_BOARD_FEN_MOVE.yaml.example --tier smoke --milestone-task C1_BOARD_FEN_MOVE --allow-missing-worktrees --require-candidate-changes --jobs 4
+Testing 6 candidates with 4 parallel workers.
+C1_debate_heterogeneous_claude_gpt_gemini: worktree missing at /worktrees/C1-debate-heterogeneous
+C1_replit_agent: worktree missing at /worktrees/C1-replit-agent
+C1_react_claude: worktree missing at /worktrees/C1-react-claude
+C1_codex_agent: worktree missing at /worktrees/C1-codex-agent
+C1_debate_heterogeneous_claude_gpt_gemini: 0/1 commands passed; result=/repo/reports/comparisons/C1_BOARD_FEN_MOVE/C1_debate_heterogeneous_claude_gpt_gemini/result.json
+C1_react_claude: 0/1 commands passed; result=/repo/reports/comparisons/C1_BOARD_FEN_MOVE/C1_react_claude/result.json
+C1_replit_agent: 0/1 commands passed; result=/repo/reports/comparisons/C1_BOARD_FEN_MOVE/C1_replit_agent/result.json
+C1_custom_parallel: worktree missing at /worktrees/C1-custom-parallel
+C1_codex_agent: 0/1 commands passed; result=/repo/reports/comparisons/C1_BOARD_FEN_MOVE/C1_codex_agent/result.json
+C1_rlm_openai: worktree missing at /worktrees/C1-rlm-openai
+C1_custom_parallel: 0/1 commands passed; result=/repo/reports/comparisons/C1_BOARD_FEN_MOVE/C1_custom_parallel/result.json
+C1_rlm_openai: 0/1 commands passed; result=/repo/reports/comparisons/C1_BOARD_FEN_MOVE/C1_rlm_openai/result.json
+One or more candidates failed; continuing because --continue-on-failure was set.
++ /usr/local/bin/python /repo/infra/scripts/score_candidates.py --config /repo/infra/configs/champion/C1_BOARD_FEN_MOVE.yaml.example
+/repo/reports/comparisons/C1_BOARD_FEN_MOVE/scores.md
++ /usr/local/bin/python /repo/infra/scripts/write_comparison_report.py --config /repo/infra/configs/champion/C1_BOARD_FEN_MOVE.yaml.example
+/repo/reports/comparisons/C1_BOARD_FEN_MOVE/comparison.md
++ /usr/local/bin/python /repo/infra/scripts/aggregate_champion_artifacts.py --config /repo/infra/configs/champion/C1_BOARD_FEN_MOVE.yaml.example --summary-path 
+/repo/reports/comparisons/C1_BOARD_FEN_MOVE/parallel_summary.md
+Promotion not attempted. Use --promote --candidate-id <id> --confirm after human review.
+Next manual steps:
+1. Review reports/comparisons/<task>/comparison.md.
+2. Confirm the winner and promotion rationale.
+3. Run promote_candidate.py with --confirm if appropriate.

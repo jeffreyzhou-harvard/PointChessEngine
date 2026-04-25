@@ -1,0 +1,37 @@
+Champion stage: C3_STATIC_EVALUATION
+Tier: smoke
+Baseline: main -> canonical main
+Candidates: 6
++ /usr/local/bin/python /repo/infra/scripts/run_agent_orchestration.py --config /repo/infra/configs/champion/C3_STATIC_EVALUATION.yaml.example --mode audit --task C3_STATIC_EVALUATION --jobs 4
+C3_debate_heterogeneous_claude_gpt_gemini: audit_completed
+C3_react_claude: audit_completed
+C3_replit_agent: audit_completed
+C3_codex_agent: audit_completed
+C3_custom_parallel: audit_completed
+C3_rlm_openai: orchestration passed (0.1s)
++ /usr/local/bin/python /repo/infra/scripts/run_candidate_tests.py --config /repo/infra/configs/champion/C3_STATIC_EVALUATION.yaml.example --tier smoke --milestone-task C3_STATIC_EVALUATION --allow-missing-worktrees --require-candidate-changes --jobs 4
+Testing 6 candidates with 4 parallel workers.
+C3_debate_heterogeneous_claude_gpt_gemini: worktree missing at /worktrees/C3-debate-heterogeneous
+C3_replit_agent: worktree missing at /worktrees/C3-replit-agent
+C3_debate_heterogeneous_claude_gpt_gemini: 0/1 commands passed; result=/repo/reports/comparisons/C3_STATIC_EVALUATION/C3_debate_heterogeneous_claude_gpt_gemini/result.json
+C3_codex_agent: worktree missing at /worktrees/C3-codex-agent
+C3_react_claude: worktree missing at /worktrees/C3-react-claude
+C3_custom_parallel: worktree missing at /worktrees/C3-custom-parallelC3_replit_agent: 0/1 commands passed; result=/repo/reports/comparisons/C3_STATIC_EVALUATION/C3_replit_agent/result.json
+
+C3_react_claude: 0/1 commands passed; result=/repo/reports/comparisons/C3_STATIC_EVALUATION/C3_react_claude/result.json
+C3_codex_agent: 0/1 commands passed; result=/repo/reports/comparisons/C3_STATIC_EVALUATION/C3_codex_agent/result.json
+C3_rlm_openai: worktree missing at /worktrees/C3-rlm-openai
+C3_custom_parallel: 0/1 commands passed; result=/repo/reports/comparisons/C3_STATIC_EVALUATION/C3_custom_parallel/result.json
+C3_rlm_openai: 0/1 commands passed; result=/repo/reports/comparisons/C3_STATIC_EVALUATION/C3_rlm_openai/result.json
+One or more candidates failed; continuing because --continue-on-failure was set.
++ /usr/local/bin/python /repo/infra/scripts/score_candidates.py --config /repo/infra/configs/champion/C3_STATIC_EVALUATION.yaml.example
+/repo/reports/comparisons/C3_STATIC_EVALUATION/scores.md
++ /usr/local/bin/python /repo/infra/scripts/write_comparison_report.py --config /repo/infra/configs/champion/C3_STATIC_EVALUATION.yaml.example
+/repo/reports/comparisons/C3_STATIC_EVALUATION/comparison.md
++ /usr/local/bin/python /repo/infra/scripts/aggregate_champion_artifacts.py --config /repo/infra/configs/champion/C3_STATIC_EVALUATION.yaml.example --summary-path 
+/repo/reports/comparisons/C3_STATIC_EVALUATION/parallel_summary.md
+Promotion not attempted. Use --promote --candidate-id <id> --confirm after human review.
+Next manual steps:
+1. Review reports/comparisons/<task>/comparison.md.
+2. Confirm the winner and promotion rationale.
+3. Run promote_candidate.py with --confirm if appropriate.

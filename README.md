@@ -370,10 +370,86 @@ docker run --rm -v "$PWD:/repo" -w /repo pointchess/champion:local \
     --skip-create-worktrees
 ```
 
+Run a stronger tier or an orchestration audit:
+
+```bash
+.venv/bin/python infra/scripts/run_local_champion.py \
+  --task CURRENT_ENGINES \
+  --config infra/configs/champion/CURRENT_ENGINES.yaml \
+  --tier contract \
+  --jobs 7 \
+  --skip-create-worktrees
+
+.venv/bin/python infra/scripts/run_local_champion.py \
+  --task CURRENT_ENGINES \
+  --config infra/configs/champion/CURRENT_ENGINES.yaml \
+  --candidate CURRENT_rlm \
+  --milestone-task C0_ENGINE_INTERFACE \
+  --run-orchestration \
+  --orchestration-mode audit \
+  --skip-create-worktrees
+```
+
+Run the full C0-C8 classical ladder in Docker:
+
+```bash
+docker run --rm -v "$PWD:/repo" -w /repo pointchess/champion:local \
+  python infra/scripts/run_classical_ladder.py --task all --jobs 3
+```
+
+Run one configured C* candidate comparison in Docker, using host worktrees:
+
+```bash
+mkdir -p ../worktrees
+docker run --rm \
+  -v "$PWD:/repo" \
+  -v "$PWD/../worktrees:/worktrees" \
+  -w /repo \
+  pointchess/champion:local \
+  python infra/scripts/run_champion_stage.py \
+    --task C3_STATIC_EVALUATION \
+    --config infra/configs/champion/C3_STATIC_EVALUATION.yaml.example \
+    --run-orchestration \
+    --orchestration-mode audit \
+    --run-tests \
+    --score \
+    --write-report \
+    --jobs 4 \
+    --allow-missing-worktrees \
+    --continue-on-failure
+```
+
+Run the full candidate ladder across all C0-C8 configs:
+
+```bash
+docker run --rm \
+  -v "$PWD:/repo" \
+  -v "$PWD/../worktrees:/worktrees" \
+  -w /repo \
+  pointchess/champion:local \
+  python infra/scripts/run_champion_ladder.py \
+    --tasks all \
+    --run-orchestration \
+    --orchestration-mode audit \
+    --allow-missing-worktrees \
+    --continue-on-failure \
+    --jobs 4
+```
+
+This produces `reports/comparisons/CHAMPION_LADDER/summary.md`. A task is only
+considered promotable when at least one real candidate worktree passes; audit
+traces alone do not count as implementation wins. By default, C* candidate
+evaluation also rejects non-local worktrees that have no diff from the frozen
+baseline, so a branch cannot win by merely inheriting already-passing code.
+
 GitHub Actions workflow:
 
 - `Champion Current Engines` runs each current engine as a separate Dockerized matrix job.
-- The aggregate job writes `reports/comparisons/CURRENT_ENGINES/comparison.md` and a GitHub summary.
+- `Champion Current Engines` can also run `smoke`, `contract`, `milestone`, `perft`, or `tournament` tiers.
+- `Champion Classical Ladder` runs C0-C8 milestone gates as Docker matrix jobs.
+- `Champion Milestone Candidates` runs a dynamic candidate matrix from any `infra/configs/champion/C*_*.yaml.example` file.
+- `Champion Candidate Ladder` runs the whole C0-C8 candidate ladder sequentially from configured experiment branches.
+- Aggregate jobs write `comparison.md`, `scores.md`, `scores.json`, `metrics.csv`, `metrics.jsonl`, and `metrics.json` for graphing.
 
 ---
 

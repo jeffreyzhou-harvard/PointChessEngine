@@ -40,12 +40,26 @@ def run(cmd: list[str], *, dry_run: bool) -> None:
         subprocess.run(cmd, cwd=ROOT, check=True)
 
 
+def configure_git_safety() -> None:
+    subprocess.run(
+        ["git", "config", "--global", "--add", "safe.directory", str(ROOT)],
+        cwd=ROOT,
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+        check=False,
+    )
+
+
 def git_success(args: list[str]) -> bool:
     return subprocess.run(["git", *args], cwd=ROOT, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode == 0
 
 
 def branch_exists(branch: str) -> bool:
     return git_success(["rev-parse", "--verify", "--quiet", branch])
+
+
+def remote_branch_exists(branch: str) -> bool:
+    return git_success(["rev-parse", "--verify", "--quiet", f"origin/{branch}"])
 
 
 def main() -> int:
@@ -56,6 +70,7 @@ def main() -> int:
     args = parser.parse_args()
 
     config = load_config(resolve_input_path(args.config))
+    configure_git_safety()
     baseline = config.get("baseline_branch", "main")
     candidates = config.get("candidates", [])
     if args.candidate:
@@ -84,6 +99,8 @@ def main() -> int:
             worktree_path.parent.mkdir(parents=True, exist_ok=True)
         if branch_exists(branch):
             run(["git", "worktree", "add", str(worktree_path), branch], dry_run=args.dry_run)
+        elif remote_branch_exists(branch):
+            run(["git", "worktree", "add", "-b", branch, str(worktree_path), f"origin/{branch}"], dry_run=args.dry_run)
         else:
             run(["git", "worktree", "add", str(worktree_path), "-b", branch, baseline], dry_run=args.dry_run)
 

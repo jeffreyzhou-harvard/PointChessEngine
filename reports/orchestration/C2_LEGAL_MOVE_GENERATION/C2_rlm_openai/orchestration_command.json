@@ -1,0 +1,13 @@
+{
+  "candidate_id": "C2_rlm_openai",
+  "command": "/usr/local/bin/python -m methodologies.rlm.runner --task C2_LEGAL_MOVE_GENERATION --candidate-id C2_rlm_openai --mode audit --output-root reports/orchestration --task-root infra/tasks",
+  "duration_seconds": 0.1,
+  "mode": "audit",
+  "orchestration_type": "rlm",
+  "returncode": 0,
+  "status": "passed",
+  "stderr_log": "/repo/reports/orchestration/C2_LEGAL_MOVE_GENERATION/C2_rlm_openai/orchestration.stderr.log",
+  "stdout_log": "/repo/reports/orchestration/C2_LEGAL_MOVE_GENERATION/C2_rlm_openai/orchestration.stdout.log",
+  "task_id": "C2_LEGAL_MOVE_GENERATION",
+  "timestamp": "2026-04-25T17:14:21.869269+00:00"
+}

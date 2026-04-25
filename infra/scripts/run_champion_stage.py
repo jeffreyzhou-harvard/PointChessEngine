@@ -63,6 +63,10 @@ def main() -> int:
     parser.add_argument("--run-tests", action="store_true")
     parser.add_argument("--score", action="store_true")
     parser.add_argument("--write-report", action="store_true")
+    parser.add_argument("--tier", default="smoke", help="Champion tier to run")
+    parser.add_argument("--milestone-task", help="Milestone task ID for milestone/perft gates")
+    parser.add_argument("--run-orchestration", action="store_true", help="Run configured agent orchestration before tests")
+    parser.add_argument("--orchestration-mode", default="audit", choices=["audit", "live"], help="audit is no-secrets; live may call model APIs")
     parser.add_argument("--promote", action="store_true")
     parser.add_argument("--candidate", help="Optional candidate_id filter for worktree creation/testing")
     parser.add_argument("--candidate-id", help="Candidate to promote")
@@ -70,6 +74,7 @@ def main() -> int:
     parser.add_argument("--confirm", action="store_true")
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--allow-missing-worktrees", action="store_true")
+    parser.add_argument("--require-candidate-changes", action="store_true")
     parser.add_argument("--continue-on-failure", action="store_true")
     args = parser.parse_args()
 
@@ -82,6 +87,7 @@ def main() -> int:
         return 1
 
     print(f"Champion stage: {args.task}")
+    print(f"Tier: {args.tier}")
     print(f"Baseline: {config.get('baseline_branch')} -> canonical {config.get('canonical_branch')}")
     print(f"Candidates: {len(config.get('candidates') or [])}")
 
@@ -95,14 +101,38 @@ def main() -> int:
         if code:
             return code
 
+    if args.run_orchestration:
+        script_args = ["--config", str(config_path), "--mode", args.orchestration_mode]
+        if args.candidate:
+            script_args += ["--candidate", args.candidate]
+        if args.milestone_task:
+            script_args += ["--task", args.milestone_task]
+        else:
+            script_args += ["--task", args.task]
+        if args.jobs:
+            script_args += ["--jobs", str(args.jobs)]
+        if args.dry_run:
+            script_args.append("--dry-run")
+        code = run_script("run_agent_orchestration.py", script_args)
+        if code and not args.continue_on_failure:
+            return code
+        if code:
+            print("One or more orchestration runs failed; continuing because --continue-on-failure was set.")
+
     if args.run_tests:
         script_args = ["--config", str(config_path)]
         if args.candidate:
             script_args += ["--candidate", args.candidate]
+        if args.tier:
+            script_args += ["--tier", args.tier]
+        if args.milestone_task:
+            script_args += ["--milestone-task", args.milestone_task]
         if args.dry_run:
             script_args.append("--dry-run")
         if args.allow_missing_worktrees:
             script_args.append("--allow-missing-worktrees")
+        if args.require_candidate_changes:
+            script_args.append("--require-candidate-changes")
         if args.jobs:
             script_args += ["--jobs", str(args.jobs)]
         code = run_script("run_candidate_tests.py", script_args)
@@ -120,6 +150,9 @@ def main() -> int:
 
     if args.write_report:
         code = run_script("write_comparison_report.py", ["--config", str(config_path)])
+        if code:
+            return code
+        code = run_script("aggregate_champion_artifacts.py", ["--config", str(config_path), "--summary-path", ""])
         if code:
             return code
 

@@ -1,0 +1,13 @@
+{
+  "candidate_id": "C1_rlm_openai",
+  "command": "/usr/local/bin/python -m methodologies.rlm.runner --task C1_BOARD_FEN_MOVE --candidate-id C1_rlm_openai --mode audit --output-root reports/orchestration --task-root infra/tasks",
+  "duration_seconds": 0.101,
+  "mode": "audit",
+  "orchestration_type": "rlm",
+  "returncode": 0,
+  "status": "passed",
+  "stderr_log": "/repo/reports/orchestration/C1_BOARD_FEN_MOVE/C1_rlm_openai/orchestration.stderr.log",
+  "stdout_log": "/repo/reports/orchestration/C1_BOARD_FEN_MOVE/C1_rlm_openai/orchestration.stdout.log",
+  "task_id": "C1_BOARD_FEN_MOVE",
+  "timestamp": "2026-04-25T17:14:21.165940+00:00"
+}

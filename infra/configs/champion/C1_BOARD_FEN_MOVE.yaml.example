@@ -19,7 +19,7 @@ candidate_root: ../worktrees
 report_root: reports/comparisons
 
 test_commands:
-  - python3 -m unittest discover -s tests/classical -p 'test_c1_board_fen_move.py' -v
+  - "{python} infra/scripts/run_milestone_tests.py --task C1_BOARD_FEN_MOVE"
 
 score_weights:
   correctness_tests: 35
@@ -111,3 +111,20 @@ candidates:
       max_cost_usd: 20
     output_report_path: reports/tasks/C1_custom_parallel.md
     notes: Custom parallel multi-model candidate.
+
+  - candidate_id: C1_rlm_openai
+    task_id: C1_BOARD_FEN_MOVE
+    orchestration_type: rlm
+    model_assignments:
+      recursive_agent: openai
+      methodology_reference: alexzhang13/rlm
+    execution_environment: local_worktree
+    branch_name: experiments/C1/rlm_openai
+    worktree_path: ../worktrees/C1-rlm-openai
+    orchestration_command: "{python} -m methodologies.rlm.runner --task {milestone_task_id} --candidate-id {candidate_id} --mode {orchestration_mode} --output-root reports/orchestration --task-root infra/tasks"
+    allowed_tools: [repo_edit, pytest, git_diff, rlm_repl]
+    budget:
+      max_minutes: 75
+      max_cost_usd: 25
+    output_report_path: reports/tasks/C1_rlm_openai.md
+    notes: Recursive Language Model candidate; audit mode is no-secrets, live mode calls RLM.

@@ -1,0 +1,13 @@
+{
+  "candidate_id": "C0_rlm_openai",
+  "command": "/usr/local/bin/python -m methodologies.rlm.runner --task C0_ENGINE_INTERFACE --candidate-id C0_rlm_openai --mode audit --output-root reports/orchestration --task-root infra/tasks",
+  "duration_seconds": 0.106,
+  "mode": "audit",
+  "orchestration_type": "rlm",
+  "returncode": 0,
+  "status": "passed",
+  "stderr_log": "/repo/reports/orchestration/C0_ENGINE_INTERFACE/C0_rlm_openai/orchestration.stderr.log",
+  "stdout_log": "/repo/reports/orchestration/C0_ENGINE_INTERFACE/C0_rlm_openai/orchestration.stdout.log",
+  "task_id": "C0_ENGINE_INTERFACE",
+  "timestamp": "2026-04-25T17:14:20.450798+00:00"
+}

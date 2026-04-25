@@ -28,6 +28,10 @@ def main() -> int:
     parser.add_argument("--task", required=True)
     parser.add_argument("--config", required=True)
     parser.add_argument("--candidate", help="Optional candidate_id filter")
+    parser.add_argument("--tier", default="smoke")
+    parser.add_argument("--milestone-task")
+    parser.add_argument("--run-orchestration", action="store_true")
+    parser.add_argument("--orchestration-mode", default="audit", choices=["audit", "live"])
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--jobs", type=int, help="Candidate test parallelism")
     parser.add_argument("--skip-create-worktrees", action="store_true")
@@ -50,6 +54,12 @@ def main() -> int:
         command.append("--create-worktrees")
     if not args.skip_tests:
         command.append("--run-tests")
+    command.extend(["--tier", args.tier])
+    if args.milestone_task:
+        command.extend(["--milestone-task", args.milestone_task])
+    if args.run_orchestration:
+        command.append("--run-orchestration")
+        command.extend(["--orchestration-mode", args.orchestration_mode])
     if not args.skip_score:
         command.append("--score")
     if not args.skip_report:

@@ -1,0 +1,13 @@
+{
+  "candidate_id": "C5_rlm_openai",
+  "command": "/usr/local/bin/python -m methodologies.rlm.runner --task C5_TACTICAL_HARDENING --candidate-id C5_rlm_openai --mode audit --output-root reports/orchestration --task-root infra/tasks",
+  "duration_seconds": 0.1,
+  "mode": "audit",
+  "orchestration_type": "rlm",
+  "returncode": 0,
+  "status": "passed",
+  "stderr_log": "/repo/reports/orchestration/C5_TACTICAL_HARDENING/C5_rlm_openai/orchestration.stderr.log",
+  "stdout_log": "/repo/reports/orchestration/C5_TACTICAL_HARDENING/C5_rlm_openai/orchestration.stdout.log",
+  "task_id": "C5_TACTICAL_HARDENING",
+  "timestamp": "2026-04-25T17:14:23.987762+00:00"
+}

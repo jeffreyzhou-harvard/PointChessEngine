@@ -13,6 +13,7 @@ inspectable, and then build a deterministic UCI engine from the resulting plan.
 
 ```bash
 python -m engines.rlm --uci
+cd engines/rlm && python main.py --uci
 ```
 
 ## Design

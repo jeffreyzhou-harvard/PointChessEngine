@@ -1,0 +1,13 @@
+{
+  "candidate_id": "C7_custom_parallel",
+  "live_model_used": false,
+  "mode": "audit",
+  "notes": "Audit trace written. No live orchestration command is configured for this candidate.",
+  "orchestration_type": "custom_langchain_parallel",
+  "prompt_path": "reports/orchestration/C7_UCI_COMPATIBILITY/C7_custom_parallel/prompt.md",
+  "response_path": "reports/orchestration/C7_UCI_COMPATIBILITY/C7_custom_parallel/response.md",
+  "status": "audit_completed",
+  "task_file": "infra/tasks/classical/C7_UCI_COMPATIBILITY.md",
+  "task_id": "C7_UCI_COMPATIBILITY",
+  "timestamp": "2026-04-25T17:14:25.275499+00:00"
+}

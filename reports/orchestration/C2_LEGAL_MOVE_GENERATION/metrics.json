@@ -1,0 +1,75 @@
+{
+  "candidate_count": 6,
+  "estimated_serial_seconds": 0.1,
+  "failed_count": 0,
+  "passed_count": 6,
+  "runs": [
+    {
+      "candidate_id": "C2_codex_agent",
+      "duration_seconds": 0,
+      "live_model_used": false,
+      "mode": "audit",
+      "orchestration_type": "codex_agent",
+      "returncode": "",
+      "status": "audit_completed",
+      "task_id": "C2_LEGAL_MOVE_GENERATION",
+      "timestamp": "2026-04-25T17:14:21.768385+00:00"
+    },
+    {
+      "candidate_id": "C2_custom_parallel",
+      "duration_seconds": 0,
+      "live_model_used": false,
+      "mode": "audit",
+      "orchestration_type": "custom_langchain_parallel",
+      "returncode": "",
+      "status": "audit_completed",
+      "task_id": "C2_LEGAL_MOVE_GENERATION",
+      "timestamp": "2026-04-25T17:14:21.771440+00:00"
+    },
+    {
+      "candidate_id": "C2_debate_heterogeneous_claude_gpt_gemini",
+      "duration_seconds": 0,
+      "live_model_used": false,
+      "mode": "audit",
+      "orchestration_type": "debate_ensemble",
+      "returncode": "",
+      "status": "audit_completed",
+      "task_id": "C2_LEGAL_MOVE_GENERATION",
+      "timestamp": "2026-04-25T17:14:21.768075+00:00"
+    },
+    {
+      "candidate_id": "C2_react_claude",
+      "duration_seconds": 0,
+      "live_model_used": false,
+      "mode": "audit",
+      "orchestration_type": "react",
+      "returncode": "",
+      "status": "audit_completed",
+      "task_id": "C2_LEGAL_MOVE_GENERATION",
+      "timestamp": "2026-04-25T17:14:21.768014+00:00"
+    },
+    {
+      "candidate_id": "C2_replit_agent",
+      "duration_seconds": 0,
+      "live_model_used": false,
+      "mode": "audit",
+      "orchestration_type": "replit_agent",
+      "returncode": "",
+      "status": "audit_completed",
+      "task_id": "C2_LEGAL_MOVE_GENERATION",
+      "timestamp": "2026-04-25T17:14:21.768467+00:00"
+    },
+    {
+      "candidate_id": "C2_rlm_openai",
+      "duration_seconds": 0.1,
+      "live_model_used": false,
+      "mode": "audit",
+      "orchestration_type": "rlm",
+      "returncode": 0,
+      "status": "passed",
+      "task_id": "C2_LEGAL_MOVE_GENERATION",
+      "timestamp": "2026-04-25T17:14:21.869269+00:00"
+    }
+  ],
+  "task_id": "C2_LEGAL_MOVE_GENERATION"
+}

@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import csv
 import json
 import os
 import shutil
@@ -133,16 +134,100 @@ def result_observation(result: dict) -> dict:
     return {}
 
 
+def metric_row(result: dict) -> dict:
+    observation = result_observation(result)
+    commands = result.get("commands") or []
+    duration = float(result.get("duration_seconds") or observation.get("duration_seconds") or 0.0)
+    commands_failed = sum(1 for command in commands if command.get("returncode") not in (0, None))
+    tests_passed = int(result.get("tests_passed") or 0)
+    tests_total = int(result.get("tests_total") or 0)
+    passed = tests_total > 0 and tests_passed == tests_total and bool(result.get("contract_tests_passed"))
+    return {
+        "task_id": result.get("task_id", ""),
+        "tier": result.get("tier", "smoke"),
+        "milestone_task_id": result.get("milestone_task_id", ""),
+        "candidate_id": result.get("candidate_id", ""),
+        "engine_id": result.get("engine_id") or observation.get("engine", ""),
+        "orchestration_type": result.get("orchestration_type", ""),
+        "execution_environment": result.get("execution_environment", ""),
+        "branch": result.get("branch", ""),
+        "passed": passed,
+        "tests_passed": tests_passed,
+        "tests_total": tests_total,
+        "contract_tests_passed": bool(result.get("contract_tests_passed")),
+        "commands_total": len(commands),
+        "commands_failed": commands_failed,
+        "duration_seconds": round(duration, 3),
+        "bestmove": observation.get("bestmove", ""),
+        "legal_from_startpos": observation.get("legal_from_startpos", ""),
+        "cost_estimate_usd": result.get("cost_estimate_usd", ""),
+        "latency_minutes": result.get("latency_minutes", ""),
+        "result_path": result.get("_result_path", ""),
+    }
+
+
+def write_metric_files(report_root: Path, results: list[dict]) -> dict:
+    rows = [metric_row(result) for result in results]
+    serial_seconds = round(sum(float(row["duration_seconds"] or 0.0) for row in rows), 3)
+    parallel_seconds = round(max((float(row["duration_seconds"] or 0.0) for row in rows), default=0.0), 3)
+    speedup = round(serial_seconds / parallel_seconds, 3) if parallel_seconds > 0 else 0.0
+    summary = {
+        "task_id": rows[0]["task_id"] if rows else "",
+        "tier": rows[0]["tier"] if rows else "",
+        "candidate_count": len(rows),
+        "passed_count": sum(1 for row in rows if row["passed"]),
+        "failed_count": sum(1 for row in rows if not row["passed"]),
+        "estimated_serial_seconds": serial_seconds,
+        "parallel_wall_seconds": parallel_seconds,
+        "speedup_factor": speedup,
+        "metric_files": {
+            "json": "metrics.json",
+            "jsonl": "metrics.jsonl",
+            "csv": "metrics.csv",
+        },
+        "candidates": rows,
+    }
+
+    (report_root / "metrics.json").write_text(json.dumps(summary, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    with (report_root / "metrics.jsonl").open("w", encoding="utf-8") as f:
+        for row in rows:
+            f.write(json.dumps(row, sort_keys=True) + "\n")
+    fieldnames = [
+        "task_id",
+        "tier",
+        "milestone_task_id",
+        "candidate_id",
+        "engine_id",
+        "orchestration_type",
+        "execution_environment",
+        "branch",
+        "passed",
+        "tests_passed",
+        "tests_total",
+        "contract_tests_passed",
+        "commands_total",
+        "commands_failed",
+        "duration_seconds",
+        "bestmove",
+        "legal_from_startpos",
+        "cost_estimate_usd",
+        "latency_minutes",
+        "result_path",
+    ]
+    with (report_root / "metrics.csv").open("w", encoding="utf-8", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(rows)
+    return summary
+
+
 def write_parallel_summary(report_root: Path, results: list[dict], summary_path: Path | None) -> None:
+    metrics = write_metric_files(report_root, results)
     rows = []
-    serial_seconds = 0.0
-    parallel_seconds = 0.0
     failures = 0
     for result in results:
         observation = result_observation(result)
         duration = float(result.get("duration_seconds") or observation.get("duration_seconds") or 0.0)
-        serial_seconds += duration
-        parallel_seconds = max(parallel_seconds, duration)
         passed = result.get("tests_passed") == result.get("tests_total") and result.get("contract_tests_passed")
         failures += 0 if passed else 1
         rows.append(
@@ -156,7 +241,6 @@ def write_parallel_summary(report_root: Path, results: list[dict], summary_path:
             )
         )
 
-    speedup = serial_seconds / parallel_seconds if parallel_seconds > 0 else 0.0
     report_path = report_root / "comparison.md"
     try:
         report_display = report_path.relative_to(ROOT)
@@ -171,10 +255,11 @@ def write_parallel_summary(report_root: Path, results: list[dict], summary_path:
         "",
         f"- Candidates: {len(results)}",
         f"- Failures: {failures}",
-        f"- Estimated serial runtime: {serial_seconds:.3f}s",
-        f"- Parallel wall time: {parallel_seconds:.3f}s",
-        f"- Speedup factor: {speedup:.2f}x",
+        f"- Estimated serial runtime: {metrics['estimated_serial_seconds']:.3f}s",
+        f"- Parallel wall time: {metrics['parallel_wall_seconds']:.3f}s",
+        f"- Speedup factor: {metrics['speedup_factor']:.2f}x",
         f"- Report: `{report_display}`",
+        f"- Graph data: `metrics.csv`, `metrics.jsonl`, `metrics.json`",
         "",
     ]
     summary = "\n".join(lines)

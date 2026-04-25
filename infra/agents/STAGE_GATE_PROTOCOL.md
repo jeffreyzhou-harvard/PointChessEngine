@@ -9,15 +9,49 @@ For each milestone:
 1. Freeze task spec.
 2. Freeze canonical baseline commit.
 3. Spawn candidate branches/worktrees from baseline.
-4. Run frameworks/configurations in parallel.
-5. Run unit tests/evals.
-6. Run contract/interface tests.
+4. Run or audit the configured agent orchestration.
+5. Run frameworks/configurations in parallel.
+6. Run tiered Champion gates.
 7. Run code review.
 8. Score candidates.
 9. Promote winner into canonical baseline.
 10. Archive loser branches/reports.
 11. Write comparison report.
 12. Begin next milestone.
+
+## Champion Tiers
+
+Champion mode has five evaluation tiers:
+
+| Tier | Purpose | Typical cadence |
+|---|---|---|
+| `smoke` | Fast Docker matrix. Launch each engine and require a legal UCI bestmove. | every PR |
+| `contract` | Run `tests/contract` against each registered engine. | PRs touching UCI/registry/engines |
+| `milestone` | Run relevant `tests/classical/test_c*.py` selected by milestone task, including prior C* regressions. | candidate promotion |
+| `perft` | Run current perft legality gate; deeper per-engine perft needs a future debug/perft interface. | candidate promotion / scheduled |
+| `tournament` | FastChess round robin and Stockfish calibration when tooling is installed. | manual or scheduled |
+
+The ground truth remains task specs and tests. A promoted candidate becomes the
+canonical baseline; it is not ground truth.
+
+## Orchestration vs Artifact Testing
+
+Testing `engines/<id>` only evaluates an existing artifact. It does not prove the
+agent framework can generate that artifact.
+
+For orchestration evidence, run:
+
+```bash
+python infra/scripts/run_agent_orchestration.py \
+  --config infra/configs/champion/CURRENT_ENGINES.yaml \
+  --candidate CURRENT_rlm \
+  --task C0_ENGINE_INTERFACE \
+  --mode audit
+```
+
+Use `--mode live` only when provider keys and dependencies are available. Audit
+mode is useful for reproducible CI evidence, but it must be reported separately
+from a live model-generated candidate run.
 
 ## Local Manual Mode
 
@@ -51,11 +85,13 @@ Use manual candidate creation plus local evaluation/scoring/promotion:
 Each stage should produce:
 
 - candidate result JSON per candidate
+- orchestration JSON per candidate when orchestration is enabled
 - test logs per candidate
 - code review summary per candidate
 - AI usage records
 - comparison report
 - promotion decision
+- graph-ready metric files: `metrics.csv`, `metrics.jsonl`, and `metrics.json`
 
 ## Stop Conditions
 

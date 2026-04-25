@@ -132,7 +132,7 @@ To compare the engine artifacts already checked into the repo:
 python infra/scripts/run_local_champion.py \
   --task CURRENT_ENGINES \
   --config infra/configs/champion/CURRENT_ENGINES.yaml \
-  --jobs 6 \
+  --jobs 7 \
   --skip-create-worktrees \
   --continue-on-failure
 ```
@@ -158,9 +158,122 @@ docker run --rm \
   python infra/scripts/run_local_champion.py \
     --task CURRENT_ENGINES \
     --config infra/configs/champion/CURRENT_ENGINES.yaml \
-    --jobs 6 \
+    --jobs 7 \
     --skip-create-worktrees
 ```
+
+Run a stronger tier:
+
+```bash
+docker run --rm \
+  -v "$PWD:/repo" \
+  -w /repo \
+  pointchess/champion:local \
+  python infra/scripts/run_local_champion.py \
+    --task CURRENT_ENGINES \
+    --config infra/configs/champion/CURRENT_ENGINES.yaml \
+    --tier contract \
+    --jobs 7 \
+    --skip-create-worktrees
+```
+
+Run the orchestration audit before evaluating the RLM candidate:
+
+```bash
+docker run --rm \
+  -v "$PWD:/repo" \
+  -w /repo \
+  pointchess/champion:local \
+  python infra/scripts/run_local_champion.py \
+    --task CURRENT_ENGINES \
+    --config infra/configs/champion/CURRENT_ENGINES.yaml \
+    --candidate CURRENT_rlm \
+    --tier smoke \
+    --milestone-task C0_ENGINE_INTERFACE \
+    --run-orchestration \
+    --orchestration-mode audit \
+    --skip-create-worktrees
+```
+
+Audit mode proves the Docker path is invoking the orchestration layer and
+writing trace artifacts. Live mode is the actual model-backed agent run and
+requires provider credentials.
+
+Run the full C0-C8 classical ladder inside Docker:
+
+```bash
+docker run --rm \
+  -v "$PWD:/repo" \
+  -w /repo \
+  pointchess/champion:local \
+  python infra/scripts/run_classical_ladder.py --task all --jobs 3
+```
+
+For per-task candidate comparison, use the corresponding
+`infra/configs/champion/C*_*.yaml.example` file, create candidate worktrees from
+the frozen baseline, run the configured orchestrators, then run Champion. The
+ladder validates the canonical checkout; the per-task configs choose winners.
+
+When running C* candidate configs in Docker, mount a host worktree directory so
+the container can see candidate branches:
+
+```bash
+mkdir -p ../worktrees
+docker run --rm \
+  -v "$PWD:/repo" \
+  -v "$PWD/../worktrees:/worktrees" \
+  -w /repo \
+  pointchess/champion:local \
+  python infra/scripts/run_champion_stage.py \
+    --task C3_STATIC_EVALUATION \
+    --config infra/configs/champion/C3_STATIC_EVALUATION.yaml.example \
+    --create-worktrees \
+    --run-orchestration \
+    --orchestration-mode audit \
+    --run-tests \
+    --score \
+    --write-report \
+    --jobs 4
+```
+
+Champion reports include graph-ready data:
+
+```text
+reports/comparisons/<task>/metrics.csv
+reports/comparisons/<task>/metrics.jsonl
+reports/comparisons/<task>/metrics.json
+reports/orchestration/<task>/metrics.csv
+reports/orchestration/<task>/metrics.jsonl
+reports/orchestration/<task>/metrics.json
+```
+
+Use these files for pass/fail plots, duration/speedup charts, score rankings,
+and orchestration cost/latency comparisons.
+
+## Full Candidate Ladder
+
+To run the whole C0-C8 candidate ladder:
+
+```bash
+docker run --rm \
+  -v "$PWD:/repo" \
+  -v "$PWD/../worktrees:/worktrees" \
+  -w /repo \
+  pointchess/champion:local \
+  python infra/scripts/run_champion_ladder.py \
+    --tasks all \
+    --run-orchestration \
+    --orchestration-mode audit \
+    --allow-missing-worktrees \
+    --continue-on-failure \
+    --jobs 4
+```
+
+Audit mode creates prompt/report traces for every methodology candidate and
+runs live RLM audit where configured, but it does not produce implementation
+patches. A task is promotable only when at least one real candidate worktree
+exists, has changes beyond the frozen baseline, and passes that task's Champion
+gate.
 
 Run one engine smoke check:
 

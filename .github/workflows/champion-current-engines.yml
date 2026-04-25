@@ -11,11 +11,40 @@ on:
         options:
           - github-hosted
           - champion-vm
+      tier:
+        description: "Champion gate to run"
+        required: true
+        default: smoke
+        type: choice
+        options:
+          - smoke
+          - contract
+          - milestone
+          - perft
+          - tournament
+      milestone_task:
+        description: "Milestone task used by the milestone/perft/orchestration gates"
+        required: false
+        default: C0_ENGINE_INTERFACE
+      run_orchestration:
+        description: "Run configured agent orchestration before evaluation"
+        required: true
+        default: false
+        type: boolean
+      orchestration_mode:
+        description: "audit is reproducible/no-secrets; live may call model APIs"
+        required: true
+        default: audit
+        type: choice
+        options:
+          - audit
+          - live
   pull_request:
     paths:
       - ".github/workflows/champion-current-engines.yml"
       - "arena/**"
       - "engines/**"
+      - "methodologies/**"
       - "infra/configs/champion/CURRENT_ENGINES.yaml"
       - "infra/docker/**"
       - "infra/scripts/**"
@@ -26,6 +55,10 @@ env:
   CHAMPION_IMAGE_TAR: champion-image.tar
   CHAMPION_CONFIG: infra/configs/champion/CURRENT_ENGINES.yaml
   CHAMPION_TASK: CURRENT_ENGINES
+  CHAMPION_TIER: ${{ github.event_name == 'workflow_dispatch' && inputs.tier || 'smoke' }}
+  CHAMPION_MILESTONE_TASK: ${{ github.event_name == 'workflow_dispatch' && inputs.milestone_task || 'C0_ENGINE_INTERFACE' }}
+  CHAMPION_ORCHESTRATION_MODE: ${{ github.event_name == 'workflow_dispatch' && inputs.orchestration_mode || 'audit' }}
+  CHAMPION_RUN_ORCHESTRATION: ${{ github.event_name == 'workflow_dispatch' && inputs.run_orchestration || false }}
 
 jobs:
   build-image:
@@ -53,7 +86,7 @@ jobs:
           retention-days: 1
 
   candidate-smoke:
-    name: ${{ matrix.candidate_id }}
+    name: ${{ matrix.candidate_id }} / ${{ github.event_name == 'workflow_dispatch' && inputs.tier || 'smoke' }}
     needs: build-image
     runs-on: ${{ fromJSON((github.event_name == 'workflow_dispatch' && inputs.runner_target == 'champion-vm') && '["self-hosted","champion-vm"]' || '["ubuntu-latest"]') }}
     strategy:
@@ -79,7 +112,31 @@ jobs:
       - name: Load Docker image
         run: docker load -i "$CHAMPION_IMAGE_TAR"
 
-      - name: Run candidate Champion smoke
+      - name: Run candidate orchestration
+        if: env.CHAMPION_RUN_ORCHESTRATION == 'true'
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_KEY: ${{ secrets.ANTHROPIC_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+        run: |
+          docker run --rm \
+            -v "$PWD:/repo" \
+            -w /repo \
+            -e OPENAI_API_KEY \
+            -e ANTHROPIC_API_KEY \
+            -e ANTHROPIC_KEY \
+            -e GEMINI_API_KEY \
+            -e GOOGLE_API_KEY \
+            "$CHAMPION_IMAGE" \
+            python infra/scripts/run_agent_orchestration.py \
+              --config "$CHAMPION_CONFIG" \
+              --candidate "${{ matrix.candidate_id }}" \
+              --task "$CHAMPION_MILESTONE_TASK" \
+              --mode "$CHAMPION_ORCHESTRATION_MODE"
+
+      - name: Run candidate Champion tier
         run: |
           docker run --rm \
             -v "$PWD:/repo" \
@@ -87,14 +144,18 @@ jobs:
             "$CHAMPION_IMAGE" \
             python infra/scripts/run_candidate_tests.py \
               --config "$CHAMPION_CONFIG" \
-              --candidate "${{ matrix.candidate_id }}"
+              --candidate "${{ matrix.candidate_id }}" \
+              --tier "$CHAMPION_TIER" \
+              --milestone-task "$CHAMPION_MILESTONE_TASK"
 
       - name: Upload candidate artifact
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: champion-${{ matrix.candidate_id }}
-          path: reports/comparisons/CURRENT_ENGINES/${{ matrix.candidate_id }}/
+          path: |
+            reports/comparisons/CURRENT_ENGINES/${{ matrix.candidate_id }}/
+            reports/orchestration/${{ env.CHAMPION_MILESTONE_TASK }}/${{ matrix.candidate_id }}/
           if-no-files-found: warn
           retention-days: 7
 

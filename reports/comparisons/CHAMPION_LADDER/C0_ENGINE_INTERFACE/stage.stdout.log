@@ -1,0 +1,37 @@
+Champion stage: C0_ENGINE_INTERFACE
+Tier: smoke
+Baseline: main -> canonical main
+Candidates: 6
++ /usr/local/bin/python /repo/infra/scripts/run_agent_orchestration.py --config /repo/infra/configs/champion/C0_ENGINE_INTERFACE.yaml.example --mode audit --task C0_ENGINE_INTERFACE --jobs 4
+C0_debate_heterogeneous_claude_gpt_gemini: audit_completed
+C0_codex_agent: audit_completed
+C0_replit_agent: audit_completed
+C0_react_claude: audit_completed
+C0_custom_parallel: audit_completed
+C0_rlm_openai: orchestration passed (0.106s)
++ /usr/local/bin/python /repo/infra/scripts/run_candidate_tests.py --config /repo/infra/configs/champion/C0_ENGINE_INTERFACE.yaml.example --tier smoke --milestone-task C0_ENGINE_INTERFACE --allow-missing-worktrees --require-candidate-changes --jobs 4
+Testing 6 candidates with 4 parallel workers.
+C0_react_claude: worktree missing at /worktrees/C0-react-claude
+C0_debate_heterogeneous_claude_gpt_gemini: worktree missing at /worktrees/C0-debate-heterogeneous
+C0_replit_agent: worktree missing at /worktrees/C0-replit-agent
+C0_codex_agent: worktree missing at /worktrees/C0-codex-agent
+C0_react_claude: 0/1 commands passed; result=/repo/reports/comparisons/C0_ENGINE_INTERFACE/C0_react_claude/result.json
+C0_debate_heterogeneous_claude_gpt_gemini: 0/1 commands passed; result=/repo/reports/comparisons/C0_ENGINE_INTERFACE/C0_debate_heterogeneous_claude_gpt_gemini/result.json
+C0_replit_agent: 0/1 commands passed; result=/repo/reports/comparisons/C0_ENGINE_INTERFACE/C0_replit_agent/result.json
+C0_codex_agent: 0/1 commands passed; result=/repo/reports/comparisons/C0_ENGINE_INTERFACE/C0_codex_agent/result.json
+C0_custom_parallel: worktree missing at /worktrees/C0-custom-parallel
+C0_rlm_openai: worktree missing at /worktrees/C0-rlm-openai
+C0_custom_parallel: 0/1 commands passed; result=/repo/reports/comparisons/C0_ENGINE_INTERFACE/C0_custom_parallel/result.json
+C0_rlm_openai: 0/1 commands passed; result=/repo/reports/comparisons/C0_ENGINE_INTERFACE/C0_rlm_openai/result.json
+One or more candidates failed; continuing because --continue-on-failure was set.
++ /usr/local/bin/python /repo/infra/scripts/score_candidates.py --config /repo/infra/configs/champion/C0_ENGINE_INTERFACE.yaml.example
+/repo/reports/comparisons/C0_ENGINE_INTERFACE/scores.md
++ /usr/local/bin/python /repo/infra/scripts/write_comparison_report.py --config /repo/infra/configs/champion/C0_ENGINE_INTERFACE.yaml.example
+/repo/reports/comparisons/C0_ENGINE_INTERFACE/comparison.md
++ /usr/local/bin/python /repo/infra/scripts/aggregate_champion_artifacts.py --config /repo/infra/configs/champion/C0_ENGINE_INTERFACE.yaml.example --summary-path 
+/repo/reports/comparisons/C0_ENGINE_INTERFACE/parallel_summary.md
+Promotion not attempted. Use --promote --candidate-id <id> --confirm after human review.
+Next manual steps:
+1. Review reports/comparisons/<task>/comparison.md.
+2. Confirm the winner and promotion rationale.
+3. Run promote_candidate.py with --confirm if appropriate.

@@ -1,0 +1,31 @@
+Champion stage: C6_TIME_TT_ITERATIVE
+Tier: smoke
+Baseline: main -> canonical main
+Candidates: 4
++ /usr/local/bin/python /repo/infra/scripts/run_agent_orchestration.py --config /repo/infra/configs/champion/C6_TIME_TT_ITERATIVE.yaml.example --mode audit --task C6_TIME_TT_ITERATIVE --jobs 4
+C6_codex_agent: audit_completed
+C6_custom_parallel: audit_completed
+C6_replit_agent: audit_completed
+C6_rlm_openai: orchestration passed (0.104s)
++ /usr/local/bin/python /repo/infra/scripts/run_candidate_tests.py --config /repo/infra/configs/champion/C6_TIME_TT_ITERATIVE.yaml.example --tier smoke --milestone-task C6_TIME_TT_ITERATIVE --allow-missing-worktrees --require-candidate-changes --jobs 4
+Testing 4 candidates with 4 parallel workers.
+C6_rlm_openai: worktree missing at /worktrees/C6-rlm-openai
+C6_codex_agent: worktree missing at /worktrees/C6-codex-agent
+C6_custom_parallel: worktree missing at /worktrees/C6-custom-parallel
+C6_replit_agent: worktree missing at /worktrees/C6-replit-agent
+C6_rlm_openai: 0/1 commands passed; result=/repo/reports/comparisons/C6_TIME_TT_ITERATIVE/C6_rlm_openai/result.json
+C6_codex_agent: 0/1 commands passed; result=/repo/reports/comparisons/C6_TIME_TT_ITERATIVE/C6_codex_agent/result.json
+C6_custom_parallel: 0/1 commands passed; result=/repo/reports/comparisons/C6_TIME_TT_ITERATIVE/C6_custom_parallel/result.json
+C6_replit_agent: 0/1 commands passed; result=/repo/reports/comparisons/C6_TIME_TT_ITERATIVE/C6_replit_agent/result.json
+One or more candidates failed; continuing because --continue-on-failure was set.
++ /usr/local/bin/python /repo/infra/scripts/score_candidates.py --config /repo/infra/configs/champion/C6_TIME_TT_ITERATIVE.yaml.example
+/repo/reports/comparisons/C6_TIME_TT_ITERATIVE/scores.md
++ /usr/local/bin/python /repo/infra/scripts/write_comparison_report.py --config /repo/infra/configs/champion/C6_TIME_TT_ITERATIVE.yaml.example
+/repo/reports/comparisons/C6_TIME_TT_ITERATIVE/comparison.md
++ /usr/local/bin/python /repo/infra/scripts/aggregate_champion_artifacts.py --config /repo/infra/configs/champion/C6_TIME_TT_ITERATIVE.yaml.example --summary-path 
+/repo/reports/comparisons/C6_TIME_TT_ITERATIVE/parallel_summary.md
+Promotion not attempted. Use --promote --candidate-id <id> --confirm after human review.
+Next manual steps:
+1. Review reports/comparisons/<task>/comparison.md.
+2. Confirm the winner and promotion rationale.
+3. Run promote_candidate.py with --confirm if appropriate.

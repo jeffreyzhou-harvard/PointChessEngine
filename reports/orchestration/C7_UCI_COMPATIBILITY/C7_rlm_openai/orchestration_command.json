@@ -1,0 +1,13 @@
+{
+  "candidate_id": "C7_rlm_openai",
+  "command": "/usr/local/bin/python -m methodologies.rlm.runner --task C7_UCI_COMPATIBILITY --candidate-id C7_rlm_openai --mode audit --output-root reports/orchestration --task-root infra/tasks",
+  "duration_seconds": 0.104,
+  "mode": "audit",
+  "orchestration_type": "rlm",
+  "returncode": 0,
+  "status": "passed",
+  "stderr_log": "/repo/reports/orchestration/C7_UCI_COMPATIBILITY/C7_rlm_openai/orchestration.stderr.log",
+  "stdout_log": "/repo/reports/orchestration/C7_UCI_COMPATIBILITY/C7_rlm_openai/orchestration.stdout.log",
+  "task_id": "C7_UCI_COMPATIBILITY",
+  "timestamp": "2026-04-25T17:14:25.375252+00:00"
+}

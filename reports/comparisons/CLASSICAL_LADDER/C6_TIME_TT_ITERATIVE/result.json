@@ -1,0 +1,25 @@
+{
+  "command": "/usr/local/bin/python infra/scripts/run_milestone_tests.py --task C6_TIME_TT_ITERATIVE",
+  "duration_seconds": 2.444,
+  "observation": {
+    "duration_seconds": 2.356,
+    "milestone_task_id": "C6_TIME_TT_ITERATIVE",
+    "passed": true,
+    "test_files": [
+      "tests/classical/test_c0_uci_contract.py",
+      "tests/classical/test_c1_board_fen_move.py",
+      "tests/classical/test_c2_legal_move_generation.py",
+      "tests/classical/test_c3_static_evaluation.py",
+      "tests/classical/test_c4_alpha_beta_search.py",
+      "tests/classical/test_c5_tactical_hardening.py",
+      "tests/classical/test_c6_time_tt_iterative.py"
+    ],
+    "tier": "milestone"
+  },
+  "passed": true,
+  "returncode": 0,
+  "stderr_log": "/repo/reports/comparisons/CLASSICAL_LADDER/C6_TIME_TT_ITERATIVE/milestone.stderr.log",
+  "stdout_log": "/repo/reports/comparisons/CLASSICAL_LADDER/C6_TIME_TT_ITERATIVE/milestone.stdout.log",
+  "task_id": "C6_TIME_TT_ITERATIVE",
+  "tier": "milestone"
+}

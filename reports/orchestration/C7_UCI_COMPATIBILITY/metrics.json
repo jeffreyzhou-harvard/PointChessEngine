@@ -1,0 +1,53 @@
+{
+  "candidate_count": 4,
+  "estimated_serial_seconds": 0.104,
+  "failed_count": 0,
+  "passed_count": 4,
+  "runs": [
+    {
+      "candidate_id": "C7_codex_agent",
+      "duration_seconds": 0,
+      "live_model_used": false,
+      "mode": "audit",
+      "orchestration_type": "codex_agent",
+      "returncode": "",
+      "status": "audit_completed",
+      "task_id": "C7_UCI_COMPATIBILITY",
+      "timestamp": "2026-04-25T17:14:25.275304+00:00"
+    },
+    {
+      "candidate_id": "C7_custom_parallel",
+      "duration_seconds": 0,
+      "live_model_used": false,
+      "mode": "audit",
+      "orchestration_type": "custom_langchain_parallel",
+      "returncode": "",
+      "status": "audit_completed",
+      "task_id": "C7_UCI_COMPATIBILITY",
+      "timestamp": "2026-04-25T17:14:25.275499+00:00"
+    },
+    {
+      "candidate_id": "C7_replit_agent",
+      "duration_seconds": 0,
+      "live_model_used": false,
+      "mode": "audit",
+      "orchestration_type": "replit_agent",
+      "returncode": "",
+      "status": "audit_completed",
+      "task_id": "C7_UCI_COMPATIBILITY",
+      "timestamp": "2026-04-25T17:14:25.275362+00:00"
+    },
+    {
+      "candidate_id": "C7_rlm_openai",
+      "duration_seconds": 0.104,
+      "live_model_used": false,
+      "mode": "audit",
+      "orchestration_type": "rlm",
+      "returncode": 0,
+      "status": "passed",
+      "task_id": "C7_UCI_COMPATIBILITY",
+      "timestamp": "2026-04-25T17:14:25.375252+00:00"
+    }
+  ],
+  "task_id": "C7_UCI_COMPATIBILITY"
+}

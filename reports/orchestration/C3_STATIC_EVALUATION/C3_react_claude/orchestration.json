@@ -1,0 +1,13 @@
+{
+  "candidate_id": "C3_react_claude",
+  "live_model_used": false,
+  "mode": "audit",
+  "notes": "Audit trace written. No live orchestration command is configured for this candidate.",
+  "orchestration_type": "react",
+  "prompt_path": "reports/orchestration/C3_STATIC_EVALUATION/C3_react_claude/prompt.md",
+  "response_path": "reports/orchestration/C3_STATIC_EVALUATION/C3_react_claude/response.md",
+  "status": "audit_completed",
+  "task_file": "infra/tasks/classical/C3_STATIC_EVALUATION.md",
+  "task_id": "C3_STATIC_EVALUATION",
+  "timestamp": "2026-04-25T17:14:22.463783+00:00"
+}

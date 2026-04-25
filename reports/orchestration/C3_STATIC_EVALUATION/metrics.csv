@@ -1,0 +1,7 @@
+task_id,candidate_id,orchestration_type,mode,status,returncode,duration_seconds,live_model_used,timestamp
+C3_STATIC_EVALUATION,C3_codex_agent,codex_agent,audit,audit_completed,,0,False,2026-04-25T17:14:22.463997+00:00
+C3_STATIC_EVALUATION,C3_custom_parallel,custom_langchain_parallel,audit,audit_completed,,0,False,2026-04-25T17:14:22.466374+00:00
+C3_STATIC_EVALUATION,C3_debate_heterogeneous_claude_gpt_gemini,debate_ensemble,audit,audit_completed,,0,False,2026-04-25T17:14:22.463710+00:00
+C3_STATIC_EVALUATION,C3_react_claude,react,audit,audit_completed,,0,False,2026-04-25T17:14:22.463783+00:00
+C3_STATIC_EVALUATION,C3_replit_agent,replit_agent,audit,audit_completed,,0,False,2026-04-25T17:14:22.463935+00:00
+C3_STATIC_EVALUATION,C3_rlm_openai,rlm,audit,passed,0,0.1,False,2026-04-25T17:14:22.564994+00:00

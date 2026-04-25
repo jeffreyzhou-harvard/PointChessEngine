@@ -2,16 +2,18 @@
 
 | Candidate | Status | Engine | Bestmove | Legal | Duration |
 | --- | --- | --- | --- | --- | ---: |
-| CURRENT_chainofthought | pass | chainofthought | b1c3 | True | 1.521s |
-| CURRENT_debate | pass | debate | g1f3 | True | 0.248s |
-| CURRENT_langgraph | pass | langgraph | b1c3 | True | 1.502s |
-| CURRENT_oneshot_contextualized | pass | oneshot_contextualized | g1f3 | True | 0.312s |
-| CURRENT_oneshot_nocontext | pass | oneshot_nocontext | h2h4 | True | 0.217s |
-| CURRENT_oneshot_react | pass | oneshot_react | b1a3 | True | 0.277s |
+| CURRENT_chainofthought | pass | chainofthought | d2d4 | True | 0.441s |
+| CURRENT_debate | pass | debate | g1f3 | True | 0.468s |
+| CURRENT_langgraph | pass | langgraph | b1c3 | True | 1.465s |
+| CURRENT_oneshot_contextualized | pass | oneshot_contextualized | g1f3 | True | 0.495s |
+| CURRENT_oneshot_nocontext | pass | oneshot_nocontext | g1f3 | True | 0.350s |
+| CURRENT_oneshot_react | pass | oneshot_react | c2c4 | True | 0.449s |
+| CURRENT_rlm | pass | rlm | e2e4 | True | 0.371s |
 
-- Candidates: 6
+- Candidates: 7
 - Failures: 0
-- Estimated serial runtime: 4.077s
-- Parallel wall time: 1.521s
-- Speedup factor: 2.68x
+- Estimated serial runtime: 4.039s
+- Parallel wall time: 1.465s
+- Speedup factor: 2.76x
 - Report: `reports/comparisons/CURRENT_ENGINES/comparison.md`
+- Graph data: `metrics.csv`, `metrics.jsonl`, `metrics.json`

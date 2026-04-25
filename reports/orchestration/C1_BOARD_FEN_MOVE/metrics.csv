@@ -1,0 +1,7 @@
+task_id,candidate_id,orchestration_type,mode,status,returncode,duration_seconds,live_model_used,timestamp
+C1_BOARD_FEN_MOVE,C1_codex_agent,codex_agent,audit,audit_completed,,0,False,2026-04-25T17:14:21.064742+00:00
+C1_BOARD_FEN_MOVE,C1_custom_parallel,custom_langchain_parallel,audit,audit_completed,,0,False,2026-04-25T17:14:21.067420+00:00
+C1_BOARD_FEN_MOVE,C1_debate_heterogeneous_claude_gpt_gemini,debate_ensemble,audit,audit_completed,,0,False,2026-04-25T17:14:21.064447+00:00
+C1_BOARD_FEN_MOVE,C1_react_claude,react,audit,audit_completed,,0,False,2026-04-25T17:14:21.064271+00:00
+C1_BOARD_FEN_MOVE,C1_replit_agent,replit_agent,audit,audit_completed,,0,False,2026-04-25T17:14:21.065212+00:00
+C1_BOARD_FEN_MOVE,C1_rlm_openai,rlm,audit,passed,0,0.101,False,2026-04-25T17:14:21.165940+00:00

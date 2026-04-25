@@ -12,12 +12,19 @@ Search Python types are private to that engine - those are graded by
 """
 from __future__ import annotations
 
+import os
+
 import pytest
 
 from arena.engines import REGISTRY, UCIClient
 
 # Sorted so test IDs are deterministic in CI.
-ENGINE_IDS = sorted(REGISTRY.keys())
+_FILTER_TEXT = os.environ.get("POINTCHESS_ENGINE_FILTER", "").strip()
+if _FILTER_TEXT:
+    requested = {item.strip() for item in _FILTER_TEXT.split(",") if item.strip()}
+    ENGINE_IDS = [engine_id for engine_id in sorted(REGISTRY.keys()) if engine_id in requested]
+else:
+    ENGINE_IDS = sorted(REGISTRY.keys())
 
 
 @pytest.fixture(scope="session", params=ENGINE_IDS, ids=lambda eid: eid)
