@@ -82,3 +82,7 @@ jobs:
       - name: debate engine tests
         working-directory: engines/debate
         run: pytest -q tests
+
+      - name: ensemble engine tests
+        working-directory: engines/ensemble
+        run: pytest -q tests
