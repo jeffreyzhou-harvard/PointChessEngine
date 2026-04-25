@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PointChess Engine</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+        <header>
+            <h1>PointChess Engine</h1>
+        </header>
+
+        <div class="main-layout">
+            <div class="board-container">
+                <div class="board-labels-top">
+                    <span>a</span><span>b</span><span>c</span><span>d</span>
+                    <span>e</span><span>f</span><span>g</span><span>h</span>
+                </div>
+                <div class="board-with-ranks">
+                    <div class="rank-labels" id="rank-labels">
+                        <span>8</span><span>7</span><span>6</span><span>5</span>
+                        <span>4</span><span>3</span><span>2</span><span>1</span>
+                    </div>
+                    <div class="board" id="board"></div>
+                </div>
+                <div class="status-bar" id="status"></div>
+            </div>
+
+            <div class="sidebar">
+                <div class="panel">
+                    <h3>New Game</h3>
+                    <div class="control-group">
+                        <label>Play as:</label>
+                        <div class="button-group">
+                            <button id="btn-white" class="btn-color active" onclick="setColor('white')">White</button>
+                            <button id="btn-black" class="btn-color" onclick="setColor('black')">Black</button>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="elo-slider">Engine ELO: <span id="elo-value">1500</span></label>
+                        <input type="range" id="elo-slider" min="400" max="2400" value="1500" step="50"
+                               oninput="document.getElementById('elo-value').textContent=this.value">
+                        <div class="elo-labels">
+                            <span>400</span><span>1400</span><span>2400</span>
+                        </div>
+                    </div>
+                    <button class="btn-primary" onclick="newGame()">Start New Game</button>
+                </div>
+
+                <div class="panel">
+                    <h3>Moves</h3>
+                    <div class="move-list" id="move-list"></div>
+                </div>
+
+                <div class="panel">
+                    <h3>Actions</h3>
+                    <div class="actions">
+                        <button class="btn" onclick="undoMove()">Undo</button>
+                        <button class="btn" onclick="resign()">Resign</button>
+                        <button class="btn" onclick="exportPGN()">Export PGN</button>
+                    </div>
+                </div>
+
+                <div class="panel" id="info-panel">
+                    <h3>Info</h3>
+                    <div id="game-info">
+                        <div>FEN: <span id="fen-display" class="fen"></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Promotion dialog -->
+        <div class="modal" id="promotion-modal" style="display:none;">
+            <div class="modal-content">
+                <h3>Promote pawn to:</h3>
+                <div class="promotion-choices" id="promotion-choices"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
