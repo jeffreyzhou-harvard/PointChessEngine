@@ -385,7 +385,7 @@ See `infra/agents/PARALLELIZATION_PLAN.md` and `infra/scripts/` for concrete pro
   <img src="figures/parallel_champion_ladder.gif" alt="Champion mode replay showing C0-C8 candidate stages running through a CI-style dashboard" width="92%" />
 </p>
 
-<p align="center"><em>Champion mode turns the workflow into a visible CI-style ladder: each C* milestone evaluates multiple candidate methodologies from the same baseline, runs the configured Docker gates, scores the candidates, selects the stage champion by score and tie-breaks, and emits reports/metrics for later analysis.</em></p>
+<p align="center"><em>Champion mode runs AI-agent methodologies in parallel, giving each candidate its own isolated Docker/worktree context so separate agents can explore different implementation strategies without contaminating each other. At each C* milestone, the candidates are tested, scored, and ranked; the best candidate becomes the new canonical baseline, and the next milestone restarts from that winner. This lets the strongest method win each stage while compressing wall-clock time through parallel agent work. The CI dashboard GIF is a sped-up replay of that loop.</em></p>
 
 ---
 
