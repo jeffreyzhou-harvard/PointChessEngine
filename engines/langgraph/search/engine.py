@@ -69,10 +69,6 @@ class Engine:
         if result.best_move:
             # Add noise to evaluation
             result.score = self.elo_config.add_noise_to_score(result.score)
-            
-            # Potentially select suboptimal move based on ELO
-            if self.elo_config.best_move_probability < 1.0:
-                result = self._apply_elo_move_selection(game_state, result, limits)
         
         return result
     

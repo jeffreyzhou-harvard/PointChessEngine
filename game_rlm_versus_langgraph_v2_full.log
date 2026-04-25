@@ -1,0 +1,23 @@
+Indexing opening suite...
+Started game 1 of 6 (RLM vs LangGraph)
+Started game 6 of 6 (LangGraph vs RLM)
+Started game 2 of 6 (LangGraph vs RLM)
+Started game 3 of 6 (RLM vs LangGraph)
+Started game 4 of 6 (LangGraph vs RLM)
+Started game 5 of 6 (RLM vs LangGraph)
+Finished game 2 (LangGraph vs RLM): 1-0 {White mates}
+Finished game 4 (LangGraph vs RLM): 1-0 {White mates}
+Finished game 3 (RLM vs LangGraph): 0-1 {Black mates}
+Finished game 5 (RLM vs LangGraph): 0-1 {Black mates}
+Finished game 6 (LangGraph vs RLM): 1/2-1/2 {Draw by 3-fold repetition}
+Finished game 1 (RLM vs LangGraph): 0-1 {Black mates}
+--------------------------------------------------
+Results of RLM vs LangGraph (10+0.1, NULL, NULL - 64MB, 8mvs_+90_+99.epd):
+Elo: -416.56 +/- nan, nElo: -868.59 +/- 278.00
+LOS: 0.00 %, DrawRatio: 0.00 %, PairsRatio: 0.00
+Games: 6, Wins: 0, Losses: 5, Draws: 1, Points: 0.5 (8.33 %)
+Ptnml(0-2): [2, 1, 0, 0, 0], WL/DD Ratio: nan
+--------------------------------------------------
+Finished match
+Total Time: 00:00:18 (hours:minutes:seconds)
+

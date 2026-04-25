@@ -132,6 +132,7 @@ class Searcher:
         self.nodes_searched = 0
         self.start_time = time.time()
         self.stop_search = False
+        self._active_limits = limits
         
         best_move = None
         best_score = 0
@@ -246,10 +247,10 @@ class Searcher:
                 self.stop_search = True
                 return 0
         
-        # Check for simple draws (skip threefold repetition check during search for performance)
-        if game_state.is_stalemate() or game_state._is_fifty_move_draw() or game_state.is_insufficient_material():
+        # Cheap draw checks (stalemate is handled below via get_legal_moves)
+        if game_state._is_fifty_move_draw() or game_state.is_insufficient_material():
             return 0
-        
+
         # Terminal node (depth 0 or checkmate)
         if depth <= 0:
             return self.quiescence(game_state, alpha, beta)
@@ -328,8 +329,8 @@ class Searcher:
         """
         self.nodes_searched += 1
         
-        # Stand-pat score
-        stand_pat = self.evaluator.evaluate(game_state.board, game_state)
+        # Stand-pat score (no mobility — too expensive inside search)
+        stand_pat = self.evaluator.evaluate(game_state.board)
         
         # Adjust score based on side to move
         if game_state.board.active_color == 'black':
@@ -420,19 +421,20 @@ class Searcher:
         """Check if search should stop."""
         if self.stop_search:
             return True
-        
-        if limits is None:
+
+        check = limits or getattr(self, '_active_limits', None)
+        if check is None:
             return False
-        
+
         # Check time limit
-        if limits.max_time_ms:
+        if check.max_time_ms:
             elapsed_ms = (time.time() - self.start_time) * 1000
-            if elapsed_ms >= limits.max_time_ms:
+            if elapsed_ms >= check.max_time_ms:
                 return True
-        
+
         # Check node limit
-        if limits.max_nodes:
-            if self.nodes_searched >= limits.max_nodes:
+        if check.max_nodes:
+            if self.nodes_searched >= check.max_nodes:
                 return True
-        
+
         return False
