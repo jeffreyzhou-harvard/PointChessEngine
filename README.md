@@ -287,43 +287,6 @@ When adding these paper figures, include a one-line citation under each image wi
 
 ---
 
-## Judging criteria alignment
-
-### Creativity
-
-- Heterogeneous debate personas and orchestration exploration in `infra/orchestrators/debate/`
-- [Stockfish](https://stockfishchess.org/)-referenced decision loops in engine variants and eval scripts
-- Persona/rating-aware behavior explored across approach families
-- Geometric and format robustness treated as a separate eval concern from raw Elo
-
-### Rigor
-
-- Reproducible protocol docs in `infra/agents/` and `infra/tasks/`
-- Tournament and candidate-stage automation in `infra/scripts/`
-- Structured comparisons and reporting in `reports/comparisons/`
-- Contract and integration-level tests under `tests/`
-- Early milestone gating for `C1` and `C2` to reject unstable baselines before downstream orchestration
-- Multi-stage noise reduction via subtask-level unit tests (including sub-sub-task checks), explicitly designed to filter weak intermediate outputs before they contaminate later stages
-- Hard pre-build test barrier: perft + unit tests must pass before LLM-generated modules advance to integration
-- LLM-assisted eval screening used as a fast triage layer, with deterministic tests remaining the final authority
-
-Noise reduction worked particularly well in practice because it was enforced as a pipeline, not a one-time check. Every candidate path passed through (1) `C1`/`C2` milestone gates for structural correctness, (2) localized unit checks at module and sub-module boundaries, (3) perft and protocol checks as hard promotion barriers, and only then (4) integration and tournament runs. This prevented low-signal, partially-correct LLM outputs from propagating into expensive downstream comparisons. In effect, we reduced eval noise early, so later strength/cost metrics reflected real engine differences rather than test-harness instability or hidden legality defects.
-
-### Ingenuity
-
-- Three-layer parallelization strategy (within-process, game-level, matrix-level)
-- Multiple methodology families under one repo contract (one-shot, CoT, ReAct, graph/debate)
-- Cost-aware experimentation and model/routing flexibility
-
-### Engineering
-
-- Modular engine packages with UCI adapters
-- Shared orchestration protocols and stage gates
-- Automated candidate/champion evaluation scripts
-- Interactive local dashboard for live experiments
-
----
-
 ## System architecture (repository-aligned)
 
 The framework has five replaceable layers:
@@ -905,7 +868,42 @@ These aren't wired in yet but inform where the eval / monitoring layer is headin
 - `infra/orchestrators/` - orchestration schemas and runtime docs
 - `infra/tasks/START_HERE.md` - guided task entrypoint
 
-If you want the README to mirror your whitepaper structure even more closely, the next step is adding dedicated top-level docs (`WHITEPAPER.md`, `RELATED_WORK.md`, `decisions/log.md`, and `/docs` figures) and linking them from here.
+---
+
+## Appendix: Judging criteria alignment
+
+### Creativity
+
+- Heterogeneous debate personas and orchestration exploration in `infra/orchestrators/debate/`
+- [Stockfish](https://stockfishchess.org/)-referenced decision loops in engine variants and eval scripts
+- Persona/rating-aware behavior explored across approach families
+- Geometric and format robustness treated as a separate eval concern from raw Elo
+
+### Rigor
+
+- Reproducible protocol docs in `infra/agents/` and `infra/tasks/`
+- Tournament and candidate-stage automation in `infra/scripts/`
+- Structured comparisons and reporting in `reports/comparisons/`
+- Contract and integration-level tests under `tests/`
+- Early milestone gating for `C1` and `C2` to reject unstable baselines before downstream orchestration
+- Multi-stage noise reduction via subtask-level unit tests (including sub-sub-task checks), explicitly designed to filter weak intermediate outputs before they contaminate later stages
+- Hard pre-build test barrier: perft + unit tests must pass before LLM-generated modules advance to integration
+- LLM-assisted eval screening used as a fast triage layer, with deterministic tests remaining the final authority
+
+Noise reduction worked particularly well in practice because it was enforced as a pipeline, not a one-time check. Every candidate path passed through (1) `C1`/`C2` milestone gates for structural correctness, (2) localized unit checks at module and sub-module boundaries, (3) perft and protocol checks as hard promotion barriers, and only then (4) integration and tournament runs. This prevented low-signal, partially-correct LLM outputs from propagating into expensive downstream comparisons. In effect, we reduced eval noise early, so later strength/cost metrics reflected real engine differences rather than test-harness instability or hidden legality defects.
+
+### Ingenuity
+
+- Three-layer parallelization strategy (within-process, game-level, matrix-level)
+- Multiple methodology families under one repo contract (one-shot, CoT, ReAct, graph/debate)
+- Cost-aware experimentation and model/routing flexibility
+
+### Engineering
+
+- Modular engine packages with UCI adapters
+- Shared orchestration protocols and stage gates
+- Automated candidate/champion evaluation scripts
+- Interactive local dashboard for live experiments
 
 ---
 
