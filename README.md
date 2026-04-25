@@ -24,20 +24,17 @@ Before implementing any methodology, we conducted extensive prior-art research a
 
 ## Contents
 
-- [**Overview**](#overview) — what this repo is and the research question
-- [**Our initial hypothesis**](#our-initial-hypothesis) — what we expected before running anything
-- [**Sneak peek**](#sneak-peek) — quick visual highlights (engines playing, tournament running)
-- [**Current repository scope**](#current-repository-scope) — top-level layout, the eight engines, methodologies, arena UI
-- [**What we measured, and how**](#what-we-measured-and-how) — telemetry layers and instrumentation
-- [**Results (current snapshot)**](#results-current-snapshot) — round-robin standings, head-to-head matches, build-cost figures
-- [**Setup and run**](#setup-and-run) — install, run the arena, run engines as UCI
-- [**Testing**](#testing) — unit, perft, contract, and integration tests
+- [**Introduction**](#introduction) — research question, motivation, and hypothesis
+- [**Methodology**](#methodology-repository-scope) — engines, measurement, observability, and parallelism
+- [**Background**](#background) — shortened prior-art map with numbered references
+- [**Results**](#results-current-snapshot) — tournament story, head-to-heads, and cost/robustness figures
+- [**AI usage and division of work**](#ai-usage-and-division-of-work) — how AI was used and reviewed
 - [**Repository map**](#repository-map-current) — directory-by-directory navigation
-- [**Appendix: Judging criteria alignment**](#appendix-judging-criteria-alignment) — creativity, rigor, ingenuity, engineering
+- [**Appendix**](#appendix-setup-and-run) — setup, testing, references, and judging criteria
 
 ---
 
-## Overview
+## Introduction
 
 This repository investigates a core research question:
 
@@ -106,7 +103,30 @@ That makes it a practical benchmark for the broader engineering question:
 
 ---
 
-## Current repository scope
+## Background
+
+The project draws from four lines of work: recursive decomposition, multi-agent debate, scalable oversight, and chess as a controlled systems benchmark. The important move is not to copy any one paper; it is to turn those ideas into executable methodology variants that build the same UCI chess engine under the same tests.
+
+| Idea | How it maps into this repo | References |
+|---|---|---|
+| Recursive decomposition | `methodologies/rlm/` decomposes a chess-engine build into scoped subcalls and synthesizes their outputs into `engines/rlm/` | [1] |
+| Heterogeneous debate | `methodologies/debate/` lets multiple model families propose designs before a judge synthesizes the implementation | [2], [7], [8] |
+| Judge vs vote | `methodologies/debate/` and `methodologies/ensemble/` hold prompts/advisors constant while changing only the aggregation rule | [5], [6], [8] |
+| Chess as benchmark | The engine is the measurement artifact; legality, UCI behavior, perft, tournaments, and cost all matter | [3] |
+| Control/monitoring mindset | Champion mode treats tests, reviews, and candidate comparison as gates around untrusted generated code | [4], [5], [6] |
+
+Selected references:
+
+1. [Recursive Language Models](https://arxiv.org/abs/2512.24601) and [`alexzhang13/rlm`](https://github.com/alexzhang13/rlm).
+2. [Adaptive heterogeneous multi-agent debate for enhanced educational and factual reasoning in LLMs](https://link.springer.com/article/10.1007/s44443-025-00353-3).
+3. [Chess as a measurement substrate for LLM-driven systems](https://arxiv.org/abs/2502.13295).
+4. [AI Control: Improving Safety Despite Intentional Subversion](https://arxiv.org/abs/2312.06942).
+5. [On scalable oversight with weak LLMs judging strong LLMs](https://arxiv.org/abs/2407.04622).
+6. [Weak-to-strong generalization](https://arxiv.org/abs/2312.09390).
+7. [AI Safety via Debate](https://arxiv.org/abs/1805.00899).
+8. [Debate Helps Supervise Unreliable Experts](https://arxiv.org/abs/2311.08702).
+
+## Methodology: repository scope
 
 This repo currently contains multiple concrete engine implementations plus orchestration/testing infrastructure.
 
@@ -203,15 +223,17 @@ For arena-specific details, see `arena/README.md`.
 
 ---
 
-## What we measured, and how
+## Methodology: what we measured, and how
 
-Beyond raw playing strength, the comparison hinges on instrumentation. Each engine is wired up to surface five layers of telemetry:
+The benchmark is not a single Elo number. Each engine exposes comparable telemetry so we can judge both the artifact and the AI workflow that produced it.
 
-- **Per-move telemetry** — depth, nodes searched, NPS, score (cp/mate), wall-time, captured directly from each engine's UCI `info` lines and the arena's wall-clock around `go`. Streamed live in `arena/` and persisted to JSONL.
-- **Build cost telemetry** — `arena/engine_costs.json` carries `build_cost_usd`, `build_tokens`, and `build_model` per engine. The arena UI surfaces them next to playing strength so you can read strength-per-dollar at a glance.
-- **Test telemetry** — every engine ships its own `tests/` tree containing **unit tests** (board, move-generation, evaluation), **perft tests** (move-generation correctness against reference counts at depth ≥ 4), and **UCI-protocol tests** (handshake, info-line semantics, lifecycle). Test pass-rate and perft-correctness become first-class metrics in the comparison; the cross-engine `tests/contract/` parameterizes 9 protocol checks over every entry in `arena.engines.REGISTRY`, so any new engine joins the test matrix automatically.
-- **Tournament telemetry** — round-robin W/L/D, per-pair scores, Bradley-Terry Elo with bootstrap CIs, color balance, and legal-move rate, captured from the live `arena/` runs and the batch `infra/scripts/` tournament harness.
-- **Process telemetry (observability)** — the multi-agent and debate methodologies emit structured traces of each turn (which agent spoke, what they said, judge verdict). Captured via the LangGraph runtime's built-in observability hooks.
+| Layer | What we capture | Why it matters |
+|---|---|---|
+| Per-move telemetry | Depth, nodes, NPS, score, wall time from UCI `info` lines and arena timers | Separates playing strength from compute profile |
+| Build cost telemetry | Estimated build cost, token usage, model/provider, and build wall time | Lets us compare quality per dollar and per minute |
+| Test telemetry | Unit, perft, UCI, and contract-test pass rates | Keeps legality and protocol correctness visible across engines |
+| Tournament telemetry | W/L/D, pairwise scores, game length, color balance, legal-move rate, Elo-like estimates | Measures behavior under repeated play rather than isolated examples |
+| Process telemetry | Agent traces, debate turns, orchestration logs, review notes, and Champion reports | Makes the AI workflow itself auditable and comparable |
 
 ---
 
@@ -229,79 +251,32 @@ This is also what makes the eight-engine comparison fair: every multi-agent vari
 
 ## Parallelism via per-task Docker containers
 
-Each engine ships a `docker_parallel_orchestrator/` subtree (see `engines/oneshot_contextualized/docker_parallel_orchestrator/`, `engines/oneshot_nocontext/docker_parallel_orchestrator/`, `engines/chainofthought/docker_parallel_orchestrator/`, and `engines/oneshot_react/docker_parallel_orchestrator/`) that enacts the build DAG as a fleet of isolated Docker containers — one per task — orchestrated by `asyncio` or by `docker compose`'s `service_completed_successfully` dependency mechanism. Each container is functionally a tiny VM: its own filesystem, its own PID 1, no shared state with peers. The orchestrator launches every task whose dependencies have been satisfied and waits only on the longest path through the DAG, so independent tasks (the 6-way fan-out after `C2_LEGAL_MOVES`, the 4-way fan-out at the end) execute concurrently.
+The repo has two parallel execution modes. One optimizes raw build speed; the other optimizes correctness by letting multiple AI-agent methodologies compete at each milestone.
 
-The post-run verifier reads each container's self-recorded `start_time` / `end_time` JSON and asserts four invariants: dependencies respected, declared parallel groups overlapped at a common instant, the four final-eval tasks all overlapped pairwise, and every artifact landed on disk. Faking parallelism is hard because the verifier never trusts orchestrator clocks — only the wall times each container recorded for itself. We then ran all four engines' DAGs *concurrently* on a single host (distinct compose project / image names per engine) and confirmed every pair of engines shared a real wall-clock overlap window:
+### 1. Optimize for speed
+
+Several engines ship a `docker_parallel_orchestrator/` subtree (see `engines/oneshot_contextualized/docker_parallel_orchestrator/`, `engines/oneshot_nocontext/docker_parallel_orchestrator/`, `engines/chainofthought/docker_parallel_orchestrator/`, and `engines/oneshot_react/docker_parallel_orchestrator/`). These orchestrators enact the build DAG as isolated Docker containers — one container per task — and launch any task whose dependencies are already satisfied.
+
+Each container is functionally a tiny VM: separate filesystem, separate process tree, and no shared mutable state. The verifier reads each container's own `start_time` / `end_time` JSON, checks dependency ordering, confirms that declared parallel groups actually overlap, and verifies that every artifact lands on disk.
 
 <p align="center">
   <img src="figures/parallel_execution_gantt.png" alt="Gantt chart showing four chess-engine DAGs running concurrently as Docker container fleets" width="92%" />
 </p>
-<p align="center"><em>Four engine DAGs (colored bands) executing simultaneously. Within each band, the 6-way fan-out after <code>C2_LEGAL_MOVES</code> and the 4-way final-eval fan-out are visibly stacked. Across bands, the four engines overlap horizontally — proof that the engines are building at the same wall-clock time, not in sequence.</em></p>
+<p align="center"><em>Four engine DAGs executing simultaneously. Within each band, independent subtasks fan out; across bands, separate engine builds overlap in real wall-clock time.</em></p>
 
-This gives us the cheapest possible local stand-in for the eventual remote-agent-VM setup: when each "engineer" agent is a real VM with its own toolchain, the dispatcher above doesn't change shape — only the executor does.
+### 2. Optimize for correctness
 
----
+Champion mode runs AI-agent methodologies in parallel, giving each candidate its own isolated Docker/worktree context so separate agents can explore different implementation strategies without contaminating each other. At each C* milestone, candidates are tested, scored, and ranked; the best candidate becomes the new canonical baseline, and the next milestone restarts from that winner. This lets the strongest method win each stage while compressing wall-clock time through parallel agent work.
 
-## Research and prior art (deep dive)
+<p align="center">
+  <img src="figures/parallel_champion_ladder.gif" alt="Champion mode replay showing C0-C8 candidate stages running through a CI-style dashboard" width="92%" />
+</p>
 
-Before describing what's in the repo, the section below grounds the project in the recent literature it draws from. Each of the four research streams below mapped onto a concrete piece of the build.
-
-### Recursive Language Models (RLM)
-
-**What it is.** Recursive Language Models, introduced by Alex Zhang and collaborators in [arXiv:2512.24601](https://arxiv.org/abs/2512.24601) and accompanied by the open-source reference implementation at [`alexzhang13/rlm`](https://github.com/alexzhang13/rlm), formalize the idea that a language model's *next answer* can itself be the result of recursive calls into smaller, scoped LM invocations. Instead of a single forward pass on a long context, the model treats parts of its context as opaque pointers and dispatches sub-queries that read those pointers on-demand. Each sub-call returns a compressed answer that the outer call can integrate. The recursion can be arbitrarily deep, with leaf calls handling the most concrete reasoning and the root call doing planning and synthesis.
-
-**Why it matters.** Long-context LLMs run into three well-documented failure modes — middle-of-context attention collapse, quadratic compute, and the impossibility of selectively forgetting. RLM sidesteps all three by making "look at this section of the input" an explicit, scoped operation rather than a passive read. The empirical claim from the paper is that the same total token budget produces strictly better answers when spent recursively rather than monolithically — particularly for tasks that decompose naturally into sub-problems.
-
-**How we used it for chess.** A chess engine decomposes naturally: legality, search, evaluation, tactics, opening, endgame, UCI protocol, ELO calibration. `methodologies/rlm/` implements an RLM-style build by treating each module as a leaf sub-call, with a root call that plans the module list, dispatches the sub-builds, and integrates their outputs into a single coherent engine. Each sub-call sees only the sub-task's spec (not the rest of the engine's source), which mirrors the paper's "scoped read" primitive. The resulting `engines/rlm/` is the only engine in the repo whose build process intentionally never has the entire engine source in context at once.
-
-**Researchers / acknowledgements.** Alex Zhang and co-authors (paper above). Our recursive-prompting recipe is downstream of their reference implementation; see [`alexzhang13/rlm`](https://github.com/alexzhang13/rlm) for the canonical figures (recursion-tree decoding, ablation against single-pass baselines).
-
-> *Figure pointer.* The paper's Figure 2 (recursion tree across decoding) is the cleanest single picture of the pattern. We reproduce its *shape*, not its content, in our build DAGs — see the Gantt above for the chess-engine analogue (every container = one scoped sub-call).
-
-### Multi-model debate (heterogeneous advisor pool)
-
-**What it is.** [Adaptive heterogeneous multi-agent debate for enhanced educational and factual reasoning in LLMs](https://link.springer.com/article/10.1007/s44443-025-00353-3) shows that mixing model *families* — not just instances of the same model — in a debate loop systematically improves reasoning quality on factual and pedagogical tasks. The intuition is that different model families have different inductive biases and failure modes; running them against each other surfaces disagreements that any single family would silently smooth over.
-
-**How we used it for chess.** `methodologies/debate/` instantiates a five-provider advisor pool: OpenAI, Grok, Gemini, DeepSeek, and Kimi each propose a design for the engine. A Claude judge then synthesizes the proposals and writes the actual code for `engines/debate/`. The provider mix was deliberately chosen to maximize family diversity rather than aggregate quality.
-
-> *Figure pointer.* See `DebateArchitectureEngine.png` (embedded later in the README) for the trace of one such debate round; the multi-provider fan-in mirrors the fan-in in Figure 1 of the original paper.
-
-### Judge vs vote (MIT AI Safety Fundamentals)
-
-[MIT AI Safety Fundamentals weeks 5](https://web.mit.edu/aialignment/www/aisf/week5/) and [6](https://web.mit.edu/aialignment/www/aisf/week6/) frame a question that recurs throughout multi-agent literature: when several models disagree, who decides? The two cleanest options — **single trusted judge** and **plurality peer vote** — have very different failure modes (judge over-fits to one viewpoint; vote degenerates when advisors share biases).
-
-**How we used it.** `methodologies/debate/` (Claude-as-judge) and `methodologies/ensemble/` (no-judge plurality vote among the same advisor pool) are an A/B of exactly this distinction. `engines/debate/` and `engines/ensemble/` are therefore the same prompt set, the same advisors, and the same builder Claude — only the *aggregation step* differs. Any strength delta between them is attributable to the decision rule alone.
-
-### Chess as a measurement substrate
-
-**What it is.** [Chess as a measurement substrate for LLM-driven systems (arXiv:2502.13295)](https://arxiv.org/abs/2502.13295) argues that chess has long been used to evaluate LLM *players* but should also be used to evaluate LLM-built *systems*. The substrate is attractive because it has fixed rules, a strong oracle (Stockfish), well-studied search behavior, and easily-measurable failure modes — a chess engine that hallucinates a board state or generates an illegal move announces itself loudly.
-
-**How we used it.** This paper is the framing under which the entire scorecard is constructed: every methodology is graded as an LLM-built *system*, with the chess engine as the unit of measurement, not the endpoint. That framing is what justifies the multi-axis scorecard (build cost, runtime cost, robustness, playing strength) instead of a single Elo number.
-
-### Tools and observability stack
-
-The methodologies above are wired into a small but deliberate tool stack:
-
-- **[Promptfoo](https://www.promptfoo.dev/)** — declarative prompt-level test cases. The repo's `promptfooconfig.yaml` carries the design-phase prompts for each methodology under regression tests, so a prompt that suddenly stops producing a valid module spec is caught before any code is generated. Promptfoo is the prompt-side analogue of unit tests.
-- **[LangGraph](https://www.langchain.com/langgraph)** — the multi-agent runtime *and* observability surface. Every node transition is logged with its input/output state, which lets us replay a build (or a single bug) without re-paying the LLM cost. See `methodologies/langgraph/`.
-- **[python-chess](https://python-chess.readthedocs.io/)** — used by `arena/`, `tests/contract/`, and the perft harnesses for ground-truth move legality, FEN/SAN/PGN parsing, and game-end detection.
-- **[FastChess](https://github.com/Disservin/fastchess)** — drop-in batch-tournament runner; the round-robin format is the eventual replacement for the current candidate/champion runners in `infra/scripts/`.
-- **Test layers** — every engine ships its own `tests/` tree containing unit tests (board, move-gen, evaluation), perft tests (move-gen correctness against reference counts at depth ≥ 4), and UCI-protocol tests (handshake, info-line semantics, lifecycle). The cross-engine `tests/contract/` parameterizes 9 protocol checks over every entry in `arena.engines.REGISTRY`, so any new engine joins the test matrix automatically.
-
-### Paper figure references to include during write-up
-
-To keep this README reproducible and attribution-safe, we currently link to source papers and summarize the figure intent. During the final manuscript pass, add licensed reproductions/screenshots of these specific figures:
-
-- **RLM paper (`arXiv:2512.24601`)** — recursion tree / hierarchical decoding diagram (typically early-method section). Use alongside `figures/parallel_execution_gantt.png` to show conceptual mapping from recursive reasoning to recursive build DAG execution.
-- **Adaptive heterogeneous debate paper** — architecture block diagram showing heterogeneous model pool and arbitration loop. Pair this with `DebateArchitectureEngine.png` to show how the repo operationalizes the same pattern.
-- **MIT AI Safety Fundamentals (weeks 5/6)** — judge-vs-vote framing graphic (or table) to ground our `methodologies/debate/` vs `methodologies/ensemble/` A/B.
-- **Chess as measurement substrate (`arXiv:2502.13295`)** — figure/table motivating chess as a controlled systems benchmark. Place directly before the scorecard section to justify why we track protocol robustness and perft in addition to Elo-like strength.
-
-When adding these paper figures, include a one-line citation under each image with source link and license note.
+<p align="center"><em>The CI dashboard GIF is a sped-up replay of the Champion loop: parallel AI-agent candidates, Docker gates, scoring, winner selection, and restart from the new baseline.</em></p>
 
 ---
 
-## System architecture (repository-aligned)
+## Methodology: system architecture
 
 The framework has five replaceable layers:
 
@@ -339,7 +314,7 @@ A central principle is human-reviewed iteration:
 
 ---
 
-## Experimental framework (approach spectrum)
+## Methodology: approach spectrum
 
 The eight engines span the methodology axis from minimal to maximal
 orchestration:
@@ -366,7 +341,7 @@ These are evaluated comparatively through three layers:
 
 ---
 
-## Parallelization strategy
+## Methodology: parallelization strategy
 
 Three distinct bottlenecks are handled separately:
 
@@ -381,17 +356,12 @@ Three distinct bottlenecks are handled separately:
 
 See `infra/agents/PARALLELIZATION_PLAN.md` and `infra/scripts/` for concrete process flow.
 
-<p align="center">
-  <img src="figures/parallel_champion_ladder.gif" alt="Champion mode replay showing C0-C8 candidate stages running through a CI-style dashboard" width="92%" />
-</p>
-
-<p align="center"><em>Champion mode runs AI-agent methodologies in parallel, giving each candidate its own isolated Docker/worktree context so separate agents can explore different implementation strategies without contaminating each other. At each C* milestone, the candidates are tested, scored, and ranked; the best candidate becomes the new canonical baseline, and the next milestone restarts from that winner. This lets the strongest method win each stage while compressing wall-clock time through parallel agent work. The CI dashboard GIF is a sped-up replay of that loop.</em></p>
-
 ---
 
 ## Results (current snapshot)
 
-This section is intentionally placed before setup so readers can see outcomes first, then reproduce.
+The results tell a methodology story rather than a single-engine story. First, curated project context dominated a bare prompt. Second, different aggregation rules produced materially different engines even with similar advisor pools. Third, the Champion pipeline turns those comparisons into a repeatable selection loop: run candidates, score them, promote the winner, then continue from that baseline.
+
 Everything below is additive and corresponds to artifacts already checked into this repo.
 
 ### Tournament snapshot (5-engine round-robin, 20 games)
@@ -556,7 +526,100 @@ That separation is what lets the repository function as research infrastructure 
 
 ---
 
-## Setup and run
+## Repository map (current)
+
+```text
+PointChessEngine/
+├── engines/                              # 8 UCI engines (the artifacts being compared)
+│   ├── oneshot_nocontext/
+│   ├── oneshot_contextualized/
+│   ├── oneshot_react/
+│   ├── chainofthought/
+│   ├── langgraph/                        # built by methodologies/langgraph
+│   ├── debate/                           # built by methodologies/debate
+│   ├── ensemble/                         # built by methodologies/ensemble
+│   └── rlm/                              # recursive-LM-inspired decomposition (methodologies/rlm)
+├── methodologies/                        # the build orchestrators
+│   ├── langgraph/                        # multi-agent specialists
+│   ├── debate/                           # multi-model debate, Claude judges
+│   ├── ensemble/                         # multi-model vote, no judge
+│   └── rlm/                              # recursive-LM prompting recipe
+├── arena/                                # web UI: engine-vs-engine + live metrics
+│   ├── engines.py                        # REGISTRY of all 8 launchable engines
+│   └── tests/                            # 28 unit tests w/ in-tree fake UCI engine
+├── infra/
+│   ├── agents/                           # methodology + parallelization protocols
+│   ├── orchestrators/                    # orchestration schemas, debate runtime notes
+│   ├── scripts/                          # candidate / champion runners + reporters
+│   ├── tasks/                            # work plans, protocol docs
+│   └── configs/                          # tournament + champion YAMLs
+├── reports/                              # run / eval / comparison artifacts
+├── tests/
+│   ├── classical/                        # 59 milestone tests (currently grades oneshot_nocontext)
+│   └── contract/                         # 63 UCI-contract tests parameterized over REGISTRY
+└── .github/workflows/tests.yml           # CI: every test tree on every push + PR
+```
+
+---
+
+## Known limitations
+
+- LLM-driven approaches are prompt-sensitive and can have wide Elo confidence intervals
+- Cost/latency variance is substantial for agentic and debate-style approaches
+- Cross-approach transitivity assumptions in Elo are imperfect
+- Some orchestration/eval components are still evolving and documented as protocol-first
+
+---
+
+## Appendix: Related work and inspiration
+
+The methodologies in this repo were shaped by recent work on recursive prompting, multi-model debate, and chess as a substrate for evaluating LLM-built systems. Brief notes on how each reference shaped a specific piece of the project:
+
+### Recursive language models
+- [`alexzhang13/rlm`](https://github.com/alexzhang13/rlm) and the [Recursive Language Models paper](https://arxiv.org/abs/2512.24601) — the recursive-LM pattern, where a model calls smaller / specialized LMs to compute its next answer. Directly inspired `engines/rlm/` and `methodologies/rlm/`.
+
+### Multi-model debate and ensembling
+- [Adaptive heterogeneous multi-agent debate for enhanced educational and factual reasoning in LLMs](https://link.springer.com/article/10.1007/s44443-025-00353-3) — empirical evidence that mixing model families in a debate loop improves reasoning quality. Shaped the multi-provider advisor pool in `methodologies/debate/`.
+- Scalable-oversight and debate references [5], [6], [7], and [8] above frame the judge-vs-vote distinction we A/B-tested across `methodologies/debate/` (single judge) and `methodologies/ensemble/` (peer plurality vote).
+
+### LLMs and chess as an evaluation domain
+- [Chess as a measurement substrate for LLM-driven systems (arXiv:2502.13295)](https://arxiv.org/abs/2502.13295) — motivates using chess to *grade* LLM-built systems, not only LLMs-as-players. This is the framing our scorecard inherits.
+
+### Chess-engine references and tooling
+- [Stockfish](https://stockfishchess.org/) — the canonical reference engine; every UCI engine in this repo is conceptually compared against it.
+- [python-chess](https://python-chess.readthedocs.io/) — used by `arena/` and `tests/contract/` for legality, FEN/SAN/PGN, and game-end detection.
+- [FastChess](https://github.com/Disservin/fastchess) — a faster alternative to cutechess for batch tournaments; candidate replacement for the current candidate/champion runners in `infra/scripts/`.
+- ["Building my own chess engine" (healeycodes)](https://healeycodes.com/building-my-own-chess-engine) — a single-author engine walkthrough that helped scope what "minimal complete" means for the master brief every methodology builds against.
+- [Universal Chess Interface on the Chess Programming Wiki](https://www.chessprogramming.org/UCI) and the [UCI overview on Wikipedia](https://en.wikipedia.org/wiki/Universal_Chess_Interface) — the protocol every engine in this repo speaks.
+
+### Evaluation and observability tooling (forward-looking)
+These aren't wired in yet but inform where the eval / monitoring layer is heading.
+
+- ["Four places where you can put LLM monitoring"](https://www.alignmentforum.org/posts/AmcEyFErJc9TQ5ySF/four-places-where-you-can-put-llm-monitoring) — taxonomy that informs where evals should attach across the build, design-debate, and play-time loops.
+- [Promptfoo](https://www.promptfoo.dev/) — candidate framework for prompt-level test cases on each methodology's design-phase prompts.
+- [Weights & Biases Weave](https://wandb.ai/site/weave/) — candidate framework for per-run agent observability across `methodologies/debate/`, `methodologies/ensemble/`, and `methodologies/langgraph/`.
+
+---
+
+## Future work
+
+- Broader model grid runs with tighter confidence bounds
+- Additional framework-isolation experiments (same model/prompt, different runtime)
+- Expanded robustness suite (metamorphic + adversarial probes)
+- More complete cost-Elo Pareto reporting across all approach families
+
+---
+
+## Related docs in this repo
+
+- `arena/README.md` - interactive arena usage
+- `infra/agents/` - methodology and operational protocols
+- `infra/orchestrators/` - orchestration schemas and runtime docs
+- `infra/tasks/START_HERE.md` - guided task entrypoint
+
+---
+
+## Appendix: Setup and run
 
 ### Prerequisites
 
@@ -595,7 +658,7 @@ Then open: `http://127.0.0.1:8765`
 
 ---
 
-## Testing
+## Appendix: Testing and Champion commands
 
 ### Engine/package tests
 
@@ -814,98 +877,6 @@ GitHub Actions workflow:
 
 ---
 
-## Repository map (current)
-
-```text
-PointChessEngine/
-├── engines/                              # 8 UCI engines (the artifacts being compared)
-│   ├── oneshot_nocontext/
-│   ├── oneshot_contextualized/
-│   ├── oneshot_react/
-│   ├── chainofthought/
-│   ├── langgraph/                        # built by methodologies/langgraph
-│   ├── debate/                           # built by methodologies/debate
-│   ├── ensemble/                         # built by methodologies/ensemble
-│   └── rlm/                              # recursive-LM-inspired decomposition (methodologies/rlm)
-├── methodologies/                        # the build orchestrators
-│   ├── langgraph/                        # multi-agent specialists
-│   ├── debate/                           # multi-model debate, Claude judges
-│   ├── ensemble/                         # multi-model vote, no judge
-│   └── rlm/                              # recursive-LM prompting recipe
-├── arena/                                # web UI: engine-vs-engine + live metrics
-│   ├── engines.py                        # REGISTRY of all 8 launchable engines
-│   └── tests/                            # 28 unit tests w/ in-tree fake UCI engine
-├── infra/
-│   ├── agents/                           # methodology + parallelization protocols
-│   ├── orchestrators/                    # orchestration schemas, debate runtime notes
-│   ├── scripts/                          # candidate / champion runners + reporters
-│   ├── tasks/                            # work plans, protocol docs
-│   └── configs/                          # tournament + champion YAMLs
-├── reports/                              # run / eval / comparison artifacts
-├── tests/
-│   ├── classical/                        # 59 milestone tests (currently grades oneshot_nocontext)
-│   └── contract/                         # 63 UCI-contract tests parameterized over REGISTRY
-└── .github/workflows/tests.yml           # CI: every test tree on every push + PR
-```
-
----
-
-## Known limitations
-
-- LLM-driven approaches are prompt-sensitive and can have wide Elo confidence intervals
-- Cost/latency variance is substantial for agentic and debate-style approaches
-- Cross-approach transitivity assumptions in Elo are imperfect
-- Some orchestration/eval components are still evolving and documented as protocol-first
-
----
-
-## Related work and inspiration
-
-The methodologies in this repo were shaped by recent work on recursive prompting, multi-model debate, and chess as a substrate for evaluating LLM-built systems. Brief notes on how each reference shaped a specific piece of the project:
-
-### Recursive language models
-- [`alexzhang13/rlm`](https://github.com/alexzhang13/rlm) and the [Recursive Language Models paper](https://arxiv.org/abs/2512.24601) — the recursive-LM pattern, where a model calls smaller / specialized LMs to compute its next answer. Directly inspired `engines/rlm/` and `methodologies/rlm/`.
-
-### Multi-model debate and ensembling
-- [Adaptive heterogeneous multi-agent debate for enhanced educational and factual reasoning in LLMs](https://link.springer.com/article/10.1007/s44443-025-00353-3) — empirical evidence that mixing model families in a debate loop improves reasoning quality. Shaped the multi-provider advisor pool in `methodologies/debate/`.
-- MIT AI Safety Fundamentals weeks [5](https://web.mit.edu/aialignment/www/aisf/week5/) and [6](https://web.mit.edu/aialignment/www/aisf/week6/) — frame the judge-vs-vote distinction we A/B-tested across `methodologies/debate/` (single judge) and `methodologies/ensemble/` (peer plurality vote).
-
-### LLMs and chess as an evaluation domain
-- [Chess as a measurement substrate for LLM-driven systems (arXiv:2502.13295)](https://arxiv.org/abs/2502.13295) — motivates using chess to *grade* LLM-built systems, not only LLMs-as-players. This is the framing our scorecard inherits.
-
-### Chess-engine references and tooling
-- [Stockfish](https://stockfishchess.org/) — the canonical reference engine; every UCI engine in this repo is conceptually compared against it.
-- [python-chess](https://python-chess.readthedocs.io/) — used by `arena/` and `tests/contract/` for legality, FEN/SAN/PGN, and game-end detection.
-- [FastChess](https://github.com/Disservin/fastchess) — a faster alternative to cutechess for batch tournaments; candidate replacement for the current candidate/champion runners in `infra/scripts/`.
-- ["Building my own chess engine" (healeycodes)](https://healeycodes.com/building-my-own-chess-engine) — a single-author engine walkthrough that helped scope what "minimal complete" means for the master brief every methodology builds against.
-- [Universal Chess Interface on the Chess Programming Wiki](https://www.chessprogramming.org/UCI) and the [UCI overview on Wikipedia](https://en.wikipedia.org/wiki/Universal_Chess_Interface) — the protocol every engine in this repo speaks.
-
-### Evaluation and observability tooling (forward-looking)
-These aren't wired in yet but inform where the eval / monitoring layer is heading.
-
-- ["Four places where you can put LLM monitoring"](https://www.alignmentforum.org/posts/AmcEyFErJc9TQ5ySF/four-places-where-you-can-put-llm-monitoring) — taxonomy that informs where evals should attach across the build, design-debate, and play-time loops.
-- [Promptfoo](https://www.promptfoo.dev/) — candidate framework for prompt-level test cases on each methodology's design-phase prompts.
-- [Weights & Biases Weave](https://wandb.ai/site/weave/) — candidate framework for per-run agent observability across `methodologies/debate/`, `methodologies/ensemble/`, and `methodologies/langgraph/`.
-
----
-
-## Future work
-
-- Broader model grid runs with tighter confidence bounds
-- Additional framework-isolation experiments (same model/prompt, different runtime)
-- Expanded robustness suite (metamorphic + adversarial probes)
-- More complete cost-Elo Pareto reporting across all approach families
-
----
-
-## Related docs in this repo
-
-- `arena/README.md` - interactive arena usage
-- `infra/agents/` - methodology and operational protocols
-- `infra/orchestrators/` - orchestration schemas and runtime docs
-- `infra/tasks/START_HERE.md` - guided task entrypoint
-
----
 
 ## Appendix: Judging criteria alignment
 
