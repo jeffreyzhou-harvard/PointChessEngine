@@ -123,7 +123,7 @@ Each engine ships a `docker_parallel_orchestrator/` subtree (see `engines/onesho
 The post-run verifier reads each container's self-recorded `start_time` / `end_time` JSON and asserts four invariants: dependencies respected, declared parallel groups overlapped at a common instant, the four final-eval tasks all overlapped pairwise, and every artifact landed on disk. Faking parallelism is hard because the verifier never trusts orchestrator clocks — only the wall times each container recorded for itself. We then ran all four engines' DAGs *concurrently* on a single host (distinct compose project / image names per engine) and confirmed every pair of engines shared a real wall-clock overlap window:
 
 <p align="center">
-  <img src="parallel_execution_gantt.png" alt="Gantt chart showing four chess-engine DAGs running concurrently as Docker container fleets" width="92%" />
+  <img src="figures/parallel_execution_gantt.png" alt="Gantt chart showing four chess-engine DAGs running concurrently as Docker container fleets" width="92%" />
 </p>
 <p align="center"><em>Four engine DAGs (colored bands) executing simultaneously. Within each band, the 6-way fan-out after <code>C2_LEGAL_MOVES</code> and the 4-way final-eval fan-out are visibly stacked. Across bands, the four engines overlap horizontally — proof that the engines are building at the same wall-clock time, not in sequence.</em></p>
 
@@ -181,7 +181,7 @@ The methodologies above are wired into a small but deliberate tool stack:
 
 To keep this README reproducible and attribution-safe, we currently link to source papers and summarize the figure intent. During the final manuscript pass, add licensed reproductions/screenshots of these specific figures:
 
-- **RLM paper (`arXiv:2512.24601`)** — recursion tree / hierarchical decoding diagram (typically early-method section). Use alongside `parallel_execution_gantt.png` to show conceptual mapping from recursive reasoning to recursive build DAG execution.
+- **RLM paper (`arXiv:2512.24601`)** — recursion tree / hierarchical decoding diagram (typically early-method section). Use alongside `figures/parallel_execution_gantt.png` to show conceptual mapping from recursive reasoning to recursive build DAG execution.
 - **Adaptive heterogeneous debate paper** — architecture block diagram showing heterogeneous model pool and arbitration loop. Pair this with `DebateArchitectureEngine.png` to show how the repo operationalizes the same pattern.
 - **MIT AI Safety Fundamentals (weeks 5/6)** — judge-vs-vote framing graphic (or table) to ground our `methodologies/debate/` vs `methodologies/ensemble/` A/B.
 - **Chess as measurement substrate (`arXiv:2502.13295`)** — figure/table motivating chess as a controlled systems benchmark. Place directly before the scorecard section to justify why we track protocol robustness and perft in addition to Elo-like strength.
