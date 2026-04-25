@@ -45,15 +45,30 @@ That makes it a practical benchmark for the broader engineering question:
 
 This repo currently contains multiple concrete engine implementations plus orchestration/testing infrastructure.
 
+### Top-level layout
+
+```
+engines/         the chess-engine artifacts being compared (each speaks UCI)
+methodologies/   the builders that produce engines (orchestration runtimes)
+arena/           web UI for engine-vs-engine matches with live metrics
+infra/           configs, scripts, agent/task/orchestrator protocol docs
+reports/         run, eval, and comparison artifacts
+tests/           cross-engine classical / contract tests
+```
+
 ### Engine implementations
 
-- `oneshot_nocontext_engine/`
-- `oneshot_contextualized_engine/`
-- `chainofthought_engine/`
-- `oneshot_react_engine/`
-- `langgraph_engine/` (in-progress orchestration-oriented branch)
+- `engines/oneshot_nocontext/`
+- `engines/oneshot_contextualized/`
+- `engines/oneshot_react/`
+- `engines/chainofthought/`
+- `engines/langgraph/` (artifact produced by `methodologies/langgraph/`)
 
 Each engine supports UCI mode so it can be tournament-evaluated in a common pipeline.
+
+### Methodologies (engine builders)
+
+- `methodologies/langgraph/` - LangGraph multi-agent orchestrator that builds an engine into `engines/langgraph/`
 
 ### Interactive dashboard (new)
 
@@ -72,10 +87,10 @@ For dashboard-specific details, see `dashboard/README.md`.
 
 ### Evaluation and orchestration assets
 
-- `agents/` - methodology/process protocols and parallelization plans
-- `orchestrators/` - orchestration schemas and debate runtime notes
-- `scripts/` - candidate scoring, champion tests, report generation
-- `tasks/` - work plans and protocol docs
+- `infra/agents/` - methodology/process protocols and parallelization plans
+- `infra/orchestrators/` - orchestration schemas and debate runtime notes
+- `infra/scripts/` - candidate scoring, champion tests, report generation
+- `infra/tasks/` - work plans and protocol docs
 - `reports/` - run/eval/comparison outputs
 - `tests/` - classical/contract/dashboard tests
 
@@ -85,15 +100,15 @@ For dashboard-specific details, see `dashboard/README.md`.
 
 ### Creativity
 
-- Heterogeneous debate personas and orchestration exploration in `orchestrators/debate/`
+- Heterogeneous debate personas and orchestration exploration in `infra/orchestrators/debate/`
 - Stockfish-referenced decision loops in engine variants and eval scripts
 - Persona/rating-aware behavior explored across approach families
 - Geometric and format robustness treated as a separate eval concern from raw Elo
 
 ### Rigor
 
-- Reproducible protocol docs in `agents/` and `tasks/`
-- Tournament and candidate-stage automation in `scripts/`
+- Reproducible protocol docs in `infra/agents/` and `infra/tasks/`
+- Tournament and candidate-stage automation in `infra/scripts/`
 - Structured comparisons and reporting in `reports/comparisons/`
 - Contract and integration-level tests under `tests/`
 
@@ -120,13 +135,13 @@ The framework has five replaceable layers:
    Engine packages listed above expose UCI-compatible behavior.
 
 2. **Harness/orchestration glue**  
-   Protocol and orchestration definitions in `orchestrators/`, `agents/`, `tasks/`, and `scripts/`.
+   Protocol and orchestration definitions in `infra/orchestrators/`, `infra/agents/`, `infra/tasks/`, and `infra/scripts/`.
 
 3. **Tournament/evaluation**  
-   Candidate/champion evaluation workflow in `scripts/`, with artifacts in `reports/`.
+   Candidate/champion evaluation workflow in `infra/scripts/`, with artifacts in `reports/`.
 
 4. **Parallel execution**  
-   Strategy docs in `agents/PARALLELIZATION_PLAN.md` plus branch-specific parallel demos.
+   Strategy docs in `infra/agents/PARALLELIZATION_PLAN.md` plus branch-specific parallel demos.
 
 5. **UI surface**  
    - Engine-specific web UIs inside each engine package  
@@ -154,11 +169,11 @@ A central principle is human-reviewed iteration:
 
 Core families represented in this repo:
 
-- One-shot baseline (`oneshot_nocontext_engine/`)
-- One-shot contextualized (`oneshot_contextualized_engine/`)
-- Structured reasoning / chain-of-thought (`chainofthought_engine/`)
-- Tool-using ReAct (`oneshot_react_engine/`)
-- Graph/orchestration-focused variants (`langgraph_engine/`, orchestrator docs)
+- One-shot baseline (`engines/oneshot_nocontext/`)
+- One-shot contextualized (`engines/oneshot_contextualized/`)
+- Structured reasoning / chain-of-thought (`engines/chainofthought/`)
+- Tool-using ReAct (`engines/oneshot_react/`)
+- Graph/orchestration-focused variants (`methodologies/langgraph/`, orchestrator docs)
 
 These are evaluated comparatively through shared run scripts and reporting outputs.
 
@@ -177,7 +192,7 @@ Three distinct bottlenecks are handled separately:
 3. **Full experiment matrix** (orchestration bound)  
    Batch workflows, staged candidate pipelines, and scheduled comparisons
 
-See `agents/PARALLELIZATION_PLAN.md` and `scripts/` for concrete process flow.
+See `infra/agents/PARALLELIZATION_PLAN.md` and `infra/scripts/` for concrete process flow.
 
 ---
 
@@ -200,10 +215,10 @@ python3 -m venv .venv
 
 ```bash
 # Example: no-context engine UI
-.venv/bin/python -m oneshot_nocontext_engine
+.venv/bin/python -m engines.oneshot_nocontext
 
 # Example: UCI mode
-.venv/bin/python -m oneshot_nocontext_engine --uci
+.venv/bin/python -m engines.oneshot_nocontext --uci
 ```
 
 ### Run interactive dashboard (recommended)
@@ -227,8 +242,8 @@ Then open: `http://127.0.0.1:5173`
 ### Engine/package tests
 
 ```bash
-.venv/bin/python -m pytest oneshot_nocontext_engine/tests -v
-.venv/bin/python -m pytest oneshot_contextualized_engine/tests -v
+.venv/bin/python -m pytest engines/oneshot_nocontext/tests -v
+.venv/bin/python -m pytest engines/oneshot_contextualized/tests -v
 ```
 
 ### Dashboard backend test
@@ -252,11 +267,11 @@ See scripts:
 
 ```text
 PointChessEngine/
-├── chainofthought_engine/
-├── oneshot_contextualized_engine/
-├── oneshot_nocontext_engine/
-├── oneshot_react_engine/
-├── langgraph_engine/
+├── engines/chainofthought/
+├── engines/oneshot_contextualized/
+├── engines/oneshot_nocontext/
+├── engines/oneshot_react/
+├── methodologies/langgraph/
 ├── dashboard/
 │   ├── backend/
 │   ├── frontend/
@@ -294,8 +309,8 @@ PointChessEngine/
 ## Related docs in this repo
 
 - `dashboard/README.md` - interactive dashboard usage
-- `agents/` - methodology and operational protocols
-- `orchestrators/` - orchestration schemas and runtime docs
+- `infra/agents/` - methodology and operational protocols
+- `infra/orchestrators/` - orchestration schemas and runtime docs
 - `tasks/START_HERE.md` - guided task entrypoint
 
 If you want the README to mirror your whitepaper structure even more closely, the next step is adding dedicated top-level docs (`WHITEPAPER.md`, `RELATED_WORK.md`, `decisions/log.md`, and `/docs` figures) and linking them from here.

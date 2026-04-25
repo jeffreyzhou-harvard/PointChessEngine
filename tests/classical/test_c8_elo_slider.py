@@ -2,8 +2,8 @@
 
 import random
 
-from oneshot_nocontext_engine.search.elo import EloSettings
-from oneshot_nocontext_engine.search.engine import Engine
+from engines.oneshot_nocontext.search.elo import EloSettings
+from engines.oneshot_nocontext.search.engine import Engine
 
 from helpers import Board, ClassicalTestCase, legal_uci_moves, run_in_memory_uci
 

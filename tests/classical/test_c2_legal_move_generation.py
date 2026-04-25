@@ -1,6 +1,6 @@
 """C2.* tests for legal move generation and rule correctness."""
 
-from oneshot_nocontext_engine.core.types import Color, Move, PieceType, Square
+from engines.oneshot_nocontext.core.types import Color, Move, PieceType, Square
 
 from helpers import Board, ClassicalTestCase, legal_uci_moves
 

@@ -9,13 +9,13 @@ import sys
 import time
 import unittest
 
-from oneshot_nocontext_engine.core.board import Board, STARTING_FEN
-from oneshot_nocontext_engine.core.types import Move
-from oneshot_nocontext_engine.uci.protocol import UCIProtocol
+from engines.oneshot_nocontext.core.board import Board, STARTING_FEN
+from engines.oneshot_nocontext.core.types import Move
+from engines.oneshot_nocontext.uci.protocol import UCIProtocol
 
 
 ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-ENGINE_CMD = [sys.executable, "-m", "oneshot_nocontext_engine", "--uci"]
+ENGINE_CMD = [sys.executable, "-m", "engines.oneshot_nocontext", "--uci"]
 UCI_MOVE_RE = re.compile(r"^(?:[a-h][1-8][a-h][1-8][qrbn]?|0000)$")
 
 

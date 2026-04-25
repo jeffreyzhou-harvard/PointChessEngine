@@ -1,6 +1,6 @@
 """C3.* tests for static handcrafted evaluation."""
 
-from oneshot_nocontext_engine.search.evaluation import evaluate
+from engines.oneshot_nocontext.search.evaluation import evaluate
 
 from helpers import Board, ClassicalTestCase
 

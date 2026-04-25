@@ -17,7 +17,7 @@ class TestC0_2RegistrySchema(ClassicalTestCase):
     def test_registry_manifest_has_required_engine_fields(self):
         registry = {
             "engine_id": "oneshot-nocontext",
-            "command": ["python3", "-m", "oneshot_nocontext_engine", "--uci"],
+            "command": ["python3", "-m", "engines.oneshot_nocontext", "--uci"],
             "working_directory": ".",
             "fake": False,
             "supported_options": ["Skill Level", "UCI_Elo"],
@@ -50,7 +50,7 @@ class TestC0_5ObservabilityEnvelope(ClassicalTestCase):
     def test_result_envelope_contains_observability_fields(self):
         envelope = {
             "engine_id": "oneshot-nocontext",
-            "command": ["python3", "-m", "oneshot_nocontext_engine", "--uci"],
+            "command": ["python3", "-m", "engines.oneshot_nocontext", "--uci"],
             "position": "startpos",
             "limits": {"depth": 1, "movetime_ms": None},
             "bestmove": "e2e4",

@@ -18,11 +18,11 @@ The registry in `arena/engines.py` knows how to launch each engine in UCI mode:
 
 | id                       | launch                                    |
 |--------------------------|-------------------------------------------|
-| `oneshot_nocontext`      | `python -m oneshot_nocontext_engine --uci`|
+| `oneshot_nocontext`      | `python -m engines.oneshot_nocontext --uci`|
 | `oneshot_contextualized` | `python run_uci.py` (cwd = engine dir)    |
-| `oneshot_react`          | `python -m oneshot_react_engine --uci`    |
-| `chainofthought`         | `python -m chainofthought_engine --uci`   |
-| `langgraph`              | `python -m uci.main` (cwd = `langgraph_output`) |
+| `oneshot_react`          | `python -m engines.oneshot_react --uci`    |
+| `chainofthought`         | `python -m engines.chainofthought --uci`   |
+| `langgraph`              | `python -m uci.main` (cwd = `engines/langgraph`) |
 
 To add another engine, append an `EngineSpec(...)` to `REGISTRY`.
 

@@ -1,6 +1,6 @@
 """C1.* tests for board, FEN, and move representation."""
 
-from oneshot_nocontext_engine.core.types import Color, Move, Piece, PieceType, Square
+from engines.oneshot_nocontext.core.types import Color, Move, Piece, PieceType, Square
 
 from helpers import Board, ClassicalTestCase, STARTING_FEN
 

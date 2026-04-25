@@ -1,6 +1,6 @@
 """C5.* tests for tactical hardening."""
 
-from oneshot_nocontext_engine.search.engine import Engine, MATE_SCORE, MAX_QUIESCENCE_DEPTH
+from engines.oneshot_nocontext.search.engine import Engine, MATE_SCORE, MAX_QUIESCENCE_DEPTH
 
 from helpers import Board, ClassicalTestCase, legal_uci_moves
 

@@ -32,7 +32,7 @@ REGISTRY: dict[str, EngineSpec] = {
         id="oneshot_nocontext",
         label="One-shot (no context)",
         blurb="Single Claude prompt, no project context.",
-        cmd=["python", "-m", "oneshot_nocontext_engine", "--uci"],
+        cmd=["python", "-m", "engines.oneshot_nocontext", "--uci"],
         cwd=str(REPO_ROOT),
         build_pattern="one-shot · no context",
     ),
@@ -41,14 +41,14 @@ REGISTRY: dict[str, EngineSpec] = {
         label="One-shot (contextualized)",
         blurb="Single prompt with curated project context.",
         cmd=["python", "run_uci.py"],
-        cwd=str(REPO_ROOT / "oneshot_contextualized_engine"),
+        cwd=str(REPO_ROOT / "engines" / "oneshot_contextualized"),
         build_pattern="one-shot · contextualized",
     ),
     "oneshot_react": EngineSpec(
         id="oneshot_react",
         label="One-shot ReAct",
         blurb="Single ReAct-style prompt with tool access.",
-        cmd=["python", "-m", "oneshot_react_engine", "--uci"],
+        cmd=["python", "-m", "engines.oneshot_react", "--uci"],
         cwd=str(REPO_ROOT),
         build_pattern="one-shot · ReAct",
     ),
@@ -56,7 +56,7 @@ REGISTRY: dict[str, EngineSpec] = {
         id="chainofthought",
         label="Chain-of-thought",
         blurb="Built incrementally via chain-of-thought prompting.",
-        cmd=["python", "-m", "chainofthought_engine", "--uci"],
+        cmd=["python", "-m", "engines.chainofthought", "--uci"],
         cwd=str(REPO_ROOT),
         build_pattern="incremental · CoT",
     ),
@@ -65,7 +65,7 @@ REGISTRY: dict[str, EngineSpec] = {
         label="LangGraph multi-agent",
         blurb="LangGraph-supervised multi-agent Claude system.",
         cmd=["python", "-m", "uci.main"],
-        cwd=str(REPO_ROOT / "langgraph_output"),
+        cwd=str(REPO_ROOT / "engines" / "langgraph"),
         build_pattern="multi-agent · LangGraph",
     ),
 }
@@ -87,11 +87,11 @@ def _count_loc(root: Path) -> int:
 
 
 _ENGINE_DIRS = {
-    "oneshot_nocontext": REPO_ROOT / "oneshot_nocontext_engine",
-    "oneshot_contextualized": REPO_ROOT / "oneshot_contextualized_engine",
-    "oneshot_react": REPO_ROOT / "oneshot_react_engine",
-    "chainofthought": REPO_ROOT / "chainofthought_engine",
-    "langgraph": REPO_ROOT / "langgraph_output",
+    "oneshot_nocontext":      REPO_ROOT / "engines" / "oneshot_nocontext",
+    "oneshot_contextualized": REPO_ROOT / "engines" / "oneshot_contextualized",
+    "oneshot_react":          REPO_ROOT / "engines" / "oneshot_react",
+    "chainofthought":         REPO_ROOT / "engines" / "chainofthought",
+    "langgraph":              REPO_ROOT / "engines" / "langgraph",
 }
 
 
