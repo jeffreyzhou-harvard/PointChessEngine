@@ -613,6 +613,12 @@ button:disabled { opacity: 0.4; cursor: not-allowed; }
   max-width: 1240px;
   margin: 0 auto;
 }
+/* Without this, the `hidden` HTML attribute on the panes is overridden
+   by `.layout { display: grid }` / `.layout-narrow { display: flex }`
+   declared above (author CSS beats the user-agent [hidden] rule). */
+.pane-match[hidden],
+.pane-tournament[hidden],
+.pane-analysis[hidden] { display: none !important; }
 .tab[data-pane] { cursor: pointer; }    /* enable now that all 3 panes exist */
 .tab:disabled, .tab[disabled] { opacity: 0.35; cursor: not-allowed; }
 

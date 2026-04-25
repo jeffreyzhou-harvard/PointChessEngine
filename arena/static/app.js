@@ -500,7 +500,10 @@
       document.querySelectorAll(".tab[data-pane]").forEach((t) =>
         t.classList.toggle("active", t.dataset.pane === target));
       Object.entries(PANES).forEach(([name, el]) => {
-        el.hidden = (name !== target);
+        const shouldHide = name !== target;
+        el.hidden = shouldHide;
+        if (shouldHide) el.setAttribute("hidden", "");
+        else el.removeAttribute("hidden");
       });
       if (target === "tournament") tournamentSetup();
       if (target === "analysis")   analysisSetup();
