@@ -429,7 +429,37 @@ Standings from `tournament_results.json`:
 | 4 | `chainofthought` | 2.5 | 0 | 5 | 3 |
 | 5 | `oneshot_nocontext` | 2.0 | 0 | 4 | 4 |
 
-Core comparison figures generated from that run:
+### Targeted head-to-head matches (cutechess-cli, fast TC)
+
+To complement the round-robin above, we ran seven focused engine-vs-engine matches in [`cutechess-cli`](https://github.com/cutechess/cutechess) at `tc=10+0.1` using the `data/openings/8mvs_+90_+99.epd` opening book. Each cell below is the W / D / L from the perspective of the first-named engine; the elo column is from the same perspective.
+
+<p align="center">
+  <img src="figures/head_to_head/h2h_overview.png" alt="Grid of seven head-to-head matchups: NoContext vs Contextualized, ChainOfThought vs OneshotReAct, Debate vs Ensemble, RLM vs LangGraph, Contextualized vs OneshotReAct, Ensemble vs RLM, Contextualized vs Ensemble." width="95%" />
+</p>
+
+<p align="center"><em>Seven head-to-head matchups, color-coded by methodology family (grey = single-prompt baseline, blue = single-prompt + reasoning/tools, green = multi-agent orchestration, red = multi-model collaboration). Reproducible via <code>python -m infra.scripts.plot_head_to_head</code>; raw cutechess logs in <code>reports/head_to_head/</code>.</em></p>
+
+| matchup (A vs B)                       | games | A wins | draws | B wins | A score | Elo (A's perspective)    |
+|----------------------------------------|------:|------:|------:|------:|---------|--------------------------|
+| `oneshot_nocontext` vs `oneshot_contextualized` |  20 |   0   |   0   |  20   | 0.0 %   | -inf (sweep)             |
+| `chainofthought` vs `oneshot_react`    |    80 |   9   |  13   |  58   | 19.4 %  | -247.7 ± 91.5            |
+| `debate` vs `ensemble`                 |    98 |  30   |   9   |  59   | 35.2 %  | -106.0 ± 72.7            |
+| `rlm` vs `langgraph`                   |   100 |  73   |  13   |  14   | 79.5 %  | **+235.4 ± 95.4**        |
+| `oneshot_contextualized` vs `oneshot_react` | 100 | 100   |   0   |   0   | 100.0 % | +inf (sweep)             |
+| `ensemble` vs `rlm`                    |   100 | 100   |   0   |   0   | 100.0 % | +inf (sweep)             |
+| `oneshot_contextualized` vs `ensemble` |   100 |  18   |   6   |  76   | 21.0 %  | -230.2 ± 83.0            |
+
+**What this tells us, holding game-time constant:**
+
+- **Curated context dominates a bare prompt.** `oneshot_contextualized` swept `oneshot_nocontext` 20-0 and swept `oneshot_react` 100-0. Of every axis we vary, "give the model access to the existing repo" was the single largest move-the-needle change.
+- **Multi-model voting outperforms multi-model judging — in this build.** `ensemble` beat `debate` 59-30-9 and went on to beat every other engine it played (sweeping `rlm` 100-0 and beating `oneshot_contextualized` 76-18-6). The build with a Claude judge produced a noticeably weaker engine than the same advisor pool resolved by plurality vote.
+- **Recursion beat orchestration, locally.** `rlm` (Recursive-LM-style decomposition) beat `langgraph` (multi-agent specialist orchestration) 73-14-13, ≈+235 Elo. The structured-recursion build was both stronger and shorter than the orchestrated multi-agent build.
+- **Tool access edged out raw chain-of-thought.** `oneshot_react` beat `chainofthought` 58-9-13. Adding a tool loop produced a stronger engine than adding incremental reasoning steps to the same single prompt.
+- **An implied transitive ranking from these seven matches:** ensemble > {contextualized, debate, rlm} > {oneshot_react, langgraph} > chainofthought > nocontext. Treat this as suggestive (small samples, fast TC, no error correction across matchups) rather than as a published Elo ladder.
+
+A note on the `+inf` / `-inf` rows: those engines won 100% (or 0%) of decisive games, so the maximum-likelihood Elo estimator from cutechess's formula has no finite solution. They're sweeps, not statistical claims. The error bars on the others are cutechess's own ± values and are wide for a reason — 80-100 games at fast TC is enough to see clear tendencies but not enough to nail down rating differences to within 50 Elo.
+
+Core comparison figures generated from the round-robin run:
 
 <p align="center"><img src="figures/01_head_to_head_heatmap.png" alt="Head-to-head win-rate heatmap from latest round-robin" width="90%" /></p>
 <p align="center"><em>Head-to-head win-rate matrix (row engine score vs column engine). Fast read of directional matchups.</em></p>

@@ -1,0 +1,8 @@
+engine_a,engine_b,games,a_wins,b_wins,draws,a_points_pct,elo_a_perspective,elo_err
+oneshot_nocontext,oneshot_contextualized,20,0,20,0,0.00,-inf,
+chainofthought,oneshot_react,80,9,58,13,19.38,-247.69,91.52
+debate,ensemble,98,30,59,9,35.20,-105.98,72.69
+rlm,langgraph,100,73,14,13,79.50,235.45,95.39
+oneshot_contextualized,oneshot_react,100,100,0,0,100.00,+inf,
+ensemble,rlm,100,100,0,0,100.00,+inf,
+oneshot_contextualized,ensemble,100,18,76,6,21.00,-230.16,83.04
