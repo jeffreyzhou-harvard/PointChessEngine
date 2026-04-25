@@ -31,13 +31,13 @@ This repository investigates a core research question:
 
 The chess engine artifact is the *unit of measurement* — not the endpoint. The endpoint is a controlled comparison along several axes that are usually conflated:
 
-- **meta-prompting method** — one prompt vs. CoT vs. ReAct vs. recursive decomposition
-- **agentic framework** — none vs. LangGraph specialists vs. multi-model debate vs. peer-vote ensemble
+- **meta-prompting method** — one prompt vs. [chain-of-thought](https://arxiv.org/abs/2201.11903) vs. [ReAct](https://arxiv.org/abs/2210.03629) vs. recursive decomposition
+- **agentic framework** — none vs. [LangGraph](https://www.langchain.com/langgraph) specialists vs. multi-model debate vs. peer-vote ensemble
 - **decision rule** — single judge vs. plurality vote vs. per-role specialist
 - **model mix** — single-provider (Claude) vs. multi-provider (OpenAI / Grok / Gemini / DeepSeek / Kimi / Claude)
 - **parallelization strategy** — within-process / game-level / matrix-level
 
-Each of the eight engines holds the *task* constant (build a complete UCI chess engine satisfying the same brief) and varies one or more of these axes. Every engine is then graded on the same multi-axis scorecard:
+Each of the eight engines holds the *task* constant (build a complete [UCI](https://www.chessprogramming.org/UCI) chess engine satisfying the same brief) and varies one or more of these axes. Every engine is then graded on the same multi-axis scorecard:
 
 - **playing strength** — head-to-head results in `arena/`, contract-test pass rate, classical-milestone score
 - **search efficiency** — depth reached, nodes searched, NPS, eval quality per move
@@ -66,7 +66,7 @@ Most chess+LLM work reports playing strength from one methodology. That conflate
 This project separates those variables. Chess is a clean evaluation domain:
 
 - fixed rules
-- strong oracle (`stockfish`)
+- strong oracle ([Stockfish](https://stockfishchess.org/))
 - well-studied search space
 - measurable failure modes (illegal moves, hallucinated board state, protocol errors)
 
@@ -137,11 +137,11 @@ and streams every metric you'd want for the comparison:
 
 | metric                                  | source                                  |
 |-----------------------------------------|-----------------------------------------|
-| game result (W/D/L) and reason          | python-chess + arena rules              |
+| game result (W/D/L) and reason          | [python-chess](https://python-chess.readthedocs.io/) + arena rules |
 | per-move depth, nodes, NPS, score (cp / mate) | each engine's `info` UCI line     |
 | per-move wall time                      | arena timer around `go`                 |
 | cumulative engine clocks                | arena scoreboard                        |
-| chess.com-style move arrows + eval bar  | arena UI                                |
+| [chess.com](https://www.chess.com/)-style move arrows + eval bar | arena UI                |
 | build cost ($), tokens, model           | `arena/engine_costs.json` (per engine)  |
 | lines of code                           | computed by arena from each engine tree |
 
@@ -166,7 +166,7 @@ For arena-specific details, see `arena/README.md`.
 ### Creativity
 
 - Heterogeneous debate personas and orchestration exploration in `infra/orchestrators/debate/`
-- Stockfish-referenced decision loops in engine variants and eval scripts
+- [Stockfish](https://stockfishchess.org/)-referenced decision loops in engine variants and eval scripts
 - Persona/rating-aware behavior explored across approach families
 - Geometric and format robustness treated as a separate eval concern from raw Elo
 
@@ -280,7 +280,7 @@ See `infra/agents/PARALLELIZATION_PLAN.md` and `infra/scripts/` for concrete pro
 
 - Python 3.11+
 - Node 20+ (for dashboard/frontend)
-- Optional but recommended: `stockfish` on PATH or set `STOCKFISH_PATH`
+- Optional but recommended: [Stockfish](https://stockfishchess.org/) on PATH (or set `STOCKFISH_PATH`)
 
 ### Install core Python deps
 
