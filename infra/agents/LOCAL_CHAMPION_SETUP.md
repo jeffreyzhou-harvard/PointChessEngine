@@ -158,8 +158,26 @@ docker run --rm \
   python infra/scripts/run_local_champion.py \
     --task CURRENT_ENGINES \
     --config infra/configs/champion/CURRENT_ENGINES.yaml \
-    --jobs 7 \
+    --jobs 8 \
     --skip-create-worktrees
+```
+
+Run the visual local Docker demo:
+
+```bash
+infra/scripts/run_current_champion_visualized.sh
+```
+
+This runs two visible stages:
+
+1. one Docker container per current engine, running in parallel
+2. aggregate, score, and report generation
+
+It writes:
+
+```text
+reports/comparisons/CURRENT_ENGINES/local_docker_visual.md
+reports/comparisons/CURRENT_ENGINES/local_docker_visual.json
 ```
 
 Run a stronger tier:
@@ -173,7 +191,7 @@ docker run --rm \
     --task CURRENT_ENGINES \
     --config infra/configs/champion/CURRENT_ENGINES.yaml \
     --tier contract \
-    --jobs 7 \
+    --jobs 8 \
     --skip-create-worktrees
 ```
 

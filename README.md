@@ -626,7 +626,7 @@ Run the current engines in parallel:
 .venv/bin/python infra/scripts/run_local_champion.py \
   --task CURRENT_ENGINES \
   --config infra/configs/champion/CURRENT_ENGINES.yaml \
-  --jobs 7 \
+  --jobs 8 \
   --skip-create-worktrees
 ```
 
@@ -638,9 +638,19 @@ docker run --rm -v "$PWD:/repo" -w /repo pointchess/champion:local \
   python infra/scripts/run_local_champion.py \
     --task CURRENT_ENGINES \
     --config infra/configs/champion/CURRENT_ENGINES.yaml \
-    --jobs 7 \
+    --jobs 8 \
     --skip-create-worktrees
 ```
+
+Run the local Docker visual demo:
+
+```bash
+docker build -f infra/docker/Dockerfile.champion -t pointchess/champion:local .
+infra/scripts/run_current_champion_visualized.sh
+```
+
+This launches one Docker container per current engine, shows a live two-stage
+terminal dashboard, then writes `reports/comparisons/CURRENT_ENGINES/local_docker_visual.md`.
 
 Run a stronger tier or an orchestration audit:
 
@@ -649,7 +659,7 @@ Run a stronger tier or an orchestration audit:
   --task CURRENT_ENGINES \
   --config infra/configs/champion/CURRENT_ENGINES.yaml \
   --tier contract \
-  --jobs 7 \
+  --jobs 8 \
   --skip-create-worktrees
 
 .venv/bin/python infra/scripts/run_local_champion.py \
