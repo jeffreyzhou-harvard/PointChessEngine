@@ -67,7 +67,12 @@ def read_results(result_paths: list[Path]) -> list[dict]:
 
 
 def ensure_expected_results(config: dict, report_root: Path, results: list[dict]) -> list[dict]:
-    by_candidate = {result.get("candidate_id"): result for result in results}
+    expected_ids = {candidate.get("candidate_id") for candidate in config.get("candidates", []) if candidate.get("candidate_id")}
+    by_candidate = {
+        result.get("candidate_id"): result
+        for result in results
+        if not expected_ids or result.get("candidate_id") in expected_ids
+    }
     for candidate in config.get("candidates", []):
         candidate_id = candidate.get("candidate_id")
         if not candidate_id or candidate_id in by_candidate:

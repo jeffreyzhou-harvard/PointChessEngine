@@ -180,6 +180,48 @@ reports/comparisons/CURRENT_ENGINES/local_docker_visual.md
 reports/comparisons/CURRENT_ENGINES/local_docker_visual.json
 ```
 
+## Run the C0-C8 Champion Ladder With Dashboard
+
+For a fast local proof-of-concept of the full classical ladder, run:
+
+```bash
+infra/scripts/run_ladder_champion_visualized.sh
+```
+
+This runs the configured C0-C8 Champion stages in Docker, scores candidates,
+selects a stage winner by Champion score, and uses fastest builder time as the
+tie-break when builder telemetry exists. In the default local demo mode, it
+evaluates candidate labels against the current checkout so the dashboard is
+stable and does not depend on stale worktrees.
+
+The dashboard is written after each stage and can be opened directly:
+
+```bash
+open reports/comparisons/CHAMPION_LADDER/index.html
+```
+
+Useful modes:
+
+```bash
+# Clean local demo mode, no worktree mutation.
+LOCAL_REPO_DEMO=1 JOBS=4 infra/scripts/run_ladder_champion_visualized.sh
+
+# Real candidate worktree mode.
+LOCAL_REPO_DEMO=0 JOBS=4 infra/scripts/run_ladder_champion_visualized.sh
+
+# Include live builders and use builder duration for tie-breaks.
+LOCAL_REPO_DEMO=0 RUN_BUILDERS=1 BUILDER_PROVIDER=anthropic JOBS=4 \
+  infra/scripts/run_ladder_champion_visualized.sh
+```
+
+The run writes graph-friendly data under:
+
+```text
+reports/comparisons/CHAMPION_LADDER/metrics.csv
+reports/comparisons/CHAMPION_LADDER/metrics.jsonl
+reports/comparisons/CHAMPION_LADDER/metrics.json
+```
+
 Run a stronger tier:
 
 ```bash

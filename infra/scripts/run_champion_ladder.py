@@ -120,11 +120,11 @@ def run_stage(task_id: str, config_path: Path, args: argparse.Namespace) -> dict
             stage_result["top_candidate_id"] = scores[0].get("candidate_id")
             stage_result["top_score"] = scores[0].get("total_score")
     orchestration_metrics = ROOT / "reports" / "orchestration" / task_id / "metrics.json"
-    if orchestration_metrics.exists():
+    if args.run_orchestration and orchestration_metrics.exists():
         stage_result["orchestration_metrics_path"] = str(orchestration_metrics.relative_to(ROOT))
         stage_result["orchestration_metrics"] = json.loads(orchestration_metrics.read_text(encoding="utf-8"))
     builder_metrics = ROOT / "reports" / "builders" / task_id / "metrics.json"
-    if builder_metrics.exists():
+    if args.run_builders and builder_metrics.exists():
         stage_result["builder_metrics_path"] = str(builder_metrics.relative_to(ROOT))
         stage_result["builder_metrics"] = json.loads(builder_metrics.read_text(encoding="utf-8"))
     (output_dir / "result.json").write_text(json.dumps(stage_result, indent=2, sort_keys=True) + "\n", encoding="utf-8")
@@ -203,6 +203,7 @@ def write_ladder_reports(results: list[dict], args: argparse.Namespace) -> None:
 
     summary = {
         "task_count": len(rows),
+        "requested_task_count": len(selected_tasks(args.tasks)),
         "passed_stage_count": sum(1 for row in rows if row["stage_passed"]),
         "failed_stage_count": sum(1 for row in rows if not row["stage_passed"]),
         "total_candidates": sum(int(row["candidate_count"] or 0) for row in rows),
@@ -241,6 +242,19 @@ def write_ladder_reports(results: list[dict], args: argparse.Namespace) -> None:
     (REPORT_ROOT / "summary.md").write_text("\n".join(lines), encoding="utf-8")
 
 
+def write_html(refresh_seconds: int = 0) -> None:
+    subprocess.run(
+        [
+            sys.executable,
+            "infra/scripts/write_champion_ladder_html.py",
+            "--refresh-seconds",
+            str(refresh_seconds),
+        ],
+        cwd=ROOT,
+        check=False,
+    )
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--tasks", default="all", help="'all' or comma-separated task IDs")
@@ -265,16 +279,20 @@ def main() -> int:
     config_root = (ROOT / args.config_root).resolve()
     results = []
     failures = 0
-    for task_id in selected_tasks(args.tasks):
+    tasks = selected_tasks(args.tasks)
+    for task_id in tasks:
         config_path = config_for_task(config_root, task_id)
         print(f"== {task_id} ==")
         result = run_stage(task_id, config_path, args)
         results.append(result)
         failures += 0 if result.get("passed") else 1
         print(f"{task_id}: {'pass' if result.get('passed') else 'fail'} ({result.get('duration_seconds')}s)")
+        write_ladder_reports(results, args)
+        write_html(refresh_seconds=3)
         if result.get("returncode") and not args.continue_on_failure:
             break
     write_ladder_reports(results, args)
+    write_html(refresh_seconds=0)
     print(REPORT_ROOT / "summary.md")
     return 1 if failures else 0
 

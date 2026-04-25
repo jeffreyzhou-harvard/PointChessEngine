@@ -46,7 +46,10 @@ def main() -> int:
     baseline = config.get("baseline_commit") or config.get("baseline_branch", "main")
     report_root = ROOT / config.get("report_root", "reports/comparisons") / task_id
     report_root.mkdir(parents=True, exist_ok=True)
-    result_paths = sorted(report_root.glob("*/result.json"))
+    expected_ids = {candidate.get("candidate_id") for candidate in config.get("candidates") or [] if candidate.get("candidate_id")}
+    result_paths = sorted(
+        path for path in report_root.glob("*/result.json") if not expected_ids or path.parent.name in expected_ids
+    )
     score_path = report_root / "scores.json"
     scores = json.loads(score_path.read_text(encoding="utf-8")) if score_path.exists() else []
 
@@ -90,14 +93,15 @@ def main() -> int:
 
     lines.extend(["", "## Ranked Scores", ""])
     for i, item in enumerate(scores, start=1):
-        lines.append(f"{i}. `{item.get('candidate_id')}` - {item.get('total_score')}")
+        lines.append(
+            f"{i}. `{item.get('candidate_id')}` - {item.get('total_score')} "
+            f"(tests {item.get('tests_passed')}/{item.get('tests_total')}, tie {item.get('tie_break_seconds')}s)"
+        )
 
     if args.winner:
         winner = args.winner
     elif scores:
-        top_score = scores[0].get("total_score")
-        tied = [item.get("candidate_id") for item in scores if item.get("total_score") == top_score]
-        winner = scores[0]["candidate_id"] if len(tied) == 1 else "No winner selected. Top score tie: " + ", ".join(tied)
+        winner = scores[0]["candidate_id"]
     else:
         winner = ""
     lines.extend(
@@ -109,11 +113,12 @@ def main() -> int:
             "",
             "## Reason for Promotion",
             "",
-            args.reason or "Pending human review.",
+            args.reason
+            or "Highest Champion score; ties break by pass rate, then fastest builder/runtime, then candidate ID. Pending human review before promotion.",
             "",
             "## Rejected Candidates and Why",
             "",
-            "Pending human review.",
+            "Lower score or slower tie-break than the selected candidate. Pending human review.",
             "",
             "## What Was Merged",
             "",

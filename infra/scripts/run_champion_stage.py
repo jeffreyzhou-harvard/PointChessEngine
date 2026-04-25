@@ -173,7 +173,10 @@ def main() -> int:
         print("Tests not run. Use --run-tests when candidate worktrees/branches are ready.")
 
     if args.score:
-        code = run_script("score_candidates.py", ["--config", str(config_path)])
+        script_args = ["--config", str(config_path)]
+        if args.run_builders:
+            script_args.append("--use-builder-time")
+        code = run_script("score_candidates.py", script_args)
         if code:
             return code
 
