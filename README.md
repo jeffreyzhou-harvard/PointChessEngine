@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="ChessLogo.png" alt="Chess by Committee" width="200" />
+  <img src="figures/ChessLogo.png" alt="Chess by Committee" width="200" />
 </p>
 
 <h1 align="center">Chess by Committee</h1>
@@ -62,13 +62,13 @@ The project is structured to *test* that hypothesis rather than assume it: every
 ## Sneak peek
 
 <p align="center">
-  <img src="EngineHeadToHeadGIF.gif" alt="Two of the generated engines playing head-to-head inside our own tournament software" />
+  <img src="figures/EngineHeadToHeadGIF.gif" alt="Two of the generated engines playing head-to-head inside our own tournament software" />
 </p>
 
 <p align="center"><em>Two of our final generated engines going head-to-head inside our own tournament software (the <code>arena/</code> web UI).</em></p>
 
 <p align="center">
-  <img src="ChessTournament.gif" alt="Tournament mode running across all 8 final generated engines" />
+  <img src="figures/ChessTournament.gif" alt="Tournament mode running across all 8 final generated engines" />
 </p>
 
 <p align="center"><em>Tournament mode running for all 8 final generated engines.</em></p>
@@ -125,7 +125,7 @@ chess engine. What changes is **how it was produced.**
 | `engines/rlm/`                        | Recursive Language Model-inspired decomposition                    | Claude      | Claude             |
 
 <p align="center">
-  <img src="DebateArchitectureEngine.png" alt="Observability and chain-of-thought trace for the debate / ensemble architecture" width="85%" />
+  <img src="figures/DebateArchitectureEngine.png" alt="Observability and chain-of-thought trace for the debate / ensemble architecture" width="85%" />
 </p>
 
 <p align="center"><em>Observability and chain-of-thought trace for the debate / ensemble architecture.</em></p>
