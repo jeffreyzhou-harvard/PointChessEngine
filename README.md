@@ -60,30 +60,62 @@ reports/         run, eval, and comparison artifacts
 tests/           cross-engine classical / contract tests
 ```
 
-### Engine implementations
+### The eight engines and their construction methods
 
-- `engines/oneshot_nocontext/`
-- `engines/oneshot_contextualized/`
-- `engines/oneshot_react/`
-- `engines/chainofthought/`
-- `engines/langgraph/` (artifact produced by `methodologies/langgraph/`)
+The whole point of the repo is the controlled A/B/C/... across these.
+Every engine is a complete, UCI-speaking, pure-Python alpha-beta
+chess engine. What changes is **how it was produced.**
 
-Each engine supports UCI mode so it can be tournament-evaluated in a common pipeline.
+| engine                                | construction method                                                | who decided | who wrote the code |
+|---------------------------------------|--------------------------------------------------------------------|-------------|--------------------|
+| `engines/oneshot_nocontext/`          | one Claude prompt, no project context                              | Claude      | Claude             |
+| `engines/oneshot_contextualized/`     | one Claude prompt with curated repo context                        | Claude      | Claude             |
+| `engines/oneshot_react/`              | one ReAct-style prompt with tool access                            | Claude      | Claude             |
+| `engines/chainofthought/`             | incremental chain-of-thought prompting                             | Claude      | Claude             |
+| `engines/langgraph/`                  | LangGraph multi-agent orchestration: per-role specialists          | per-role    | per-role           |
+| `engines/debate/`                     | multi-model design *debate* (OpenAI · Grok · Gemini · DeepSeek · Kimi) → Claude judges & builds | Claude (judge) | Claude             |
+| `engines/ensemble/`                   | multi-model design *vote* (same advisors, no judge) → Claude builds | plurality   | Claude             |
+| `engines/rlm/`                        | Recursive Language Model-inspired decomposition                    | Claude      | Claude             |
+
+Each engine is registered in `arena/engines.py::REGISTRY`, so adding
+a ninth engine is a one-line addition: every cross-engine test, the
+arena UI, and the contract suite pick it up automatically.
 
 ### Methodologies (engine builders)
 
-- `methodologies/langgraph/` - LangGraph multi-agent orchestrator that builds an engine into `engines/langgraph/`
+The build orchestrators that produce each non-trivial engine artifact:
 
-### Interactive arena
+- `methodologies/langgraph/` - LangGraph multi-agent specialists →
+  `engines/langgraph/`
+- `methodologies/debate/`    - multi-model debate with Claude as judge →
+  `engines/debate/`
+- `methodologies/ensemble/`  - multi-model voting with no judge →
+  `engines/ensemble/`
+- `methodologies/rlm/`       - Recursive-LM-style prompting recipe →
+  `engines/rlm/`
 
-- `arena/` - local web UI for engine-vs-engine matches with live metrics
+The four `oneshot_*` and `chainofthought` engines are direct prompt
+recipes; their methodology is captured in their own READMEs rather
+than in a separate orchestrator module.
 
-Arena supports:
+### Interactive arena: pit them against each other, see the numbers
 
-- engine-vs-engine (fixed four LLM engines)
-- live board updates
-- depth, nodes, NPS, score, and wall-time metrics
-- build-cost metadata display
+`arena/` is a local web UI (`python -m arena` → `http://127.0.0.1:8765`)
+that pits any two registered engines against each other in real time
+and streams every metric you'd want for the comparison:
+
+| metric                                  | source                                  |
+|-----------------------------------------|-----------------------------------------|
+| game result (W/D/L) and reason          | python-chess + arena rules              |
+| per-move depth, nodes, NPS, score (cp / mate) | each engine's `info` UCI line     |
+| per-move wall time                      | arena timer around `go`                 |
+| cumulative engine clocks                | arena scoreboard                        |
+| chess.com-style move arrows + eval bar  | arena UI                                |
+| build cost ($), tokens, model           | `arena/engine_costs.json` (per engine)  |
+| lines of code                           | computed by arena from each engine tree |
+
+The arena is the live counterpart to the batch tournament harness in
+`infra/scripts/`; both feed the same comparison reports.
 
 For arena-specific details, see `arena/README.md`.
 
@@ -169,15 +201,28 @@ A central principle is human-reviewed iteration:
 
 ## Experimental framework (approach spectrum)
 
-Core families represented in this repo:
+The eight engines span the methodology axis from minimal to maximal
+orchestration:
 
-- One-shot baseline (`engines/oneshot_nocontext/`)
-- One-shot contextualized (`engines/oneshot_contextualized/`)
-- Structured reasoning / chain-of-thought (`engines/chainofthought/`)
-- Tool-using ReAct (`engines/oneshot_react/`)
-- Graph/orchestration-focused variants (`methodologies/langgraph/`, orchestrator docs)
+| family                          | engines                                                     |
+|---------------------------------|-------------------------------------------------------------|
+| **single-prompt baselines**     | `oneshot_nocontext`, `oneshot_contextualized`               |
+| **single-prompt with reasoning / tools** | `chainofthought`, `oneshot_react`, `rlm`           |
+| **multi-agent orchestration**   | `langgraph`                                                 |
+| **multi-model collaboration**   | `debate` (judge-mediated), `ensemble` (peer vote)           |
 
-These are evaluated comparatively through shared run scripts and reporting outputs.
+These are evaluated comparatively through three layers:
+
+1. **Contract layer** - `tests/contract/` runs the same UCI-surface
+   checks against every engine in `arena.engines.REGISTRY` (handshake,
+   legal-move guarantee, info-line semantics, lifecycle). 9 tests
+   parameterized over every registered engine on every CI run.
+2. **Arena layer** - live engine-vs-engine matches with streaming
+   metrics (game outcome, depth, nodes, NPS, score, wall time, build
+   cost).
+3. **Tournament layer** - batch round-robin via
+   `infra/scripts/run_local_champion.py` and the Dockerized GitHub
+   Actions matrix; aggregate reports land in `reports/comparisons/`.
 
 ---
 
@@ -295,22 +340,34 @@ GitHub Actions workflow:
 
 ```text
 PointChessEngine/
-├── engines/chainofthought/
-├── engines/oneshot_contextualized/
-├── engines/oneshot_nocontext/
-├── engines/oneshot_react/
-├── engines/rlm/
-├── methodologies/langgraph/
-├── methodologies/rlm/
-├── arena/
+├── engines/                              # 8 UCI engines (the artifacts being compared)
+│   ├── oneshot_nocontext/
+│   ├── oneshot_contextualized/
+│   ├── oneshot_react/
+│   ├── chainofthought/
+│   ├── langgraph/                        # built by methodologies/langgraph
+│   ├── debate/                           # built by methodologies/debate
+│   ├── ensemble/                         # built by methodologies/ensemble
+│   └── rlm/                              # recursive-LM-inspired decomposition (methodologies/rlm)
+├── methodologies/                        # the build orchestrators
+│   ├── langgraph/                        # multi-agent specialists
+│   ├── debate/                           # multi-model debate, Claude judges
+│   ├── ensemble/                         # multi-model vote, no judge
+│   └── rlm/                              # recursive-LM prompting recipe
+├── arena/                                # web UI: engine-vs-engine + live metrics
+│   ├── engines.py                        # REGISTRY of all 8 launchable engines
+│   └── tests/                            # 28 unit tests w/ in-tree fake UCI engine
 ├── infra/
-│   ├── agents/
-│   ├── orchestrators/
-│   ├── scripts/
-│   └── tasks/
-├── reports/
+│   ├── agents/                           # methodology + parallelization protocols
+│   ├── orchestrators/                    # orchestration schemas, debate runtime notes
+│   ├── scripts/                          # candidate / champion runners + reporters
+│   ├── tasks/                            # work plans, protocol docs
+│   └── configs/                          # tournament + champion YAMLs
+├── reports/                              # run / eval / comparison artifacts
 ├── tests/
-└── README.md
+│   ├── classical/                        # 59 milestone tests (currently grades oneshot_nocontext)
+│   └── contract/                         # 63 UCI-contract tests parameterized over REGISTRY
+└── .github/workflows/tests.yml           # CI: every test tree on every push + PR
 ```
 
 ---
