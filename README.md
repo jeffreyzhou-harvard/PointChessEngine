@@ -12,9 +12,6 @@
   <a href="https://github.com/jeffreyzhou-harvard/PointChessEngine/network/members">
     <img src="https://img.shields.io/github/forks/jeffreyzhou-harvard/PointChessEngine?style=social" alt="GitHub forks">
   </a>
-  <a href="https://github.com/jeffreyzhou-harvard/PointChessEngine/actions/workflows/tests.yml">
-    <img src="https://img.shields.io/github/actions/workflow/status/jeffreyzhou-harvard/PointChessEngine/tests.yml?branch=main&label=tests" alt="CI status">
-  </a>
   <img src="https://img.shields.io/github/last-commit/jeffreyzhou-harvard/PointChessEngine" alt="last commit">
 </p>
 
