@@ -419,6 +419,12 @@ To complement the round-robin above, we ran seven focused engine-vs-engine match
 | `ensemble` vs `rlm`                    |   100 | 100   |   0   |   0   | 100.0 % | +inf (sweep)             |
 | `oneshot_contextualized` vs `ensemble` |   100 |  18   |   6   |  76   | 21.0 %  | -230.2 ± 83.0            |
 
+<p align="center">
+  <img src="figures/HeadToHeadBracket.png" alt="Single-elimination bracket diagram derived from the 8-engine round-robin standings: quarterfinals (1 Ensemble vs 8 NoContext, 4 LangGraph vs 5 RLM, 3 Debate vs 6 ChainOfThought, 2 Contextualized vs 7 OneshotReAct) feed into semifinals Contextualized vs OneshotReAct (100-0) and Ensemble vs RLM (100-0), with Ensemble winning the final against Contextualized 76-18." width="90%" />
+</p>
+
+<p align="center"><em>The same head-to-head matches re-projected as a single-elimination bracket seeded from the 8-engine round-robin standings. Quarterfinals are pulled from the seven matches in the table above; both semifinals and the final were run as full 100-game matches under the same configuration.</em></p>
+
 **What this tells us, holding game-time constant:**
 
 - **Curated context dominates a bare prompt.** `oneshot_contextualized` swept `oneshot_nocontext` 20-0 and swept `oneshot_react` 100-0. Of every axis we vary, "give the model access to the existing repo" was the single largest move-the-needle change.
