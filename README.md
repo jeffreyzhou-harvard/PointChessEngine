@@ -381,6 +381,12 @@ Three distinct bottlenecks are handled separately:
 
 See `infra/agents/PARALLELIZATION_PLAN.md` and `infra/scripts/` for concrete process flow.
 
+<p align="center">
+  <img src="figures/parallel_champion_ladder.gif" alt="Champion mode replay showing C0-C8 candidate stages running through a CI-style dashboard" width="92%" />
+</p>
+
+<p align="center"><em>Champion mode turns the workflow into a visible CI-style ladder: each C* milestone evaluates multiple candidate methodologies from the same baseline, runs the configured Docker gates, scores the candidates, selects the stage champion by score and tie-breaks, and emits reports/metrics for later analysis.</em></p>
+
 ---
 
 ## Results (current snapshot)
