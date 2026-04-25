@@ -200,6 +200,18 @@ The dashboard is written after each stage and can be opened directly:
 open reports/comparisons/CHAMPION_LADDER/index.html
 ```
 
+To replay the finished ladder as a looping CI-style animation for a GIF:
+
+```bash
+infra/scripts/replay_champion_ladder_dashboard.sh
+```
+
+Speed controls:
+
+```bash
+STEP_SECONDS=0.8 HOLD_SECONDS=1.5 infra/scripts/replay_champion_ladder_dashboard.sh
+```
+
 Useful modes:
 
 ```bash

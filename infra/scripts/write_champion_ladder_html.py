@@ -68,14 +68,29 @@ def candidate_rows(row: dict, scores: list[dict]) -> str:
 
 def stage_card(row: dict) -> str:
     task_id = row.get("task_id", "")
-    passed = bool(row.get("stage_passed"))
+    explicit_status = row.get("stage_status")
+    is_running = explicit_status == "running"
+    is_pending = explicit_status == "pending"
+    passed = bool(row.get("stage_passed")) and not is_running and not is_pending
     scores = read_scores(row)
-    winner = row.get("top_candidate_id") or "pending"
-    score = row.get("top_score") if row.get("top_score") != "" else "pending"
+    winner = row.get("top_candidate_id") or ("running" if is_running else "pending")
+    score = row.get("top_score") if row.get("top_score") != "" else ("running" if is_running else "pending")
     passed_count = row.get("passed_count", 0)
     candidate_count = row.get("candidate_count", 0)
-    status_class = "pass" if passed else "fail"
-    status_label = "champion selected" if passed else "no passing champion"
+    if is_running:
+        status_class = "running"
+        status_label = "running"
+    elif is_pending:
+        status_class = "pending"
+        status_label = "queued"
+    else:
+        status_class = "pass" if passed else "fail"
+        status_label = "champion selected" if passed else "no passing champion"
+    candidates_html = (
+        "<div class='runner-line'><span></span></div><p class='muted'>Candidate matrix running in Docker...</p>"
+        if is_running
+        else candidate_rows(row, scores[:6])
+    )
     return f"""
     <section class="stage-card {status_class}">
       <div class="stage-head">
@@ -92,7 +107,7 @@ def stage_card(row: dict) -> str:
         <div><span>{float(row.get("duration_seconds") or 0.0):.1f}s</span><label>stage time</label></div>
       </div>
       <div class="candidate-list">
-        {candidate_rows(row, scores[:6])}
+        {candidates_html}
       </div>
     </section>
     """
@@ -100,12 +115,26 @@ def stage_card(row: dict) -> str:
 
 def build_html(summary: dict, refresh_seconds: int) -> str:
     rows = summary.get("rows") or []
-    requested = int(summary.get("requested_task_count") or len(rows) or 0)
-    complete = len(rows) >= requested and requested > 0
-    refresh = f'<meta http-equiv="refresh" content="{refresh_seconds}">' if refresh_seconds > 0 and not complete else ""
-    cards = "\n".join(stage_card(row) for row in rows)
-    selected = [row for row in rows if row.get("stage_passed")]
-    failed = [row for row in rows if not row.get("stage_passed")]
+    task_order = summary.get("task_order") or []
+    requested = int(summary.get("requested_task_count") or len(task_order) or len(rows) or 0)
+    by_task = {row.get("task_id"): row for row in rows if row.get("task_id")}
+    display_rows = []
+    if task_order:
+        for task_id in task_order:
+            display_rows.append(by_task.get(task_id, {"task_id": task_id, "stage_status": "pending"}))
+    else:
+        display_rows = rows
+    completed_rows = [row for row in rows if row.get("stage_status") not in {"pending", "running"}]
+    complete = len(completed_rows) >= requested and requested > 0
+    force_refresh = bool(summary.get("force_refresh"))
+    refresh = (
+        f'<meta http-equiv="refresh" content="{refresh_seconds}">'
+        if refresh_seconds > 0 and (force_refresh or not complete)
+        else ""
+    )
+    cards = "\n".join(stage_card(row) for row in display_rows)
+    selected = [row for row in completed_rows if row.get("stage_passed")]
+    failed = [row for row in completed_rows if not row.get("stage_passed")]
     serial = float(summary.get("estimated_serial_seconds") or 0.0)
     return f"""<!doctype html>
 <html lang="en">
@@ -170,12 +199,16 @@ def build_html(summary: dict, refresh_seconds: int) -> str:
       min-height: 310px;
     }}
     .stage-card.pass {{ border-top-color: var(--green); }}
+    .stage-card.running {{ border-top-color: var(--cyan); }}
+    .stage-card.pending {{ border-top-color: var(--line); opacity: .72; }}
     .stage-head {{ display: flex; justify-content: space-between; gap: 12px; align-items: start; margin-bottom: 14px; }}
     .eyebrow {{ margin: 0 0 4px; color: var(--cyan); font-weight: 700; font-size: 12px; letter-spacing: .08em; }}
     h2 {{ margin: 0; font-size: 17px; letter-spacing: 0; }}
     .pill {{ white-space: nowrap; padding: 5px 8px; border-radius: 999px; font-size: 12px; background: var(--panel-2); }}
     .pill.pass {{ color: #0b2918; background: var(--green); }}
     .pill.fail {{ color: #2e070c; background: var(--red); }}
+    .pill.running {{ color: #071e26; background: var(--cyan); }}
+    .pill.pending {{ color: var(--muted); background: var(--panel-2); }}
     .stage-stats {{ display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }}
     .stage-stats div {{ background: var(--panel-2); border-radius: 8px; padding: 9px; min-width: 0; }}
     .stage-stats span {{ display: block; font-weight: 750; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }}
@@ -189,6 +222,26 @@ def build_html(summary: dict, refresh_seconds: int) -> str:
     .score-bar span {{ display: block; height: 100%; background: var(--cyan); }}
     .candidate-row.winner .score-bar span {{ background: var(--gold); }}
     .score-number {{ font-weight: 750; text-align: right; }}
+    .runner-line {{
+      height: 9px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: #0d1114;
+      border: 1px solid #0f2028;
+    }}
+    .runner-line span {{
+      display: block;
+      width: 34%;
+      height: 100%;
+      border-radius: 999px;
+      background: var(--cyan);
+      animation: runbar 1.3s ease-in-out infinite;
+    }}
+    @keyframes runbar {{
+      0% {{ transform: translateX(-105%); }}
+      50% {{ transform: translateX(95%); }}
+      100% {{ transform: translateX(305%); }}
+    }}
     .muted {{ color: var(--muted); }}
     footer {{ color: var(--muted); margin-top: 20px; font-size: 13px; }}
     @media (max-width: 980px) {{
@@ -206,7 +259,7 @@ def build_html(summary: dict, refresh_seconds: int) -> str:
         <p class="sub">Local Docker evaluation across the classical C0-C8 task ladder. Open this file during a run; it refreshes until the requested ladder is complete.</p>
       </div>
       <div class="scoreboard">
-        <div class="metric"><span>{len(rows)}/{requested}</span><label>stages recorded</label></div>
+        <div class="metric"><span>{len(completed_rows)}/{requested}</span><label>stages complete</label></div>
         <div class="metric"><span>{len(selected)}</span><label>champions selected</label></div>
         <div class="metric"><span>{len(failed)}</span><label>failed stages</label></div>
         <div class="metric"><span>{serial:.1f}s</span><label>runtime</label></div>
