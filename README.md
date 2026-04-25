@@ -2,7 +2,7 @@
   <img src="figures/ChessLogo.png" alt="Chess by Committee" width="200" />
 </p>
 
-<h1 align="center">Chess by Committee</h1>
+<h1 align="center">Fisher</h1>
 <p align="center"><em>A methodology-driven experimental framework for AI-generated chess engines</em></p>
 
 <p align="center">
