@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="figures/ChessLogo.png" alt="Chess by Committee" width="200" />
+  <img src="ChessLogo.png" alt="Chess by Committee" width="200" />
 </p>
 
 <h1 align="center">Chess by Committee</h1>
@@ -62,13 +62,13 @@ The project is structured to *test* that hypothesis rather than assume it: every
 ## Sneak peek
 
 <p align="center">
-  <img src="figures/EngineHeadToHeadGIF.gif" alt="Two of the generated engines playing head-to-head inside our own tournament software" />
+  <img src="EngineHeadToHeadGIF.gif" alt="Two of the generated engines playing head-to-head inside our own tournament software" />
 </p>
 
 <p align="center"><em>Two of our final generated engines going head-to-head inside our own tournament software (the <code>arena/</code> web UI).</em></p>
 
 <p align="center">
-  <img src="figures/ChessTournament.gif" alt="Tournament mode running across all 8 final generated engines" />
+  <img src="ChessTournament.gif" alt="Tournament mode running across all 8 final generated engines" />
 </p>
 
 <p align="center"><em>Tournament mode running for all 8 final generated engines.</em></p>
@@ -89,6 +89,104 @@ This project separates those variables. Chess is a clean evaluation domain:
 That makes it a practical benchmark for the broader engineering question:
 
 **Given a fixed engineering task, which combination of meta-prompting method + agentic framework + model mix maximizes output quality per dollar — and is the marginal cost of more orchestration ever justified?**
+
+---
+
+## What we measured, and how
+
+Beyond raw playing strength, the comparison hinges on instrumentation. Each engine is wired up to surface five layers of telemetry:
+
+- **Per-move telemetry** — depth, nodes searched, NPS, score (cp/mate), wall-time, captured directly from each engine's UCI `info` lines and the arena's wall-clock around `go`. Streamed live in `arena/` and persisted to JSONL.
+- **Build cost telemetry** — `arena/engine_costs.json` carries `build_cost_usd`, `build_tokens`, and `build_model` per engine. The arena UI surfaces them next to playing strength so you can read strength-per-dollar at a glance.
+- **Test telemetry** — every engine ships its own `tests/` tree containing **unit tests** (board, move-generation, evaluation), **perft tests** (move-generation correctness against reference counts at depth ≥ 4), and **UCI-protocol tests** (handshake, info-line semantics, lifecycle). Test pass-rate and perft-correctness become first-class metrics in the comparison; the cross-engine `tests/contract/` parameterizes 9 protocol checks over every entry in `arena.engines.REGISTRY`, so any new engine joins the test matrix automatically.
+- **Tournament telemetry** — round-robin W/L/D, per-pair scores, Bradley-Terry Elo with bootstrap CIs, color balance, and legal-move rate, captured from the live `arena/` runs and the batch `infra/scripts/` tournament harness.
+- **Process telemetry (observability)** — the multi-agent and debate methodologies emit structured traces of each turn (which agent spoke, what they said, judge verdict). Captured via the LangGraph runtime's built-in observability hooks.
+
+---
+
+## Observability via LangGraph
+
+`engines/langgraph/` and `methodologies/langgraph/` are not just *another* engine — they are the project's primary observability surface. LangGraph models every multi-agent build as an explicit graph of typed nodes (specialist roles) and edges (state transitions). That gives us:
+
+- **Replayable traces** — every state transition is dumped as a timestamped record. We can re-run the *same* graph on the *same* input and inspect where decisions branched without re-paying the LLM cost.
+- **Per-role attribution** — when a final engine has a bug, we can walk back to the specific specialist node whose output introduced it. Single-prompt baselines can't do this.
+- **A/B-able decision rules** — the judge-vs-vote distinction (`methodologies/debate/` vs `methodologies/ensemble/`) is one node-swap in a LangGraph definition. Swapping cost-per-pass dropped from "rebuild the orchestrator" to "edit one edge."
+
+This is also what makes the eight-engine comparison fair: every multi-agent variant emits the same observability schema, so cross-method comparisons are apples-to-apples on **process metrics**, not just outcome metrics. `Promptfoo` (declarative prompt-level test cases) sits alongside this stack as the prompt-side analogue of unit tests — a regression suite that catches the moment a methodology's design-phase prompt stops producing a valid module spec, before any code is generated.
+
+---
+
+## Parallelism via per-task Docker containers
+
+Each engine ships a `docker_parallel_orchestrator/` subtree (see `engines/oneshot_contextualized/docker_parallel_orchestrator/`, `engines/oneshot_nocontext/docker_parallel_orchestrator/`, `engines/chainofthought/docker_parallel_orchestrator/`, and `engines/oneshot_react/docker_parallel_orchestrator/`) that enacts the build DAG as a fleet of isolated Docker containers — one per task — orchestrated by `asyncio` or by `docker compose`'s `service_completed_successfully` dependency mechanism. Each container is functionally a tiny VM: its own filesystem, its own PID 1, no shared state with peers. The orchestrator launches every task whose dependencies have been satisfied and waits only on the longest path through the DAG, so independent tasks (the 6-way fan-out after `C2_LEGAL_MOVES`, the 4-way fan-out at the end) execute concurrently.
+
+The post-run verifier reads each container's self-recorded `start_time` / `end_time` JSON and asserts four invariants: dependencies respected, declared parallel groups overlapped at a common instant, the four final-eval tasks all overlapped pairwise, and every artifact landed on disk. Faking parallelism is hard because the verifier never trusts orchestrator clocks — only the wall times each container recorded for itself. We then ran all four engines' DAGs *concurrently* on a single host (distinct compose project / image names per engine) and confirmed every pair of engines shared a real wall-clock overlap window:
+
+<p align="center">
+  <img src="parallel_execution_gantt.png" alt="Gantt chart showing four chess-engine DAGs running concurrently as Docker container fleets" width="92%" />
+</p>
+<p align="center"><em>Four engine DAGs (colored bands) executing simultaneously. Within each band, the 6-way fan-out after <code>C2_LEGAL_MOVES</code> and the 4-way final-eval fan-out are visibly stacked. Across bands, the four engines overlap horizontally — proof that the engines are building at the same wall-clock time, not in sequence.</em></p>
+
+This gives us the cheapest possible local stand-in for the eventual remote-agent-VM setup: when each "engineer" agent is a real VM with its own toolchain, the dispatcher above doesn't change shape — only the executor does.
+
+---
+
+## Research and prior art (deep dive)
+
+Before describing what's in the repo, the section below grounds the project in the recent literature it draws from. Each of the four research streams below mapped onto a concrete piece of the build.
+
+### Recursive Language Models (RLM)
+
+**What it is.** Recursive Language Models, introduced by Alex Zhang and collaborators in [arXiv:2512.24601](https://arxiv.org/abs/2512.24601) and accompanied by the open-source reference implementation at [`alexzhang13/rlm`](https://github.com/alexzhang13/rlm), formalize the idea that a language model's *next answer* can itself be the result of recursive calls into smaller, scoped LM invocations. Instead of a single forward pass on a long context, the model treats parts of its context as opaque pointers and dispatches sub-queries that read those pointers on-demand. Each sub-call returns a compressed answer that the outer call can integrate. The recursion can be arbitrarily deep, with leaf calls handling the most concrete reasoning and the root call doing planning and synthesis.
+
+**Why it matters.** Long-context LLMs run into three well-documented failure modes — middle-of-context attention collapse, quadratic compute, and the impossibility of selectively forgetting. RLM sidesteps all three by making "look at this section of the input" an explicit, scoped operation rather than a passive read. The empirical claim from the paper is that the same total token budget produces strictly better answers when spent recursively rather than monolithically — particularly for tasks that decompose naturally into sub-problems.
+
+**How we used it for chess.** A chess engine decomposes naturally: legality, search, evaluation, tactics, opening, endgame, UCI protocol, ELO calibration. `methodologies/rlm/` implements an RLM-style build by treating each module as a leaf sub-call, with a root call that plans the module list, dispatches the sub-builds, and integrates their outputs into a single coherent engine. Each sub-call sees only the sub-task's spec (not the rest of the engine's source), which mirrors the paper's "scoped read" primitive. The resulting `engines/rlm/` is the only engine in the repo whose build process intentionally never has the entire engine source in context at once.
+
+**Researchers / acknowledgements.** Alex Zhang and co-authors (paper above). Our recursive-prompting recipe is downstream of their reference implementation; see [`alexzhang13/rlm`](https://github.com/alexzhang13/rlm) for the canonical figures (recursion-tree decoding, ablation against single-pass baselines).
+
+> *Figure pointer.* The paper's Figure 2 (recursion tree across decoding) is the cleanest single picture of the pattern. We reproduce its *shape*, not its content, in our build DAGs — see the Gantt above for the chess-engine analogue (every container = one scoped sub-call).
+
+### Multi-model debate (heterogeneous advisor pool)
+
+**What it is.** [Adaptive heterogeneous multi-agent debate for enhanced educational and factual reasoning in LLMs](https://link.springer.com/article/10.1007/s44443-025-00353-3) shows that mixing model *families* — not just instances of the same model — in a debate loop systematically improves reasoning quality on factual and pedagogical tasks. The intuition is that different model families have different inductive biases and failure modes; running them against each other surfaces disagreements that any single family would silently smooth over.
+
+**How we used it for chess.** `methodologies/debate/` instantiates a five-provider advisor pool: OpenAI, Grok, Gemini, DeepSeek, and Kimi each propose a design for the engine. A Claude judge then synthesizes the proposals and writes the actual code for `engines/debate/`. The provider mix was deliberately chosen to maximize family diversity rather than aggregate quality.
+
+> *Figure pointer.* See `DebateArchitectureEngine.png` (embedded later in the README) for the trace of one such debate round; the multi-provider fan-in mirrors the fan-in in Figure 1 of the original paper.
+
+### Judge vs vote (MIT AI Safety Fundamentals)
+
+[MIT AI Safety Fundamentals weeks 5](https://web.mit.edu/aialignment/www/aisf/week5/) and [6](https://web.mit.edu/aialignment/www/aisf/week6/) frame a question that recurs throughout multi-agent literature: when several models disagree, who decides? The two cleanest options — **single trusted judge** and **plurality peer vote** — have very different failure modes (judge over-fits to one viewpoint; vote degenerates when advisors share biases).
+
+**How we used it.** `methodologies/debate/` (Claude-as-judge) and `methodologies/ensemble/` (no-judge plurality vote among the same advisor pool) are an A/B of exactly this distinction. `engines/debate/` and `engines/ensemble/` are therefore the same prompt set, the same advisors, and the same builder Claude — only the *aggregation step* differs. Any strength delta between them is attributable to the decision rule alone.
+
+### Chess as a measurement substrate
+
+**What it is.** [Chess as a measurement substrate for LLM-driven systems (arXiv:2502.13295)](https://arxiv.org/abs/2502.13295) argues that chess has long been used to evaluate LLM *players* but should also be used to evaluate LLM-built *systems*. The substrate is attractive because it has fixed rules, a strong oracle (Stockfish), well-studied search behavior, and easily-measurable failure modes — a chess engine that hallucinates a board state or generates an illegal move announces itself loudly.
+
+**How we used it.** This paper is the framing under which the entire scorecard is constructed: every methodology is graded as an LLM-built *system*, with the chess engine as the unit of measurement, not the endpoint. That framing is what justifies the multi-axis scorecard (build cost, runtime cost, robustness, playing strength) instead of a single Elo number.
+
+### Tools and observability stack
+
+The methodologies above are wired into a small but deliberate tool stack:
+
+- **[Promptfoo](https://www.promptfoo.dev/)** — declarative prompt-level test cases. The repo's `promptfooconfig.yaml` carries the design-phase prompts for each methodology under regression tests, so a prompt that suddenly stops producing a valid module spec is caught before any code is generated. Promptfoo is the prompt-side analogue of unit tests.
+- **[LangGraph](https://www.langchain.com/langgraph)** — the multi-agent runtime *and* observability surface. Every node transition is logged with its input/output state, which lets us replay a build (or a single bug) without re-paying the LLM cost. See `methodologies/langgraph/`.
+- **[python-chess](https://python-chess.readthedocs.io/)** — used by `arena/`, `tests/contract/`, and the perft harnesses for ground-truth move legality, FEN/SAN/PGN parsing, and game-end detection.
+- **[FastChess](https://github.com/Disservin/fastchess)** — drop-in batch-tournament runner; the round-robin format is the eventual replacement for the current candidate/champion runners in `infra/scripts/`.
+- **Test layers** — every engine ships its own `tests/` tree containing unit tests (board, move-gen, evaluation), perft tests (move-gen correctness against reference counts at depth ≥ 4), and UCI-protocol tests (handshake, info-line semantics, lifecycle). The cross-engine `tests/contract/` parameterizes 9 protocol checks over every entry in `arena.engines.REGISTRY`, so any new engine joins the test matrix automatically.
+
+### Paper figure references to include during write-up
+
+To keep this README reproducible and attribution-safe, we currently link to source papers and summarize the figure intent. During the final manuscript pass, add licensed reproductions/screenshots of these specific figures:
+
+- **RLM paper (`arXiv:2512.24601`)** — recursion tree / hierarchical decoding diagram (typically early-method section). Use alongside `parallel_execution_gantt.png` to show conceptual mapping from recursive reasoning to recursive build DAG execution.
+- **Adaptive heterogeneous debate paper** — architecture block diagram showing heterogeneous model pool and arbitration loop. Pair this with `DebateArchitectureEngine.png` to show how the repo operationalizes the same pattern.
+- **MIT AI Safety Fundamentals (weeks 5/6)** — judge-vs-vote framing graphic (or table) to ground our `methodologies/debate/` vs `methodologies/ensemble/` A/B.
+- **Chess as measurement substrate (`arXiv:2502.13295`)** — figure/table motivating chess as a controlled systems benchmark. Place directly before the scorecard section to justify why we track protocol robustness and perft in addition to Elo-like strength.
+
+When adding these paper figures, include a one-line citation under each image with source link and license note.
 
 ---
 
@@ -125,7 +223,7 @@ chess engine. What changes is **how it was produced.**
 | `engines/rlm/`                        | Recursive Language Model-inspired decomposition                    | Claude      | Claude             |
 
 <p align="center">
-  <img src="figures/DebateArchitectureEngine.png" alt="Observability and chain-of-thought trace for the debate / ensemble architecture" width="85%" />
+  <img src="DebateArchitectureEngine.png" alt="Observability and chain-of-thought trace for the debate / ensemble architecture" width="85%" />
 </p>
 
 <p align="center"><em>Observability and chain-of-thought trace for the debate / ensemble architecture.</em></p>
@@ -299,6 +397,126 @@ Three distinct bottlenecks are handled separately:
    Batch workflows, staged candidate pipelines, and scheduled comparisons
 
 See `infra/agents/PARALLELIZATION_PLAN.md` and `infra/scripts/` for concrete process flow.
+
+---
+
+## Results (current snapshot)
+
+This section is intentionally placed before setup so readers can see outcomes first, then reproduce.
+Everything below is additive and corresponds to artifacts already checked into this repo.
+
+### Tournament snapshot (5-engine round-robin, 20 games)
+
+Configuration used in the latest local batch:
+- engines: `oneshot_nocontext`, `oneshot_contextualized`, `oneshot_react`, `chainofthought`, `debate`
+- format: double round-robin (each pair plays both colors once)
+- search budget: `movetime=100ms`, `max_plies=60`
+- wall time: `137.41s`
+
+Standings from `tournament_results.json`:
+
+| rank | engine | points | W | D | L |
+|------|--------|--------|---|---|---|
+| 1 | `debate` | 7.0 | 6 | 2 | 0 |
+| 2 | `oneshot_contextualized` | 6.0 | 4 | 4 | 0 |
+| 3 | `oneshot_react` | 2.5 | 0 | 5 | 3 |
+| 4 | `chainofthought` | 2.5 | 0 | 5 | 3 |
+| 5 | `oneshot_nocontext` | 2.0 | 0 | 4 | 4 |
+
+Core comparison figures generated from that run:
+
+<p align="center"><img src="figures/01_head_to_head_heatmap.png" alt="Head-to-head win-rate heatmap from latest round-robin" width="90%" /></p>
+<p align="center"><em>Head-to-head win-rate matrix (row engine score vs column engine). Fast read of directional matchups.</em></p>
+
+<p align="center"><img src="figures/02_cross_table_standings.png" alt="Cross-table standings from latest round-robin" width="80%" /></p>
+<p align="center"><em>Cross-table standings with W/D/L decomposition.</em></p>
+
+<p align="center"><img src="figures/03_bradley_terry_elo.png" alt="Bradley-Terry Elo with confidence intervals" width="85%" /></p>
+<p align="center"><em>Bradley-Terry Elo with bootstrap confidence intervals from the same game set.</em></p>
+
+<p align="center"><img src="figures/04_movetime_distribution.png" alt="Move-time distribution per engine" width="90%" /></p>
+<p align="center"><em>Move-time distributions (compute pressure / runtime profile).</em></p>
+
+<p align="center"><img src="figures/05_legal_move_rate.png" alt="Legal move rate comparison per engine" width="80%" /></p>
+<p align="center"><em>Legal-move rate (robustness and rules compliance under real play).</em></p>
+
+<p align="center"><img src="figures/06_perft_correctness.png" alt="Perft correctness comparison across engines" width="80%" /></p>
+<p align="center"><em>Perft correctness view from each engine's own perft tests.</em></p>
+
+<p align="center"><img src="figures/07_strength_vs_cost_pareto.png" alt="Strength vs cost pareto chart" width="85%" /></p>
+<p align="center"><em>Strength vs cost proxy (Elo vs average move-time) Pareto view.</em></p>
+
+<p align="center"><img src="figures/08_white_vs_black_score.png" alt="White vs black score rates by engine" width="80%" /></p>
+<p align="center"><em>Color-balance check (score as White vs as Black).</em></p>
+
+### Build token usage and cost (illustrative panel)
+
+To keep comparisons complete while instrumentation is being finalized, we include an explicit estimate panel:
+
+<p align="center"><img src="figures/12_build_token_usage_and_cost.png" alt="Illustrative token usage and build cost by engine" width="90%" /></p>
+<p align="center"><em>Estimated build token usage and cost per engine methodology (clearly marked as illustrative in the figure itself).</em></p>
+
+### Engine-specific figure bundles
+
+Each engine has its own figure folder with all generated panels (and per-engine highlighting where applicable):
+
+- `engines/oneshot_nocontext/figures/`
+- `engines/oneshot_contextualized/figures/`
+- `engines/oneshot_react/figures/`
+- `engines/chainofthought/figures/`
+- `engines/langgraph/figures/`
+- `engines/debate/figures/`
+- `engines/ensemble/figures/`
+
+Each folder includes:
+`01_head_to_head_heatmap.png`, `02_cross_table_standings.png`, `03_bradley_terry_elo.png`, `04_movetime_distribution.png`, `05_legal_move_rate.png`, `06_perft_correctness.png`, `07_strength_vs_cost_pareto.png`, `08_white_vs_black_score.png`, `09_vs_stockfish_PLACEHOLDER.png`, `10_vs_commercial_LLMs_PLACEHOLDER.png`, `11_tokens_per_move_PLACEHOLDER.png`, and `12_build_token_usage_and_cost.png`.
+
+### Test-first evidence summary
+
+Testing is treated as a first-class outcome metric, not only a gating step:
+- **Unit tests** validate board representation, move generation, search behavior, and utility layers inside each engine package.
+- **Perft tests** validate legal move-tree counts against known references (critical for proving move generator correctness, not just tactical strength).
+- **UCI contract tests** run the same protocol checks across every registered engine so conformance is comparable.
+- **Arena/tournament tests** validate end-to-end gameplay behavior under repeated head-to-head play.
+
+---
+
+## AI usage and division of work
+
+This project uses AI heavily but not opaquely. The workflow is explicit about where models were used and where humans stayed in the loop.
+
+### AI usage in the development lifecycle
+
+1. **Research acceleration**
+   - LLMs were used to rapidly discover and summarize relevant papers for recursive prompting, multi-agent debate, orchestration, and chess-as-benchmark framing.
+   - Candidate references were then manually curated into the methodology choices documented in this README.
+
+2. **Code generation and iterative implementation**
+   - Each engine and methodology was generated through structured prompting pipelines (one-shot, CoT, ReAct, LangGraph, debate, ensemble, recursive decomposition).
+   - AI generated draft implementations for modules, tests, and orchestration scripts; humans validated behavior and merged selectively.
+
+3. **Pre-push code review assistance**
+   - LLM review was used as a fast first-pass reviewer before CI, to shorten feedback loops on obvious issues while waiting for slower full test pipelines.
+   - CI remained the canonical gate; AI review was additive, not authoritative.
+
+4. **Experiment analysis and reporting**
+   - AI assisted in transforming raw logs into readable summaries, figure captions, and metric narratives.
+   - Final interpretations remained grounded in the measured artifacts (`tournament_results.json`, `perft_results.json`, test outputs, and generated plots).
+
+### Division of work (practical split)
+
+- **AI-dominant tasks:** code scaffolding, prompt iteration, comparative design proposals, draft test creation, report drafting.
+- **Human-dominant tasks:** experiment design, acceptance criteria, deciding decision-rule A/Bs (judge vs vote), metric selection, run governance, and final merge decisions.
+- **Shared tasks:** debugging failing runs, refining prompts after regression, deciding when to replace a methodology component.
+
+### Why this matters methodologically
+
+Because AI is part of both the **object under test** (LLM-built engines) and the **build toolchain**, explicit process documentation is required for reproducibility. This README therefore separates:
+- what was generated by which methodology,
+- what was measured by which harness,
+- and what was accepted after test/contract validation.
+
+That separation is what lets the repository function as research infrastructure rather than just a collection of engine snapshots.
 
 ---
 
