@@ -79,7 +79,7 @@ _MATE_THRESHOLD = MATE_SCORE - 1000
 
 # How often (in node visits) to check the time / stop flag. Lower
 # values give more responsive stops at the cost of overhead.
-_TIME_CHECK_INTERVAL = 4096
+_TIME_CHECK_INTERVAL = 256
 
 
 # ---------------------------------------------------------------------------
