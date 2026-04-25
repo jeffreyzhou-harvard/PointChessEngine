@@ -1,0 +1,1271 @@
+Indexing opening suite...
+Started game 1 of 100 (Contextualized vs OneshotReAct)
+Started game 3 of 100 (Contextualized vs OneshotReAct)
+Started game 5 of 100 (Contextualized vs OneshotReAct)
+Started game 6 of 100 (OneshotReAct vs Contextualized)
+Started game 2 of 100 (OneshotReAct vs Contextualized)
+Started game 4 of 100 (OneshotReAct vs Contextualized)
+Warning; Bestmove does not match beginning of last PV - move f6h5 from OneshotReAct
+Info; info depth 2 nodes 330 time 154 nps 2142 score cp -434 pv b4b2 h6d2
+Position; fen rnb1k2r/pp2ppbp/2p2np1/4N3/1q1P1B2/2N4P/PPP2PP1/R2QKB1R w KQkq - 4 9
+Moves; f1c4 g7h6 c4f7 e8d8 f4h6
+Warning; Bestmove does not match beginning of last PV - move h2h3 from OneshotReAct
+Info; info depth 2 nodes 392 time 102 nps 3843 score cp -206 pv c1f4 e5f4
+Position; fen rnbqr1k1/p2p1ppp/1p1b1n2/2pP4/4P3/2N2P1N/PP4PP/R1BQKB1R w KQ - 5 9
+Moves; h3f4 d8c7 e1f2 d6f4 c3b5 c7e5
+Warning; Bestmove does not match beginning of last PV - move e1e2 from OneshotReAct
+Info; info depth 3 nodes 403 time 105 nps 3838 score cp -1127 pv d2c1 a1c1 e1e2
+Position; fen rnb1k2r/pp2ppbp/2p2np1/4N3/1q1P1B2/2N4P/PPP2PP1/R2QKB1R w KQkq - 4 9
+Moves; f1b5 b4b2 f4h2 b2c3 d1d2 c3a1
+Warning; Bestmove does not match beginning of last PV - move b5c6 from OneshotReAct
+Info; info depth 2 nodes 646 time 204 nps 3166 score cp -1446 pv e5f7 e8f7
+Position; fen rnb1k2r/pp2ppbp/2p2np1/4N3/1q1P1B2/2N4P/PPP2PP1/R2QKB1R w KQkq - 4 9
+Moves; f1b5 b4b2 f4h2 b2c3 d1d2 c3a1 e1e2 a1h1
+Warning; Bestmove does not match beginning of last PV - move e2f1 from OneshotReAct
+Info; info depth 2 nodes 290 time 68 nps 4264 score cp -1367 pv c3b4 c6b4
+Position; fen r2qk2r/pb1p1ppp/1pn1pn2/8/1b1PP3/3B1N2/PP1BQPPP/RN2K2R w KQkq - 3 9
+Moves; e1f1 d7d5 g2g4 d5e4 d2c3 e4d3 f3d2 d3e2 f1e2 f6g4
+Warning; Bestmove does not match beginning of last PV - move g7g6 from OneshotReAct
+Info; info depth 2 nodes 242 time 49 nps 4938 score cp -2646 pv f6d5 e4d5
+Position; fen rnbqr1k1/p2p1ppp/1p1b1n2/2pP4/4P3/2N2P1N/PP4PP/R1BQKB1R w KQ - 5 9
+Moves; c1f4 a7a5 f4d6 c8a6 h3g5 e8e7 d6e7 h7h6 e7d8 a5a4 f1a6 h6h5 a6b7 d7d6 b7a8
+Warning; Bestmove does not match beginning of last PV - move f2f3 from OneshotReAct
+Info; info depth 2 nodes 452 time 94 nps 4808 score cp -2020 pv f4d3 c8h3
+Position; fen rnb1k2r/pp2ppbp/2p2np1/4N3/1q1P1B2/2N4P/PPP2PP1/R2QKB1R w KQkq - 4 9
+Moves; f1b5 b4b2 f4h2 b2c3 d1d2 c3a1 e1e2 a1h1 b5c6 b7c6 e5d3 h1h2 c2c3 h2g2 d3f4 g2h1
+Warning; Bestmove does not match beginning of last PV - move d5d4 from OneshotReAct
+Info; info depth 2 nodes 408 time 128 nps 3187 score cp -2285 pv b6c5 h7f7
+Position; fen r2qk2r/pb1p1ppp/1pn1pn2/8/1b1PP3/3B1N2/PP1BQPPP/RN2K2R w KQkq - 3 9
+Moves; e1g1 b4f8 b1c3 d8b8 e4e5 b8c8 e5f6 c8b8 d2g5 f8c5 d4c5 a7a6 f6g7 d7d5 g7h8q e8d7 h8h7
+Warning; Bestmove does not match beginning of last PV - move e2d1 from OneshotReAct
+Info; info depth 3 nodes 797 time 190 nps 4194 score cp -2671 pv e2d3 a2h2 b5d4
+Position; fen rnbqr1k1/p2p1ppp/1p1b1n2/2pP4/4P3/2N2P1N/PP4PP/R1BQKB1R w KQ - 5 9
+Moves; h3f4 d8c7 e1f2 d6f4 c3b5 c7e5 h2h3 c8b7 h1h2 f4c1 b2b3 e5a1 d1d4 c5d4 g2g4 c1e3 f2e2 a1a2
+Finished game 2 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 7 of 100 (Contextualized vs OneshotReAct)
+Finished game 1 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 8 of 100 (OneshotReAct vs Contextualized)
+Warning; Bestmove does not match beginning of last PV - move b3b4 from OneshotReAct
+Info; info depth 2 nodes 1147 time 244 nps 4700 score cp -2729 pv b5a7 a8a7
+Position; fen rnbqr1k1/p2p1ppp/1p1b1n2/2pP4/4P3/2N2P1N/PP4PP/R1BQKB1R w KQ - 5 9
+Moves; h3f4 d8c7 e1f2 d6f4 c3b5 c7e5 h2h3 c8b7 h1h2 f4c1 b2b3 e5a1 d1d4 c5d4 g2g4 c1e3 f2e2 a1a2 e2d1 a2h2
+Finished game 6 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 9 of 100 (Contextualized vs OneshotReAct)
+Finished game 5 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 10 of 100 (OneshotReAct vs Contextualized)
+Finished game 3 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 11 of 100 (Contextualized vs OneshotReAct)
+Warning; Bestmove does not match beginning of last PV - move e2f1 from OneshotReAct
+Info; info depth 2 nodes 880 time 290 nps 3034 score cp 118 pv e1g1 e8g8
+Position; fen r1bqkb1r/p4ppp/2p1p3/3n4/8/5N2/PPP2PPP/R1BQKB1R w KQkq - 0 9
+Moves; f1e2 f8b4 c2c3 b4d6
+Warning; Bestmove does not match beginning of last PV - move f3f4 from OneshotReAct
+Info; info depth 3 nodes 595 time 80 nps 7437 score cp -3383 pv h3h4 a2a4 c3c4
+Position; fen rnb1k2r/pp2ppbp/2p2np1/4N3/1q1P1B2/2N4P/PPP2PP1/R2QKB1R w KQkq - 4 9
+Moves; f1b5 b4b2 f4h2 b2c3 d1d2 c3a1 e1e2 a1h1 b5c6 b7c6 e5d3 h1h2 c2c3 h2g2 d3f4 g2h1 f2f3 e8g8 a2a4 c8f5 f4g6 h7g6 d2a2 h1h2 e2e1 h2a2
+Warning; Bestmove does not match beginning of last PV - move e1d1 from OneshotReAct
+Info; info depth 3 nodes 491 time 66 nps 7439 score cp -3542 pv e1e2 c3d4 h3h4
+Position; fen rnb1k2r/pp2ppbp/2p2np1/4N3/1q1P1B2/2N4P/PPP2PP1/R2QKB1R w KQkq - 4 9
+Moves; f1b5 b4b2 f4h2 b2c3 d1d2 c3a1 e1e2 a1h1 b5c6 b7c6 e5d3 h1h2 c2c3 h2g2 d3f4 g2h1 f2f3 e8g8 a2a4 c8f5 f4g6 h7g6 d2a2 h1h2 e2e1 h2a2 f3f4 a2b2 a4a5 b2c3
+Warning; Bestmove does not match beginning of last PV - move g2g3 from OneshotReAct
+Info; info depth 2 nodes 764 time 229 nps 3336 score cp -716 pv b3b7 c8b7
+Position; fen rnbq1r1k/ppp1p1b1/3p1npp/5p2/3P1B2/1QP1PN1P/PP1N1PP1/R3KB1R w KQ - 2 9
+Moves; f1e2 f6h5 e1c1 h5f4 f3g5 f4e2 c1c2 h6g5
+Warning; Bestmove does not match beginning of last PV - move e2d1 from OneshotReAct
+Info; info depth 3 nodes 547 time 68 nps 8044 score cp -3686 pv e2f1 g7d4 a5a6
+Position; fen rnb1k2r/pp2ppbp/2p2np1/4N3/1q1P1B2/2N4P/PPP2PP1/R2QKB1R w KQkq - 4 9
+Moves; f1b5 b4b2 f4h2 b2c3 d1d2 c3a1 e1e2 a1h1 b5c6 b7c6 e5d3 h1h2 c2c3 h2g2 d3f4 g2h1 f2f3 e8g8 a2a4 c8f5 f4g6 h7g6 d2a2 h1h2 e2e1 h2a2 f3f4 a2b2 a4a5 b2c3 e1d1 f6d5 d1e2 d5f4
+Finished game 4 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 12 of 100 (OneshotReAct vs Contextualized)
+Warning; Bestmove does not match beginning of last PV - move a8d8 from OneshotReAct
+Info; info depth 2 nodes 235 time 52 nps 4519 score cp -1652 pv d6d5 c6a7
+Position; fen r1bqkb1r/p4ppp/2p1p3/3n4/8/5N2/PPP2PPP/R1BQKB1R w KQkq - 0 9
+Moves; f3e5 h7h5 e5c6 f7f6 c6d8 c8d7 c2c4 d7a4 d1a4 e8e7 d8c6 e7d6 c4d5
+Warning; Bestmove does not match beginning of last PV - move f6h7 from OneshotReAct
+Info; info depth 2 nodes 388 time 92 nps 4217 score cp -2502 pv h8g7 a8a7
+Position; fen rnbq1r1k/ppp1p1b1/3p1npp/5p2/3P1B2/1QP1PN1P/PP1N1PP1/R3KB1R w KQ - 2 9
+Moves; f1d3 c7c5 e1g1 c5d4 c3d4 c8e6 b3e6 d8c7 a1c1 b8a6 c1c7 f8c8 c7c8 g7f8 c8a8
+Warning; Bestmove does not match beginning of last PV - move a1a2 from OneshotReAct
+Info; info depth 2 nodes 406 time 86 nps 4720 score cp -1015 pv c1e3 b7f3
+Position; fen r1bqkb1r/p4ppp/2p1p3/3n4/8/5N2/PPP2PPP/R1BQKB1R w KQkq - 0 9
+Moves; f1e2 f8b4 c2c3 b4d6 e2f1 e8g8 f1b5 c6b5 a2a3 d5f4 d1e2 f4e2 e1e2 c8b7
+Warning; Bestmove does not match beginning of last PV - move h5h4 from OneshotReAct
+Info; info depth 2 nodes 208 time 40 nps 5200 score cp -2170 pv d6d5 a4a7
+Position; fen r1bqkb1r/p4ppp/2p1p3/3n4/8/5N2/PPP2PPP/R1BQKB1R w KQkq - 0 9
+Moves; f3e5 h7h5 e5c6 f7f6 c6d8 c8d7 c2c4 d7a4 d1a4 e8e7 d8c6 e7d6 c4d5 a8d8 c6d8
+Finished game 7 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 13 of 100 (Contextualized vs OneshotReAct)
+Finished game 11 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 14 of 100 (OneshotReAct vs Contextualized)
+Warning; Bestmove does not match beginning of last PV - move a3c5 from OneshotReAct
+Info; info depth 2 nodes 368 time 86 nps 4279 score cp -1413 pv d1h1 c8h3
+Position; fen rnbq1r1k/ppp1p1b1/3p1npp/5p2/3P1B2/1QP1PN1P/PP1N1PP1/R3KB1R w KQ - 2 9
+Moves; f1e2 f6h5 e1c1 h5f4 f3g5 f4e2 c1c2 h6g5 g2g3 b8c6 d2f1 d6d5 f1h2 f5f4 c2d2 f4g3 f2g3 e2g3 b3a3 f8f2 d2c1 g3h1
+Warning; Bestmove does not match beginning of last PV - move b7b8 from OneshotReAct
+Info; info depth 3 nodes 560 time 118 nps 4745 score cp -2637 pv b7a8 d7c8
+Position; fen r1bqkb1r/p4ppp/2p1p3/3n4/8/5N2/PPP2PPP/R1BQKB1R w KQkq - 0 9
+Moves; f3e5 h7h5 e5c6 f7f6 c6d8 c8d7 c2c4 d7a4 d1a4 e8e7 d8c6 e7d6 c4d5 a8d8 c6d8 h5h4 d8f7 d6c7 a4c6 c7b8 c6e8 b8b7 e8d7
+Finished game 10 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 15 of 100 (Contextualized vs OneshotReAct)
+Warning; Bestmove does not match beginning of last PV - move a7a6 from OneshotReAct
+Info; info depth 4 nodes 1014 time 190 nps 5336 score cp -2632 pv f8b4 e1d1 e6d5 d8d5
+Position; fen r1bqkb1r/p4ppp/2p1p3/3n4/8/5N2/PPP2PPP/R1BQKB1R w KQkq - 0 9
+Moves; f3e5 h7h5 e5c6 f7f6 c6d8 c8d7 c2c4 d7a4 d1a4 e8e7 d8c6 e7d6 c4d5 a8d8 c6d8 h5h4 d8f7 d6c7 a4c6 c7b8 c6e8 b8b7 e8d7 b7b8 d7d8 b8b7 f7h8
+Warning; Bestmove does not match beginning of last PV - move d2f1 from OneshotReAct
+Info; info depth 2 nodes 444 time 103 nps 4310 score cp -1244 pv c3d4 c6d4
+Position; fen r1bqkb1r/pp1n1p1p/2n1p1p1/3pP3/3p3P/2PB1N2/PP1N1PP1/R1BQK2R w KQkq - 0 9
+Moves; d1b3 d7c5 b3c4 d5c4 d3f5 e6f5
+Warning; Bestmove does not match beginning of last PV - move a6a5 from OneshotReAct
+Info; info depth 3 nodes 551 time 98 nps 5622 score cp -3095 pv e6d5 f8g7 b7b8
+Position; fen r1bqkb1r/p4ppp/2p1p3/3n4/8/5N2/PPP2PPP/R1BQKB1R w KQkq - 0 9
+Moves; f3e5 h7h5 e5c6 f7f6 c6d8 c8d7 c2c4 d7a4 d1a4 e8e7 d8c6 e7d6 c4d5 a8d8 c6d8 h5h4 d8f7 d6c7 a4c6 c7b8 c6e8 b8b7 e8d7 b7b8 d7d8 b8b7 f7h8 a7a6 d8f8
+Warning; Bestmove does not match beginning of last PV - move b2b3 from OneshotReAct
+Info; info depth 3 nodes 1027 time 189 nps 5433 score cp -2690 pv d2f2 h2f2 e3e4
+Position; fen rnbq1r1k/ppp1p1b1/3p1npp/5p2/3P1B2/1QP1PN1P/PP1N1PP1/R3KB1R w KQ - 2 9
+Moves; f1e2 f6h5 e1c1 h5f4 f3g5 f4e2 c1c2 h6g5 g2g3 b8c6 d2f1 d6d5 f1h2 f5f4 c2d2 f4g3 f2g3 e2g3 b3a3 f8f2 d2c1 g3h1 a3c5 f2h2 d1d2 h1f2 c5b4 c6b4 c3b4 d8d6
+Finished game 9 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 16 of 100 (OneshotReAct vs Contextualized)
+Warning; Bestmove does not match beginning of last PV - move f2f4 from OneshotReAct
+Info; info depth 2 nodes 478 time 123 nps 3886 score cp -836 pv e1d1 c6d4
+Position; fen r2qkb1r/ppp2ppp/1nnp4/3P4/2P5/5b2/PP2BPPP/RNBQK2R w KQkq - 0 9
+Moves; e2f1 f3d1
+Warning; Bestmove does not match beginning of last PV - move d2e2 from OneshotReAct
+Info; info depth 2 nodes 360 time 70 nps 5142 score cp -2636 pv b5b6 g3e3
+Position; fen rnbq1r1k/ppp1p1b1/3p1npp/5p2/3P1B2/1QP1PN1P/PP1N1PP1/R3KB1R w KQ - 2 9
+Moves; f1e2 f6h5 e1c1 h5f4 f3g5 f4e2 c1c2 h6g5 g2g3 b8c6 d2f1 d6d5 f1h2 f5f4 c2d2 f4g3 f2g3 e2g3 b3a3 f8f2 d2c1 g3h1 a3c5 f2h2 d1d2 h1f2 c5b4 c6b4 c3b4 d8d6 b2b3 d6g3 b4b5 h2h1 c1b2 c8h3
+Warning; Bestmove does not match beginning of last PV - move b6d5 from OneshotReAct
+Info; info depth 2 nodes 52 time 1 nps 52000 score cp -541 pv a8b8 b1c3
+Position; fen r2qkb1r/ppp2ppp/1nnp4/3P4/2P5/5b2/PP2BPPP/RNBQK2R w KQkq - 0 9
+Moves; e2f3 f7f6 d5c6 e8e7 d1e2 e7f7 c6b7
+Finished game 15 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 17 of 100 (Contextualized vs OneshotReAct)
+Warning; Bestmove does not match beginning of last PV - move d7d6 from OneshotReAct
+Info; info depth 3 nodes 749 time 187 nps 4005 score cp -3113 pv d7e7 h7f7 e7d6
+Position; fen r1bqkb1r/pp1n1p1p/2n1p1p1/3pP3/3p3P/2PB1N2/PP1N1PP1/R1BQK2R w KQkq - 0 9
+Moves; c3d4 d7c5 d4c5 d8b6 c5b6 f8b4 h4h5 e8f8 h5g6 a7a5 h1h7 c6e5 g6g7 f8e8 g7h8q e8d7 f3e5
+Warning; Bestmove does not match beginning of last PV - move b2a1 from OneshotReAct
+Info; info depth 3 nodes 718 time 161 nps 4459 score cp -2923 pv b2a3 d1e3 c2c7
+Position; fen rnbq1r1k/ppp1p1b1/3p1npp/5p2/3P1B2/1QP1PN1P/PP1N1PP1/R3KB1R w KQ - 2 9
+Moves; f1e2 f6h5 e1c1 h5f4 f3g5 f4e2 c1c2 h6g5 g2g3 b8c6 d2f1 d6d5 f1h2 f5f4 c2d2 f4g3 f2g3 e2g3 b3a3 f8f2 d2c1 g3h1 a3c5 f2h2 d1d2 h1f2 c5b4 c6b4 c3b4 d8d6 b2b3 d6g3 b4b5 h2h1 c1b2 c8h3 d2e2 h3g4 e2c2 f2d1
+Warning; Bestmove does not match beginning of last PV - move g5h6 from OneshotReAct
+Info; info depth 2 nodes 293 time 67 nps 4373 score cp -1884 pv g5e7 d8e7
+Position; fen r1bqkb1r/pp1n1p1p/2n1p1p1/3pP3/3p3P/2PB1N2/PP1N1PP1/R1BQK2R w KQkq - 0 9
+Moves; d1b3 d7c5 b3c4 d5c4 d3f5 e6f5 d2f1 c5d3 e1d1 d3f2 d1c2 d4d3 c2b1 f2h1 c1g5 f8e7
+Warning; Bestmove does not match beginning of last PV - move a8a6 from OneshotReAct
+Info; info depth 2 nodes 583 time 127 nps 4590 score cp -3066 pv b4d2 c1d2
+Position; fen r1bqkb1r/pp1n1p1p/2n1p1p1/3pP3/3p3P/2PB1N2/PP1N1PP1/R1BQK2R w KQkq - 0 9
+Moves; c3d4 d7c5 d4c5 d8b6 c5b6 f8b4 h4h5 e8f8 h5g6 a7a5 h1h7 c6e5 g6g7 f8e8 g7h8q e8d7 f3e5 d7d6 h7f7
+Finished game 8 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 18 of 100 (OneshotReAct vs Contextualized)
+Warning; Bestmove does not match beginning of last PV - move g3g4 from OneshotReAct
+Info; info depth 2 nodes 790 time 204 nps 3872 score cp -1751 pv a3c2 f2g3
+Position; fen rnb1k2r/3p1ppp/pq3p2/1pbP4/2p1P3/5N2/PPP1BPPP/RN1Q1RK1 w kq - 0 9
+Moves; f3e1 e8g8 e2g4 c8b7 g4e6 d7e6 h2h3 f6f5 g1h1 e6d5 d1d2 f5e4 c2c3 b8d7 g2g3 d7e5 e1c2 e5f3 b1a3 f3d2 f1d1 d2f3 b2b3 c5f2 c2b4 a8d8 b3c4 b5c4
+Finished game 13 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 19 of 100 (Contextualized vs OneshotReAct)
+Warning; Bestmove does not match beginning of last PV - move c2d3 from OneshotReAct
+Info; info depth 3 nodes 646 time 145 nps 4455 score cp -1864 pv c2c3 b6a4 c3b4
+Position; fen r2qkb1r/ppp2ppp/1nnp4/3P4/2P5/5b2/PP2BPPP/RNBQK2R w KQkq - 0 9
+Moves; e2f1 f3d1 f2f4 d1g4 e1d2 c6d4 a2a4 d4b3 d2c2 b3a1
+Warning; Bestmove does not match beginning of last PV - move b1c1 from OneshotReAct
+Info; info depth 2 nodes 385 time 101 nps 3811 score cp -2037 pv d2c4 e5c4
+Position; fen r1bqkb1r/pp1n1p1p/2n1p1p1/3pP3/3p3P/2PB1N2/PP1N1PP1/R1BQK2R w KQkq - 0 9
+Moves; d1b3 d7c5 b3c4 d5c4 d3f5 e6f5 d2f1 c5d3 e1d1 d3f2 d1c2 d4d3 c2b1 f2h1 c1g5 f8e7 g5h6 h1f2 f3g1 c6e5 f1d2 e7h4
+Warning; Bestmove does not match beginning of last PV - move d3c3 from OneshotReAct
+Info; info depth 3 nodes 1067 time 244 nps 4372 score cp -2055 pv d3d4 f5b1 c1e3
+Position; fen r2qkb1r/ppp2ppp/1nnp4/3P4/2P5/5b2/PP2BPPP/RNBQK2R w KQkq - 0 9
+Moves; e2f1 f3d1 f2f4 d1g4 e1d2 c6d4 a2a4 d4b3 d2c2 b3a1 c2d3 g4f5
+Warning; Bestmove does not match beginning of last PV - move e3h6 from OneshotReAct
+Info; info depth 2 nodes 790 time 248 nps 3185 score cp 78 pv c3d4 h5f3
+Position; fen r3kb1r/ppqn1ppp/3ppn2/2p4b/3PP3/2PBBN1P/PP1N1PP1/R2QK2R w KQkq - 1 9
+Moves; d3c2 a8d8 a2a3 d6d5 e4d5 c5d4
+Warning; Bestmove does not match beginning of last PV - move b4d3 from OneshotReAct
+Info; info depth 2 nodes 546 time 136 nps 4014 score cp -2518 pv b4d5 b7d5
+Position; fen rnb1k2r/3p1ppp/pq3p2/1pbP4/2p1P3/5N2/PPP1BPPP/RN1Q1RK1 w kq - 0 9
+Moves; f3e1 e8g8 e2g4 c8b7 g4e6 d7e6 h2h3 f6f5 g1h1 e6d5 d1d2 f5e4 c2c3 b8d7 g2g3 d7e5 e1c2 e5f3 b1a3 f3d2 f1d1 d2f3 b2b3 c5f2 c2b4 a8d8 b3c4 b5c4 g3g4 e4e3 a3b5 a6b5 h3h4 e3e2 g4g5 e2d1q a1d1 b6e3
+Warning; Bestmove does not match beginning of last PV - move f3d2 from OneshotReAct
+Info; info depth 3 nodes 557 time 130 nps 4284 score cp -2726 pv f3g5 d8g5 c1b1
+Position; fen r1bqkb1r/pp1n1p1p/2n1p1p1/3pP3/3p3P/2PB1N2/PP1N1PP1/R1BQK2R w KQkq - 0 9
+Moves; d1b3 d7c5 b3c4 d5c4 d3f5 e6f5 d2f1 c5d3 e1d1 d3f2 d1c2 d4d3 c2b1 f2h1 c1g5 f8e7 g5h6 h1f2 f3g1 c6e5 f1d2 e7h4 b1c1 c8e6 h6f8 h8f8 d2f3 h4g5
+Warning; Bestmove does not match beginning of last PV - move g2g3 from OneshotReAct
+Info; info depth 2 nodes 37 time 4 nps 9250 score cp -2028 pv c1e3 a1c2
+Position; fen r2qkb1r/ppp2ppp/1nnp4/3P4/2P5/5b2/PP2BPPP/RNBQK2R w KQkq - 0 9
+Moves; e2f1 f3d1 f2f4 d1g4 e1d2 c6d4 a2a4 d4b3 d2c2 b3a1 c2d3 g4f5 d3c3 d8f6 c3b4 a7a5 b4a3 f5b1
+Warning; Bestmove does not match beginning of last PV - move g2g4 from OneshotReAct
+Info; info depth 3 nodes 719 time 133 nps 5406 score cp -2951 pv g1f3 e5f3 g2f3
+Position; fen r1bqkb1r/pp1n1p1p/2n1p1p1/3pP3/3p3P/2PB1N2/PP1N1PP1/R1BQK2R w KQkq - 0 9
+Moves; d1b3 d7c5 b3c4 d5c4 d3f5 e6f5 d2f1 c5d3 e1d1 d3f2 d1c2 d4d3 c2b1 f2h1 c1g5 f8e7 g5h6 h1f2 f3g1 c6e5 f1d2 e7h4 b1c1 c8e6 h6f8 h8f8 d2f3 h4g5 f3d2 f2e4
+Finished game 12 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 20 of 100 (OneshotReAct vs Contextualized)
+Warning; Bestmove does not match beginning of last PV - move c1e3 from OneshotReAct
+Info; info depth 2 nodes 513 time 125 nps 4104 score cp -2046 pv f4f5 e8c8
+Position; fen r2qkb1r/ppp2ppp/1nnp4/3P4/2P5/5b2/PP2BPPP/RNBQK2R w KQkq - 0 9
+Moves; e2f1 f3d1 f2f4 d1g4 e1d2 c6d4 a2a4 d4b3 d2c2 b3a1 c2d3 g4f5 d3c3 d8f6 c3b4 a7a5 b4a3 f5b1 g2g3 a1c2 a3b3 f6d4
+Warning; Bestmove does not match beginning of last PV - move f8g7 from OneshotReAct
+Info; info depth 2 nodes 718 time 205 nps 3502 score cp -1423 pv h5f3 g2f3
+Position; fen r3kb1r/ppqn1ppp/3ppn2/2p4b/3PP3/2PBBN1P/PP1N1PP1/R2QK2R w KQkq - 1 9
+Moves; e1g1 g7g6 d2c4 d7b8 a1c1 d6d5 e4d5 c7f4 e3f4 b7b6 d1a4 b6b5 a4b5 e8d8 f4b8
+Warning; Bestmove does not match beginning of last PV - move g1h3 from OneshotReAct
+Info; info depth 2 nodes 185 time 28 nps 6607 score cp -3170 pv g1f3 g4f3
+Position; fen r1bqkb1r/pp1n1p1p/2n1p1p1/3pP3/3p3P/2PB1N2/PP1N1PP1/R1BQK2R w KQkq - 0 9
+Moves; d1b3 d7c5 b3c4 d5c4 d3f5 e6f5 d2f1 c5d3 e1d1 d3f2 d1c2 d4d3 c2b1 f2h1 c1g5 f8e7 g5h6 h1f2 f3g1 c6e5 f1d2 e7h4 b1c1 c8e6 h6f8 h8f8 d2f3 h4g5 f3d2 f2e4 g2g4 f5g4 c1d1 g5d2
+Finished game 16 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 21 of 100 (Contextualized vs OneshotReAct)
+Finished game 14 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 22 of 100 (OneshotReAct vs Contextualized)
+Warning; Bestmove does not match beginning of last PV - move d6e7 from OneshotReAct
+Info; info depth 3 nodes 390 time 95 nps 4105 score cp -245 pv e8e7 f1e1 c8e6
+Position; fen rnbqk2r/pppp3p/5np1/8/1bPQ4/5N2/PP1N1PPP/R1B1KB1R w KQkq - 0 9
+Moves; d4e5 e8f7 f3g5 f7f8 f1d3 d7d5 c4d5 d8e7 g5e6 f8f7 e1g1 b4d6 e6g5 f7e8 e5e7
+Warning; Bestmove does not match beginning of last PV - move f6d7 from OneshotReAct
+Info; info depth 2 nodes 314 time 71 nps 4422 score cp -65 pv f6d5 f1e1
+Position; fen rnbqk2r/pppp3p/5np1/8/1bPQ4/5N2/PP1N1PPP/R1B1KB1R w KQkq - 0 9
+Moves; d4e5 e8f7 f3g5 f7f8 f1d3 d7d5 c4d5 d8e7 g5e6 f8f7 e1g1 b4d6 e6g5 f7e8 e5e7 d6e7 d2c4
+Warning; Bestmove does not match beginning of last PV - move a2a4 from OneshotReAct
+Info; info depth 2 nodes 380 time 97 nps 3917 score cp 92 pv c1d2 g4f3
+Position; fen rnbq1rk1/1p3pbp/p2p1np1/2pPp3/2P1P3/2N2N2/PP2BPPP/R1BQK2R w KQ - 0 9
+Moves; d1b3 d8c7 e1g1 c8g4
+Warning; Bestmove does not match beginning of last PV - move h5g6 from OneshotReAct
+Info; info depth 1 nodes 128 time 40 nps 3200 score cp -2305 pv h5f3
+Position; fen r3kb1r/ppqn1ppp/3ppn2/2p4b/3PP3/2PBBN1P/PP1N1PP1/R2QK2R w KQkq - 1 9
+Moves; e1g1 g7g6 d2c4 d7b8 a1c1 d6d5 e4d5 c7f4 e3f4 b7b6 d1a4 b6b5 a4b5 e8d8 f4b8 f8g7 d5e6 g7h6 b8e5 g6g5 e5f6 d8c8 c4d6 c8c7 f6h8
+Finished game 17 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 23 of 100 (Contextualized vs OneshotReAct)
+Warning; Bestmove does not match beginning of last PV - move b7b6 from OneshotReAct
+Info; info depth 2 nodes 414 time 81 nps 5111 score cp -797 pv b8c6 d5c6
+Position; fen rnbqk2r/pppp3p/5np1/8/1bPQ4/5N2/PP1N1PPP/R1B1KB1R w KQkq - 0 9
+Moves; d4e5 e8f7 f3g5 f7f8 f1d3 d7d5 c4d5 d8e7 g5e6 f8f7 e1g1 b4d6 e6g5 f7e8 e5e7 d6e7 d2c4 f6d7 g5e6 e7f8 e6c7 e8d8 c7a8
+Finished game 18 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 24 of 100 (OneshotReAct vs Contextualized)
+Finished game 20 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 25 of 100 (Contextualized vs OneshotReAct)
+Warning; Bestmove does not match beginning of last PV - move h8d8 from OneshotReAct
+Info; info depth 2 nodes 57 time 6 nps 9500 score cp -886 pv c8b7 d5d6
+Position; fen rnbqk2r/pppp3p/5np1/8/1bPQ4/5N2/PP1N1PPP/R1B1KB1R w KQkq - 0 9
+Moves; d4e5 e8f7 f3g5 f7f8 f1d3 d7d5 c4d5 d8e7 g5e6 f8f7 e1g1 b4d6 e6g5 f7e8 e5e7 d6e7 d2c4 f6d7 g5e6 e7f8 e6c7 e8d8 c7a8 b7b6 c1g5 f8e7 g5e7 d8e7 a8c7
+Warning; Bestmove does not match beginning of last PV - move c3b5 from OneshotReAct
+Info; info depth 2 nodes 761 time 189 nps 4026 score cp -1716 pv g1g2 e5f4
+Position; fen rnbq1rk1/1p3pbp/p2p1np1/2pPp3/2P1P3/2N2N2/PP2BPPP/R1BQK2R w KQ - 0 9
+Moves; d1b3 d8c7 e1g1 c8g4 a2a4 b8d7 a1b1 a8e8 f3g5 g4e2 c1f4 e2f1 g5h3 f1g2 b3b5 a6b5
+Warning; Bestmove does not match beginning of last PV - move g6g5 from OneshotReAct
+Info; info depth 2 nodes 463 time 141 nps 3283 score cp -824 pv b8c6 c7d5
+Position; fen rnbqk2r/pppp3p/5np1/8/1bPQ4/5N2/PP1N1PPP/R1B1KB1R w KQkq - 0 9
+Moves; d4e5 e8f7 f3g5 f7f8 f1d3 d7d5 c4d5 d8e7 g5e6 f8f7 e1g1 b4d6 e6g5 f7e8 e5e7 d6e7 d2c4 f6d7 g5e6 e7f8 e6c7 e8d8 c7a8 b7b6 c1g5 f8e7 g5e7 d8e7 a8c7 h8d8 d5d6 e7f7 f1e1
+Warning; Bestmove does not match beginning of last PV - move b5c3 from OneshotReAct
+Info; info depth 1 nodes 84 time 17 nps 4941 score cp -1726 pv h3f4
+Position; fen rnbq1rk1/1p3pbp/p2p1np1/2pPp3/2P1P3/2N2N2/PP2BPPP/R1BQK2R w KQ - 0 9
+Moves; d1b3 d8c7 e1g1 c8g4 a2a4 b8d7 a1b1 a8e8 f3g5 g4e2 c1f4 e2f1 g5h3 f1g2 b3b5 a6b5 c3b5 c7b6 g1g2 e5f4
+Finished game 25 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 26 of 100 (OneshotReAct vs Contextualized)
+Warning; Bestmove does not match beginning of last PV - move e8g8 from OneshotReAct
+Info; info depth 2 nodes 62 time 2 nps 31000 score cp -216 pv c5b4 a3b4
+Position; fen rnbq1rk1/1p3pbp/p2p1np1/2pPp3/2P1P3/2N2N2/PP2BPPP/R1BQK2R w KQ - 0 9
+Moves; e1g1 c8g4 c1e3 h7h5 h2h3 g4c8 a1c1 f8e8 e2d3 g8f8 f1e1 f8g8 f3g5 f6d7 a2a3 d8e7 b2b4 g8h8 d1b3 g7f8 c1d1 f8h6 g5f7 e7f7 e3h6
+Warning; Bestmove does not match beginning of last PV - move c3a4 from OneshotReAct
+Info; info depth 2 nodes 364 time 104 nps 3500 score cp -309 pv d3c4 g2e3
+Position; fen rnbq1rk1/pp2n1p1/2pbp2p/3p1p2/2PP3B/2N1PN2/PPQ2PPP/R3KB1R w KQ - 0 9
+Moves; f1d3 b8d7 c3e2 d7f6 e2c3 e7g6 a2a4 g6h4 a4a5 h4g2 e1f1 d5c4
+Warning; Bestmove does not match beginning of last PV - move b8a6 from OneshotReAct
+Info; info depth 3 nodes 751 time 186 nps 4037 score cp -1569 pv b8c6 h7g7 g8h8
+Position; fen rnbqk2r/pppp3p/5np1/8/1bPQ4/5N2/PP1N1PPP/R1B1KB1R w KQkq - 0 9
+Moves; d4e5 e8f7 f3g5 f7f8 f1d3 d7d5 c4d5 d8e7 g5e6 f8f7 e1g1 b4d6 e6g5 f7e8 e5e7 d6e7 d2c4 f6d7 g5e6 e7f8 e6c7 e8d8 c7a8 b7b6 c1g5 f8e7 g5e7 d8e7 a8c7 h8d8 d5d6 e7f7 f1e1 g6g5 c7e6 g5g4 e6d8 f7g7 e1e7 g7h8 e7h7 h8g8 d8e6
+Warning; Bestmove does not match beginning of last PV - move e2d3 from OneshotReAct
+Info; info depth 3 nodes 969 time 212 nps 4570 score cp -608 pv b2c3 f4e4 d4e3
+Position; fen r1b1kb1r/pp1p1ppp/4pn2/8/3BPq2/2N5/PPP3PP/R2QKB1R w KQkq - 0 9
+Moves; e1e2 f6e4 g2g3 e4c3
+Warning; Bestmove does not match beginning of last PV - move h1g2 from OneshotReAct
+Info; info depth 3 nodes 362 time 51 nps 7098 score cp -3235 pv c3b1 a1b1 h1g2
+Position; fen rnbq1rk1/1p3pbp/p2p1np1/2pPp3/2P1P3/2N2N2/PP2BPPP/R1BQK2R w KQ - 0 9
+Moves; d1b3 d8c7 e1g1 c8g4 a2a4 b8d7 a1b1 a8e8 f3g5 g4e2 c1f4 e2f1 g5h3 f1g2 b3b5 a6b5 c3b5 c7b6 g1g2 e5f4 b5c3 f6e4 h3g5 e4g5 b1a1 b6b2 g2h1 b2a1
+Warning; Bestmove does not match beginning of last PV - move a6b4 from OneshotReAct
+Info; info depth 3 nodes 728 time 177 nps 4112 score cp -1673 pv a6c5 g4h4 h8g8
+Position; fen rnbqk2r/pppp3p/5np1/8/1bPQ4/5N2/PP1N1PPP/R1B1KB1R w KQkq - 0 9
+Moves; d4e5 e8f7 f3g5 f7f8 f1d3 d7d5 c4d5 d8e7 g5e6 f8f7 e1g1 b4d6 e6g5 f7e8 e5e7 d6e7 d2c4 f6d7 g5e6 e7f8 e6c7 e8d8 c7a8 b7b6 c1g5 f8e7 g5e7 d8e7 a8c7 h8d8 d5d6 e7f7 f1e1 g6g5 c7e6 g5g4 e6d8 f7g7 e1e7 g7h8 e7h7 h8g8 d8e6 b8a6 h7g7 g8h8 g7g4
+Warning; Bestmove does not match beginning of last PV - move f3g5 from OneshotReAct
+Info; info depth 2 nodes 237 time 47 nps 5042 score cp -1607 pv f2e3 d8a5
+Position; fen rnbq1rk1/pp2n1p1/2pbp2p/3p1p2/2PP3B/2N1PN2/PPQ2PPP/R3KB1R w KQ - 0 9
+Moves; f1d3 b8d7 c3e2 d7f6 e2c3 e7g6 a2a4 g6h4 a4a5 h4g2 e1f1 d5c4 c3a4 c4d3 c2c6 g2e3 f1g1 b7c6
+Warning; Bestmove does not match beginning of last PV - move b6b5 from OneshotReAct
+Info; info depth 2 nodes 465 time 111 nps 4189 score cp -1537 pv c8b7 c4b6
+Position; fen rnbqk2r/pppp3p/5np1/8/1bPQ4/5N2/PP1N1PPP/R1B1KB1R w KQkq - 0 9
+Moves; d4e5 e8f7 f3g5 f7f8 f1d3 d7d5 c4d5 d8e7 g5e6 f8f7 e1g1 b4d6 e6g5 f7e8 e5e7 d6e7 d2c4 f6d7 g5e6 e7f8 e6c7 e8d8 c7a8 b7b6 c1g5 f8e7 g5e7 d8e7 a8c7 h8d8 d5d6 e7f7 f1e1 g6g5 c7e6 g5g4 e6d8 f7g7 e1e7 g7h8 e7h7 h8g8 d8e6 b8a6 h7g7 g8h8 g7g4 a6b4 g4h4 h8g8 d3g6
+Warning; Bestmove does not match beginning of last PV - move d1e1 from OneshotReAct
+Info; info depth 2 nodes 135 time 23 nps 5869 score cp -726 pv d1e2 h1c6
+Position; fen r1b1kb1r/pp1p1ppp/4pn2/8/3BPq2/2N5/PPP3PP/R2QKB1R w KQkq - 0 9
+Moves; e1e2 f6e4 g2g3 e4c3 e2d3 f4e4 d3c3 e4h1
+Finished game 22 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 27 of 100 (Contextualized vs OneshotReAct)
+Warning; Bestmove does not match beginning of last PV - move g6g5 from OneshotReAct
+Info; info depth 3 nodes 941 time 220 nps 4277 score cp -1947 pv c5b4 d7c8q a8c8
+Position; fen rnbq1rk1/1p3pbp/p2p1np1/2pPp3/2P1P3/2N2N2/PP2BPPP/R1BQK2R w KQ - 0 9
+Moves; e1g1 c8g4 c1e3 h7h5 h2h3 g4c8 a1c1 f8e8 e2d3 g8f8 f1e1 f8g8 f3g5 f6d7 a2a3 d8e7 b2b4 g8h8 d1b3 g7f8 c1d1 f8h6 g5f7 e7f7 e3h6 e8g8 h6g5 f7f3 g2f3 b7b6 g5e7 d7f8 e7d6 b8c6 d5c6 f8d7 c6d7
+Finished game 19 (Contextualized vs OneshotReAct): 1-0 {White mates}
+--------------------------------------------------
+Results of Contextualized vs OneshotReAct (10+0.1, 1t - NULL, 16MB, 8mvs_+90_+99.epd):
+Elo: inf +/- nan, nElo: inf +/- nan
+LOS: 100.00 %, DrawRatio: 0.00 %, PairsRatio: inf
+Games: 20, Wins: 20, Losses: 0, Draws: 0, Points: 20.0 (100.00 %)
+Ptnml(0-2): [0, 0, 0, 0, 10], WL/DD Ratio: nan
+--------------------------------------------------
+Started game 28 of 100 (OneshotReAct vs Contextualized)
+Warning; Bestmove does not match beginning of last PV - move g1f1 from OneshotReAct
+Info; info depth 3 nodes 1055 time 232 nps 4547 score cp -2386 pv c1d1 d8a5 b2b4
+Position; fen rnbq1rk1/pp2n1p1/2pbp2p/3p1p2/2PP3B/2N1PN2/PPQ2PPP/R3KB1R w KQ - 0 9
+Moves; f1d3 b8d7 c3e2 d7f6 e2c3 e7g6 a2a4 g6h4 a4a5 h4g2 e1f1 d5c4 c3a4 c4d3 c2c6 g2e3 f1g1 b7c6 f3g5 e3c2 a1c1 h6g5 a4c5 d3d2
+Warning; Bestmove does not match beginning of last PV - move a6c8 from OneshotReAct
+Info; info depth 2 nodes 401 time 94 nps 4265 score cp -2396 pv a6b7 e3e4
+Position; fen rnbq1rk1/pp2n1p1/2pbp2p/3p1p2/2PP3B/2N1PN2/PPQ2PPP/R3KB1R w KQ - 0 9
+Moves; f3e5 f8e8 a1d1 e8f8 e5g6 d6c7 h4e7 c7d6 e7d8 b7b5 g6f8 a7a5 f8g6 a5a4 d8e7 d6e5 d4e5 g8f7 c4d5 c8a6 d5e6 f7e6 d1d6 e6f7 c2f5 f7g8 e5e6
+Finished game 23 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 29 of 100 (Contextualized vs OneshotReAct)
+Warning; Bestmove does not match beginning of last PV - move g5g4 from OneshotReAct
+Info; info depth 2 nodes 403 time 111 nps 3630 score cp -3055 pv h7g7 d8g5
+Position; fen rnbq1rk1/1p3pbp/p2p1np1/2pPp3/2P1P3/2N2N2/PP2BPPP/R1BQK2R w KQ - 0 9
+Moves; e1g1 c8g4 c1e3 h7h5 h2h3 g4c8 a1c1 f8e8 e2d3 g8f8 f1e1 f8g8 f3g5 f6d7 a2a3 d8e7 b2b4 g8h8 d1b3 g7f8 c1d1 f8h6 g5f7 e7f7 e3h6 e8g8 h6g5 f7f3 g2f3 b7b6 g5e7 d7f8 e7d6 b8c6 d5c6 f8d7 c6d7 g6g5 d6e5 g8g7 d7d8q h8h7 e5g7
+Warning; Bestmove does not match beginning of last PV - move h2h3 from OneshotReAct
+Info; info depth 2 nodes 438 time 80 nps 5475 score cp -3956 pv c5e6 c8e6
+Position; fen rnbq1rk1/pp2n1p1/2pbp2p/3p1p2/2PP3B/2N1PN2/PPQ2PPP/R3KB1R w KQ - 0 9
+Moves; f1d3 b8d7 c3e2 d7f6 e2c3 e7g6 a2a4 g6h4 a4a5 h4g2 e1f1 d5c4 c3a4 c4d3 c2c6 g2e3 f1g1 b7c6 f3g5 e3c2 a1c1 h6g5 a4c5 d3d2 g1f1 d2c1q f1e2 c1h1
+Warning; Bestmove does not match beginning of last PV - move c8f5 from OneshotReAct
+Info; info depth 2 nodes 282 time 81 nps 3481 score cp -3430 pv g6f7 f3g4
+Position; fen rnbq1rk1/1p3pbp/p2p1np1/2pPp3/2P1P3/2N2N2/PP2BPPP/R1BQK2R w KQ - 0 9
+Moves; e1g1 c8g4 c1e3 h7h5 h2h3 g4c8 a1c1 f8e8 e2d3 g8f8 f1e1 f8g8 f3g5 f6d7 a2a3 d8e7 b2b4 g8h8 d1b3 g7f8 c1d1 f8h6 g5f7 e7f7 e3h6 e8g8 h6g5 f7f3 g2f3 b7b6 g5e7 d7f8 e7d6 b8c6 d5c6 f8d7 c6d7 g6g5 d6e5 g8g7 d7d8q h8h7 e5g7 g5g4 d8h8 h7g6 e4e5
+Warning; Bestmove does not match beginning of last PV - move c4d3 from OneshotReAct
+Info; info depth 3 nodes 472 time 104 nps 4538 score cp -1873 pv c3d2 g7f6 d2d1
+Position; fen r1b1kb1r/pp1p1ppp/4pn2/8/3BPq2/2N5/PPP3PP/R2QKB1R w KQkq - 0 9
+Moves; e1e2 f6e4 g2g3 e4c3 e2d3 f4e4 d3c3 e4h1 d1e1 h1h2 a1c1 f8d6 f1c4 d6g3 d4f6 g3e1 c1e1 h2g3
+Warning; Bestmove does not match beginning of last PV - move d3c3 from OneshotReAct
+Info; info depth 3 nodes 867 time 152 nps 5703 score cp -4579 pv b2b4 c5b4 d3c4
+Position; fen rnbq1rk1/pp2n1p1/2pbp2p/3p1p2/2PP3B/2N1PN2/PPQ2PPP/R3KB1R w KQ - 0 9
+Moves; f1d3 b8d7 c3e2 d7f6 e2c3 e7g6 a2a4 g6h4 a4a5 h4g2 e1f1 d5c4 c3a4 c4d3 c2c6 g2e3 f1g1 b7c6 f3g5 e3c2 a1c1 h6g5 a4c5 d3d2 g1f1 d2c1q f1e2 c1h1 h2h3 c2d4 e2d3 d6c5
+Warning; Bestmove does not match beginning of last PV - move b6b5 from OneshotReAct
+Info; info depth 2 nodes 261 time 80 nps 3262 score cp -3559 pv c5b4 a3b4
+Position; fen rnbq1rk1/1p3pbp/p2p1np1/2pPp3/2P1P3/2N2N2/PP2BPPP/R1BQK2R w KQ - 0 9
+Moves; e1g1 c8g4 c1e3 h7h5 h2h3 g4c8 a1c1 f8e8 e2d3 g8f8 f1e1 f8g8 f3g5 f6d7 a2a3 d8e7 b2b4 g8h8 d1b3 g7f8 c1d1 f8h6 g5f7 e7f7 e3h6 e8g8 h6g5 f7f3 g2f3 b7b6 g5e7 d7f8 e7d6 b8c6 d5c6 f8d7 c6d7 g6g5 d6e5 g8g7 d7d8q h8h7 e5g7 g5g4 d8h8 h7g6 e4e5 c8f5 h8h6 g6f7 d3f5
+Finished game 24 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 30 of 100 (OneshotReAct vs Contextualized)
+Finished game 21 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 31 of 100 (Contextualized vs OneshotReAct)
+Warning; Bestmove does not match beginning of last PV - move c4b5 from OneshotReAct
+Info; info depth 3 nodes 872 time 131 nps 6656 score cp -2409 pv d3h7 h8h7 c4b5
+Position; fen r1b1kb1r/pp1p1ppp/4pn2/8/3BPq2/2N5/PPP3PP/R2QKB1R w KQkq - 0 9
+Moves; e1e2 f6e4 g2g3 e4c3 e2d3 f4e4 d3c3 e4h1 d1e1 h1h2 a1c1 f8d6 f1c4 d6g3 d4f6 g3e1 c1e1 h2g3 c4d3 g3e1 c3c4 g7f6
+Warning; Bestmove does not match beginning of last PV - move h2h3 from OneshotReAct
+Info; info depth 2 nodes 737 time 218 nps 3380 score cp -955 pv f2g1 c6e5
+Position; fen rnq1k2r/ppp1bppp/3p1n2/5bN1/2PP4/1QN2P2/PP2P2P/R1B1KB1R w KQkq - 1 9
+Moves; e1f2 e8g8 b3b6 a7b6 c1e3 b8c6 c4c5 b6c5 d4c5 f8d8 c5d6 e7d6
+Warning; Bestmove does not match beginning of last PV - move b4c5 from OneshotReAct
+Info; info depth 3 nodes 552 time 92 nps 6000 score cp -2622 pv b4a5 b2a2 a5b5
+Position; fen r1b1kb1r/pp1p1ppp/4pn2/8/3BPq2/2N5/PPP3PP/R2QKB1R w KQkq - 0 9
+Moves; e1e2 f6e4 g2g3 e4c3 e2d3 f4e4 d3c3 e4h1 d1e1 h1h2 a1c1 f8d6 f1c4 d6g3 d4f6 g3e1 c1e1 h2g3 c4d3 g3e1 c3c4 g7f6 c4b5 e1e5 b5b4 e5b2
+Warning; Bestmove does not match beginning of last PV - move c5c4 from OneshotReAct
+Info; info depth 3 nodes 424 time 65 nps 6523 score cp -99998 pv c5d6 b2e5
+Position; fen r1b1kb1r/pp1p1ppp/4pn2/8/3BPq2/2N5/PPP3PP/R2QKB1R w KQkq - 0 9
+Moves; e1e2 f6e4 g2g3 e4c3 e2d3 f4e4 d3c3 e4h1 d1e1 h1h2 a1c1 f8d6 f1c4 d6g3 d4f6 g3e1 c1e1 h2g3 c4d3 g3e1 c3c4 g7f6 c4b5 e1e5 b5b4 e5b2 b4c5 b7b6
+Finished game 26 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 32 of 100 (OneshotReAct vs Contextualized)
+Warning; Bestmove does not match beginning of last PV - move c7c5 from OneshotReAct
+Info; info depth 2 nodes 276 time 71 nps 3887 score cp -1537 pv e8d7 b7a8
+Position; fen rnq1k2r/ppp1bppp/3p1n2/5bN1/2PP4/1QN2P2/PP2P2P/R1B1KB1R w KQkq - 1 9
+Moves; e2e4 b8a6 e4f5 e7d8 f1g2 f6g8 e1g1 g7g6 f1e1 e8f8 c3d5 g8e7 d5f6 c8d7 f6d7 f8e8 b3b7
+Warning; Bestmove does not match beginning of last PV - move f2e1 from OneshotReAct
+Info; info depth 2 nodes 264 time 71 nps 3718 score cp -964 pv e4f6 e5f6
+Position; fen rnq1k2r/ppp1bppp/3p1n2/5bN1/2PP4/1QN2P2/PP2P2P/R1B1KB1R w KQkq - 1 9
+Moves; e1f2 e8g8 b3b6 a7b6 c1e3 b8c6 c4c5 b6c5 d4c5 f8d8 c5d6 e7d6 h2h3 h7h6 g5e4 d6e5
+Warning; Bestmove does not match beginning of last PV - move a6b4 from OneshotReAct
+Info; info depth 2 nodes 344 time 80 nps 4300 score cp -1695 pv e8d7 f5g6
+Position; fen rnq1k2r/ppp1bppp/3p1n2/5bN1/2PP4/1QN2P2/PP2P2P/R1B1KB1R w KQkq - 1 9
+Moves; e2e4 b8a6 e4f5 e7d8 f1g2 f6g8 e1g1 g7g6 f1e1 e8f8 c3d5 g8e7 d5f6 c8d7 f6d7 f8e8 b3b7 c7c5 b7a8
+Finished game 28 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 33 of 100 (Contextualized vs OneshotReAct)
+Warning; Bestmove does not match beginning of last PV - move b2b4 from OneshotReAct
+Info; info depth 3 nodes 1485 time 231 nps 6428 score cp -1113 pv e2d2 d8g5 d2c2
+Position; fen r1bqk2r/1ppn1pb1/3p2pn/p2Pp2p/2P1P3/2N1BN2/PP1Q1PPP/R3KB1R w KQkq - 2 9
+Moves; a1c1 h6g4 e1e2 g4e3 c1b1 e3c4 f3e1 c4d2
+Warning; Bestmove does not match beginning of last PV - move g2g4 from OneshotReAct
+Info; info depth 3 nodes 782 time 135 nps 5792 score cp -1760 pv c3b1 a5b4 b1d2
+Position; fen r1bqk2r/1ppn1pb1/3p2pn/p2Pp2p/2P1P3/2N1BN2/PP1Q1PPP/R3KB1R w KQkq - 2 9
+Moves; a1c1 h6g4 e1e2 g4e3 c1b1 e3c4 f3e1 c4d2 b2b4 d2b1
+Warning; Bestmove does not match beginning of last PV - move a7c7 from OneshotReAct
+Info; info depth 2 nodes 642 time 169 nps 3798 score cp -647 pv c8b7 h8f6
+Position; fen rnbqkb1r/4nppp/1pp1p3/p2pP3/B2P4/P1N2N2/1PP2PPP/R1BQK2R w KQkq - 0 9
+Moves; e1g1 a8a7 c1g5 d8d7 a4b3 g7g6 g5f6 e8d8 f6h8
+Warning; Bestmove does not match beginning of last PV - move h2h4 from OneshotReAct
+Info; info depth 2 nodes 480 time 119 nps 4033 score cp 97 pv e3e4 d5e4
+Position; fen rnbqkb1r/4nppp/1pp1p3/p2pP3/B2P4/P1N2N2/1PP2PPP/R1BQK2R w KQkq - 0 9
+Moves; c1e3 e7f5 a1a2 f5e3 f2e3 c8a6
+Warning; Bestmove does not match beginning of last PV - move g6f5 from OneshotReAct
+Info; info depth 3 nodes 874 time 218 nps 4009 score cp -1863 pv h8d8 e7f7 g7h8
+Position; fen rnq1k2r/ppp1bppp/3p1n2/5bN1/2PP4/1QN2P2/PP2P2P/R1B1KB1R w KQkq - 1 9
+Moves; e2e4 b8a6 e4f5 e7d8 f1g2 f6g8 e1g1 g7g6 f1e1 e8f8 c3d5 g8e7 d5f6 c8d7 f6d7 f8e8 b3b7 c7c5 b7a8 a6b4 d7f6 e8f8 a8d8 f8g7 e1e7
+Warning; Bestmove does not match beginning of last PV - move c7c5 from OneshotReAct
+Info; info depth 3 nodes 977 time 242 nps 4037 score cp -1923 pv a3b2 c1b2 b8a6
+Position; fen r1bqk2r/1ppn1pb1/3p2pn/p2Pp2p/2P1P3/2N1BN2/PP1Q1PPP/R3KB1R w KQkq - 2 9
+Moves; e1c1 a5a4 f1d3 g6g5 e3g5 g7f6 g5h6 f6h4 h6g7 a4a3 g7h8 d7b8 f3h4 e8d7 h4f5 d8f8 h8f6 a8a4 c3a4
+Warning; Bestmove does not match beginning of last PV - move h2h4 from OneshotReAct
+Info; info depth 2 nodes 264 time 53 nps 4981 score cp -2345 pv g4h5 a8a2
+Position; fen r1bqk2r/1ppn1pb1/3p2pn/p2Pp2p/2P1P3/2N1BN2/PP1Q1PPP/R3KB1R w KQkq - 2 9
+Moves; a1c1 h6g4 e1e2 g4e3 c1b1 e3c4 f3e1 c4d2 b2b4 d2b1 g2g4 b1c3 e2d3 a5b4
+Warning; Bestmove does not match beginning of last PV - move d7e8 from OneshotReAct
+Info; info depth 2 nodes 631 time 155 nps 4070 score cp -1946 pv b8a6 a4b6
+Position; fen r1bqk2r/1ppn1pb1/3p2pn/p2Pp2p/2P1P3/2N1BN2/PP1Q1PPP/R3KB1R w KQkq - 2 9
+Moves; e1c1 a5a4 f1d3 g6g5 e3g5 g7f6 g5h6 f6h4 h6g7 a4a3 g7h8 d7b8 f3h4 e8d7 h4f5 d8f8 h8f6 a8a4 c3a4 c7c5 b2a3
+Warning; Bestmove does not match beginning of last PV - move b4c6 from OneshotReAct
+Info; info depth 2 nodes 30 time 2 nps 15000 score cp -3058 pv c5d4 h8h7
+Position; fen rnq1k2r/ppp1bppp/3p1n2/5bN1/2PP4/1QN2P2/PP2P2P/R1B1KB1R w KQkq - 1 9
+Moves; e2e4 b8a6 e4f5 e7d8 f1g2 f6g8 e1g1 g7g6 f1e1 e8f8 c3d5 g8e7 d5f6 c8d7 f6d7 f8e8 b3b7 c7c5 b7a8 a6b4 d7f6 e8f8 a8d8 f8g7 e1e7 g6f5 e7f7 g7h6 d8h8
+Finished game 27 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 34 of 100 (OneshotReAct vs Contextualized)
+Warning; Bestmove does not match beginning of last PV - move b7b5 from OneshotReAct
+Info; info depth 3 nodes 1008 time 230 nps 4382 score cp -2211 pv f8g8 f5d6 e8e7
+Position; fen r1bqk2r/1ppn1pb1/3p2pn/p2Pp2p/2P1P3/2N1BN2/PP1Q1PPP/R3KB1R w KQkq - 2 9
+Moves; e1c1 a5a4 f1d3 g6g5 e3g5 g7f6 g5h6 f6h4 h6g7 a4a3 g7h8 d7b8 f3h4 e8d7 h4f5 d8f8 h8f6 a8a4 c3a4 c7c5 b2a3 d7e8 f6g7
+Warning; Bestmove does not match beginning of last PV - move e8d8 from OneshotReAct
+Info; info depth 3 nodes 944 time 210 nps 4495 score cp -2630 pv e8f8 f5d6 b5c4
+Position; fen r1bqk2r/1ppn1pb1/3p2pn/p2Pp2p/2P1P3/2N1BN2/PP1Q1PPP/R3KB1R w KQkq - 2 9
+Moves; e1c1 a5a4 f1d3 g6g5 e3g5 g7f6 g5h6 f6h4 h6g7 a4a3 g7h8 d7b8 f3h4 e8d7 h4f5 d8f8 h8f6 a8a4 c3a4 c7c5 b2a3 d7e8 f6g7 b7b5 g7f8
+Finished game 34 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 35 of 100 (Contextualized vs OneshotReAct)
+Warning; Bestmove does not match beginning of last PV - move f2f4 from OneshotReAct
+Info; info depth 2 nodes 334 time 75 nps 4453 score cp -2908 pv c4b4 c3e4
+Position; fen r1bqk2r/1ppn1pb1/3p2pn/p2Pp2p/2P1P3/2N1BN2/PP1Q1PPP/R3KB1R w KQkq - 2 9
+Moves; a1c1 h6g4 e1e2 g4e3 c1b1 e3c4 f3e1 c4d2 b2b4 d2b1 g2g4 b1c3 e2d3 a5b4 h2h4 h5g4 f1h3 d7c5 d3c4 g4h3
+Warning; Bestmove does not match beginning of last PV - move h5h4 from OneshotReAct
+Info; info depth 3 nodes 889 time 194 nps 4582 score cp -3046 pv c8f5 e4f5 d8c7
+Position; fen r1bqk2r/1ppn1pb1/3p2pn/p2Pp2p/2P1P3/2N1BN2/PP1Q1PPP/R3KB1R w KQkq - 2 9
+Moves; e1c1 a5a4 f1d3 g6g5 e3g5 g7f6 g5h6 f6h4 h6g7 a4a3 g7h8 d7b8 f3h4 e8d7 h4f5 d8f8 h8f6 a8a4 c3a4 c7c5 b2a3 d7e8 f6g7 b7b5 g7f8 e8d8 c4b5
+Warning; Bestmove does not match beginning of last PV - move c6c5 from OneshotReAct
+Info; info depth 2 nodes 40 time 1 nps 40000 score cp -2038 pv b8d7 d1d3
+Position; fen rnbqkb1r/4nppp/1pp1p3/p2pP3/B2P4/P1N2N2/1PP2PPP/R1BQK2R w KQkq - 0 9
+Moves; e1g1 a8a7 c1g5 d8d7 a4b3 g7g6 g5f6 e8d8 f6h8 a7c7 c3a4 b6b5 a4b6 c7b7 b6d7 f8h6 d7c5 h6g7 c5b7 c8b7 h8g7
+Warning; Bestmove does not match beginning of last PV - move b8c6 from OneshotReAct
+Info; info depth 2 nodes 217 time 41 nps 5292 score cp -3246 pv b8a6 b5a6
+Position; fen r1bqk2r/1ppn1pb1/3p2pn/p2Pp2p/2P1P3/2N1BN2/PP1Q1PPP/R3KB1R w KQkq - 2 9
+Moves; e1c1 a5a4 f1d3 g6g5 e3g5 g7f6 g5h6 f6h4 h6g7 a4a3 g7h8 d7b8 f3h4 e8d7 h4f5 d8f8 h8f6 a8a4 c3a4 c7c5 b2a3 d7e8 f6g7 b7b5 g7f8 e8d8 c4b5 h5h4 f5d6
+Finished game 29 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 36 of 100 (OneshotReAct vs Contextualized)
+Warning; Bestmove does not match beginning of last PV - move b8c6 from OneshotReAct
+Info; info depth 2 nodes 659 time 178 nps 3702 score cp -2126 pv b8d7 d1d4
+Position; fen rnbqkb1r/4nppp/1pp1p3/p2pP3/B2P4/P1N2N2/1PP2PPP/R1BQK2R w KQkq - 0 9
+Moves; e1g1 a8a7 c1g5 d8d7 a4b3 g7g6 g5f6 e8d8 f6h8 a7c7 c3a4 b6b5 a4b6 c7b7 b6d7 f8h6 d7c5 h6g7 c5b7 c8b7 h8g7 c6c5 d4c5
+Warning; Bestmove does not match beginning of last PV - move c7b6 from OneshotReAct
+Info; info depth 2 nodes 171 time 28 nps 6107 score cp -3510 pv c7b8 c1d2
+Position; fen r1b1k2r/pp1nbppp/2pqpn2/8/2BP4/2N2N2/PPP1QPPP/R1B2RK1 w kq - 1 9
+Moves; c3e4 d6e5 d4e5 e7a3 e5f6 a3b4 f6g7 b4d2 g7h8q d7f8 e4f6 e8d8 h8f8 d8c7 f8f7
+Warning; Bestmove does not match beginning of last PV - move h1g1 from OneshotReAct
+Info; info depth 2 nodes 601 time 153 nps 3928 score cp -853 pv e1f1 h4g3
+Position; fen rnbqkb1r/4nppp/1pp1p3/p2pP3/B2P4/P1N2N2/1PP2PPP/R1BQK2R w KQkq - 0 9
+Moves; c1e3 e7f5 a1a2 f5e3 f2e3 c8a6 h2h4 a6c4 d1a1 c4a2 a4b5 c6b5 f3d2 a2c4 d2f1 f8e7 b2b3 e7h4 g2g3 c4f1
+Warning; Bestmove does not match beginning of last PV - move c6c5 from OneshotReAct
+Info; info depth 2 nodes 488 time 84 nps 5809 score cp -3669 pv e6e5 f3e5
+Position; fen r1b1k2r/pp1nbppp/2pqpn2/8/2BP4/2N2N2/PPP1QPPP/R1B2RK1 w kq - 1 9
+Moves; c3e4 d6e5 d4e5 e7a3 e5f6 a3b4 f6g7 b4d2 g7h8q d7f8 e4f6 e8d8 h8f8 d8c7 f8f7 c7b6 c1d2
+Warning; Bestmove does not match beginning of last PV - move e7f5 from OneshotReAct
+Info; info depth 2 nodes 353 time 87 nps 4057 score cp -2294 pv c6e5 f3e5
+Position; fen rnbqkb1r/4nppp/1pp1p3/p2pP3/B2P4/P1N2N2/1PP2PPP/R1BQK2R w KQkq - 0 9
+Moves; e1g1 a8a7 c1g5 d8d7 a4b3 g7g6 g5f6 e8d8 f6h8 a7c7 c3a4 b6b5 a4b6 c7b7 b6d7 f8h6 d7c5 h6g7 c5b7 c8b7 h8g7 c6c5 d4c5 b8c6 c2c4 d8e8 c4b5
+Warning; Bestmove does not match beginning of last PV - move c8d7 from OneshotReAct
+Info; info depth 2 nodes 254 time 47 nps 5404 score cp -3649 pv a7a6 g5e6
+Position; fen r1b1k2r/pp1nbppp/2pqpn2/8/2BP4/2N2N2/PPP1QPPP/R1B2RK1 w kq - 1 9
+Moves; c3e4 d6e5 d4e5 e7a3 e5f6 a3b4 f6g7 b4d2 g7h8q d7f8 e4f6 e8d8 h8f8 d8c7 f8f7 c7b6 c1d2 c6c5 f3g5
+Finished game 36 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 37 of 100 (Contextualized vs OneshotReAct)
+Warning; Bestmove does not match beginning of last PV - move d5d4 from OneshotReAct
+Info; info depth 3 nodes 900 time 174 nps 5172 score cp -3424 pv g6g5 b7b8q e8d7
+Position; fen rnbqkb1r/4nppp/1pp1p3/p2pP3/B2P4/P1N2N2/1PP2PPP/R1BQK2R w KQkq - 0 9
+Moves; e1g1 a8a7 c1g5 d8d7 a4b3 g7g6 g5f6 e8d8 f6h8 a7c7 c3a4 b6b5 a4b6 c7b7 b6d7 f8h6 d7c5 h6g7 c5b7 c8b7 h8g7 c6c5 d4c5 b8c6 c2c4 d8e8 c4b5 e7f5 b5c6 f5g7 c6b7
+Finished game 33 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 38 of 100 (OneshotReAct vs Contextualized)
+Finished game 30 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 39 of 100 (Contextualized vs OneshotReAct)
+Warning; Bestmove does not match beginning of last PV - move e8e7 from OneshotReAct
+Info; info depth 3 nodes 452 time 90 nps 5022 score cp -3614 pv e8d7 f3d4 g7f5
+Position; fen rnbqkb1r/4nppp/1pp1p3/p2pP3/B2P4/P1N2N2/1PP2PPP/R1BQK2R w KQkq - 0 9
+Moves; e1g1 a8a7 c1g5 d8d7 a4b3 g7g6 g5f6 e8d8 f6h8 a7c7 c3a4 b6b5 a4b6 c7b7 b6d7 f8h6 d7c5 h6g7 c5b7 c8b7 h8g7 c6c5 d4c5 b8c6 c2c4 d8e8 c4b5 e7f5 b5c6 f5g7 c6b7 d5d4 b7b8q
+Finished game 31 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 40 of 100 (OneshotReAct vs Contextualized)
+Warning; Bestmove does not match beginning of last PV - move c3d5 from OneshotReAct
+Info; info depth 2 nodes 384 time 97 nps 3958 score cp -1466 pv g1g4 g5g4
+Position; fen rnbqkb1r/4nppp/1pp1p3/p2pP3/B2P4/P1N2N2/1PP2PPP/R1BQK2R w KQkq - 0 9
+Moves; c1e3 e7f5 a1a2 f5e3 f2e3 c8a6 h2h4 a6c4 d1a1 c4a2 a4b5 c6b5 f3d2 a2c4 d2f1 f8e7 b2b3 e7h4 g2g3 c4f1 h1g1 d8g5 a1c1 f1h3 c1a1 h4g3 e1e2 h3g4 e2d2 g3f2
+Finished game 32 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 41 of 100 (Contextualized vs OneshotReAct)
+Warning; Bestmove does not match beginning of last PV - move a8a7 from OneshotReAct
+Info; info depth 2 nodes 222 time 49 nps 4530 score cp -2690 pv b8a6 b7a8
+Position; fen rn1qk2r/pp1b1ppp/7n/1B2P3/1b2p3/2N5/PP1B1PPP/R2QK1NR w KQkq - 3 9
+Moves; d2h6 d8b6 h6g7 b6a6 b5a6 e8e7 a6b7 b4a3 b2a3 e4e3 g7h8 e7d8 f2e3 a7a5 h8f6 d8e8 d1d6
+Finished game 35 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 42 of 100 (OneshotReAct vs Contextualized)
+Warning; Bestmove does not match beginning of last PV - move e1d2 from OneshotReAct
+Info; info depth 3 nodes 667 time 173 nps 3855 score cp -2472 pv e2f1 h6g5 a3d3
+Position; fen r1bq1rk1/1ppnbpp1/p3pn1p/2Pp4/3P1B2/2N1PN2/PP2BPPP/R2QK2R w KQ - 1 9
+Moves; c3e4 d5e4 f4g5 e4f3 d1d3 f3g2 d3a3 g2h1q
+Warning; Bestmove does not match beginning of last PV - move h2h3 from OneshotReAct
+Info; info depth 2 nodes 458 time 114 nps 4017 score cp -2557 pv g5f6 e7f6
+Position; fen r1bq1rk1/1ppnbpp1/p3pn1p/2Pp4/3P1B2/2N1PN2/PP2BPPP/R2QK2R w KQ - 1 9
+Moves; c3e4 d5e4 f4g5 e4f3 d1d3 f3g2 d3a3 g2h1q e1d2 h1a1
+Warning; Bestmove does not match beginning of last PV - move c8f5 from OneshotReAct
+Info; info depth 3 nodes 664 time 155 nps 4283 score cp -1133 pv h7g8 d6c8 a8c8
+Position; fen r1bq1rk1/1pp1ppbp/pn1p2pn/4P3/3PNP2/3B1N2/PPP3PP/R1BQK2R w KQ - 5 9
+Moves; e1g1 g6g5 f3g5 c8h3 g5h3 d8c8 h3g5 g7h8 g5h7 g8h7 e4d6
+Warning; Bestmove does not match beginning of last PV - move h6g4 from OneshotReAct
+Info; info depth 3 nodes 808 time 183 nps 4415 score cp -1420 pv h6f5 d3f5 h7g8
+Position; fen r1bq1rk1/1pp1ppbp/pn1p2pn/4P3/3PNP2/3B1N2/PPP3PP/R1BQK2R w KQ - 5 9
+Moves; e1g1 g6g5 f3g5 c8h3 g5h3 d8c8 h3g5 g7h8 g5h7 g8h7 e4d6 c8f5 d6f5
+Warning; Bestmove does not match beginning of last PV - move g1h1 from OneshotReAct
+Info; info depth 2 nodes 559 time 135 nps 4140 score cp -2575 pv c4c5 d6c5
+Position; fen r2q1rk1/pppbppbp/2np1np1/8/3PP3/3B1N1P/PPPN1PP1/R1BQR1K1 w - - 1 9
+Moves; d3b5 e7e5 c2c4 c6d4 g1f1 d4b5 d1c2 b5d4 d2b3 d4c2 c1d2 c2a1 a2a4 a1b3 f3g5 b3d2 f1g1 d7a4
+Finished game 37 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 43 of 100 (Contextualized vs OneshotReAct)
+Finished game 41 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 44 of 100 (OneshotReAct vs Contextualized)
+Finished game 40 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 45 of 100 (Contextualized vs OneshotReAct)
+Warning; Bestmove does not match beginning of last PV - move h1g2 from OneshotReAct
+Info; info depth 3 nodes 779 time 122 nps 6385 score cp -3964 pv h1g1 f7f2 g4g5
+Position; fen r2q1rk1/pppbppbp/2np1np1/8/3PP3/3B1N1P/PPPN1PP1/R1BQR1K1 w - - 1 9
+Moves; d3b5 e7e5 c2c4 c6d4 g1f1 d4b5 d1c2 b5d4 d2b3 d4c2 c1d2 c2a1 a2a4 a1b3 f3g5 b3d2 f1g1 d7a4 g1h1 d2c4 e1c1 c4b2 c1c5 d6c5 g5f7 f8f7 g2g4 f6e4
+Warning; Bestmove does not match beginning of last PV - move g1h2 from OneshotReAct
+Info; info depth 3 nodes 466 time 73 nps 6383 score cp -99998 pv g1g2 f7f2
+Position; fen r2q1rk1/pppbppbp/2np1np1/8/3PP3/3B1N1P/PPPN1PP1/R1BQR1K1 w - - 1 9
+Moves; d3b5 e7e5 c2c4 c6d4 g1f1 d4b5 d1c2 b5d4 d2b3 d4c2 c1d2 c2a1 a2a4 a1b3 f3g5 b3d2 f1g1 d7a4 g1h1 d2c4 e1c1 c4b2 c1c5 d6c5 g5f7 f8f7 g2g4 f6e4 h1g2 d8d2 g2g1 d2e1
+Finished game 38 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 46 of 100 (OneshotReAct vs Contextualized)
+Finished game 39 (Contextualized vs OneshotReAct): 1-0 {White mates}
+--------------------------------------------------
+Results of Contextualized vs OneshotReAct (10+0.1, 1t - NULL, 16MB, 8mvs_+90_+99.epd):
+Elo: inf +/- nan, nElo: inf +/- nan
+LOS: 100.00 %, DrawRatio: 0.00 %, PairsRatio: inf
+Games: 40, Wins: 40, Losses: 0, Draws: 0, Points: 40.0 (100.00 %)
+Ptnml(0-2): [0, 0, 0, 0, 20], WL/DD Ratio: nan
+--------------------------------------------------
+Started game 47 of 100 (Contextualized vs OneshotReAct)
+Finished game 42 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 48 of 100 (OneshotReAct vs Contextualized)
+Warning; Bestmove does not match beginning of last PV - move c2a4 from OneshotReAct
+Info; info depth 2 nodes 433 time 112 nps 3866 score cp 45 pv c4d5 e8g8
+Position; fen r2qk2r/pb1nbppp/1ppp1n2/3Pp3/2P1P3/2N2N2/PPQ1BPPP/R1B1K2R w KQkq - 0 9
+Moves; c3d1 c6d5
+Finished game 47 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 49 of 100 (Contextualized vs OneshotReAct)
+Warning; Bestmove does not match beginning of last PV - move d7d8 from OneshotReAct
+Info; info depth 3 nodes 856 time 254 nps 3370 score cp -1967 pv d7c8 a8c8 e7d8
+Position; fen r2qk2r/pb1nbppp/1ppp1n2/3Pp3/2P1P3/2N2N2/PPQ1BPPP/R1B1K2R w KQkq - 0 9
+Moves; e1g1 f6h5 d5c6 d7f8 c6b7 d8d7 b7a8q
+Warning; Bestmove does not match beginning of last PV - move e1d2 from OneshotReAct
+Info; info depth 3 nodes 404 time 95 nps 4252 score cp -3217 pv e3c1 a1c1 e1f2
+Position; fen r2qkb1r/pp1n1ppp/2pp1n2/4p3/2PPP3/2N2bPP/PP3PB1/R1BQK2R w KQkq - 0 9
+Moves; c1e3 f3d1 e3c1 d1h5 h1f1 e5d4 c1f4 d4c3 f4e3 c3b2 f2f4 b2a1q
+Warning; Bestmove does not match beginning of last PV - move e8d8 from OneshotReAct
+Info; info depth 3 nodes 925 time 225 nps 4111 score cp -1235 pv e8d7 c1g5 c8c7
+Position; fen r2qkb1r/pp1n1ppp/2pp1n2/4p3/2PPP3/2N2bPP/PP3PB1/R1BQK2R w KQkq - 0 9
+Moves; g2f3 d8c8 e1g1 b7b5 c4b5 f6d5 e4d5 g7g6 b5c6 e5e4 c3e4 g6g5 c6d7
+Warning; Bestmove does not match beginning of last PV - move d1c2 from OneshotReAct
+Info; info depth 2 nodes 307 time 69 nps 4449 score cp 27 pv f2e3 b8d7
+Position; fen rnbq1r1k/pp2p1bp/2p2np1/3pNp2/3P4/2P2NP1/PP2PPBP/R1BQK2R w KQ - 2 9
+Moves; c1e3 f6g4 e5d3 g4e3
+Finished game 44 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 50 of 100 (OneshotReAct vs Contextualized)
+Warning; Bestmove does not match beginning of last PV - move a2a3 from OneshotReAct
+Info; info depth 2 nodes 71 time 3 nps 23666 score cp -1343 pv h1a1 b8d7
+Position; fen rnbq1r1k/pp2p1bp/2p2np1/3pNp2/3P4/2P2NP1/PP2PPBP/R1BQK2R w KQ - 2 9
+Moves; c1e3 f6g4 e5d3 g4e3 d1c2 e3c2 e1d2 c2a1
+Warning; Bestmove does not match beginning of last PV - move b8c7 from OneshotReAct
+Info; info depth 3 nodes 503 time 114 nps 4412 score cp -2151 pv b8c8 c1g5 a8b8
+Position; fen r2qkb1r/pp1n1ppp/2pp1n2/4p3/2PPP3/2N2bPP/PP3PB1/R1BQK2R w KQkq - 0 9
+Moves; g2f3 d8c8 e1g1 b7b5 c4b5 f6d5 e4d5 g7g6 b5c6 e5e4 c3e4 g6g5 c6d7 e8d8 d7c8q d8c8 d1c2 c8b8 c2b3
+Warning; Bestmove does not match beginning of last PV - move g7g5 from OneshotReAct
+Info; info depth 2 nodes 52 time 6 nps 8666 score cp -2504 pv h5f6 c7c8
+Position; fen r2qk2r/pb1nbppp/1ppp1n2/3Pp3/2P1P3/2N2N2/PPQ1BPPP/R1B1K2R w KQkq - 0 9
+Moves; e1g1 f6h5 d5c6 d7f8 c6b7 d8d7 b7a8q d7d8 a8a7 f8d7 c3d5 h8f8 d5c7 d8c7 a7c7
+Warning; Bestmove does not match beginning of last PV - move h8g8 from OneshotReAct
+Info; info depth 2 nodes 270 time 64 nps 4218 score cp -955 pv d5e4 d6e7
+Position; fen rn1q1knr/pp3ppp/2p1p3/3p4/3PP3/P1b3QP/1PP2PP1/R1B1KB1R w KQ - 0 9
+Moves; b2c3 d8b6 c1f4 b6c7 f4c7 b8a6 c7d6 g8e7 a1b1
+Warning; Bestmove does not match beginning of last PV - move e1f1 from OneshotReAct
+Info; info depth 2 nodes 321 time 75 nps 4280 score cp -1773 pv e2e4 g4f3
+Position; fen rnbq1r1k/pp2p1bp/2p2np1/3pNp2/3P4/2P2NP1/PP2PPBP/R1BQK2R w KQ - 2 9
+Moves; c1e3 f6g4 e5d3 g4e3 d1c2 e3c2 e1d2 c2a1 a2a3 g7h6 d2e1 c8e6 g3g4 f5g4
+Warning; Bestmove does not match beginning of last PV - move d7f6 from OneshotReAct
+Info; info depth 2 nodes 38 time 5 nps 7600 score cp -2715 pv h5f6 g5f6
+Position; fen r2qk2r/pb1nbppp/1ppp1n2/3Pp3/2P1P3/2N2N2/PPQ1BPPP/R1B1K2R w KQkq - 0 9
+Moves; e1g1 f6h5 d5c6 d7f8 c6b7 d8d7 b7a8q d7d8 a8a7 f8d7 c3d5 h8f8 d5c7 d8c7 a7c7 g7g5 c7c8 e7d8 c1g5
+Warning; Bestmove does not match beginning of last PV - move f1h1 from OneshotReAct
+Info; info depth 2 nodes 456 time 111 nps 4108 score cp -1803 pv h6g5 f6g4
+Position; fen r2qk2r/pb1nbppp/1ppp1n2/3Pp3/2P1P3/2N2N2/PPQ1BPPP/R1B1K2R w KQkq - 0 9
+Moves; c3d1 c6d5 c2a4 d5d4 h1f1 e8g8 f3d4 e5d4 g2g4 d7c5 e2d3 c5a4 h2h4 a4c5 c1h6 c5d3 e1d2 b7e4
+Finished game 45 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 51 of 100 (Contextualized vs OneshotReAct)
+Warning; Bestmove does not match beginning of last PV - move g7g6 from OneshotReAct
+Info; info depth 2 nodes 218 time 41 nps 5317 score cp -1495 pv a6b8 b7b8
+Position; fen rn1q1knr/pp3ppp/2p1p3/3p4/3PP3/P1b3QP/1PP2PP1/R1B1KB1R w KQ - 0 9
+Moves; b2c3 d8b6 c1f4 b6c7 f4c7 b8a6 c7d6 g8e7 a1b1 h8g8 b1b7 a8b8 d6b8
+Warning; Bestmove does not match beginning of last PV - move b7b6 from OneshotReAct
+Info; info depth 3 nodes 913 time 200 nps 4565 score cp -2246 pv b7b8 c1g5 h7h6
+Position; fen r2qkb1r/pp1n1ppp/2pp1n2/4p3/2PPP3/2N2bPP/PP3PB1/R1BQK2R w KQkq - 0 9
+Moves; g2f3 d8c8 e1g1 b7b5 c4b5 f6d5 e4d5 g7g6 b5c6 e5e4 c3e4 g6g5 c6d7 e8d8 d7c8q d8c8 d1c2 c8b8 c2b3 b8c7 b3c4 c7b8 c4b5 b8c7 b5c6 c7b8 c6e8 b8b7 e8f7
+Warning; Bestmove does not match beginning of last PV - move h2h3 from OneshotReAct
+Info; info depth 2 nodes 899 time 239 nps 3761 score cp -2324 pv e2e4 d5e4
+Position; fen rnbq1r1k/pp2p1bp/2p2np1/3pNp2/3P4/2P2NP1/PP2PPBP/R1BQK2R w KQ - 2 9
+Moves; c1e3 f6g4 e5d3 g4e3 d1c2 e3c2 e1d2 c2a1 a2a3 g7h6 d2e1 c8e6 g3g4 f5g4 e1f1 g4f3 d3e5 f3g2 f1g2 a1c2
+Warning; Bestmove does not match beginning of last PV - move a8d8 from OneshotReAct
+Info; info depth 2 nodes 635 time 147 nps 4319 score cp -2159 pv f8h6 g5h6
+Position; fen r2qkb1r/pp1n1ppp/2pp1n2/4p3/2PPP3/2N2bPP/PP3PB1/R1BQK2R w KQkq - 0 9
+Moves; g2f3 d8c8 e1g1 b7b5 c4b5 f6d5 e4d5 g7g6 b5c6 e5e4 c3e4 g6g5 c6d7 e8d8 d7c8q d8c8 d1c2 c8b8 c2b3 b8c7 b3c4 c7b8 c4b5 b8c7 b5c6 c7b8 c6e8 b8b7 e8f7 b7b6 c1g5
+Warning; Bestmove does not match beginning of last PV - move c4c5 from OneshotReAct
+Info; info depth 3 nodes 833 time 146 nps 5705 score cp -2614 pv f1g1 h1e4 g4g5
+Position; fen r2qk2r/pb1nbppp/1ppp1n2/3Pp3/2P1P3/2N2N2/PPQ1BPPP/R1B1K2R w KQkq - 0 9
+Moves; c3d1 c6d5 c2a4 d5d4 h1f1 e8g8 f3d4 e5d4 g2g4 d7c5 e2d3 c5a4 h2h4 a4c5 c1h6 c5d3 e1d2 b7e4 f1h1 g7h6 d2e2 d3f4 e2f1 e4h1
+Warning; Bestmove does not match beginning of last PV - move b5d3 from OneshotReAct
+Info; info depth 2 nodes 59 time 11 nps 5363 score cp -1711 pv g4g5 c6b5
+Position; fen rn1q1knr/pp3ppp/2p1p3/3p4/3PP3/P1b3QP/1PP2PP1/R1B1KB1R w KQ - 0 9
+Moves; e1e2 c3d4 b2b3 d4a1 c1g5 a1f6 g3g4 f6g5 e2e1 d5e4 f1b5 d8d2 e1f1 d2c1 f1e2 c1h1
+Warning; Bestmove does not match beginning of last PV - move b5a4 from OneshotReAct
+Info; info depth 2 nodes 181 time 38 nps 4763 score cp -2994 pv f8g7 f7g7
+Position; fen r2qkb1r/pp1n1ppp/2pp1n2/4p3/2PPP3/2N2bPP/PP3PB1/R1BQK2R w KQkq - 0 9
+Moves; g2f3 d8c8 e1g1 b7b5 c4b5 f6d5 e4d5 g7g6 b5c6 e5e4 c3e4 g6g5 c6d7 e8d8 d7c8q d8c8 d1c2 c8b8 c2b3 b8c7 b3c4 c7b8 c4b5 b8c7 b5c6 c7b8 c6e8 b8b7 e8f7 b7b6 c1g5 a8d8 g5d8 b6b5 d8f6
+Warning; Bestmove does not match beginning of last PV - move g6g5 from OneshotReAct
+Info; info depth 2 nodes 43 time 7 nps 6142 score cp -2256 pv d5e4 e7f7
+Position; fen rn1q1knr/pp3ppp/2p1p3/3p4/3PP3/P1b3QP/1PP2PP1/R1B1KB1R w KQ - 0 9
+Moves; b2c3 d8b6 c1f4 b6c7 f4c7 b8a6 c7d6 g8e7 a1b1 h8g8 b1b7 a8b8 d6b8 g7g6 b8d6 f8e8 b7e7 e8d8 f1a6
+Warning; Bestmove does not match beginning of last PV - move a4b4 from OneshotReAct
+Info; info depth 3 nodes 662 time 150 nps 4413 score cp -3471 pv f8h6 f7f6 a4a5
+Position; fen r2qkb1r/pp1n1ppp/2pp1n2/4p3/2PPP3/2N2bPP/PP3PB1/R1BQK2R w KQkq - 0 9
+Moves; g2f3 d8c8 e1g1 b7b5 c4b5 f6d5 e4d5 g7g6 b5c6 e5e4 c3e4 g6g5 c6d7 e8d8 d7c8q d8c8 d1c2 c8b8 c2b3 b8c7 b3c4 c7b8 c4b5 b8c7 b5c6 c7b8 c6e8 b8b7 e8f7 b7b6 c1g5 a8d8 g5d8 b6b5 d8f6 b5a4 f6h8
+Warning; Bestmove does not match beginning of last PV - move g4f5 from OneshotReAct
+Info; info depth 2 nodes 462 time 171 nps 2701 score cp -2295 pv g4g5 c2c1q
+Position; fen rn1q1knr/pp3ppp/2p1p3/3p4/3PP3/P1b3QP/1PP2PP1/R1B1KB1R w KQ - 0 9
+Moves; e1e2 c3d4 b2b3 d4a1 c1g5 a1f6 g3g4 f6g5 e2e1 d5e4 f1b5 d8d2 e1f1 d2c1 f1e2 c1h1 b5d3 e4d3 e2f3 d3c2
+Warning; Bestmove does not match beginning of last PV - move a7a5 from OneshotReAct
+Info; info depth 3 nodes 516 time 144 nps 3583 score cp -3731 pv a7a6 f8d6 b4a5
+Position; fen r2qkb1r/pp1n1ppp/2pp1n2/4p3/2PPP3/2N2bPP/PP3PB1/R1BQK2R w KQkq - 0 9
+Moves; g2f3 d8c8 e1g1 b7b5 c4b5 f6d5 e4d5 g7g6 b5c6 e5e4 c3e4 g6g5 c6d7 e8d8 d7c8q d8c8 d1c2 c8b8 c2b3 b8c7 b3c4 c7b8 c4b5 b8c7 b5c6 c7b8 c6e8 b8b7 e8f7 b7b6 c1g5 a8d8 g5d8 b6b5 d8f6 b5a4 f6h8 a4b4 f7f8
+Warning; Bestmove does not match beginning of last PV - move g1h2 from OneshotReAct
+Info; info depth 3 nodes 999 time 227 nps 4400 score cp -3029 pv g1f1 e6h3
+Position; fen rnbq1r1k/pp2p1bp/2p2np1/3pNp2/3P4/2P2NP1/PP2PPBP/R1BQK2R w KQ - 2 9
+Moves; c1e3 f6g4 e5d3 g4e3 d1c2 e3c2 e1d2 c2a1 a2a3 g7h6 d2e1 c8e6 g3g4 f5g4 e1f1 g4f3 d3e5 f3g2 f1g2 a1c2 h2h3 b8d7 h1d1 h6e3 g2h2 f8f2 h2g1 f2f1
+Warning; Bestmove does not match beginning of last PV - move d8e8 from OneshotReAct
+Info; info depth 3 nodes 673 time 145 nps 4641 score cp -2557 pv c6d5 g3g5 d8e8
+Position; fen rn1q1knr/pp3ppp/2p1p3/3p4/3PP3/P1b3QP/1PP2PP1/R1B1KB1R w KQ - 0 9
+Moves; b2c3 d8b6 c1f4 b6c7 f4c7 b8a6 c7d6 g8e7 a1b1 h8g8 b1b7 a8b8 d6b8 g7g6 b8d6 f8e8 b7e7 e8d8 f1a6 g6g5 e7f7 g8h8 e4d5
+Finished game 46 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 52 of 100 (OneshotReAct vs Contextualized)
+Warning; Bestmove does not match beginning of last PV - move f3e2 from OneshotReAct
+Info; info depth 3 nodes 935 time 183 nps 5109 score cp -4061 pv f3g3 c1f1 b3b4
+Position; fen rn1q1knr/pp3ppp/2p1p3/3p4/3PP3/P1b3QP/1PP2PP1/R1B1KB1R w KQ - 0 9
+Moves; e1e2 c3d4 b2b3 d4a1 c1g5 a1f6 g3g4 f6g5 e2e1 d5e4 f1b5 d8d2 e1f1 d2c1 f1e2 c1h1 b5d3 e4d3 e2f3 d3c2 g4f5 e6f5 a3a4 c2c1q
+Finished game 50 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 53 of 100 (Contextualized vs OneshotReAct)
+Warning; Bestmove does not match beginning of last PV - move a3a4 from OneshotReAct
+Info; info depth 3 nodes 790 time 174 nps 4540 score cp -3177 pv h2g2 e6h3 g2g3
+Position; fen rnbq1r1k/pp2p1bp/2p2np1/3pNp2/3P4/2P2NP1/PP2PPBP/R1BQK2R w KQ - 2 9
+Moves; c1e3 f6g4 e5d3 g4e3 d1c2 e3c2 e1d2 c2a1 a2a3 g7h6 d2e1 c8e6 g3g4 f5g4 e1f1 g4f3 d3e5 f3g2 f1g2 a1c2 h2h3 b8d7 h1d1 h6e3 g2h2 f8f2 h2g1 f2f1 g1h2 f1d1 e5d7 d8d7
+Warning; Bestmove does not match beginning of last PV - move b5b6 from OneshotReAct
+Info; info depth 3 nodes 438 time 80 nps 5475 score cp -3842 pv b5a4 e4d6 a4b4
+Position; fen r2qkb1r/pp1n1ppp/2pp1n2/4p3/2PPP3/2N2bPP/PP3PB1/R1BQK2R w KQkq - 0 9
+Moves; g2f3 d8c8 e1g1 b7b5 c4b5 f6d5 e4d5 g7g6 b5c6 e5e4 c3e4 g6g5 c6d7 e8d8 d7c8q d8c8 d1c2 c8b8 c2b3 b8c7 b3c4 c7b8 c4b5 b8c7 b5c6 c7b8 c6e8 b8b7 e8f7 b7b6 c1g5 a8d8 g5d8 b6b5 d8f6 b5a4 f6h8 a4b4 f7f8 a7a5 a1c1 h7h5 f3h5 b4b5 h8f6
+Finished game 49 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 54 of 100 (OneshotReAct vs Contextualized)
+Warning; Bestmove does not match beginning of last PV - move g2f3 from OneshotReAct
+Info; info depth 2 nodes 11 time 3 nps 3666 score cp -3202 pv g2f2 e7e5
+Position; fen rnbq1r1k/pp2p1bp/2p2np1/3pNp2/3P4/2P2NP1/PP2PPBP/R1BQK2R w KQ - 2 9
+Moves; c1e3 f6g4 e5d3 g4e3 d1c2 e3c2 e1d2 c2a1 a2a3 g7h6 d2e1 c8e6 g3g4 f5g4 e1f1 g4f3 d3e5 f3g2 f1g2 a1c2 h2h3 b8d7 h1d1 h6e3 g2h2 f8f2 h2g1 f2f1 g1h2 f1d1 e5d7 d8d7 a3a4 e3f4 h2g2 e6h3
+Finished game 48 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 55 of 100 (Contextualized vs OneshotReAct)
+Warning; Bestmove does not match beginning of last PV - move a7b6 from OneshotReAct
+Info; info depth 3 nodes 448 time 96 nps 4666 score cp -3921 pv a7a6 f8d6 a6b5
+Position; fen r2qkb1r/pp1n1ppp/2pp1n2/4p3/2PPP3/2N2bPP/PP3PB1/R1BQK2R w KQkq - 0 9
+Moves; g2f3 d8c8 e1g1 b7b5 c4b5 f6d5 e4d5 g7g6 b5c6 e5e4 c3e4 g6g5 c6d7 e8d8 d7c8q d8c8 d1c2 c8b8 c2b3 b8c7 b3c4 c7b8 c4b5 b8c7 b5c6 c7b8 c6e8 b8b7 e8f7 b7b6 c1g5 a8d8 g5d8 b6b5 d8f6 b5a4 f6h8 a4b4 f7f8 a7a5 a1c1 h7h5 f3h5 b4b5 h8f6 b5b6 f1e1 b6a7 c1c7
+Finished game 43 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 56 of 100 (OneshotReAct vs Contextualized)
+Warning; Bestmove does not match beginning of last PV - move g2d5 from OneshotReAct
+Info; info depth 1 nodes 67 time 11 nps 6090 score cp -542 pv g2b7
+Position; fen rnbq1rk1/pppnb1pp/3pp3/5p2/2PP4/5NP1/PPQNPPBP/R1B2RK1 w - - 2 9
+Moves; h2h4 b8c6 a2a3 e7f6 c2d1 c6d4 f1e1 d7c5 f3e5 d6e5
+Warning; Bestmove does not match beginning of last PV - move f5f4 from OneshotReAct
+Info; info depth 2 nodes 255 time 52 nps 4903 score cp -3047 pv b8c6 a8c6
+Position; fen rnbq1rk1/pppnb1pp/3pp3/5p2/2PP4/5NP1/PPQNPPBP/R1B2RK1 w - - 2 9
+Moves; d2b3 c7c5 c1f4 f8e8 a1d1 e7f6 f4d6 e8e7 d4c5 f6e5 f3e5 h7h5 d6e7 g7g5 e7d8 b7b6 e5d7 a7a6 d7f6 g8f8 c5b6 f8g7 g2a8
+Warning; Bestmove does not match beginning of last PV - move b1c1 from OneshotReAct
+Info; info depth 3 nodes 744 time 247 nps 3012 score cp -465 pv b1a1 e8g8 f1d3
+Position; fen r1b1k2r/pp1n1pbp/2pp1np1/q3p1B1/3PP3/2N2N1P/PPPQ1PP1/2KR1B1R w kq - 2 9
+Moves; g5f4 e5f4 b2b4 a5a3 c1b1 a3b4
+Warning; Bestmove does not match beginning of last PV - move f1a6 from OneshotReAct
+Info; info depth 1 nodes 148 time 44 nps 3363 score cp -475 pv d2f4
+Position; fen r1b1k2r/pp1n1pbp/2pp1np1/q3p1B1/3PP3/2N2N1P/PPPQ1PP1/2KR1B1R w kq - 2 9
+Moves; g5f4 e5f4 b2b4 a5a3 c1b1 a3b4 b1c1 e8g8
+Warning; Bestmove does not match beginning of last PV - move e6e5 from OneshotReAct
+Info; info depth 3 nodes 954 time 232 nps 4112 score cp -4349 pv f4g3 h2g3 e6e5
+Position; fen rnbq1rk1/pppnb1pp/3pp3/5p2/2PP4/5NP1/PPQNPPBP/R1B2RK1 w - - 2 9
+Moves; d2b3 c7c5 c1f4 f8e8 a1d1 e7f6 f4d6 e8e7 d4c5 f6e5 f3e5 h7h5 d6e7 g7g5 e7d8 b7b6 e5d7 a7a6 d7f6 g8f8 c5b6 f8g7 g2a8 f5f4 b6b7 g5g4 b7c8q
+Finished game 51 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 57 of 100 (Contextualized vs OneshotReAct)
+Finished game 56 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 58 of 100 (OneshotReAct vs Contextualized)
+Finished game 53 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 59 of 100 (Contextualized vs OneshotReAct)
+Warning; Bestmove does not match beginning of last PV - move g2h2 from OneshotReAct
+Info; info depth 2 nodes 258 time 55 nps 4690 score cp -2310 pv e1d1 d5a2
+Position; fen rnbq1rk1/pppnb1pp/3pp3/5p2/2PP4/5NP1/PPQNPPBP/R1B2RK1 w - - 2 9
+Moves; h2h4 b8c6 a2a3 e7f6 c2d1 c6d4 f1e1 d7c5 f3e5 d6e5 g2d5 e6d5 a1a2 c8e6 g1g2 d5c4 e1h1 c4c3 h1e1 c3c2 d2f1 d8d5 f2f3 c2d1q
+Warning; Bestmove does not match beginning of last PV - move g2g4 from OneshotReAct
+Info; info depth 2 nodes 729 time 201 nps 3626 score cp -54 pv c1b1 d6d5
+Position; fen 2rqkbnr/1p1b1ppp/p1npp3/8/3NP3/2N1B3/PPPQ1PPP/2KR1B1R w k - 4 9
+Moves; d4e6 d7e6 f2f4 g8f6 f4f5 e6d7
+Warning; Bestmove does not match beginning of last PV - move d8d7 from OneshotReAct
+Info; info depth 2 nodes 415 time 124 nps 3346 score cp -1752 pv f8f7 f4c7
+Position; fen rnb2rk1/pp2q1pp/2pbpn2/3pNp2/3P1B2/6P1/PPPNPPBP/R2Q1RK1 w - - 6 9
+Moves; e2e3 b7b6 c2c3 a7a6 a1c1 e7d8 c3c4 c6c5 c4d5 f6g4 d5e6 d6c7 g2a8 c8d7 e6d7 b6b5 a8d5 f8f7 d5f7 g8f8 e5g4
+Warning; Bestmove does not match beginning of last PV - move d7e8 from OneshotReAct
+Info; info depth 2 nodes 262 time 65 nps 4030 score cp -683 pv c8c7 a7d4
+Position; fen r2qkb1r/pp1b1ppp/3ppn2/8/3nPP2/2N1B3/PPP1B1PP/R2QK2R w KQkq - 0 9
+Moves; d1d4 a8c8 e1g1 e8e7 d4a7 h8g8 e3b6 d8c7 b6c7
+Warning; Bestmove does not match beginning of last PV - move b2b3 from OneshotReAct
+Info; info depth 2 nodes 1107 time 226 nps 4898 score cp -3852 pv e3f5 d4f5
+Position; fen rnbq1rk1/pppnb1pp/3pp3/5p2/2PP4/5NP1/PPQNPPBP/R1B2RK1 w - - 2 9
+Moves; h2h4 b8c6 a2a3 e7f6 c2d1 c6d4 f1e1 d7c5 f3e5 d6e5 g2d5 e6d5 a1a2 c8e6 g1g2 d5c4 e1h1 c4c3 h1e1 c3c2 d2f1 d8d5 f2f3 c2d1q g2h2 d1e1 f1e3 e1e2 h2h3 d5a2
+Finished game 52 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 60 of 100 (OneshotReAct vs Contextualized)
+Warning; Bestmove does not match beginning of last PV - move h8h6 from OneshotReAct
+Info; info depth 2 nodes 36 time 2 nps 18000 score cp -1939 pv d8c8 d2d7
+Position; fen 2rqkbnr/1p1b1ppp/p1npp3/8/3NP3/2N1B3/PPPQ1PPP/2KR1B1R w k - 4 9
+Moves; f1c4 f7f5 d4e6 g7g5 e6d8 c6e7 d8b7 h7h5 b7d6 e8d8 d6c8
+Finished game 57 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 61 of 100 (Contextualized vs OneshotReAct)
+Warning; Bestmove does not match beginning of last PV - move f3g5 from OneshotReAct
+Info; info depth 2 nodes 471 time 137 nps 3437 score cp -1589 pv f3d4 a3b2
+Position; fen r1b1k2r/pp1n1pbp/2pp1np1/q3p1B1/3PP3/2N2N1P/PPPQ1PP1/2KR1B1R w kq - 2 9
+Moves; g5f4 e5f4 b2b4 a5a3 c1b1 a3b4 b1c1 e8g8 f1a6 b7a6 d2f4 b4c3 f4h4 c3a1 c1d2 a1b2 e4e5 d6e5 g2g4 e5d4 d1b1 b2c3 d2c1 c3a3 b1b2 a8b8
+Finished game 59 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 62 of 100 (OneshotReAct vs Contextualized)
+Finished game 54 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 63 of 100 (Contextualized vs OneshotReAct)
+Finished game 58 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 64 of 100 (OneshotReAct vs Contextualized)
+Finished game 55 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 65 of 100 (Contextualized vs OneshotReAct)
+Warning; Bestmove does not match beginning of last PV - move g3e3 from OneshotReAct
+Info; info depth 2 nodes 260 time 54 nps 4814 score cp 147 pv e1f1 d7b5
+Position; fen rn2k1nr/p1pq2pp/bp2p3/3pPp2/3P4/2B3Q1/PPP2PPP/R3KBNR w KQkq - 2 9
+Moves; a1b1 a6f1
+Warning; Bestmove does not match beginning of last PV - move d1d5 from OneshotReAct
+Info; info depth 2 nodes 185 time 43 nps 4302 score cp -1268 pv e3f2 e2f4
+Position; fen r2qkb1r/pp1b1ppp/3ppn2/8/3nPP2/2N1B3/PPP1B1PP/R2QK2R w KQkq - 0 9
+Moves; e4e5 d6e5 e1d2 d4e2 c3d5 d7b5 e3g1 f8b4 d2e3 f6d5
+Warning; Bestmove does not match beginning of last PV - move e5f3 from OneshotReAct
+Info; info depth 2 nodes 560 time 150 nps 3733 score cp -1045 pv e8d8 d5f4
+Position; fen r2qk2r/pbppnpbp/1pn3p1/8/2PNP3/2N1B3/PP2BPPP/R2QK2R w KQkq - 3 9
+Moves; e1g1 b7c8 c3d5 c6e5 e3g5 f7f6 g5f6 c7c6 f6e7 c8b7 e7d8
+Warning; Bestmove does not match beginning of last PV - move e3g3 from OneshotReAct
+Info; info depth 2 nodes 267 time 69 nps 3869 score cp -705 pv c3b4 g2h1
+Position; fen rn2k1nr/p1pq2pp/bp2p3/3pPp2/3P4/2B3Q1/PPP2PPP/R3KBNR w KQkq - 2 9
+Moves; a1b1 a6f1 g3e3 f1g2
+Finished game 60 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+--------------------------------------------------
+Results of Contextualized vs OneshotReAct (10+0.1, 1t - NULL, 16MB, 8mvs_+90_+99.epd):
+Elo: inf +/- nan, nElo: inf +/- nan
+LOS: 100.00 %, DrawRatio: 0.00 %, PairsRatio: inf
+Games: 60, Wins: 60, Losses: 0, Draws: 0, Points: 60.0 (100.00 %)
+Ptnml(0-2): [0, 0, 0, 0, 30], WL/DD Ratio: nan
+--------------------------------------------------
+Started game 66 of 100 (OneshotReAct vs Contextualized)
+Warning; Bestmove does not match beginning of last PV - move e1f1 from OneshotReAct
+Info; info depth 2 nodes 264 time 61 nps 4327 score cp -758 pv g3g7 d7g7
+Position; fen rn2k1nr/p1pq2pp/bp2p3/3pPp2/3P4/2B3Q1/PPP2PPP/R3KBNR w KQkq - 2 9
+Moves; a1b1 a6f1 g3e3 f1g2 e3g3 g2h1
+Warning; Bestmove does not match beginning of last PV - move h2h3 from OneshotReAct
+Info; info depth 2 nodes 662 time 211 nps 3137 score cp 128 pv e1c1 c6e5
+Position; fen rnb1k2r/ppppqp1p/5np1/4P3/2P5/3Q1N2/PP1b1PPP/RN2KB1R w KQkq - 0 9
+Moves; b1d2 b8c6
+Warning; Bestmove does not match beginning of last PV - move h7h5 from OneshotReAct
+Info; info depth 2 nodes 468 time 124 nps 3774 score cp -2137 pv a8b8 c4c5
+Position; fen r2qk2r/pbppnpbp/1pn3p1/8/2PNP3/2N1B3/PP2BPPP/R2QK2R w KQkq - 3 9
+Moves; e1g1 b7c8 c3d5 c6e5 e3g5 f7f6 g5f6 c7c6 f6e7 c8b7 e7d8 e5f3 e2f3 g7f6 d8f6 h8f8 d5c7 e8f7 e4e5
+Warning; Bestmove does not match beginning of last PV - move g1e2 from OneshotReAct
+Info; info depth 3 nodes 367 time 64 nps 5734 score cp -2316 pv f1e1 d3b1 c3b4
+Position; fen rn2k1nr/p1pq2pp/bp2p3/3pPp2/3P4/2B3Q1/PPP2PPP/R3KBNR w KQkq - 2 9
+Moves; a1b1 a6f1 g3e3 f1g2 e3g3 g2h1 e1f1 h1e4 a2a3 e4c2 g3d3 c2d3
+Warning; Bestmove does not match beginning of last PV - move d1c1 from OneshotReAct
+Info; info depth 3 nodes 630 time 157 nps 4012 score cp -1602 pv d1c2 f2h1 f1d3
+Position; fen rnb1k2r/ppppqp1p/5np1/4P3/2P5/3Q1N2/PP1b1PPP/RN2KB1R w KQkq - 0 9
+Moves; b1d2 b8c6 h2h3 c6e5 b2b4 e5d3 e1d1 d3f2
+Warning; Bestmove does not match beginning of last PV - move f3g5 from OneshotReAct
+Info; info depth 3 nodes 1328 time 235 nps 5651 score cp -1639 pv c4c5 h1g3 f1b5
+Position; fen rnb1k2r/ppppqp1p/5np1/4P3/2P5/3Q1N2/PP1b1PPP/RN2KB1R w KQkq - 0 9
+Moves; b1d2 b8c6 h2h3 c6e5 b2b4 e5d3 e1d1 d3f2 d1c1 f2h1
+Warning; Bestmove does not match beginning of last PV - move f7f8 from OneshotReAct
+Info; info depth 3 nodes 980 time 203 nps 4827 score cp -2584 pv f7g8 d7g7
+Position; fen r2qk2r/pbppnpbp/1pn3p1/8/2PNP3/2N1B3/PP2BPPP/R2QK2R w KQkq - 3 9
+Moves; e1g1 b7c8 c3d5 c6e5 e3g5 f7f6 g5f6 c7c6 f6e7 c8b7 e7d8 e5f3 e2f3 g7f6 d8f6 h8f8 d5c7 e8f7 e4e5 h7h5 c7a8 f8a8 d4f5 g6f5 d1d7
+Warning; Bestmove does not match beginning of last PV - move h2h4 from OneshotReAct
+Info; info depth 3 nodes 1235 time 240 nps 5145 score cp -2410 pv e2f4 g8e7 a3a4
+Position; fen rn2k1nr/p1pq2pp/bp2p3/3pPp2/3P4/2B3Q1/PPP2PPP/R3KBNR w KQkq - 2 9
+Moves; a1b1 a6f1 g3e3 f1g2 e3g3 g2h1 e1f1 h1e4 a2a3 e4c2 g3d3 c2d3 g1e2 d3b1 f1g1 b8c6
+Warning; Bestmove does not match beginning of last PV - move h7h5 from OneshotReAct
+Info; info depth 2 nodes 207 time 38 nps 5447 score cp -1661 pv b8d7 g3g7
+Position; fen rn2k1nr/p1pq2pp/bp2p3/3pPp2/3P4/2B3Q1/PPP2PPP/R3KBNR w KQkq - 2 9
+Moves; g1f3 d7e7 e1c1 c7c6 c1b1 a6e2 f1e2 b6b5 h1e1 b5b4 c3d2 e7c5 d4c5 e8f7 f3g5 f7e8 g5e6
+Finished game 61 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 67 of 100 (Contextualized vs OneshotReAct)
+Warning; Bestmove does not match beginning of last PV - move c3d2 from OneshotReAct
+Info; info depth 3 nodes 1324 time 257 nps 5151 score cp -2461 pv e2f4 e8g8 h4h5
+Position; fen rn2k1nr/p1pq2pp/bp2p3/3pPp2/3P4/2B3Q1/PPP2PPP/R3KBNR w KQkq - 2 9
+Moves; a1b1 a6f1 g3e3 f1g2 e3g3 g2h1 e1f1 h1e4 a2a3 e4c2 g3d3 c2d3 g1e2 d3b1 f1g1 b8c6 h2h4 g8e7
+Warning; Bestmove does not match beginning of last PV - move a2a3 from OneshotReAct
+Info; info depth 3 nodes 1197 time 256 nps 4675 score cp -2165 pv c2b3 h1f2 f1e2
+Position; fen rnb1k2r/ppppqp1p/5np1/4P3/2P5/3Q1N2/PP1b1PPP/RN2KB1R w KQkq - 0 9
+Moves; b1d2 b8c6 h2h3 c6e5 b2b4 e5d3 e1d1 d3f2 d1c1 f2h1 f3g5 e7e1 c1c2 e1a1
+Warning; Bestmove does not match beginning of last PV - move d1b1 from OneshotReAct
+Info; info depth 3 nodes 911 time 167 nps 5455 score cp -3186 pv f1g1 e4g2 d1d7
+Position; fen r2qk2r/pbppnpbp/1pn3p1/8/2PNP3/2N1B3/PP2BPPP/R2QK2R w KQkq - 3 9
+Moves; e3d2 c6d4 e1f1 d4e2 d1c2 e2d4 c2b3 d4b3 a1d1 b3d2 f1e2 d2c4 h1g1 c4b2 a2a3 g7c3 g1h1 b2d1 h2h3 d1b2 h1a1 b7e4 e2f1 b2d3 a1d1 d3f4
+Warning; Bestmove does not match beginning of last PV - move e8e7 from OneshotReAct
+Info; info depth 3 nodes 833 time 205 nps 4063 score cp -2554 pv e8d7 g8f7
+Position; fen rn2k1nr/p1pq2pp/bp2p3/3pPp2/3P4/2B3Q1/PPP2PPP/R3KBNR w KQkq - 2 9
+Moves; g1f3 d7e7 e1c1 c7c6 c1b1 a6e2 f1e2 b6b5 h1e1 b5b4 c3d2 e7c5 d4c5 e8f7 f3g5 f7e8 g5e6 h7h5 g3g7 b8a6 e2a6 h8h6 g7g8
+Warning; Bestmove does not match beginning of last PV - move a3a4 from OneshotReAct
+Info; info depth 3 nodes 480 time 77 nps 6233 score cp -3676 pv f1g1 d7d5 a3a4
+Position; fen r2qk2r/pbppnpbp/1pn3p1/8/2PNP3/2N1B3/PP2BPPP/R2QK2R w KQkq - 3 9
+Moves; e3d2 c6d4 e1f1 d4e2 d1c2 e2d4 c2b3 d4b3 a1d1 b3d2 f1e2 d2c4 h1g1 c4b2 a2a3 g7c3 g1h1 b2d1 h2h3 d1b2 h1a1 b7e4 e2f1 b2d3 a1d1 d3f4 d1b1 e4b1
+Warning; Bestmove does not match beginning of last PV - move b4b5 from OneshotReAct
+Info; info depth 3 nodes 811 time 164 nps 4945 score cp -2828 pv a3a4 c6d4 e1c3
+Position; fen rn2k1nr/p1pq2pp/bp2p3/3pPp2/3P4/2B3Q1/PPP2PPP/R3KBNR w KQkq - 2 9
+Moves; a1b1 a6f1 g3e3 f1g2 e3g3 g2h1 e1f1 h1e4 a2a3 e4c2 g3d3 c2d3 g1e2 d3b1 f1g1 b8c6 h2h4 g8e7 c3d2 b1e4 d2e1 e4f3 b2b4 f3e2
+Warning; Bestmove does not match beginning of last PV - move h6f6 from OneshotReAct
+Info; info depth 3 nodes 689 time 171 nps 4029 score cp -3248 pv e7d7 g8f7
+Position; fen rn2k1nr/p1pq2pp/bp2p3/3pPp2/3P4/2B3Q1/PPP2PPP/R3KBNR w KQkq - 2 9
+Moves; g1f3 d7e7 e1c1 c7c6 c1b1 a6e2 f1e2 b6b5 h1e1 b5b4 c3d2 e7c5 d4c5 e8f7 f3g5 f7e8 g5e6 h7h5 g3g7 b8a6 e2a6 h8h6 g7g8 e8e7 d2g5
+Finished game 63 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 68 of 100 (OneshotReAct vs Contextualized)
+Warning; Bestmove does not match beginning of last PV - move g1g2 from OneshotReAct
+Info; info depth 3 nodes 1420 time 241 nps 5892 score cp -3016 pv a3a4 d4f3 g1h1
+Position; fen rn2k1nr/p1pq2pp/bp2p3/3pPp2/3P4/2B3Q1/PPP2PPP/R3KBNR w KQkq - 2 9
+Moves; a1b1 a6f1 g3e3 f1g2 e3g3 g2h1 e1f1 h1e4 a2a3 e4c2 g3d3 c2d3 g1e2 d3b1 f1g1 b8c6 h2h4 g8e7 c3d2 b1e4 d2e1 e4f3 b2b4 f3e2 b4b5 c6d4
+Warning; Bestmove does not match beginning of last PV - move f3g1 from OneshotReAct
+Info; info depth 2 nodes 245 time 49 nps 5000 score cp -2536 pv c2b2 f1g2
+Position; fen rnb1k2r/ppppqp1p/5np1/4P3/2P5/3Q1N2/PP1b1PPP/RN2KB1R w KQkq - 0 9
+Moves; b1d2 b8c6 h2h3 c6e5 b2b4 e5d3 e1d1 d3f2 d1c1 f2h1 f3g5 e7e1 c1c2 e1a1 a2a3 h1g3 g5f3 g3f1 d2f1 a1f1
+Warning; Bestmove does not match beginning of last PV - move g2g4 from OneshotReAct
+Info; info depth 3 nodes 1100 time 165 nps 6666 score cp -3744 pv f1g1 c6a4 h3h4
+Position; fen r2qk2r/pbppnpbp/1pn3p1/8/2PNP3/2N1B3/PP2BPPP/R2QK2R w KQkq - 3 9
+Moves; e3d2 c6d4 e1f1 d4e2 d1c2 e2d4 c2b3 d4b3 a1d1 b3d2 f1e2 d2c4 h1g1 c4b2 a2a3 g7c3 g1h1 b2d1 h2h3 d1b2 h1a1 b7e4 e2f1 b2d3 a1d1 d3f4 d1b1 e4b1 a3a4 b1e4 f2f3 e4c6
+Finished game 65 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 69 of 100 (Contextualized vs OneshotReAct)
+Warning; Bestmove does not match beginning of last PV - move d3e2 from OneshotReAct
+Info; info depth 3 nodes 642 time 108 nps 5944 score cp -2988 pv c4c5 e8g8 b4b5
+Position; fen rnb1k2r/ppppqp1p/5np1/4P3/2P5/3Q1N2/PP1b1PPP/RN2KB1R w KQkq - 0 9
+Moves; b1d2 b8c6 h2h3 c6e5 b2b4 e5d3 e1d1 d3f2 d1c1 f2h1 f3g5 e7e1 c1c2 e1a1 a2a3 h1g3 g5f3 g3f1 d2f1 a1f1 f3g1 f1g2 c2d3 g2g1
+Warning; Bestmove does not match beginning of last PV - move a5a6 from OneshotReAct
+Info; info depth 3 nodes 338 time 46 nps 7347 score cp -4025 pv a5b6 a7b6 f1g1
+Position; fen r2qk2r/pbppnpbp/1pn3p1/8/2PNP3/2N1B3/PP2BPPP/R2QK2R w KQkq - 3 9
+Moves; e3d2 c6d4 e1f1 d4e2 d1c2 e2d4 c2b3 d4b3 a1d1 b3d2 f1e2 d2c4 h1g1 c4b2 a2a3 g7c3 g1h1 b2d1 h2h3 d1b2 h1a1 b7e4 e2f1 b2d3 a1d1 d3f4 d1b1 e4b1 a3a4 b1e4 f2f3 e4c6 g2g4 c6f3 g4g5 f4h3 a4a5 h3g5
+Warning; Bestmove does not match beginning of last PV - move e8f8 from OneshotReAct
+Info; info depth 3 nodes 463 time 108 nps 4287 score cp -2042 pv b4c6 b5c6 e8f8
+Position; fen r3k2r/pppqppbp/2np1np1/8/3P4/6PP/PPP1PPB1/RNBQ1RK1 w kq - 2 9
+Moves; d4d5 f6d5 d1d5 g7e5 b1c3 e5g3 f2g3 c6b4 d5b7 d7b5 b7b5 c7c6 g2c6
+Warning; Bestmove does not match beginning of last PV - move e2e3 from OneshotReAct
+Info; info depth 3 nodes 324 time 44 nps 7363 score cp -3097 pv e2f1 h2h3 f1g1
+Position; fen rnb1k2r/ppppqp1p/5np1/4P3/2P5/3Q1N2/PP1b1PPP/RN2KB1R w KQkq - 0 9
+Moves; b1d2 b8c6 h2h3 c6e5 b2b4 e5d3 e1d1 d3f2 d1c1 f2h1 f3g5 e7e1 c1c2 e1a1 a2a3 h1g3 g5f3 g3f1 d2f1 a1f1 f3g1 f1g2 c2d3 g2g1 d3e2 e8g8 c4c5 g1h2
+Warning; Bestmove does not match beginning of last PV - move c3d2 from OneshotReAct
+Info; info depth 3 nodes 225 time 47 nps 4787 score cp -3479 pv f4g3 c1c3 g3h2
+Position; fen rn2k1nr/p1pq2pp/bp2p3/3pPp2/3P4/2B3Q1/PPP2PPP/R3KBNR w KQkq - 2 9
+Moves; a1b1 a6f1 g3e3 f1g2 e3g3 g2h1 e1f1 h1e4 a2a3 e4c2 g3d3 c2d3 g1e2 d3b1 f1g1 b8c6 h2h4 g8e7 c3d2 b1e4 d2e1 e4f3 b2b4 f3e2 b4b5 c6d4 g1g2 e2f3 g2h3 d7b5 e1c3 b5f1 h3g3 f1g1 g3f4 g1c1
+Warning; Bestmove does not match beginning of last PV - move g1f2 from OneshotReAct
+Info; info depth 3 nodes 486 time 97 nps 5010 score cp -4196 pv g1h2 a6f1 h2g3
+Position; fen r2qk2r/pbppnpbp/1pn3p1/8/2PNP3/2N1B3/PP2BPPP/R2QK2R w KQkq - 3 9
+Moves; e3d2 c6d4 e1f1 d4e2 d1c2 e2d4 c2b3 d4b3 a1d1 b3d2 f1e2 d2c4 h1g1 c4b2 a2a3 g7c3 g1h1 b2d1 h2h3 d1b2 h1a1 b7e4 e2f1 b2d3 a1d1 d3f4 d1b1 e4b1 a3a4 b1e4 f2f3 e4c6 g2g4 c6f3 g4g5 f4h3 a4a5 h3g5 a5a6 d8c8 f1g1 c8a6
+Warning; Bestmove does not match beginning of last PV - move f2g3 from OneshotReAct
+Info; info depth 3 nodes 495 time 71 nps 6971 score cp -4263 pv f2g1 g5h3
+Position; fen r2qk2r/pbppnpbp/1pn3p1/8/2PNP3/2N1B3/PP2BPPP/R2QK2R w KQkq - 3 9
+Moves; e3d2 c6d4 e1f1 d4e2 d1c2 e2d4 c2b3 d4b3 a1d1 b3d2 f1e2 d2c4 h1g1 c4b2 a2a3 g7c3 g1h1 b2d1 h2h3 d1b2 h1a1 b7e4 e2f1 b2d3 a1d1 d3f4 d1b1 e4b1 a3a4 b1e4 f2f3 e4c6 g2g4 c6f3 g4g5 f4h3 a4a5 h3g5 a5a6 d8c8 f1g1 c8a6 g1f2 a6e2
+Warning; Bestmove does not match beginning of last PV - move f7f5 from OneshotReAct
+Info; info depth 2 nodes 36 time 4 nps 9000 score cp -1949 pv b4c2 b5e8
+Position; fen r3k2r/pppqppbp/2np1np1/8/3P4/6PP/PPP1PPB1/RNBQ1RK1 w kq - 2 9
+Moves; d4d5 f6d5 d1d5 g7e5 b1c3 e5g3 f2g3 c6b4 d5b7 d7b5 b7b5 c7c6 g2c6 e8f8 c1h6 f8g8 c6a8
+Finished game 67 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 70 of 100 (OneshotReAct vs Contextualized)
+Finished game 62 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 71 of 100 (Contextualized vs OneshotReAct)
+Warning; Bestmove does not match beginning of last PV - move e3d3 from OneshotReAct
+Info; info depth 3 nodes 485 time 81 nps 5987 score cp -3072 pv e3d4 h2d6 d4c4
+Position; fen rnb1k2r/ppppqp1p/5np1/4P3/2P5/3Q1N2/PP1b1PPP/RN2KB1R w KQkq - 0 9
+Moves; b1d2 b8c6 h2h3 c6e5 b2b4 e5d3 e1d1 d3f2 d1c1 f2h1 f3g5 e7e1 c1c2 e1a1 a2a3 h1g3 g5f3 g3f1 d2f1 a1f1 f3g1 f1g2 c2d3 g2g1 d3e2 e8g8 c4c5 g1h2 e2e3 d7d5 c5d6 f8e8
+Warning; Bestmove does not match beginning of last PV - move g3h3 from OneshotReAct
+Info; info depth 3 nodes 224 time 45 nps 4977 score cp -3664 pv g3h2 d2f2 h2h3
+Position; fen rn2k1nr/p1pq2pp/bp2p3/3pPp2/3P4/2B3Q1/PPP2PPP/R3KBNR w KQkq - 2 9
+Moves; a1b1 a6f1 g3e3 f1g2 e3g3 g2h1 e1f1 h1e4 a2a3 e4c2 g3d3 c2d3 g1e2 d3b1 f1g1 b8c6 h2h4 g8e7 c3d2 b1e4 d2e1 e4f3 b2b4 f3e2 b4b5 c6d4 g1g2 e2f3 g2h3 d7b5 e1c3 b5f1 h3g3 f1g1 g3f4 g1c1 c3d2 c1d2 f4g3 f5f4
+Warning; Bestmove does not match beginning of last PV - move d3c3 from OneshotReAct
+Info; info depth 3 nodes 417 time 66 nps 6318 score cp -3170 pv d3c2 c8h3 c2b1
+Position; fen rnb1k2r/ppppqp1p/5np1/4P3/2P5/3Q1N2/PP1b1PPP/RN2KB1R w KQkq - 0 9
+Moves; b1d2 b8c6 h2h3 c6e5 b2b4 e5d3 e1d1 d3f2 d1c1 f2h1 f3g5 e7e1 c1c2 e1a1 a2a3 h1g3 g5f3 g3f1 d2f1 a1f1 f3g1 f1g2 c2d3 g2g1 d3e2 e8g8 c4c5 g1h2 e2e3 d7d5 c5d6 f8e8 e3d3 h2d6
+Warning; Bestmove does not match beginning of last PV - move h4h5 from OneshotReAct
+Info; info depth 3 nodes 593 time 85 nps 6976 score cp -99998 pv a4a5 f2g3
+Position; fen rn2k1nr/p1pq2pp/bp2p3/3pPp2/3P4/2B3Q1/PPP2PPP/R3KBNR w KQkq - 2 9
+Moves; a1b1 a6f1 g3e3 f1g2 e3g3 g2h1 e1f1 h1e4 a2a3 e4c2 g3d3 c2d3 g1e2 d3b1 f1g1 b8c6 h2h4 g8e7 c3d2 b1e4 d2e1 e4f3 b2b4 f3e2 b4b5 c6d4 g1g2 e2f3 g2h3 d7b5 e1c3 b5f1 h3g3 f1g1 g3f4 g1c1 c3d2 c1d2 f4g3 f5f4 g3h3 e8g8 a3a4 d2f2
+Finished game 64 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 72 of 100 (OneshotReAct vs Contextualized)
+Finished game 71 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 73 of 100 (Contextualized vs OneshotReAct)
+Finished game 66 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 74 of 100 (OneshotReAct vs Contextualized)
+Finished game 68 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 75 of 100 (Contextualized vs OneshotReAct)
+Warning; Bestmove does not match beginning of last PV - move g1h1 from OneshotReAct
+Info; info depth 3 nodes 448 time 100 nps 4480 score cp -588 pv g1f2 h6g5 f2g1
+Position; fen rn1qk2r/pb1p1ppp/1p2pn2/2b5/2PpP3/5NP1/PP1N1PBP/R1BQ1RK1 w kq - 2 9
+Moves; f3g5 h7h6 f2f3 d4d3 f1f2 c5f2
+Warning; Bestmove does not match beginning of last PV - move d1e1 from OneshotReAct
+Info; info depth 1 nodes 80 time 18 nps 4444 score cp -960 pv g3g4
+Position; fen rn1qk2r/pb1p1ppp/1p2pn2/2b5/2PpP3/5NP1/PP1N1PBP/R1BQ1RK1 w kq - 2 9
+Moves; f3g5 h7h6 f2f3 d4d3 f1f2 c5f2 g1h1 h6g5
+Warning; Bestmove does not match beginning of last PV - move d2e1 from OneshotReAct
+Info; info depth 3 nodes 531 time 118 nps 4500 score cp -920 pv c3e4 g4d1 d2d1
+Position; fen rnbq1k1r/pp3ppp/3b1n2/3pN3/3P1p2/2N5/PPP1Q1PP/R1B1KB1R w KQ - 0 9
+Moves; e2d1 d6e5 e1e2 c8g4 e2d2 f6e4
+Warning; Bestmove does not match beginning of last PV - move f8e7 from OneshotReAct
+Info; info depth 2 nodes 37 time 2 nps 18500 score cp -2210 pv a6b4 a1a7
+Position; fen rn1qk2r/pb1p1ppp/1p2pn2/2b5/2PpP3/5NP1/PP1N1PBP/R1BQ1RK1 w kq - 2 9
+Moves; d2b3 b7c6 f3d4 b8a6 d4c6 a8c8 c6d8 c5b4 e4e5 f6g8 a2a3 h7h6 a3b4 c8c4 d8f7 g7g5 f7d6 e8f8 d6c4
+Warning; Bestmove does not match beginning of last PV - move g2g4 from OneshotReAct
+Info; info depth 2 nodes 851 time 237 nps 3590 score cp -490 pv e1f1 d8g5
+Position; fen rnbqkb1r/5ppp/pp2p3/2ppPn2/3P4/2P1BN2/PP2NPPP/R2QKB1R w KQkq - 1 9
+Moves; d1b3 f5e3 f3g5 e3f1
+Warning; Bestmove does not match beginning of last PV - move c1d2 from OneshotReAct
+Info; info depth 2 nodes 327 time 75 nps 4360 score cp -1059 pv e1d1 e4c3
+Position; fen rnbq1k1r/pp3ppp/3b1n2/3pN3/3P1p2/2N5/PPP1Q1PP/R1B1KB1R w KQ - 0 9
+Moves; e2d1 d6e5 e1e2 c8g4 e2d2 f6e4 d2e1 g4d1
+Warning; Bestmove does not match beginning of last PV - move e7d8 from OneshotReAct
+Info; info depth 3 nodes 1117 time 254 nps 4397 score cp -2637 pv g8f6 e5f6 e7f6
+Position; fen rn1qk2r/pb1p1ppp/1p2pn2/2b5/2PpP3/5NP1/PP1N1PBP/R1BQ1RK1 w kq - 2 9
+Moves; d2b3 b7c6 f3d4 b8a6 d4c6 a8c8 c6d8 c5b4 e4e5 f6g8 a2a3 h7h6 a3b4 c8c4 d8f7 g7g5 f7d6 e8f8 d6c4 f8e7 a1a6
+Warning; Bestmove does not match beginning of last PV - move d7c8 from OneshotReAct
+Info; info depth 2 nodes 266 time 59 nps 4508 score cp -1351 pv g7f6 h4f6
+Position; fen rnbqkb1r/5ppp/pp2p3/2ppPn2/3P4/2P1BN2/PP2NPPP/R2QKB1R w KQkq - 1 9
+Moves; e3g5 f5h4 g5d8 c8d7 d8h4 f7f5 e5f6
+Warning; Bestmove does not match beginning of last PV - move d8c8 from OneshotReAct
+Info; info depth 2 nodes 234 time 36 nps 6500 score cp -2726 pv d7d6 e5d6
+Position; fen rn1qk2r/pb1p1ppp/1p2pn2/2b5/2PpP3/5NP1/PP1N1PBP/R1BQ1RK1 w kq - 2 9
+Moves; d2b3 b7c6 f3d4 b8a6 d4c6 a8c8 c6d8 c5b4 e4e5 f6g8 a2a3 h7h6 a3b4 c8c4 d8f7 g7g5 f7d6 e8f8 d6c4 f8e7 a1a6 e7d8 a6a7
+Finished game 69 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 76 of 100 (OneshotReAct vs Contextualized)
+Warning; Bestmove does not match beginning of last PV - move f1h3 from OneshotReAct
+Info; info depth 2 nodes 585 time 151 nps 3874 score cp -2108 pv d2e4 b7e4
+Position; fen rn1qk2r/pb1p1ppp/1p2pn2/2b5/2PpP3/5NP1/PP1N1PBP/R1BQ1RK1 w kq - 2 9
+Moves; f3g5 h7h6 f2f3 d4d3 f1f2 c5f2 g1h1 h6g5 d1e1 f2e1 f3f4 e1g3 g2f1 h8h2 h1g1 f6e4
+Warning; Bestmove does not match beginning of last PV - move c8d7 from OneshotReAct
+Info; info depth 3 nodes 1120 time 239 nps 4686 score cp -1507 pv h8g8 d1a4 b8d7
+Position; fen rnbqkb1r/5ppp/pp2p3/2ppPn2/3P4/2P1BN2/PP2NPPP/R2QKB1R w KQkq - 1 9
+Moves; e3g5 f5h4 g5d8 c8d7 d8h4 f7f5 e5f6 d7c8 f3e5 g7f6 h4f6
+Finished game 70 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 77 of 100 (Contextualized vs OneshotReAct)
+Warning; Bestmove does not match beginning of last PV - move b6b5 from OneshotReAct
+Info; info depth 2 nodes 247 time 51 nps 4843 score cp -1875 pv c5d4 e2d4
+Position; fen rnbqkb1r/5ppp/pp2p3/2ppPn2/3P4/2P1BN2/PP2NPPP/R2QKB1R w KQkq - 1 9
+Moves; e3g5 f5h4 g5d8 c8d7 d8h4 f7f5 e5f6 d7c8 f3e5 g7f6 h4f6 c8d7 f6h8
+Warning; Bestmove does not match beginning of last PV - move h8g8 from OneshotReAct
+Info; info depth 2 nodes 426 time 126 nps 3380 score cp -1048 pv b4a3 g7h8
+Position; fen r1bqk2r/p2np1bp/2pp1np1/1p3pB1/2BP4/2N1PN2/PPP2PPP/R2QR1K1 w kq - 0 9
+Moves; c4e6 d7b8 e6c8 b5b4 c8e6 a7a6 c3e2 a8a7 a2a3 h7h6 g5f6 a7b7 f6g7
+Warning; Bestmove does not match beginning of last PV - move h1h3 from OneshotReAct
+Info; info depth 2 nodes 457 time 116 nps 3939 score cp -2591 pv b5a7 a8a7
+Position; fen rnbq1k1r/pp3ppp/3b1n2/3pN3/3P1p2/2N5/PPP1Q1PP/R1B1KB1R w KQ - 0 9
+Moves; e2d1 d6e5 e1e2 c8g4 e2d2 f6e4 d2e1 g4d1 c1d2 e4d2 a2a4 d2f1 b2b3 f1e3 h2h4 e5d4 c3b5 d4a1
+Warning; Bestmove does not match beginning of last PV - move b7b5 from OneshotReAct
+Info; info depth 2 nodes 312 time 75 nps 4160 score cp -1664 pv b4a3 a1a3
+Position; fen r1bqk2r/p2np1bp/2pp1np1/1p3pB1/2BP4/2N1PN2/PPP2PPP/R2QR1K1 w kq - 0 9
+Moves; c4e6 d7b8 e6c8 b5b4 c8e6 a7a6 c3e2 a8a7 a2a3 h7h6 g5f6 a7b7 f6g7 h8g8 e6g8
+Finished game 74 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 78 of 100 (OneshotReAct vs Contextualized)
+Warning; Bestmove does not match beginning of last PV - move e1d2 from OneshotReAct
+Info; info depth 2 nodes 271 time 59 nps 4593 score cp -2885 pv g3g4 c8g4
+Position; fen rnbq1k1r/pp3ppp/3b1n2/3pN3/3P1p2/2N5/PPP1Q1PP/R1B1KB1R w KQ - 0 9
+Moves; e2d1 d6e5 e1e2 c8g4 e2d2 f6e4 d2e1 g4d1 c1d2 e4d2 a2a4 d2f1 b2b3 f1e3 h2h4 e5d4 c3b5 d4a1 h1h3 d1c2 g2g3 d8c8
+Warning; Bestmove does not match beginning of last PV - move b5a3 from OneshotReAct
+Info; info depth 3 nodes 1195 time 208 nps 5745 score cp -3380 pv b5a7 a8a7 d2c1
+Position; fen rnbq1k1r/pp3ppp/3b1n2/3pN3/3P1p2/2N5/PPP1Q1PP/R1B1KB1R w KQ - 0 9
+Moves; e2d1 d6e5 e1e2 c8g4 e2d2 f6e4 d2e1 g4d1 c1d2 e4d2 a2a4 d2f1 b2b3 f1e3 h2h4 e5d4 c3b5 d4a1 h1h3 d1c2 g2g3 d8c8 e1d2 c8h3 g3f4 c2b3
+Warning; Bestmove does not match beginning of last PV - move c7b8 from OneshotReAct
+Info; info depth 2 nodes 575 time 159 nps 3616 score cp -422 pv e8f6 d1c2
+Position; fen rnbq1rk1/ppb2ppp/3p1n2/2pP4/4P3/2NB4/PP2NPPP/R1BQK2R w KQ - 0 9
+Moves; e1g1 f6e8 e2g3 b7b6 c1e3 c8f5 g3f5 b8d7 a1c1
+Warning; Bestmove does not match beginning of last PV - move c6b6 from OneshotReAct
+Info; info depth 3 nodes 564 time 136 nps 4147 score cp -2973 pv c6c7 d5a8 c5d4
+Position; fen rnbqkb1r/5ppp/pp2p3/2ppPn2/3P4/2P1BN2/PP2NPPP/R2QKB1R w KQkq - 1 9
+Moves; e3g5 f5h4 g5d8 c8d7 d8h4 f7f5 e5f6 d7c8 f3e5 g7f6 h4f6 c8d7 f6h8 b6b5 e2f4 b5b4 e5d7 e6e5 d7f6 e8f7 d1h5 f7e7 h5e8 e7d6 e8e5 d6c6 e5d5
+Warning; Bestmove does not match beginning of last PV - move d2e1 from OneshotReAct
+Info; info depth 3 nodes 686 time 88 nps 7795 score cp -3845 pv d2c1 b3a4 f4f5
+Position; fen rnbq1k1r/pp3ppp/3b1n2/3pN3/3P1p2/2N5/PPP1Q1PP/R1B1KB1R w KQ - 0 9
+Moves; e2d1 d6e5 e1e2 c8g4 e2d2 f6e4 d2e1 g4d1 c1d2 e4d2 a2a4 d2f1 b2b3 f1e3 h2h4 e5d4 c3b5 d4a1 h1h3 d1c2 g2g3 d8c8 e1d2 c8h3 g3f4 c2b3 b5a3 b8c6 a3c4 d5c4
+Warning; Bestmove does not match beginning of last PV - move b6c7 from OneshotReAct
+Info; info depth 2 nodes 396 time 78 nps 5076 score cp -3043 pv c5d4 a8b8
+Position; fen rnbqkb1r/5ppp/pp2p3/2ppPn2/3P4/2P1BN2/PP2NPPP/R2QKB1R w KQkq - 1 9
+Moves; e3g5 f5h4 g5d8 c8d7 d8h4 f7f5 e5f6 d7c8 f3e5 g7f6 h4f6 c8d7 f6h8 b6b5 e2f4 b5b4 e5d7 e6e5 d7f6 e8f7 d1h5 f7e7 h5e8 e7d6 e8e5 d6c6 e5d5 c6b6 d5a8
+Warning; Bestmove does not match beginning of last PV - move d2e2 from OneshotReAct
+Info; info depth 3 nodes 260 time 52 nps 5000 score cp -4075 pv a4a5 c6a5 d2c1
+Position; fen rnbq1k1r/pp3ppp/3b1n2/3pN3/3P1p2/2N5/PPP1Q1PP/R1B1KB1R w KQ - 0 9
+Moves; e2d1 d6e5 e1e2 c8g4 e2d2 f6e4 d2e1 g4d1 c1d2 e4d2 a2a4 d2f1 b2b3 f1e3 h2h4 e5d4 c3b5 d4a1 h1h3 d1c2 g2g3 d8c8 e1d2 c8h3 g3f4 c2b3 b5a3 b8c6 a3c4 d5c4 d2e1 h3h4 e1d2 h4f4
+Warning; Bestmove does not match beginning of last PV - move c7d6 from OneshotReAct
+Info; info depth 3 nodes 629 time 118 nps 5330 score cp -3393 pv c7c8 f1a6 c8d8
+Position; fen rnbqkb1r/5ppp/pp2p3/2ppPn2/3P4/2P1BN2/PP2NPPP/R2QKB1R w KQkq - 1 9
+Moves; e3g5 f5h4 g5d8 c8d7 d8h4 f7f5 e5f6 d7c8 f3e5 g7f6 h4f6 c8d7 f6h8 b6b5 e2f4 b5b4 e5d7 e6e5 d7f6 e8f7 d1h5 f7e7 h5e8 e7d6 e8e5 d6c6 e5d5 c6b6 d5a8 b6c7 f4d5
+Warning; Bestmove does not match beginning of last PV - move d7f8 from OneshotReAct
+Info; info depth 2 nodes 491 time 159 nps 3088 score cp -786 pv e8f6 e3g5
+Position; fen rnbq1rk1/ppb2ppp/3p1n2/2pP4/4P3/2NB4/PP2NPPP/R1BQK2R w KQ - 0 9
+Moves; e1g1 f6e8 e2g3 b7b6 c1e3 c8f5 g3f5 b8d7 a1c1 c7b8 d1h5 g7g5 f5h6 g8h8 h6f7 f8f7 h5f7
+Finished game 77 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 79 of 100 (Contextualized vs OneshotReAct)
+Finished game 72 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 80 of 100 (OneshotReAct vs Contextualized)
+Warning; Bestmove does not match beginning of last PV - move h2h3 from OneshotReAct
+Info; info depth 2 nodes 572 time 179 nps 3195 score cp -2148 pv h2h1 h5g3
+Position; fen r1bqk2r/p2np1bp/2pp1np1/1p3pB1/2BP4/2N1PN2/PPP2PPP/R2QR1K1 w kq - 0 9
+Moves; h2h3 b5c4 e1f1 e8g8 h3h4 a8b8 d1b1 e7e5 g1h2 e5e4 a2a4 e4f3 b2b3 f3g2 a1a2 g2f1q h2g3 f6h5 g3h2 f1f2
+Finished game 73 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 81 of 100 (Contextualized vs OneshotReAct)
+Finished game 76 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 82 of 100 (OneshotReAct vs Contextualized)
+Warning; Bestmove does not match beginning of last PV - move f1e1 from OneshotReAct
+Info; info depth 2 nodes 591 time 184 nps 3211 score cp -1670 pv e4e5 d6e5
+Position; fen rnbq1rk1/ppb2ppp/3p1n2/2pP4/4P3/2NB4/PP2NPPP/R1BQK2R w KQ - 0 9
+Moves; h2h3 f8e8 a1b1 c5c4 c1h6 c4d3 h1f1 d3e2 a2a4 e2d1q e1d1 g7h6
+Warning; Bestmove does not match beginning of last PV - move d7e8 from OneshotReAct
+Info; info depth 3 nodes 640 time 171 nps 3742 score cp -2992 pv d7e7 e5b8 e7f8
+Position; fen r1bqk2r/p2np1bp/2pp1np1/1p3pB1/2BP4/2N1PN2/PPP2PPP/R2QR1K1 w kq - 0 9
+Moves; c4e6 d7b8 e6c8 b5b4 c8e6 a7a6 c3e2 a8a7 a2a3 h7h6 g5f6 a7b7 f6g7 h8g8 e6g8 b7b5 g8c4 d8b6 c4b5 b4b3 b5c4 e8d7 c4b3 b6a5 b3f7 d6d5 f7g6 d7d6 g7e5 d6e6 e2f4 e6d7 g6f5 e7e6 f5e6
+Warning; Bestmove does not match beginning of last PV - move g7h6 from OneshotReAct
+Info; info depth 2 nodes 593 time 156 nps 3801 score cp 46 pv f5e4 c3e4
+Position; fen r1bqk1nr/ppp1n1bp/3p4/3Ppp2/4P3/2N1B2P/PPP2P2/R2QKBNR w KQkq - 0 9
+Moves; d1h5 e8f8 e1c1
+Warning; Bestmove does not match beginning of last PV - move a5d8 from OneshotReAct
+Info; info depth 2 nodes 330 time 88 nps 3750 score cp -2894 pv a5e1 f3e1
+Position; fen r1bqk2r/p2np1bp/2pp1np1/1p3pB1/2BP4/2N1PN2/PPP2PPP/R2QR1K1 w kq - 0 9
+Moves; c4e6 d7b8 e6c8 b5b4 c8e6 a7a6 c3e2 a8a7 a2a3 h7h6 g5f6 a7b7 f6g7 h8g8 e6g8 b7b5 g8c4 d8b6 c4b5 b4b3 b5c4 e8d7 c4b3 b6a5 b3f7 d6d5 f7g6 d7d6 g7e5 d6e6 e2f4 e6d7 g6f5 e7e6 f5e6 d7e8 e5b8
+Warning; Bestmove does not match beginning of last PV - move d8f6 from OneshotReAct
+Info; info depth 2 nodes 530 time 133 nps 3984 score cp -2913 pv d8c7 e5c7
+Position; fen r1bqk2r/p2np1bp/2pp1np1/1p3pB1/2BP4/2N1PN2/PPP2PPP/R2QR1K1 w kq - 0 9
+Moves; c4e6 d7b8 e6c8 b5b4 c8e6 a7a6 c3e2 a8a7 a2a3 h7h6 g5f6 a7b7 f6g7 h8g8 e6g8 b7b5 g8c4 d8b6 c4b5 b4b3 b5c4 e8d7 c4b3 b6a5 b3f7 d6d5 f7g6 d7d6 g7e5 d6e6 e2f4 e6d7 g6f5 e7e6 f5e6 d7e8 e5b8 a5d8 b8e5
+Warning; Bestmove does not match beginning of last PV - move f8f7 from OneshotReAct
+Info; info depth 3 nodes 732 time 185 nps 3956 score cp -394 pv f8g8 h6g5 g8f8
+Position; fen r1bqk1nr/ppp1n1bp/3p4/3Ppp2/4P3/2N1B2P/PPP2P2/R2QKBNR w KQkq - 0 9
+Moves; d1h5 e8f8 e1c1 g7h6 e3h6 g8h6 h5h6
+Warning; Bestmove does not match beginning of last PV - move b1g1 from OneshotReAct
+Info; info depth 1 nodes 72 time 15 nps 4800 score cp -2336 pv a4a5
+Position; fen rnbq1rk1/ppb2ppp/3p1n2/2pP4/4P3/2NB4/PP2NPPP/R1BQK2R w KQ - 0 9
+Moves; h2h3 f8e8 a1b1 c5c4 c1h6 c4d3 h1f1 d3e2 a2a4 e2d1q e1d1 g7h6 f1e1 c7b6 f2f3 b6f2 g2g4 b8d7 e1e3 f2e3 d1e2 d8b6
+Warning; Bestmove does not match beginning of last PV - move f5f4 from OneshotReAct
+Info; info depth 2 nodes 368 time 104 nps 3538 score cp -319 pv f5e4 c3e4
+Position; fen r1bqk1nr/ppp1n1bp/3p4/3Ppp2/4P3/2N1B2P/PPP2P2/R2QKBNR w KQkq - 0 9
+Moves; d1h5 e8f8 e1c1 g7h6 e3h6 g8h6 h5h6 f8f7 g1f3
+Finished game 75 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 83 of 100 (Contextualized vs OneshotReAct)
+Finished game 78 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 84 of 100 (OneshotReAct vs Contextualized)
+Warning; Bestmove does not match beginning of last PV - move c2c4 from OneshotReAct
+Info; info depth 2 nodes 474 time 122 nps 3885 score cp -1373 pv d2f4 g6f4
+Position; fen r1bqk1nr/ppp1n1bp/3p4/3Ppp2/4P3/2N1B2P/PPP2P2/R2QKBNR w KQkq - 0 9
+Moves; h1h2 f5e4 d1h5 e7g6 b2b3 g8f6 e3c1 f6h5 g1f3 e4f3 c1d2 e8g8 c3b5 h5f4
+Warning; Bestmove does not match beginning of last PV - move h2g2 from OneshotReAct
+Info; info depth 2 nodes 738 time 172 nps 4290 score cp -1827 pv c4c5 d6c5
+Position; fen r1bqk1nr/ppp1n1bp/3p4/3Ppp2/4P3/2N1B2P/PPP2P2/R2QKBNR w KQkq - 0 9
+Moves; h1h2 f5e4 d1h5 e7g6 b2b3 g8f6 e3c1 f6h5 g1f3 e4f3 c1d2 e8g8 c3b5 h5f4 c2c4 c8f5 f1e2 f3e2 d2f4 g6f4
+Warning; Bestmove does not match beginning of last PV - move h2h3 from OneshotReAct
+Info; info depth 2 nodes 502 time 129 nps 3891 score cp -2399 pv c3d5 b7d5
+Position; fen rn1qk2r/pbp1npbp/1p4p1/3p4/3P4/2N2NP1/PP2PPBP/R1BQ1RK1 w kq - 0 9
+Moves; f3e1 e8g8 c1f4 b8c6 d1c1 c6d4 a2a3 e7f5 c1e3 f5e3 f2f3 e3f1 g3g4 g6g5 a1b1 g5f4 e1c2 f1d2 b1c1 d2b3 c2a1 b3c1
+Warning; Bestmove does not match beginning of last PV - move a8d8 from OneshotReAct
+Info; info depth 3 nodes 776 time 201 nps 3860 score cp -2887 pv a8b8 d4a7 b8h8
+Position; fen rn1qk2r/pbp1npbp/1p4p1/3p4/3P4/2N2NP1/PP2PPBP/R1BQ1RK1 w kq - 0 9
+Moves; f3e5 h7h6 c1f4 h6h5 a1c1 g7e5 f4e5 b7c8 e5h8 e8d7 c3d5 f7f6 h8f6 d7e6 f6e7 e6f7 e7d8 b6b5 d5c7 c8h3 g2h3 b8c6 d8g5 c6d4 d1d4
+Warning; Bestmove does not match beginning of last PV - move f7e6 from OneshotReAct
+Info; info depth 2 nodes 338 time 84 nps 4023 score cp -577 pv f7g8 d1d6
+Position; fen r1bqk1nr/ppp1n1bp/3p4/3Ppp2/4P3/2N1B2P/PPP2P2/R2QKBNR w KQkq - 0 9
+Moves; d1h5 e8f8 e1c1 g7h6 e3h6 g8h6 h5h6 f8f7 g1f3 f5f4 f1g2 d8f8 h6h5 f7f6 h5g5 f6f7 h1e1 c7c6 c1b1 a8b8 d5c6 h7h6 c6c7 b8a8 g5h5
+Warning; Bestmove does not match beginning of last PV - move b7b6 from OneshotReAct
+Info; info depth 2 nodes 51 time 3 nps 17000 score cp -1088 pv e8d8 d1f3
+Position; fen r1bq1rk1/ppn1ppbp/3p1np1/2pP4/2P1P3/2NB1N1P/PP3PP1/R1BQK2R w KQ - 5 9
+Moves; e1g1 g8h8 c1e3 f6g4 h3g4 f8e8 f3g5 g7f8 g5f7 h8g8 f7d8
+Warning; Bestmove does not match beginning of last PV - move d2c3 from OneshotReAct
+Info; info depth 2 nodes 176 time 40 nps 4400 score cp -2255 pv f2f4 g5f4
+Position; fen r1bqk1nr/ppp1n1bp/3p4/3Ppp2/4P3/2N1B2P/PPP2P2/R2QKBNR w KQkq - 0 9
+Moves; h1h2 f5e4 d1h5 e7g6 b2b3 g8f6 e3c1 f6h5 g1f3 e4f3 c1d2 e8g8 c3b5 h5f4 c2c4 c8f5 f1e2 f3e2 d2f4 g6f4 h2g2 f4g2 e1d2 e2e1q a1e1 d8g5
+Finished game 79 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 85 of 100 (Contextualized vs OneshotReAct)
+Warning; Bestmove does not match beginning of last PV - move e1f1 from OneshotReAct
+Info; info depth 3 nodes 524 time 100 nps 5240 score cp -1810 pv e1d2 c2a1 a4c5
+Position; fen r1bq1rk1/ppn1ppbp/3p1np1/2pP4/2P1P3/2NB1N1P/PP3PP1/R1BQK2R w KQ - 5 9
+Moves; c3a4 e7e5 f3e5 d6e5 d1h5 f6h5 h1h2 c7e6 d3c2 e6d4 h3h4 d4c2
+Finished game 81 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 86 of 100 (OneshotReAct vs Contextualized)
+Warning; Bestmove does not match beginning of last PV - move a4c3 from OneshotReAct
+Info; info depth 2 nodes 47 time 3 nps 15666 score cp -1740 pv a4c5 a1c2
+Position; fen r1bq1rk1/ppn1ppbp/3p1np1/2pP4/2P1P3/2NB1N1P/PP3PP1/R1BQK2R w KQ - 5 9
+Moves; c3a4 e7e5 f3e5 d6e5 d1h5 f6h5 h1h2 c7e6 d3c2 e6d4 h3h4 d4c2 e1f1 c2a1
+Warning; Bestmove does not match beginning of last PV - move c2d1 from OneshotReAct
+Info; info depth 3 nodes 598 time 119 nps 5025 score cp -2695 pv c2b1 f5h3 b5a7
+Position; fen r1bqk1nr/ppp1n1bp/3p4/3Ppp2/4P3/2N1B2P/PPP2P2/R2QKBNR w KQkq - 0 9
+Moves; h1h2 f5e4 d1h5 e7g6 b2b3 g8f6 e3c1 f6h5 g1f3 e4f3 c1d2 e8g8 c3b5 h5f4 c2c4 c8f5 f1e2 f3e2 d2f4 g6f4 h2g2 f4g2 e1d2 e2e1q a1e1 d8g5 d2c3 e5e4 c3c2 g2e1
+Finished game 80 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+--------------------------------------------------
+Results of Contextualized vs OneshotReAct (10+0.1, 1t - NULL, 16MB, 8mvs_+90_+99.epd):
+Elo: inf +/- nan, nElo: inf +/- nan
+LOS: 100.00 %, DrawRatio: 0.00 %, PairsRatio: inf
+Games: 80, Wins: 80, Losses: 0, Draws: 0, Points: 80.0 (100.00 %)
+Ptnml(0-2): [0, 0, 0, 0, 40], WL/DD Ratio: nan
+--------------------------------------------------
+Started game 87 of 100 (Contextualized vs OneshotReAct)
+Warning; Bestmove does not match beginning of last PV - move d1c2 from OneshotReAct
+Info; info depth 2 nodes 167 time 25 nps 6680 score cp -2691 pv d1e2 g1f2
+Position; fen r1bqk1nr/ppp1n1bp/3p4/3Ppp2/4P3/2N1B2P/PPP2P2/R2QKBNR w KQkq - 0 9
+Moves; h1h2 f5e4 d1h5 e7g6 b2b3 g8f6 e3c1 f6h5 g1f3 e4f3 c1d2 e8g8 c3b5 h5f4 c2c4 c8f5 f1e2 f3e2 d2f4 g6f4 h2g2 f4g2 e1d2 e2e1q a1e1 d8g5 d2c3 e5e4 c3c2 g2e1 c2d1 e1d3 b5c7 g5g1
+Finished game 82 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 88 of 100 (OneshotReAct vs Contextualized)
+Finished game 83 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 89 of 100 (Contextualized vs OneshotReAct)
+Warning; Bestmove does not match beginning of last PV - move a4c3 from OneshotReAct
+Info; info depth 2 nodes 37 time 4 nps 9250 score cp -3008 pv a4c5 e2e1q
+Position; fen r1bq1rk1/ppn1ppbp/3p1np1/2pP4/2P1P3/2NB1N1P/PP3PP1/R1BQK2R w KQ - 5 9
+Moves; c3a4 e7e5 f3e5 d6e5 d1h5 f6h5 h1h2 c7e6 d3c2 e6d4 h3h4 d4c2 e1f1 c2a1 a4c3 a1c2 f2f4 e5f4 c1e3 f4e3 c3a4 h5g3 f1g1 e3e2
+Finished game 84 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 90 of 100 (OneshotReAct vs Contextualized)
+Warning; Bestmove does not match beginning of last PV - move e7d8 from OneshotReAct
+Info; info depth 1 nodes 199 time 69 nps 2884 score cp -475 pv h6c1
+Position; fen rn1q1rk1/pbp2pbp/1p2pnp1/3p4/2P1P3/2N2NP1/PPQP1PBP/R1B2RK1 w - - 0 9
+Moves; c4d5 d8d7 f3e5 d7e7 d5e6 g7h6 e6f7 g8h8 d2d4
+Warning; Bestmove does not match beginning of last PV - move e5e4 from OneshotReAct
+Info; info depth 2 nodes 298 time 80 nps 3725 score cp -438 pv d7e6 g2a8
+Position; fen rnbqk2r/1p1nbppp/p2pp3/8/3NP1P1/2N1B3/PPP2PBP/R2QK2R w KQkq - 2 9
+Moves; e1g1 d7c5 b2b4 c5d3 c2d3 e7f6 a1c1 c8d7 f1e1 b7b5 e4e5 d6e5 d4e6
+Warning; Bestmove does not match beginning of last PV - move g3g4 from OneshotReAct
+Info; info depth 2 nodes 582 time 123 nps 4731 score cp -1481 pv g2c6 b7c6
+Position; fen rn1q1rk1/pbp2pbp/1p2pnp1/3p4/2P1P3/2N2NP1/PPQP1PBP/R1B2RK1 w - - 0 9
+Moves; c2d3 d5e4 g1h1 e4d3 c3d1 b8c6 f3d4 d8d4 a2a4 d4c4
+Warning; Bestmove does not match beginning of last PV - move f5d7 from OneshotReAct
+Info; info depth 2 nodes 609 time 235 nps 2591 score cp -1054 pv d6d5 e7e8
+Position; fen rnbq1rk1/pp2ppbp/2pp1np1/8/3PPB2/2N2N1P/PPPQ1PP1/R3KB1R w KQ - 0 9
+Moves; f1c4 f6e8 e1g1 g7h8 a1e1 c8f5 e4f5 d8c8 f5g6 c8f5 g6f7 f8f7 e1e7
+Warning; Bestmove does not match beginning of last PV - move h3h4 from OneshotReAct
+Info; info depth 2 nodes 716 time 244 nps 2934 score cp -336 pv d2b4 e6a2
+Position; fen rnbq1rk1/pp2ppbp/2pp1np1/8/3PPB2/2N2N1P/PPPQ1PP1/R3KB1R w KQ - 0 9
+Moves; f4h6 c8e6 a1b1 b8d7 f1b5 c6b5 h6f4 b5b4 c3b5 f6e4
+Warning; Bestmove does not match beginning of last PV - move h1e1 from OneshotReAct
+Info; info depth 2 nodes 289 time 66 nps 4378 score cp -2604 pv e5d6 b5c4
+Position; fen rnbqk2r/1p1nbppp/p2pp3/8/3NP1P1/2N1B3/PPP2PBP/R2QK2R w KQkq - 2 9
+Moves; g4g5 e7g5 e3c1 e8g8 c1d2 g5f6 d2g5 f6g5 c3b5 a6b5 d1c1 g5c1 d4f5 c1b2 c2c4 b2a1 e4e5 a1c3 e1d1 e6f5
+Finished game 89 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 91 of 100 (Contextualized vs OneshotReAct)
+Warning; Bestmove does not match beginning of last PV - move b8a6 from OneshotReAct
+Info; info depth 2 nodes 110 time 35 nps 3142 score cp -3315 pv b8c6 f8g7
+Position; fen rn1q1rk1/pbp2pbp/1p2pnp1/3p4/2P1P3/2N2NP1/PPQP1PBP/R1B2RK1 w - - 0 9
+Moves; c4d5 d8d7 f3e5 d7e7 d5e6 g7h6 e6f7 g8h8 d2d4 e7d8 c1h6 b8d7 h6f8 d7b8 f8b4 d8e7 b4e7 h7h6 e7f6 h8h7 f7f8q
+Finished game 87 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 92 of 100 (OneshotReAct vs Contextualized)
+Warning; Bestmove does not match beginning of last PV - move h2h4 from OneshotReAct
+Info; info depth 3 nodes 818 time 128 nps 6390 score cp -3131 pv d1e1 d8a5 e1f1
+Position; fen rnbqk2r/1p1nbppp/p2pp3/8/3NP1P1/2N1B3/PPP2PBP/R2QK2R w KQkq - 2 9
+Moves; g4g5 e7g5 e3c1 e8g8 c1d2 g5f6 d2g5 f6g5 c3b5 a6b5 d1c1 g5c1 d4f5 c1b2 c2c4 b2a1 e4e5 a1c3 e1d1 e6f5 h1e1 c3e1 g2b7 c8b7
+Warning; Bestmove does not match beginning of last PV - move h2h4 from OneshotReAct
+Info; info depth 2 nodes 234 time 41 nps 5707 score cp -2547 pv f2e4 e6e5
+Position; fen rn1q1rk1/pbp2pbp/1p2pnp1/3p4/2P1P3/2N2NP1/PPQP1PBP/R1B2RK1 w - - 0 9
+Moves; c2d3 d5e4 g1h1 e4d3 c3d1 b8c6 f3d4 d8d4 a2a4 d4c4 g3g4 c4g4 b2b3 f6d5 c1a3 g7a1 a3b4 c6b4 f2f3 g4f4 d1f2 a1d4
+Finished game 85 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 93 of 100 (Contextualized vs OneshotReAct)
+Finished game 88 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 94 of 100 (OneshotReAct vs Contextualized)
+Warning; Bestmove does not match beginning of last PV - move b2b4 from OneshotReAct
+Info; info depth 2 nodes 213 time 53 nps 4018 score cp -2519 pv c2c3 a5b5
+Position; fen rnbq1rk1/pp2ppbp/2pp1np1/8/3PPB2/2N2N1P/PPPQ1PP1/R3KB1R w KQ - 0 9
+Moves; f4h6 c8e6 a1b1 b8d7 f1b5 c6b5 h6f4 b5b4 c3b5 f6e4 h3h4 e4d2 a2a3 d2b1 d4d5 e6d5 g2g4 d5f3 h1g1 d8a5 g1g3 b4a3
+Finished game 86 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 95 of 100 (Contextualized vs OneshotReAct)
+Warning; Bestmove does not match beginning of last PV - move e7e6 from OneshotReAct
+Info; info depth 2 nodes 282 time 64 nps 4406 score cp -1037 pv c3a3 a8d5
+Position; fen r1b1kb1r/pp2pp1p/2n3p1/qBppP3/3P4/2P2N2/P1P2PPP/R1BQ1RK1 w kq - 4 9
+Moves; b5c6 c8d7 c6b7 a7a6 b7a8 c5c4 a1b1 a5c3 c1d2
+Warning; Bestmove does not match beginning of last PV - move b5d6 from OneshotReAct
+Info; info depth 2 nodes 478 time 116 nps 4120 score cp -2975 pv g3f3 f4f3
+Position; fen rnbq1rk1/pp2ppbp/2pp1np1/8/3PPB2/2N2N1P/PPPQ1PP1/R3KB1R w KQ - 0 9
+Moves; f4h6 c8e6 a1b1 b8d7 f1b5 c6b5 h6f4 b5b4 c3b5 f6e4 h3h4 e4d2 a2a3 d2b1 d4d5 e6d5 g2g4 d5f3 h1g1 d8a5 g1g3 b4a3 b2b4 a5b4 c2c3 b4f4
+Finished game 90 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 96 of 100 (OneshotReAct vs Contextualized)
+Warning; Bestmove does not match beginning of last PV - move h7h6 from OneshotReAct
+Info; info depth 2 nodes 368 time 84 nps 4380 score cp -1926 pv f7f6 b8c8
+Position; fen r1b1kb1r/pp2pp1p/2n3p1/qBppP3/3P4/2P2N2/P1P2PPP/R1BQ1RK1 w kq - 4 9
+Moves; b5c6 c8d7 c6b7 a7a6 b7a8 c5c4 a1b1 a5c3 c1d2 e7e6 b1b8 d7c8 a8c6 e8d8 d2c3 f8g7 f3g5 g7f8 c3a5 d8e7 d1f3
+Finished game 91 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 97 of 100 (Contextualized vs OneshotReAct)
+Warning; Bestmove does not match beginning of last PV - move g1d1 from OneshotReAct
+Info; info depth 2 nodes 97 time 23 nps 4217 score cp -1892 pv a1b1 d4h4
+Position; fen r2qk2r/pbpnbppp/3p1n2/4p3/2P5/2N2NP1/P2PPPBP/R1BQ1RK1 w kq - 3 9
+Moves; d1a4 e8g8 f3e5 d7b6 e2e4 b6a4 h2h4 a4c3 g1h1 d6e5 f1g1 c3e4 f2f3 e4g3 h1h2 d8d4
+Finished game 92 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 98 of 100 (OneshotReAct vs Contextualized)
+Warning; Bestmove does not match beginning of last PV - move h1f1 from OneshotReAct
+Info; info depth 2 nodes 332 time 81 nps 4098 score cp -1699 pv d6c7 d8c7
+Position; fen r1bqk2r/1pp1ppbp/p4np1/3Pp3/P3P3/2N5/1PP1BPPP/R1BQK2R w KQkq - 2 9
+Moves; c1h6 g7h6 g2g3 c8h3 e2h5 f6h5 d1f3 e8g8 c3b1 h5f6 f3f5 g6f5 d5d6 f6e4
+Warning; Bestmove does not match beginning of last PV - move f8c5 from OneshotReAct
+Info; info depth 3 nodes 1065 time 205 nps 5195 score cp -1547 pv f8b4 b1d2 b4d2
+Position; fen r2qkbnr/pp1b1ppp/2n1p3/3pP3/1P1P4/P4N2/5PPP/RNBQKB1R w KQkq - 1 9
+Moves; c1g5 a8c8 g5d8 c6b4 a3b4 c8c7 d8c7
+Finished game 93 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 99 of 100 (Contextualized vs OneshotReAct)
+Finished game 95 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 100 of 100 (OneshotReAct vs Contextualized)
+Warning; Bestmove does not match beginning of last PV - move d7c8 from OneshotReAct
+Info; info depth 3 nodes 1157 time 222 nps 5211 score cp -2073 pv g8e7 a1a7 e8f8
+Position; fen r2qkbnr/pp1b1ppp/2n1p3/3pP3/1P1P4/P4N2/5PPP/RNBQKB1R w KQkq - 1 9
+Moves; c1g5 a8c8 g5d8 c6b4 a3b4 c8c7 d8c7 f8c5 b4c5
+Warning; Bestmove does not match beginning of last PV - move e3c1 from OneshotReAct
+Info; info depth 3 nodes 908 time 203 nps 4472 score cp -2719 pv g1h2 a1e1 e3c5
+Position; fen r2qk2r/pbpnbppp/3p1n2/4p3/2P5/2N2NP1/P2PPPBP/R1BQ1RK1 w kq - 3 9
+Moves; d1a4 e8g8 f3e5 d7b6 e2e4 b6a4 h2h4 a4c3 g1h1 d6e5 f1g1 c3e4 f2f3 e4g3 h1h2 d8d4 g1d1 d4h4 h2g1 e7c5 d2d4 c5d4 d1d4 h4d4 c1e3 d4a1
+Warning; Bestmove does not match beginning of last PV - move h7h5 from OneshotReAct
+Info; info depth 3 nodes 1170 time 252 nps 4642 score cp -2181 pv g8e7 b1c3 e8g8
+Position; fen r2qkbnr/pp1b1ppp/2n1p3/3pP3/1P1P4/P4N2/5PPP/RNBQKB1R w KQkq - 1 9
+Moves; c1g5 a8c8 g5d8 c6b4 a3b4 c8c7 d8c7 f8c5 b4c5 d7c8 a1a7
+Warning; Bestmove does not match beginning of last PV - move g1f2 from OneshotReAct
+Info; info depth 3 nodes 489 time 81 nps 6037 score cp -3092 pv g1h2 g3f5 c4c5
+Position; fen r2qk2r/pbpnbppp/3p1n2/4p3/2P5/2N2NP1/P2PPPBP/R1BQ1RK1 w kq - 3 9
+Moves; d1a4 e8g8 f3e5 d7b6 e2e4 b6a4 h2h4 a4c3 g1h1 d6e5 f1g1 c3e4 f2f3 e4g3 h1h2 d8d4 g1d1 d4h4 h2g1 e7c5 d2d4 c5d4 d1d4 h4d4 c1e3 d4a1 e3c1 a1c1
+Finished game 96 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Finished game 94 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Warning; Bestmove does not match beginning of last PV - move e1e2 from OneshotReAct
+Info; info depth 2 nodes 415 time 83 nps 5000 score cp -1111 pv h3g2 c4b2
+Position; fen r1nqkb1r/pp1b1ppp/2npp3/8/4P1P1/1NN1B3/PPP2P1P/R2QKB1R w KQkq - 5 9
+Moves; f1h3 c8b6 e3c5 d6c5 d1e2 c5c4 e2c4 b6c4
+Warning; Bestmove does not match beginning of last PV - move h5h4 from OneshotReAct
+Info; info depth 3 nodes 405 time 110 nps 3681 score cp -2574 pv g8h7 b1c3 h5h4
+Position; fen r2qkbnr/pp1b1ppp/2n1p3/3pP3/1P1P4/P4N2/5PPP/RNBQKB1R w KQkq - 1 9
+Moves; c1g5 a8c8 g5d8 c6b4 a3b4 c8c7 d8c7 f8c5 b4c5 d7c8 a1a7 h7h5 f1b5 e8f8 c7d6 g8e7 a7a8 f8g8 d6e7
+Warning; Bestmove does not match beginning of last PV - move b7b6 from OneshotReAct
+Info; info depth 3 nodes 576 time 115 nps 5008 score cp -99998 pv h8h6 a8c8
+Position; fen r2qkbnr/pp1b1ppp/2n1p3/3pP3/1P1P4/P4N2/5PPP/RNBQKB1R w KQkq - 1 9
+Moves; c1g5 a8c8 g5d8 c6b4 a3b4 c8c7 d8c7 f8c5 b4c5 d7c8 a1a7 h7h5 f1b5 e8f8 c7d6 g8e7 a7a8 f8g8 d6e7 h5h4 f3g5 g7g6 e7f6
+Finished game 97 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Finished game 98 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Warning; Bestmove does not match beginning of last PV - move f1g2 from OneshotReAct
+Info; info depth 3 nodes 800 time 200 nps 4000 score cp -1801 pv f1g1 f4g4 g1h1
+Position; fen r1nqkb1r/pp1b1ppp/2npp3/8/4P1P1/1NN1B3/PPP2P1P/R2QKB1R w KQkq - 5 9
+Moves; f1h3 c8b6 e3c5 d6c5 d1e2 c5c4 e2c4 b6c4 e1e2 d8h4 f2f4 h4h3 h1c1 h3e3 e2f1 e3f4
+Warning; Bestmove does not match beginning of last PV - move c3d1 from OneshotReAct
+Info; info depth 2 nodes 544 time 112 nps 4857 score cp -1829 pv e4e5 c6e5
+Position; fen r1nqkb1r/pp1b1ppp/2npp3/8/4P1P1/1NN1B3/PPP2P1P/R2QKB1R w KQkq - 5 9
+Moves; f1h3 c8b6 e3c5 d6c5 d1e2 c5c4 e2c4 b6c4 e1e2 d8h4 f2f4 h4h3 h1c1 h3e3 e2f1 e3f4 f1g2 f4g4 g2f2 c4b2
+Finished game 99 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Warning; Bestmove does not match beginning of last PV - move e1f1 from OneshotReAct
+Info; info depth 3 nodes 423 time 85 nps 4976 score cp -2760 pv e1f2 b4d2 a2a3
+Position; fen r1nqkb1r/pp1b1ppp/2npp3/8/4P1P1/1NN1B3/PPP2P1P/R2QKB1R w KQkq - 5 9
+Moves; f1h3 c8b6 e3c5 d6c5 d1e2 c5c4 e2c4 b6c4 e1e2 d8h4 f2f4 h4h3 h1c1 h3e3 e2f1 e3f4 f1g2 f4g4 g2f2 c4b2 c3d1 b2a4 d1b2 a4b2 f2e1 f8b4 b3d2 g4e4
+Finished game 100 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+--------------------------------------------------
+Results of Contextualized vs OneshotReAct (10+0.1, 1t - NULL, 16MB, 8mvs_+90_+99.epd):
+Elo: inf +/- nan, nElo: inf +/- nan
+LOS: 100.00 %, DrawRatio: 0.00 %, PairsRatio: inf
+Games: 100, Wins: 100, Losses: 0, Draws: 0, Points: 100.0 (100.00 %)
+Ptnml(0-2): [0, 0, 0, 0, 50], WL/DD Ratio: nan
+--------------------------------------------------
+Finished match
+Total Time: 00:02:24 (hours:minutes:seconds)
+

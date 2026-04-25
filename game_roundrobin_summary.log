@@ -1,0 +1,1149 @@
+Started game 1 of 560 (Contextualized vs Ensemble)
+Started game 4 of 560 (ChainOfThought vs Contextualized)
+Started game 5 of 560 (Contextualized vs OneshotReAct)
+Started game 6 of 560 (OneshotReAct vs Contextualized)
+Started game 2 of 560 (Ensemble vs Contextualized)
+Started game 3 of 560 (Contextualized vs ChainOfThought)
+Finished game 6 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 7 of 560 (Contextualized vs RLM)
+Finished game 5 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 8 of 560 (RLM vs Contextualized)
+Finished game 1 (Contextualized vs Ensemble): 1-0 {White mates}
+Started game 9 of 560 (Contextualized vs LangGraph)
+Finished game 8 (RLM vs Contextualized): 0-1 {Black mates}
+Started game 10 of 560 (LangGraph vs Contextualized)
+Finished game 7 (Contextualized vs RLM): 1-0 {White mates}
+Started game 11 of 560 (Contextualized vs NoContext)
+Finished game 3 (Contextualized vs ChainOfThought): 1-0 {White mates}
+Started game 12 of 560 (NoContext vs Contextualized)
+Finished game 4 (ChainOfThought vs Contextualized): 0-1 {Black mates}
+Started game 13 of 560 (Contextualized vs Debate)
+Finished game 12 (NoContext vs Contextualized): 0-1 {Black mates}
+Started game 14 of 560 (Debate vs Contextualized)
+Finished game 11 (Contextualized vs NoContext): 1-0 {White mates}
+Started game 15 of 560 (Ensemble vs ChainOfThought)
+Finished game 9 (Contextualized vs LangGraph): 1-0 {White mates}
+Started game 16 of 560 (ChainOfThought vs Ensemble)
+Finished game 2 (Ensemble vs Contextualized): 1-0 {White mates}
+Started game 17 of 560 (Ensemble vs OneshotReAct)
+Finished game 10 (LangGraph vs Contextualized): 0-1 {Black mates}
+Started game 18 of 560 (OneshotReAct vs Ensemble)
+Finished game 18 (OneshotReAct vs Ensemble): 0-1 {Black mates}
+Started game 19 of 560 (Ensemble vs RLM)
+Finished game 17 (Ensemble vs OneshotReAct): 1-0 {White mates}
+Started game 20 of 560 (RLM vs Ensemble)
+Finished game 20 (RLM vs Ensemble): 0-1 {Black mates}
+Started game 21 of 560 (Ensemble vs LangGraph)
+Finished game 15 (Ensemble vs ChainOfThought): 1-0 {White mates}
+Started game 22 of 560 (LangGraph vs Ensemble)
+Finished game 19 (Ensemble vs RLM): 1-0 {White mates}
+Rank Name                             Elo        +/-       nElo        +/-      Games      Score       Draw           Ptnml(0-2)
+Started game 23 of 560 (Ensemble vs NoContext)
+Finished game 21 (Ensemble vs LangGraph): 1-0 {White mates}
+Started game 24 of 560 (NoContext vs Ensemble)
+Finished game 16 (ChainOfThought vs Ensemble): 0-1 {Black mates}
+Started game 25 of 560 (Ensemble vs Debate)
+Finished game 13 (Contextualized vs Debate): 1-0 {White mates}
+Started game 26 of 560 (Debate vs Ensemble)
+Finished game 14 (Debate vs Contextualized): 0-1 {Black mates}
+Started game 27 of 560 (ChainOfThought vs OneshotReAct)
+Finished game 23 (Ensemble vs NoContext): 1-0 {White mates}
+Started game 28 of 560 (OneshotReAct vs ChainOfThought)
+Finished game 24 (NoContext vs Ensemble): 0-1 {Black mates}
+Started game 29 of 560 (ChainOfThought vs RLM)
+Finished game 22 (LangGraph vs Ensemble): 0-1 {Black mates}
+Started game 30 of 560 (RLM vs ChainOfThought)
+Finished game 25 (Ensemble vs Debate): 1-0 {White mates}
+Started game 31 of 560 (ChainOfThought vs LangGraph)
+Finished game 26 (Debate vs Ensemble): 0-1 {Black mates}
+Started game 32 of 560 (LangGraph vs ChainOfThought)
+Finished game 29 (ChainOfThought vs RLM): 1-0 {White mates}
+Started game 33 of 560 (ChainOfThought vs NoContext)
+Finished game 30 (RLM vs ChainOfThought): 0-1 {Black mates}
+Started game 34 of 560 (NoContext vs ChainOfThought)
+Finished game 27 (ChainOfThought vs OneshotReAct): 0-1 {White loses on time}
+Started game 35 of 560 (ChainOfThought vs Debate)
+Finished game 28 (OneshotReAct vs ChainOfThought): 1-0 {Black loses on time}
+Started game 36 of 560 (Debate vs ChainOfThought)
+Finished game 32 (LangGraph vs ChainOfThought): 0-1 {White loses on time}
+Started game 37 of 560 (OneshotReAct vs RLM)
+Finished game 35 (ChainOfThought vs Debate): 0-1 {Black mates}
+Started game 38 of 560 (RLM vs OneshotReAct)
+Finished game 33 (ChainOfThought vs NoContext): 1-0 {White mates}
+Started game 39 of 560 (OneshotReAct vs LangGraph)
+Finished game 36 (Debate vs ChainOfThought): 1-0 {White mates}
+Started game 40 of 560 (LangGraph vs OneshotReAct)
+Finished game 38 (RLM vs OneshotReAct): 1-0 {White mates}
+Started game 41 of 560 (OneshotReAct vs NoContext)
+Finished game 37 (OneshotReAct vs RLM): 0-1 {Black mates}
+Started game 42 of 560 (NoContext vs OneshotReAct)
+Finished game 31 (ChainOfThought vs LangGraph): 0-1 {Black mates}
+Started game 43 of 560 (OneshotReAct vs Debate)
+Finished game 34 (NoContext vs ChainOfThought): 0-1 {Black mates}
+Started game 44 of 560 (Debate vs OneshotReAct)
+Finished game 39 (OneshotReAct vs LangGraph): 0-1 {Black mates}
+Started game 45 of 560 (RLM vs LangGraph)
+Finished game 43 (OneshotReAct vs Debate): 0-1 {Black mates}
+Started game 46 of 560 (LangGraph vs RLM)
+Finished game 44 (Debate vs OneshotReAct): 1-0 {White mates}
+Started game 47 of 560 (RLM vs NoContext)
+Finished game 40 (LangGraph vs OneshotReAct): 1-0 {White mates}
+Rank Name                             Elo        +/-       nElo        +/-      Games      Score       Draw           Ptnml(0-2)
+Started game 48 of 560 (NoContext vs RLM)
+Finished game 46 (LangGraph vs RLM): 1-0 {White mates}
+Started game 49 of 560 (RLM vs Debate)
+Finished game 45 (RLM vs LangGraph): 0-1 {Black mates}
+Started game 50 of 560 (Debate vs RLM)
+Finished game 47 (RLM vs NoContext): 1-0 {White mates}
+Started game 51 of 560 (LangGraph vs NoContext)
+Finished game 50 (Debate vs RLM): 1-0 {White mates}
+Started game 52 of 560 (NoContext vs LangGraph)
+Finished game 48 (NoContext vs RLM): 0-1 {Black mates}
+Started game 53 of 560 (LangGraph vs Debate)
+Finished game 49 (RLM vs Debate): 0-1 {Black mates}
+Started game 54 of 560 (Debate vs LangGraph)
+Finished game 41 (OneshotReAct vs NoContext): 0-1 {Black mates}
+Started game 55 of 560 (NoContext vs Debate)
+Finished game 54 (Debate vs LangGraph): 1-0 {White mates}
+Started game 56 of 560 (Debate vs NoContext)
+Finished game 52 (NoContext vs LangGraph): 0-1 {Black mates}
+Started game 57 of 560 (Contextualized vs Ensemble)
+Finished game 42 (NoContext vs OneshotReAct): 1/2-1/2 {Draw by stalemate}
+Started game 58 of 560 (Ensemble vs Contextualized)
+Finished game 55 (NoContext vs Debate): 0-1 {Black mates}
+Started game 59 of 560 (Contextualized vs ChainOfThought)
+Finished game 53 (LangGraph vs Debate): 0-1 {Black mates}
+Started game 60 of 560 (ChainOfThought vs Contextualized)
+Finished game 56 (Debate vs NoContext): 1-0 {White mates}
+Started game 61 of 560 (Contextualized vs OneshotReAct)
+Finished game 61 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 62 of 560 (OneshotReAct vs Contextualized)
+Finished game 60 (ChainOfThought vs Contextualized): 0-1 {Black mates}
+Started game 63 of 560 (Contextualized vs RLM)
+Finished game 51 (LangGraph vs NoContext): 1-0 {White mates}
+Started game 64 of 560 (RLM vs Contextualized)
+Finished game 59 (Contextualized vs ChainOfThought): 1-0 {White mates}
+Rank Name                             Elo        +/-       nElo        +/-      Games      Score       Draw           Ptnml(0-2)
+Started game 65 of 560 (Contextualized vs LangGraph)
+Finished game 63 (Contextualized vs RLM): 1-0 {White mates}
+Started game 66 of 560 (LangGraph vs Contextualized)
+Finished game 62 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 67 of 560 (Contextualized vs NoContext)
+Finished game 64 (RLM vs Contextualized): 0-1 {Black mates}
+Started game 68 of 560 (NoContext vs Contextualized)
+Finished game 57 (Contextualized vs Ensemble): 0-1 {Black mates}
+Started game 69 of 560 (Contextualized vs Debate)
+Finished game 58 (Ensemble vs Contextualized): 1-0 {White mates}
+Started game 70 of 560 (Debate vs Contextualized)
+Finished game 67 (Contextualized vs NoContext): 1-0 {White mates}
+Started game 71 of 560 (Ensemble vs ChainOfThought)
+Finished game 68 (NoContext vs Contextualized): 0-1 {Black mates}
+Started game 72 of 560 (ChainOfThought vs Ensemble)
+Finished game 65 (Contextualized vs LangGraph): 1-0 {White mates}
+Started game 73 of 560 (Ensemble vs OneshotReAct)
+Finished game 72 (ChainOfThought vs Ensemble): 0-1 {Black mates}
+Started game 74 of 560 (OneshotReAct vs Ensemble)
+Finished game 71 (Ensemble vs ChainOfThought): 1-0 {White mates}
+Started game 75 of 560 (Ensemble vs RLM)
+Finished game 66 (LangGraph vs Contextualized): 0-1 {Black mates}
+Started game 76 of 560 (RLM vs Ensemble)
+Finished game 75 (Ensemble vs RLM): 1-0 {White mates}
+Started game 77 of 560 (Ensemble vs LangGraph)
+Finished game 73 (Ensemble vs OneshotReAct): 1-0 {White mates}
+Started game 78 of 560 (LangGraph vs Ensemble)
+Finished game 74 (OneshotReAct vs Ensemble): 0-1 {Black mates}
+Started game 79 of 560 (Ensemble vs NoContext)
+Finished game 76 (RLM vs Ensemble): 0-1 {Black mates}
+Started game 80 of 560 (NoContext vs Ensemble)
+Finished game 70 (Debate vs Contextualized): 0-1 {Black mates}
+Started game 81 of 560 (Ensemble vs Debate)
+Finished game 69 (Contextualized vs Debate): 0-1 {Black mates}
+Started game 82 of 560 (Debate vs Ensemble)
+Finished game 77 (Ensemble vs LangGraph): 1-0 {White mates}
+Started game 83 of 560 (ChainOfThought vs OneshotReAct)
+Finished game 80 (NoContext vs Ensemble): 0-1 {Black mates}
+Started game 84 of 560 (OneshotReAct vs ChainOfThought)
+Finished game 79 (Ensemble vs NoContext): 1-0 {White mates}
+Rank Name                             Elo        +/-       nElo        +/-      Games      Score       Draw           Ptnml(0-2)
+Started game 85 of 560 (ChainOfThought vs RLM)
+Finished game 78 (LangGraph vs Ensemble): 0-1 {Black mates}
+Started game 86 of 560 (RLM vs ChainOfThought)
+Finished game 83 (ChainOfThought vs OneshotReAct): 1/2-1/2 {Draw by 3-fold repetition}
+Started game 87 of 560 (ChainOfThought vs LangGraph)
+Finished game 86 (RLM vs ChainOfThought): 1/2-1/2 {Draw by 3-fold repetition}
+Started game 88 of 560 (LangGraph vs ChainOfThought)
+Finished game 85 (ChainOfThought vs RLM): 0-1 {Black mates}
+Started game 89 of 560 (ChainOfThought vs NoContext)
+Finished game 82 (Debate vs Ensemble): 0-1 {Black mates}
+Started game 90 of 560 (NoContext vs ChainOfThought)
+Finished game 84 (OneshotReAct vs ChainOfThought): 1-0 {Black loses on time}
+Started game 91 of 560 (ChainOfThought vs Debate)
+Finished game 89 (ChainOfThought vs NoContext): 1-0 {White mates}
+Started game 92 of 560 (Debate vs ChainOfThought)
+Finished game 90 (NoContext vs ChainOfThought): 0-1 {Black mates}
+Started game 93 of 560 (OneshotReAct vs RLM)
+Finished game 81 (Ensemble vs Debate): 1-0 {White mates}
+Started game 94 of 560 (RLM vs OneshotReAct)
+Finished game 87 (ChainOfThought vs LangGraph): 0-1 {Black mates}
+Started game 95 of 560 (OneshotReAct vs LangGraph)
+Finished game 93 (OneshotReAct vs RLM): 0-1 {Black mates}
+Started game 96 of 560 (LangGraph vs OneshotReAct)
+Finished game 94 (RLM vs OneshotReAct): 1-0 {White mates}
+Started game 97 of 560 (OneshotReAct vs NoContext)
+Finished game 88 (LangGraph vs ChainOfThought): 0-1 {White loses on time}
+Started game 98 of 560 (NoContext vs OneshotReAct)
+Finished game 91 (ChainOfThought vs Debate): 0-1 {Black mates}
+Started game 99 of 560 (OneshotReAct vs Debate)
+Finished game 92 (Debate vs ChainOfThought): 1-0 {White mates}
+Started game 100 of 560 (Debate vs OneshotReAct)
+Finished game 96 (LangGraph vs OneshotReAct): 1-0 {White mates}
+Started game 101 of 560 (RLM vs LangGraph)
+Finished game 100 (Debate vs OneshotReAct): 1-0 {White mates}
+Started game 102 of 560 (LangGraph vs RLM)
+Finished game 99 (OneshotReAct vs Debate): 0-1 {Black mates}
+Rank Name                             Elo        +/-       nElo        +/-      Games      Score       Draw           Ptnml(0-2)
+Started game 103 of 560 (RLM vs NoContext)
+Finished game 95 (OneshotReAct vs LangGraph): 1/2-1/2 {Draw by 3-fold repetition}
+Started game 104 of 560 (NoContext vs RLM)
+Finished game 98 (NoContext vs OneshotReAct): 1/2-1/2 {Draw by stalemate}
+Started game 105 of 560 (RLM vs Debate)
+Finished game 103 (RLM vs NoContext): 1-0 {White mates}
+Started game 106 of 560 (Debate vs RLM)
+Finished game 105 (RLM vs Debate): 0-1 {Black mates}
+Started game 107 of 560 (LangGraph vs NoContext)
+Finished game 102 (LangGraph vs RLM): 0-1 {Black mates}
+Started game 108 of 560 (NoContext vs LangGraph)
+Finished game 101 (RLM vs LangGraph): 1-0 {Black loses on time}
+Started game 109 of 560 (LangGraph vs Debate)
+Finished game 104 (NoContext vs RLM): 0-1 {Black mates}
+Started game 110 of 560 (Debate vs LangGraph)
+Finished game 106 (Debate vs RLM): 1-0 {White mates}
+Started game 111 of 560 (NoContext vs Debate)
+Finished game 111 (NoContext vs Debate): 0-1 {Black mates}
+Started game 112 of 560 (Debate vs NoContext)
+Finished game 97 (OneshotReAct vs NoContext): 1/2-1/2 {Draw by stalemate}
+Started game 113 of 560 (Contextualized vs Ensemble)
+Finished game 110 (Debate vs LangGraph): 1-0 {White mates}
+Started game 114 of 560 (Ensemble vs Contextualized)
+Finished game 107 (LangGraph vs NoContext): 1-0 {White mates}
+Started game 115 of 560 (Contextualized vs ChainOfThought)
+Finished game 112 (Debate vs NoContext): 1-0 {White mates}
+Started game 116 of 560 (ChainOfThought vs Contextualized)
+Finished game 108 (NoContext vs LangGraph): 0-1 {Black mates}
+Started game 117 of 560 (Contextualized vs OneshotReAct)
+Finished game 115 (Contextualized vs ChainOfThought): 1-0 {White mates}
+Started game 118 of 560 (OneshotReAct vs Contextualized)
+Finished game 109 (LangGraph vs Debate): 0-1 {Black mates}
+Started game 119 of 560 (Contextualized vs RLM)
+Finished game 113 (Contextualized vs Ensemble): 0-1 {Black mates}
+Started game 120 of 560 (RLM vs Contextualized)
+Finished game 117 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 121 of 560 (Contextualized vs LangGraph)
+Finished game 116 (ChainOfThought vs Contextualized): 0-1 {Black mates}
+Started game 122 of 560 (LangGraph vs Contextualized)
+Finished game 118 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 123 of 560 (Contextualized vs NoContext)
+Finished game 119 (Contextualized vs RLM): 1-0 {White mates}
+Started game 124 of 560 (NoContext vs Contextualized)
+Finished game 121 (Contextualized vs LangGraph): 1-0 {White mates}
+Started game 125 of 560 (Contextualized vs Debate)
+Finished game 120 (RLM vs Contextualized): 0-1 {Black mates}
+Rank Name                             Elo        +/-       nElo        +/-      Games      Score       Draw           Ptnml(0-2)
+Started game 126 of 560 (Debate vs Contextualized)
+Finished game 126 (Debate vs Contextualized): 0-1 {White makes an illegal move}
+Started game 127 of 560 (Ensemble vs ChainOfThought)
+Finished game 114 (Ensemble vs Contextualized): 0-1 {Black mates}
+Started game 128 of 560 (ChainOfThought vs Ensemble)
+Finished game 123 (Contextualized vs NoContext): 1-0 {White mates}
+Started game 129 of 560 (Ensemble vs OneshotReAct)
+Finished game 124 (NoContext vs Contextualized): 0-1 {Black mates}
+Started game 130 of 560 (OneshotReAct vs Ensemble)
+Finished game 125 (Contextualized vs Debate): 1-0 {White mates}
+Started game 131 of 560 (Ensemble vs RLM)
+Finished game 122 (LangGraph vs Contextualized): 0-1 {White loses on time}
+Started game 132 of 560 (RLM vs Ensemble)
+Finished game 131 (Ensemble vs RLM): 1-0 {White mates}
+Started game 133 of 560 (Ensemble vs LangGraph)
+Finished game 127 (Ensemble vs ChainOfThought): 1-0 {White mates}
+Started game 134 of 560 (LangGraph vs Ensemble)
+Finished game 129 (Ensemble vs OneshotReAct): 1-0 {White mates}
+Started game 135 of 560 (Ensemble vs NoContext)
+Finished game 130 (OneshotReAct vs Ensemble): 0-1 {Black mates}
+Started game 136 of 560 (NoContext vs Ensemble)
+Finished game 132 (RLM vs Ensemble): 0-1 {Black mates}
+Started game 137 of 560 (Ensemble vs Debate)
+Finished game 135 (Ensemble vs NoContext): 1-0 {White mates}
+Started game 138 of 560 (Debate vs Ensemble)
+Finished game 128 (ChainOfThought vs Ensemble): 0-1 {Black mates}
+Started game 139 of 560 (ChainOfThought vs OneshotReAct)
+Finished game 133 (Ensemble vs LangGraph): 1-0 {White mates}
+Started game 140 of 560 (OneshotReAct vs ChainOfThought)
+Finished game 136 (NoContext vs Ensemble): 0-1 {Black mates}
+Started game 141 of 560 (ChainOfThought vs RLM)
+Finished game 134 (LangGraph vs Ensemble): 0-1 {White loses on time}
+Started game 142 of 560 (RLM vs ChainOfThought)
+Finished game 137 (Ensemble vs Debate): 1-0 {White mates}
+Started game 143 of 560 (ChainOfThought vs LangGraph)
+Finished game 141 (ChainOfThought vs RLM): 1/2-1/2 {Draw by 3-fold repetition}
+Started game 144 of 560 (LangGraph vs ChainOfThought)
+Finished game 138 (Debate vs Ensemble): 1-0 {White mates}
+Started game 145 of 560 (ChainOfThought vs NoContext)
+Finished game 140 (OneshotReAct vs ChainOfThought): 1-0 {Black loses on time}
+Started game 146 of 560 (NoContext vs ChainOfThought)
+Finished game 139 (ChainOfThought vs OneshotReAct): 0-1 {White loses on time}
+Rank Name                             Elo        +/-       nElo        +/-      Games      Score       Draw           Ptnml(0-2)
+Started game 147 of 560 (ChainOfThought vs Debate)
+Finished game 142 (RLM vs ChainOfThought): 1-0 {Black loses on time}
+Started game 148 of 560 (Debate vs ChainOfThought)
+Finished game 144 (LangGraph vs ChainOfThought): 0-1 {White loses on time}
+Started game 149 of 560 (OneshotReAct vs RLM)
+Finished game 143 (ChainOfThought vs LangGraph): 1/2-1/2 {Draw by 3-fold repetition}
+Started game 150 of 560 (RLM vs OneshotReAct)
+Finished game 150 (RLM vs OneshotReAct): 1-0 {White mates}
+Started game 151 of 560 (OneshotReAct vs LangGraph)
+Finished game 147 (ChainOfThought vs Debate): 0-1 {Black mates}
+Started game 152 of 560 (LangGraph vs OneshotReAct)
+Finished game 149 (OneshotReAct vs RLM): 0-1 {Black mates}
+Started game 153 of 560 (OneshotReAct vs NoContext)
+Finished game 148 (Debate vs ChainOfThought): 1-0 {White mates}
+Started game 154 of 560 (NoContext vs OneshotReAct)
+Finished game 151 (OneshotReAct vs LangGraph): 0-1 {Black mates}
+Started game 155 of 560 (OneshotReAct vs Debate)
+Finished game 152 (LangGraph vs OneshotReAct): 1-0 {White mates}
+Started game 156 of 560 (Debate vs OneshotReAct)
+Finished game 145 (ChainOfThought vs NoContext): 0-1 {White loses on time}
+Started game 157 of 560 (RLM vs LangGraph)
+Finished game 146 (NoContext vs ChainOfThought): 1/2-1/2 {Draw by stalemate}
+Started game 158 of 560 (LangGraph vs RLM)
+Finished game 156 (Debate vs OneshotReAct): 1-0 {White mates}
+Started game 159 of 560 (RLM vs NoContext)
+Finished game 155 (OneshotReAct vs Debate): 0-1 {Black mates}
+Started game 160 of 560 (NoContext vs RLM)
+Finished game 153 (OneshotReAct vs NoContext): 0-1 {Black mates}
+Started game 161 of 560 (RLM vs Debate)
+Finished game 160 (NoContext vs RLM): 0-1 {Black mates}
+Started game 162 of 560 (Debate vs RLM)
+Finished game 161 (RLM vs Debate): 0-1 {Black mates}
+Started game 163 of 560 (LangGraph vs NoContext)
+Finished game 158 (LangGraph vs RLM): 1-0 {White mates}
+Started game 164 of 560 (NoContext vs LangGraph)
+Finished game 159 (RLM vs NoContext): 1-0 {White mates}
+Rank Name                             Elo        +/-       nElo        +/-      Games      Score       Draw           Ptnml(0-2)
+Started game 165 of 560 (LangGraph vs Debate)
+Finished game 162 (Debate vs RLM): 1-0 {White mates}
+Started game 166 of 560 (Debate vs LangGraph)
+Finished game 157 (RLM vs LangGraph): 0-1 {Black mates}
+Started game 167 of 560 (NoContext vs Debate)
+Finished game 154 (NoContext vs OneshotReAct): 1-0 {White mates}
+Started game 168 of 560 (Debate vs NoContext)
+Finished game 167 (NoContext vs Debate): 0-1 {Black mates}
+Started game 169 of 560 (Contextualized vs Ensemble)
+Finished game 165 (LangGraph vs Debate): 0-1 {Black mates}
+Started game 170 of 560 (Ensemble vs Contextualized)
+Finished game 163 (LangGraph vs NoContext): 1-0 {White mates}
+Started game 171 of 560 (Contextualized vs ChainOfThought)
+Finished game 164 (NoContext vs LangGraph): 0-1 {Black mates}
+Started game 172 of 560 (ChainOfThought vs Contextualized)
+Finished game 168 (Debate vs NoContext): 1-0 {White mates}
+Started game 173 of 560 (Contextualized vs OneshotReAct)
+Finished game 173 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 174 of 560 (OneshotReAct vs Contextualized)
+Finished game 172 (ChainOfThought vs Contextualized): 1/2-1/2 {Draw by 3-fold repetition}
+Started game 175 of 560 (Contextualized vs RLM)
+Finished game 166 (Debate vs LangGraph): 1-0 {White mates}
+Started game 176 of 560 (RLM vs Contextualized)
+Finished game 171 (Contextualized vs ChainOfThought): 1-0 {White mates}
+Started game 177 of 560 (Contextualized vs LangGraph)
+Finished game 175 (Contextualized vs RLM): 1-0 {White mates}
+Started game 178 of 560 (LangGraph vs Contextualized)
+Finished game 176 (RLM vs Contextualized): 0-1 {Black mates}
+Started game 179 of 560 (Contextualized vs NoContext)
+Finished game 174 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 180 of 560 (NoContext vs Contextualized)
+Finished game 179 (Contextualized vs NoContext): 1-0 {White mates}
+Started game 181 of 560 (Contextualized vs Debate)
+Finished game 180 (NoContext vs Contextualized): 0-1 {Black mates}
+Rank Name                             Elo        +/-       nElo        +/-      Games      Score       Draw           Ptnml(0-2)
+Started game 182 of 560 (Debate vs Contextualized)
+Finished game 169 (Contextualized vs Ensemble): 0-1 {Black mates}
+Started game 183 of 560 (Ensemble vs ChainOfThought)
+Finished game 170 (Ensemble vs Contextualized): 1-0 {White mates}
+Started game 184 of 560 (ChainOfThought vs Ensemble)
+Finished game 177 (Contextualized vs LangGraph): 1-0 {White mates}
+Started game 185 of 560 (Ensemble vs OneshotReAct)
+Finished game 178 (LangGraph vs Contextualized): 0-1 {Black mates}
+Started game 186 of 560 (OneshotReAct vs Ensemble)
+Finished game 185 (Ensemble vs OneshotReAct): 1-0 {White mates}
+Started game 187 of 560 (Ensemble vs RLM)
+Finished game 186 (OneshotReAct vs Ensemble): 0-1 {Black mates}
+Finished game 184 (ChainOfThought vs Ensemble): 0-1 {Black mates}
+Started game 188 of 560 (RLM vs Ensemble)
+Started game 189 of 560 (Ensemble vs LangGraph)
+Finished game 183 (Ensemble vs ChainOfThought): 1-0 {White mates}
+Started game 190 of 560 (LangGraph vs Ensemble)
+Finished game 187 (Ensemble vs RLM): 1-0 {White mates}
+Started game 191 of 560 (Ensemble vs NoContext)
+Finished game 188 (RLM vs Ensemble): 0-1 {Black mates}
+Started game 192 of 560 (NoContext vs Ensemble)
+Finished game 181 (Contextualized vs Debate): 1-0 {White mates}
+Started game 193 of 560 (Ensemble vs Debate)
+Finished game 182 (Debate vs Contextualized): 0-1 {Black mates}
+Started game 194 of 560 (Debate vs Ensemble)
+Finished game 191 (Ensemble vs NoContext): 1-0 {White mates}
+Started game 195 of 560 (ChainOfThought vs OneshotReAct)
+Finished game 189 (Ensemble vs LangGraph): 1-0 {White mates}
+Started game 196 of 560 (OneshotReAct vs ChainOfThought)
+Finished game 192 (NoContext vs Ensemble): 0-1 {Black mates}
+Started game 197 of 560 (ChainOfThought vs RLM)
+Finished game 190 (LangGraph vs Ensemble): 0-1 {Black mates}
+Started game 198 of 560 (RLM vs ChainOfThought)
+Finished game 193 (Ensemble vs Debate): 1-0 {White mates}
+Started game 199 of 560 (ChainOfThought vs LangGraph)
+Finished game 194 (Debate vs Ensemble): 1-0 {White mates}
+Started game 200 of 560 (LangGraph vs ChainOfThought)
+Finished game 198 (RLM vs ChainOfThought): 0-1 {Black mates}
+Started game 201 of 560 (ChainOfThought vs NoContext)
+Finished game 195 (ChainOfThought vs OneshotReAct): 0-1 {Black mates}
+Started game 202 of 560 (NoContext vs ChainOfThought)
+Finished game 197 (ChainOfThought vs RLM): 0-1 {White loses on time}
+Started game 203 of 560 (ChainOfThought vs Debate)
+Finished game 196 (OneshotReAct vs ChainOfThought): 1-0 {Black loses on time}
+Started game 204 of 560 (Debate vs ChainOfThought)
+Finished game 202 (NoContext vs ChainOfThought): 0-1 {Black mates}
+Started game 205 of 560 (OneshotReAct vs RLM)
+Finished game 199 (ChainOfThought vs LangGraph): 0-1 {Black mates}
+Started game 206 of 560 (RLM vs OneshotReAct)
+Finished game 201 (ChainOfThought vs NoContext): 1-0 {White mates}
+Started game 207 of 560 (OneshotReAct vs LangGraph)
+Finished game 200 (LangGraph vs ChainOfThought): 1-0 {White mates}
+Rank Name                             Elo        +/-       nElo        +/-      Games      Score       Draw           Ptnml(0-2)
+Started game 208 of 560 (LangGraph vs OneshotReAct)
+Finished game 205 (OneshotReAct vs RLM): 0-1 {Black mates}
+Started game 209 of 560 (OneshotReAct vs NoContext)
+Finished game 204 (Debate vs ChainOfThought): 1-0 {White mates}
+Started game 210 of 560 (NoContext vs OneshotReAct)
+Finished game 203 (ChainOfThought vs Debate): 0-1 {Black mates}
+Started game 211 of 560 (OneshotReAct vs Debate)
+Finished game 206 (RLM vs OneshotReAct): 1-0 {White mates}
+Started game 212 of 560 (Debate vs OneshotReAct)
+Finished game 207 (OneshotReAct vs LangGraph): 0-1 {Black mates}
+Started game 213 of 560 (RLM vs LangGraph)
+Finished game 211 (OneshotReAct vs Debate): 0-1 {Black mates}
+Started game 214 of 560 (LangGraph vs RLM)
+Finished game 212 (Debate vs OneshotReAct): 1-0 {White mates}
+Started game 215 of 560 (RLM vs NoContext)
+Finished game 214 (LangGraph vs RLM): 1-0 {White mates}
+Started game 216 of 560 (NoContext vs RLM)
+Finished game 213 (RLM vs LangGraph): 0-1 {Black mates}
+Started game 217 of 560 (RLM vs Debate)
+Finished game 215 (RLM vs NoContext): 1/2-1/2 {Draw by 3-fold repetition}
+Started game 218 of 560 (Debate vs RLM)
+Finished game 208 (LangGraph vs OneshotReAct): 1/2-1/2 {Draw by 3-fold repetition}
+Started game 219 of 560 (LangGraph vs NoContext)
+Finished game 216 (NoContext vs RLM): 1/2-1/2 {Draw by 3-fold repetition}
+Started game 220 of 560 (NoContext vs LangGraph)
+Finished game 217 (RLM vs Debate): 0-1 {Black mates}
+Started game 221 of 560 (LangGraph vs Debate)
+Finished game 209 (OneshotReAct vs NoContext): 1/2-1/2 {Draw by stalemate}
+Started game 222 of 560 (Debate vs LangGraph)
+Finished game 218 (Debate vs RLM): 1-0 {White mates}
+Started game 223 of 560 (NoContext vs Debate)
+Finished game 222 (Debate vs LangGraph): 1-0 {White mates}
+Started game 224 of 560 (Debate vs NoContext)
+Finished game 221 (LangGraph vs Debate): 0-1 {Black mates}
+Started game 225 of 560 (Contextualized vs Ensemble)
+Finished game 219 (LangGraph vs NoContext): 1-0 {White mates}
+Started game 226 of 560 (Ensemble vs Contextualized)
+Finished game 224 (Debate vs NoContext): 1-0 {White mates}
+Started game 227 of 560 (Contextualized vs ChainOfThought)
+Finished game 223 (NoContext vs Debate): 0-1 {Black mates}
+Started game 228 of 560 (ChainOfThought vs Contextualized)
+Finished game 210 (NoContext vs OneshotReAct): 1-0 {White mates}
+Started game 229 of 560 (Contextualized vs OneshotReAct)
+Finished game 227 (Contextualized vs ChainOfThought): 1-0 {White mates}
+Started game 230 of 560 (OneshotReAct vs Contextualized)
+Finished game 220 (NoContext vs LangGraph): 1/2-1/2 {Draw by 3-fold repetition}
+Rank Name                             Elo        +/-       nElo        +/-      Games      Score       Draw           Ptnml(0-2)
+Started game 231 of 560 (Contextualized vs RLM)
+Finished game 231 (Contextualized vs RLM): 1-0 {White mates}
+Started game 232 of 560 (RLM vs Contextualized)
+Finished game 225 (Contextualized vs Ensemble): 0-1 {Black mates}
+Started game 233 of 560 (Contextualized vs LangGraph)
+Finished game 228 (ChainOfThought vs Contextualized): 0-1 {Black mates}
+Started game 234 of 560 (LangGraph vs Contextualized)
+Finished game 229 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 235 of 560 (Contextualized vs NoContext)
+Finished game 230 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 236 of 560 (NoContext vs Contextualized)
+Finished game 233 (Contextualized vs LangGraph): 1-0 {White mates}
+Started game 237 of 560 (Contextualized vs Debate)
+Finished game 232 (RLM vs Contextualized): 0-1 {Black mates}
+Started game 238 of 560 (Debate vs Contextualized)
+Finished game 226 (Ensemble vs Contextualized): 1-0 {White mates}
+Started game 239 of 560 (Ensemble vs ChainOfThought)
+Finished game 236 (NoContext vs Contextualized): 0-1 {Black mates}
+Started game 240 of 560 (ChainOfThought vs Ensemble)
+Finished game 235 (Contextualized vs NoContext): 1-0 {White mates}
+Started game 241 of 560 (Ensemble vs OneshotReAct)
+Finished game 241 (Ensemble vs OneshotReAct): 1-0 {White mates}
+Started game 242 of 560 (OneshotReAct vs Ensemble)
+Finished game 239 (Ensemble vs ChainOfThought): 1-0 {White mates}
+Started game 243 of 560 (Ensemble vs RLM)
+Finished game 234 (LangGraph vs Contextualized): 0-1 {Black mates}
+Started game 244 of 560 (RLM vs Ensemble)
+Finished game 240 (ChainOfThought vs Ensemble): 0-1 {Black mates}
+Rank Name                             Elo        +/-       nElo        +/-      Games      Score       Draw           Ptnml(0-2)
+Started game 245 of 560 (Ensemble vs LangGraph)
+Finished game 245 (Ensemble vs LangGraph): 1-0 {White mates}
+Started game 246 of 560 (LangGraph vs Ensemble)
+Finished game 242 (OneshotReAct vs Ensemble): 0-1 {Black mates}
+Started game 247 of 560 (Ensemble vs NoContext)
+Finished game 243 (Ensemble vs RLM): 1-0 {White mates}
+Started game 248 of 560 (NoContext vs Ensemble)
+Finished game 237 (Contextualized vs Debate): 1-0 {White mates}
+Started game 249 of 560 (Ensemble vs Debate)
+Finished game 238 (Debate vs Contextualized): 1-0 {White mates}
+Started game 250 of 560 (Debate vs Ensemble)
+Finished game 247 (Ensemble vs NoContext): 1-0 {White mates}
+Started game 251 of 560 (ChainOfThought vs OneshotReAct)
+Finished game 244 (RLM vs Ensemble): 0-1 {Black mates}
+Started game 252 of 560 (OneshotReAct vs ChainOfThought)
+Finished game 248 (NoContext vs Ensemble): 0-1 {Black mates}
+Started game 253 of 560 (ChainOfThought vs RLM)
+Finished game 246 (LangGraph vs Ensemble): 0-1 {Black mates}
+Started game 254 of 560 (RLM vs ChainOfThought)
+Finished game 254 (RLM vs ChainOfThought): 1-0 {White mates}
+Started game 255 of 560 (ChainOfThought vs LangGraph)
+Finished game 249 (Ensemble vs Debate): 1-0 {White mates}
+Started game 256 of 560 (LangGraph vs ChainOfThought)
+Finished game 253 (ChainOfThought vs RLM): 0-1 {White loses on time}
+Started game 257 of 560 (ChainOfThought vs NoContext)
+Finished game 251 (ChainOfThought vs OneshotReAct): 0-1 {White loses on time}
+Started game 258 of 560 (NoContext vs ChainOfThought)
+Finished game 252 (OneshotReAct vs ChainOfThought): 1-0 {Black loses on time}
+Started game 259 of 560 (ChainOfThought vs Debate)
+Finished game 259 (ChainOfThought vs Debate): 0-1 {Black mates}
+Started game 260 of 560 (Debate vs ChainOfThought)
+Finished game 250 (Debate vs Ensemble): 1/2-1/2 {Draw by insufficient mating material}
+Started game 261 of 560 (OneshotReAct vs RLM)
+Finished game 257 (ChainOfThought vs NoContext): 1-0 {White mates}
+Started game 262 of 560 (RLM vs OneshotReAct)
+Finished game 261 (OneshotReAct vs RLM): 0-1 {Black mates}
+Started game 263 of 560 (OneshotReAct vs LangGraph)
+Finished game 262 (RLM vs OneshotReAct): 1-0 {White mates}
+Started game 264 of 560 (LangGraph vs OneshotReAct)
+Finished game 255 (ChainOfThought vs LangGraph): 0-1 {Black mates}
+Started game 265 of 560 (OneshotReAct vs NoContext)
+Finished game 260 (Debate vs ChainOfThought): 1-0 {White mates}
+Rank Name                             Elo        +/-       nElo        +/-      Games      Score       Draw           Ptnml(0-2)
+Started game 266 of 560 (NoContext vs OneshotReAct)
+Finished game 264 (LangGraph vs OneshotReAct): 0-1 {White loses on time}
+Started game 267 of 560 (OneshotReAct vs Debate)
+Finished game 256 (LangGraph vs ChainOfThought): 1-0 {Black loses on time}
+Started game 268 of 560 (Debate vs OneshotReAct)
+Finished game 263 (OneshotReAct vs LangGraph): 1/2-1/2 {Draw by 3-fold repetition}
+Started game 269 of 560 (RLM vs LangGraph)
+Finished game 258 (NoContext vs ChainOfThought): 1-0 {Black loses on time}
+Started game 270 of 560 (LangGraph vs RLM)
+Finished game 267 (OneshotReAct vs Debate): 0-1 {Black mates}
+Started game 271 of 560 (RLM vs NoContext)
+Finished game 268 (Debate vs OneshotReAct): 1-0 {White mates}
+Started game 272 of 560 (NoContext vs RLM)
+Finished game 265 (OneshotReAct vs NoContext): 1/2-1/2 {Draw by stalemate}
+Started game 273 of 560 (RLM vs Debate)
+Finished game 271 (RLM vs NoContext): 1-0 {White mates}
+Started game 274 of 560 (Debate vs RLM)
+Finished game 269 (RLM vs LangGraph): 1/2-1/2 {Draw by 3-fold repetition}
+Started game 275 of 560 (LangGraph vs NoContext)
+Finished game 266 (NoContext vs OneshotReAct): 1/2-1/2 {Draw by stalemate}
+Started game 276 of 560 (NoContext vs LangGraph)
+Finished game 270 (LangGraph vs RLM): 1/2-1/2 {Draw by 3-fold repetition}
+Started game 277 of 560 (LangGraph vs Debate)
+Finished game 274 (Debate vs RLM): 1-0 {White mates}
+Started game 278 of 560 (Debate vs LangGraph)
+Finished game 273 (RLM vs Debate): 0-1 {Black mates}
+Started game 279 of 560 (NoContext vs Debate)
+Finished game 272 (NoContext vs RLM): 0-1 {Black mates}
+Started game 280 of 560 (Debate vs NoContext)
+Finished game 275 (LangGraph vs NoContext): 1-0 {White mates}
+Started game 281 of 560 (Contextualized vs Ensemble)
+Finished game 279 (NoContext vs Debate): 0-1 {Black mates}
+Started game 282 of 560 (Ensemble vs Contextualized)
+Finished game 280 (Debate vs NoContext): 1-0 {White mates}
+Rank Name                             Elo        +/-       nElo        +/-      Games      Score       Draw           Ptnml(0-2)
+Started game 283 of 560 (Contextualized vs ChainOfThought)
+Finished game 281 (Contextualized vs Ensemble): 1-0 {White mates}
+Started game 284 of 560 (ChainOfThought vs Contextualized)
+Finished game 276 (NoContext vs LangGraph): 0-1 {Black mates}
+Started game 285 of 560 (Contextualized vs OneshotReAct)
+Finished game 277 (LangGraph vs Debate): 0-1 {Black mates}
+Started game 286 of 560 (OneshotReAct vs Contextualized)
+Finished game 278 (Debate vs LangGraph): 1-0 {Black loses on time}
+Started game 287 of 560 (Contextualized vs RLM)
+Finished game 286 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 288 of 560 (RLM vs Contextualized)
+Finished game 285 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 289 of 560 (Contextualized vs LangGraph)
+Finished game 283 (Contextualized vs ChainOfThought): 1-0 {White mates}
+Started game 290 of 560 (LangGraph vs Contextualized)
+Finished game 288 (RLM vs Contextualized): 0-1 {Black mates}
+Started game 291 of 560 (Contextualized vs NoContext)
+Finished game 287 (Contextualized vs RLM): 1-0 {White mates}
+Started game 292 of 560 (NoContext vs Contextualized)
+Finished game 282 (Ensemble vs Contextualized): 1-0 {White mates}
+Started game 293 of 560 (Contextualized vs Debate)
+Finished game 284 (ChainOfThought vs Contextualized): 0-1 {Black mates}
+Started game 294 of 560 (Debate vs Contextualized)
+Finished game 289 (Contextualized vs LangGraph): 1-0 {White mates}
+Started game 295 of 560 (Ensemble vs ChainOfThought)
+Finished game 291 (Contextualized vs NoContext): 1-0 {White mates}
+Started game 296 of 560 (ChainOfThought vs Ensemble)
+Finished game 292 (NoContext vs Contextualized): 0-1 {Black mates}
+Started game 297 of 560 (Ensemble vs OneshotReAct)
+Finished game 290 (LangGraph vs Contextualized): 0-1 {Black mates}
+Started game 298 of 560 (OneshotReAct vs Ensemble)
+Finished game 295 (Ensemble vs ChainOfThought): 1-0 {White mates}
+Started game 299 of 560 (Ensemble vs RLM)
+Finished game 298 (OneshotReAct vs Ensemble): 0-1 {Black mates}
+Started game 300 of 560 (RLM vs Ensemble)
+Finished game 297 (Ensemble vs OneshotReAct): 1-0 {White mates}
+Started game 301 of 560 (Ensemble vs LangGraph)
+Finished game 300 (RLM vs Ensemble): 0-1 {Black mates}
+Started game 302 of 560 (LangGraph vs Ensemble)
+Finished game 301 (Ensemble vs LangGraph): 1-0 {White mates}
+Started game 303 of 560 (Ensemble vs NoContext)
+Finished game 294 (Debate vs Contextualized): 0-1 {Black mates}
+Started game 304 of 560 (NoContext vs Ensemble)
+Finished game 299 (Ensemble vs RLM): 1-0 {White mates}
+Rank Name                             Elo        +/-       nElo        +/-      Games      Score       Draw           Ptnml(0-2)
+Started game 305 of 560 (Ensemble vs Debate)
+Finished game 296 (ChainOfThought vs Ensemble): 0-1 {Black mates}
+Started game 306 of 560 (Debate vs Ensemble)
+Finished game 293 (Contextualized vs Debate): 0-1 {Black mates}
+Started game 307 of 560 (ChainOfThought vs OneshotReAct)
+Finished game 303 (Ensemble vs NoContext): 1-0 {White mates}
+Started game 308 of 560 (OneshotReAct vs ChainOfThought)
+Finished game 304 (NoContext vs Ensemble): 0-1 {Black mates}
+Started game 309 of 560 (ChainOfThought vs RLM)
+Finished game 302 (LangGraph vs Ensemble): 0-1 {White loses on time}
+Started game 310 of 560 (RLM vs ChainOfThought)
+Finished game 305 (Ensemble vs Debate): 1-0 {White mates}
+Started game 311 of 560 (ChainOfThought vs LangGraph)
+Finished game 309 (ChainOfThought vs RLM): 1-0 {White mates}
+Started game 312 of 560 (LangGraph vs ChainOfThought)
+Finished game 306 (Debate vs Ensemble): 0-1 {Black mates}
+Started game 313 of 560 (ChainOfThought vs NoContext)
+Finished game 310 (RLM vs ChainOfThought): 0-1 {Black mates}
+Started game 314 of 560 (NoContext vs ChainOfThought)
+Finished game 307 (ChainOfThought vs OneshotReAct): 0-1 {White loses on time}
+Started game 315 of 560 (ChainOfThought vs Debate)
+Finished game 311 (ChainOfThought vs LangGraph): 1-0 {Black loses on time}
+Started game 316 of 560 (Debate vs ChainOfThought)
+Finished game 308 (OneshotReAct vs ChainOfThought): 1-0 {Black loses on time}
+Started game 317 of 560 (OneshotReAct vs RLM)
+Finished game 317 (OneshotReAct vs RLM): 0-1 {Black mates}
+Started game 318 of 560 (RLM vs OneshotReAct)
+Finished game 316 (Debate vs ChainOfThought): 1-0 {White mates}
+Started game 319 of 560 (OneshotReAct vs LangGraph)
+Finished game 315 (ChainOfThought vs Debate): 0-1 {Black mates}
+Started game 320 of 560 (LangGraph vs OneshotReAct)
+Finished game 312 (LangGraph vs ChainOfThought): 1/2-1/2 {Draw by 3-fold repetition}
+Started game 321 of 560 (OneshotReAct vs NoContext)
+Finished game 318 (RLM vs OneshotReAct): 1-0 {White mates}
+Started game 322 of 560 (NoContext vs OneshotReAct)
+Finished game 314 (NoContext vs ChainOfThought): 0-1 {Black mates}
+Started game 323 of 560 (OneshotReAct vs Debate)
+Finished game 319 (OneshotReAct vs LangGraph): 0-1 {Black mates}
+Started game 324 of 560 (Debate vs OneshotReAct)
+Finished game 313 (ChainOfThought vs NoContext): 0-1 {White loses on time}
+Started game 325 of 560 (RLM vs LangGraph)
+Finished game 324 (Debate vs OneshotReAct): 1-0 {White mates}
+Started game 326 of 560 (LangGraph vs RLM)
+Finished game 323 (OneshotReAct vs Debate): 0-1 {Black mates}
+Started game 327 of 560 (RLM vs NoContext)
+Finished game 320 (LangGraph vs OneshotReAct): 1/2-1/2 {Draw by 3-fold repetition}
+Rank Name                             Elo        +/-       nElo        +/-      Games      Score       Draw           Ptnml(0-2)
+Started game 328 of 560 (NoContext vs RLM)
+Finished game 327 (RLM vs NoContext): 1-0 {White mates}
+Started game 329 of 560 (RLM vs Debate)
+Finished game 326 (LangGraph vs RLM): 1-0 {White mates}
+Started game 330 of 560 (Debate vs RLM)
+Finished game 325 (RLM vs LangGraph): 0-1 {Black mates}
+Started game 331 of 560 (LangGraph vs NoContext)
+Finished game 321 (OneshotReAct vs NoContext): 1/2-1/2 {Draw by stalemate}
+Started game 332 of 560 (NoContext vs LangGraph)
+Finished game 330 (Debate vs RLM): 1-0 {White mates}
+Started game 333 of 560 (LangGraph vs Debate)
+Finished game 329 (RLM vs Debate): 0-1 {Black mates}
+Started game 334 of 560 (Debate vs LangGraph)
+Finished game 328 (NoContext vs RLM): 0-1 {Black mates}
+Started game 335 of 560 (NoContext vs Debate)
+Finished game 334 (Debate vs LangGraph): 1-0 {White mates}
+Started game 336 of 560 (Debate vs NoContext)
+Finished game 322 (NoContext vs OneshotReAct): 1/2-1/2 {Draw by stalemate}
+Started game 337 of 560 (Contextualized vs Ensemble)
+Finished game 336 (Debate vs NoContext): 1-0 {White mates}
+Started game 338 of 560 (Ensemble vs Contextualized)
+Finished game 335 (NoContext vs Debate): 0-1 {Black mates}
+Started game 339 of 560 (Contextualized vs ChainOfThought)
+Finished game 332 (NoContext vs LangGraph): 0-1 {Black mates}
+Started game 340 of 560 (ChainOfThought vs Contextualized)
+Finished game 333 (LangGraph vs Debate): 0-1 {Black mates}
+Started game 341 of 560 (Contextualized vs OneshotReAct)
+Finished game 341 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 342 of 560 (OneshotReAct vs Contextualized)
+Finished game 342 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 343 of 560 (Contextualized vs RLM)
+Finished game 339 (Contextualized vs ChainOfThought): 1-0 {White mates}
+Started game 344 of 560 (RLM vs Contextualized)
+Finished game 337 (Contextualized vs Ensemble): 0-1 {Black mates}
+Started game 345 of 560 (Contextualized vs LangGraph)
+Finished game 343 (Contextualized vs RLM): 1-0 {White mates}
+Started game 346 of 560 (LangGraph vs Contextualized)
+Finished game 340 (ChainOfThought vs Contextualized): 0-1 {Black mates}
+Rank Name                             Elo        +/-       nElo        +/-      Games      Score       Draw           Ptnml(0-2)
+Started game 347 of 560 (Contextualized vs NoContext)
+Finished game 344 (RLM vs Contextualized): 0-1 {Black mates}
+Started game 348 of 560 (NoContext vs Contextualized)
+Finished game 331 (LangGraph vs NoContext): 1-0 {White mates}
+Started game 349 of 560 (Contextualized vs Debate)
+Finished game 345 (Contextualized vs LangGraph): 1-0 {White mates}
+Started game 350 of 560 (Debate vs Contextualized)
+Finished game 338 (Ensemble vs Contextualized): 1/2-1/2 {Draw by insufficient mating material}
+Started game 351 of 560 (Ensemble vs ChainOfThought)
+Finished game 347 (Contextualized vs NoContext): 1-0 {White mates}
+Started game 352 of 560 (ChainOfThought vs Ensemble)
+Finished game 346 (LangGraph vs Contextualized): 0-1 {Black mates}
+Started game 353 of 560 (Ensemble vs OneshotReAct)
+Finished game 351 (Ensemble vs ChainOfThought): 1-0 {White mates}
+Started game 354 of 560 (OneshotReAct vs Ensemble)
+Finished game 352 (ChainOfThought vs Ensemble): 0-1 {Black mates}
+Started game 355 of 560 (Ensemble vs RLM)
+Finished game 348 (NoContext vs Contextualized): 0-1 {Black mates}
+Started game 356 of 560 (RLM vs Ensemble)
+Finished game 353 (Ensemble vs OneshotReAct): 1-0 {White mates}
+Started game 357 of 560 (Ensemble vs LangGraph)
+Finished game 355 (Ensemble vs RLM): 1-0 {White mates}
+Started game 358 of 560 (LangGraph vs Ensemble)
+Finished game 356 (RLM vs Ensemble): 0-1 {Black mates}
+Started game 359 of 560 (Ensemble vs NoContext)
+Finished game 354 (OneshotReAct vs Ensemble): 0-1 {Black mates}
+Started game 360 of 560 (NoContext vs Ensemble)
+Finished game 349 (Contextualized vs Debate): 0-1 {Black mates}
+Started game 361 of 560 (Ensemble vs Debate)
+Finished game 357 (Ensemble vs LangGraph): 1-0 {White mates}
+Started game 362 of 560 (Debate vs Ensemble)
+Finished game 350 (Debate vs Contextualized): 1-0 {White mates}
+Started game 363 of 560 (ChainOfThought vs OneshotReAct)
+Finished game 360 (NoContext vs Ensemble): 0-1 {Black mates}
+Started game 364 of 560 (OneshotReAct vs ChainOfThought)
+Finished game 359 (Ensemble vs NoContext): 1-0 {White mates}
+Rank Name                             Elo        +/-       nElo        +/-      Games      Score       Draw           Ptnml(0-2)
+Started game 365 of 560 (ChainOfThought vs RLM)
+Finished game 358 (LangGraph vs Ensemble): 0-1 {Black mates}
+Started game 366 of 560 (RLM vs ChainOfThought)
+Finished game 365 (ChainOfThought vs RLM): 1/2-1/2 {Draw by 3-fold repetition}
+Started game 367 of 560 (ChainOfThought vs LangGraph)
+Finished game 366 (RLM vs ChainOfThought): 1-0 {White mates}
+Started game 368 of 560 (LangGraph vs ChainOfThought)
+Finished game 364 (OneshotReAct vs ChainOfThought): 0-1 {Black mates}
+Started game 369 of 560 (ChainOfThought vs NoContext)
+Finished game 361 (Ensemble vs Debate): 1-0 {White mates}
+Started game 370 of 560 (NoContext vs ChainOfThought)
+Finished game 363 (ChainOfThought vs OneshotReAct): 0-1 {White loses on time}
+Started game 371 of 560 (ChainOfThought vs Debate)
+Finished game 369 (ChainOfThought vs NoContext): 1-0 {White mates}
+Started game 372 of 560 (Debate vs ChainOfThought)
+Finished game 362 (Debate vs Ensemble): 1-0 {White mates}
+Started game 373 of 560 (OneshotReAct vs RLM)
+Finished game 367 (ChainOfThought vs LangGraph): 1/2-1/2 {Draw by 3-fold repetition}
+Started game 374 of 560 (RLM vs OneshotReAct)
+Finished game 370 (NoContext vs ChainOfThought): 0-1 {Black mates}
+Started game 375 of 560 (OneshotReAct vs LangGraph)
+Finished game 374 (RLM vs OneshotReAct): 1-0 {White mates}
+Started game 376 of 560 (LangGraph vs OneshotReAct)
+Finished game 373 (OneshotReAct vs RLM): 0-1 {Black mates}
+Started game 377 of 560 (OneshotReAct vs NoContext)
+Finished game 371 (ChainOfThought vs Debate): 0-1 {Black mates}
+Started game 378 of 560 (NoContext vs OneshotReAct)
+Finished game 372 (Debate vs ChainOfThought): 1-0 {White mates}
+Started game 379 of 560 (OneshotReAct vs Debate)
+Finished game 368 (LangGraph vs ChainOfThought): 1-0 {White mates}
+Started game 380 of 560 (Debate vs OneshotReAct)
+Finished game 379 (OneshotReAct vs Debate): 0-1 {Black mates}
+Started game 381 of 560 (RLM vs LangGraph)
+Finished game 380 (Debate vs OneshotReAct): 1-0 {White mates}
+Rank Name                             Elo        +/-       nElo        +/-      Games      Score       Draw           Ptnml(0-2)
+Started game 382 of 560 (LangGraph vs RLM)
+Finished game 375 (OneshotReAct vs LangGraph): 0-1 {Black mates}
+Started game 383 of 560 (RLM vs NoContext)
+Finished game 377 (OneshotReAct vs NoContext): 1/2-1/2 {Draw by stalemate}
+Started game 384 of 560 (NoContext vs RLM)
+Finished game 376 (LangGraph vs OneshotReAct): 1/2-1/2 {Draw by 3-fold repetition}
+Started game 385 of 560 (RLM vs Debate)
+Finished game 378 (NoContext vs OneshotReAct): 1-0 {White mates}
+Started game 386 of 560 (Debate vs RLM)
+Finished game 385 (RLM vs Debate): 0-1 {Black mates}
+Started game 387 of 560 (LangGraph vs NoContext)
+Finished game 382 (LangGraph vs RLM): 0-1 {Black mates}
+Started game 388 of 560 (NoContext vs LangGraph)
+Finished game 384 (NoContext vs RLM): 0-1 {Black mates}
+Started game 389 of 560 (LangGraph vs Debate)
+Finished game 386 (Debate vs RLM): 1-0 {White mates}
+Started game 390 of 560 (Debate vs LangGraph)
+Finished game 381 (RLM vs LangGraph): 1-0 {Black loses on time}
+Started game 391 of 560 (NoContext vs Debate)
+Finished game 383 (RLM vs NoContext): 1-0 {White mates}
+Started game 392 of 560 (Debate vs NoContext)
+Finished game 392 (Debate vs NoContext): 1-0 {White mates}
+Started game 393 of 560 (Contextualized vs Ensemble)
+Finished game 388 (NoContext vs LangGraph): 0-1 {Black mates}
+Started game 394 of 560 (Ensemble vs Contextualized)
+Finished game 391 (NoContext vs Debate): 0-1 {Black mates}
+Started game 395 of 560 (Contextualized vs ChainOfThought)
+Finished game 390 (Debate vs LangGraph): 1-0 {White mates}
+Started game 396 of 560 (ChainOfThought vs Contextualized)
+Finished game 393 (Contextualized vs Ensemble): 0-1 {Black mates}
+Started game 397 of 560 (Contextualized vs OneshotReAct)
+Finished game 395 (Contextualized vs ChainOfThought): 1-0 {White mates}
+Started game 398 of 560 (OneshotReAct vs Contextualized)
+Finished game 389 (LangGraph vs Debate): 0-1 {White loses on time}
+Started game 399 of 560 (Contextualized vs RLM)
+Finished game 397 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 400 of 560 (RLM vs Contextualized)
+Finished game 396 (ChainOfThought vs Contextualized): 0-1 {Black mates}
+Started game 401 of 560 (Contextualized vs LangGraph)
+Finished game 394 (Ensemble vs Contextualized): 1-0 {White mates}
+Started game 402 of 560 (LangGraph vs Contextualized)
+Finished game 399 (Contextualized vs RLM): 1-0 {White mates}
+Started game 403 of 560 (Contextualized vs NoContext)
+Finished game 398 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 404 of 560 (NoContext vs Contextualized)
+Finished game 401 (Contextualized vs LangGraph): 1-0 {White mates}
+Started game 405 of 560 (Contextualized vs Debate)
+Finished game 400 (RLM vs Contextualized): 0-1 {Black mates}
+Rank Name                             Elo        +/-       nElo        +/-      Games      Score       Draw           Ptnml(0-2)
+Started game 406 of 560 (Debate vs Contextualized)
+Finished game 387 (LangGraph vs NoContext): 1-0 {White mates}
+Started game 407 of 560 (Ensemble vs ChainOfThought)
+Finished game 406 (Debate vs Contextualized): 0-1 {White makes an illegal move}
+Started game 408 of 560 (ChainOfThought vs Ensemble)
+Finished game 403 (Contextualized vs NoContext): 1-0 {White mates}
+Started game 409 of 560 (Ensemble vs OneshotReAct)
+Finished game 407 (Ensemble vs ChainOfThought): 1-0 {White mates}
+Started game 410 of 560 (OneshotReAct vs Ensemble)
+Finished game 404 (NoContext vs Contextualized): 0-1 {Black mates}
+Started game 411 of 560 (Ensemble vs RLM)
+Finished game 409 (Ensemble vs OneshotReAct): 1-0 {White mates}
+Started game 412 of 560 (RLM vs Ensemble)
+Finished game 411 (Ensemble vs RLM): 1-0 {White mates}
+Started game 413 of 560 (Ensemble vs LangGraph)
+Finished game 402 (LangGraph vs Contextualized): 0-1 {Black mates}
+Started game 414 of 560 (LangGraph vs Ensemble)
+Finished game 408 (ChainOfThought vs Ensemble): 0-1 {Black mates}
+Started game 415 of 560 (Ensemble vs NoContext)
+Finished game 410 (OneshotReAct vs Ensemble): 0-1 {Black mates}
+Started game 416 of 560 (NoContext vs Ensemble)
+Finished game 412 (RLM vs Ensemble): 0-1 {Black mates}
+Started game 417 of 560 (Ensemble vs Debate)
+Finished game 413 (Ensemble vs LangGraph): 1-0 {White mates}
+Started game 418 of 560 (Debate vs Ensemble)
+Finished game 405 (Contextualized vs Debate): 0-1 {Black mates}
+Started game 419 of 560 (ChainOfThought vs OneshotReAct)
+Finished game 415 (Ensemble vs NoContext): 1-0 {White mates}
+Started game 420 of 560 (OneshotReAct vs ChainOfThought)
+Finished game 416 (NoContext vs Ensemble): 0-1 {Black mates}
+Started game 421 of 560 (ChainOfThought vs RLM)
+Finished game 414 (LangGraph vs Ensemble): 0-1 {White loses on time}
+Started game 422 of 560 (RLM vs ChainOfThought)
+Finished game 417 (Ensemble vs Debate): 1-0 {White mates}
+Started game 423 of 560 (ChainOfThought vs LangGraph)
+Finished game 418 (Debate vs Ensemble): 1-0 {White mates}
+Started game 424 of 560 (LangGraph vs ChainOfThought)
+Finished game 421 (ChainOfThought vs RLM): 1-0 {White mates}
+Started game 425 of 560 (ChainOfThought vs NoContext)
+Finished game 422 (RLM vs ChainOfThought): 0-1 {Black mates}
+Started game 426 of 560 (NoContext vs ChainOfThought)
+Finished game 419 (ChainOfThought vs OneshotReAct): 0-1 {White loses on time}
+Started game 427 of 560 (ChainOfThought vs Debate)
+Finished game 420 (OneshotReAct vs ChainOfThought): 1-0 {Black loses on time}
+Rank Name                             Elo        +/-       nElo        +/-      Games      Score       Draw           Ptnml(0-2)
+Started game 428 of 560 (Debate vs ChainOfThought)
+Finished game 428 (Debate vs ChainOfThought): 1-0 {White mates}
+Started game 429 of 560 (OneshotReAct vs RLM)
+Finished game 424 (LangGraph vs ChainOfThought): 0-1 {White loses on time}
+Started game 430 of 560 (RLM vs OneshotReAct)
+Finished game 426 (NoContext vs ChainOfThought): 0-1 {Black mates}
+Started game 431 of 560 (OneshotReAct vs LangGraph)
+Finished game 429 (OneshotReAct vs RLM): 0-1 {Black mates}
+Started game 432 of 560 (LangGraph vs OneshotReAct)
+Finished game 423 (ChainOfThought vs LangGraph): 1/2-1/2 {Draw by 3-fold repetition}
+Started game 433 of 560 (OneshotReAct vs NoContext)
+Finished game 427 (ChainOfThought vs Debate): 0-1 {Black mates}
+Started game 434 of 560 (NoContext vs OneshotReAct)
+Finished game 430 (RLM vs OneshotReAct): 1-0 {White mates}
+Started game 435 of 560 (OneshotReAct vs Debate)
+Finished game 425 (ChainOfThought vs NoContext): 1-0 {White mates}
+Started game 436 of 560 (Debate vs OneshotReAct)
+Finished game 436 (Debate vs OneshotReAct): 1-0 {White mates}
+Started game 437 of 560 (RLM vs LangGraph)
+Finished game 435 (OneshotReAct vs Debate): 0-1 {Black mates}
+Started game 438 of 560 (LangGraph vs RLM)
+Finished game 432 (LangGraph vs OneshotReAct): 1/2-1/2 {Draw by 3-fold repetition}
+Started game 439 of 560 (RLM vs NoContext)
+Finished game 438 (LangGraph vs RLM): 1-0 {White mates}
+Started game 440 of 560 (NoContext vs RLM)
+Finished game 439 (RLM vs NoContext): 1-0 {White mates}
+Started game 441 of 560 (RLM vs Debate)
+Finished game 431 (OneshotReAct vs LangGraph): 1/2-1/2 {Draw by 3-fold repetition}
+Started game 442 of 560 (Debate vs RLM)
+Finished game 442 (Debate vs RLM): 1-0 {White mates}
+Started game 443 of 560 (LangGraph vs NoContext)
+Finished game 437 (RLM vs LangGraph): 1-0 {Black loses on time}
+Started game 444 of 560 (NoContext vs LangGraph)
+Finished game 441 (RLM vs Debate): 0-1 {Black mates}
+Started game 445 of 560 (LangGraph vs Debate)
+Finished game 434 (NoContext vs OneshotReAct): 1/2-1/2 {Draw by stalemate}
+Started game 446 of 560 (Debate vs LangGraph)
+Finished game 433 (OneshotReAct vs NoContext): 0-1 {Black mates}
+Started game 447 of 560 (NoContext vs Debate)
+Finished game 440 (NoContext vs RLM): 0-1 {Black mates}
+Rank Name                             Elo        +/-       nElo        +/-      Games      Score       Draw           Ptnml(0-2)
+Started game 448 of 560 (Debate vs NoContext)
+Finished game 443 (LangGraph vs NoContext): 1-0 {White mates}
+Started game 449 of 560 (Contextualized vs Ensemble)
+Finished game 447 (NoContext vs Debate): 0-1 {Black mates}
+Started game 450 of 560 (Ensemble vs Contextualized)
+Finished game 448 (Debate vs NoContext): 1-0 {White mates}
+Started game 451 of 560 (Contextualized vs ChainOfThought)
+Finished game 445 (LangGraph vs Debate): 0-1 {Black mates}
+Started game 452 of 560 (ChainOfThought vs Contextualized)
+Finished game 446 (Debate vs LangGraph): 1-0 {White mates}
+Started game 453 of 560 (Contextualized vs OneshotReAct)
+Finished game 453 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 454 of 560 (OneshotReAct vs Contextualized)
+Finished game 451 (Contextualized vs ChainOfThought): 1-0 {White mates}
+Started game 455 of 560 (Contextualized vs RLM)
+Finished game 444 (NoContext vs LangGraph): 1/2-1/2 {Draw by 3-fold repetition}
+Started game 456 of 560 (RLM vs Contextualized)
+Finished game 452 (ChainOfThought vs Contextualized): 0-1 {Black mates}
+Started game 457 of 560 (Contextualized vs LangGraph)
+Finished game 455 (Contextualized vs RLM): 1-0 {White mates}
+Started game 458 of 560 (LangGraph vs Contextualized)
+Finished game 456 (RLM vs Contextualized): 0-1 {Black mates}
+Started game 459 of 560 (Contextualized vs NoContext)
+Finished game 454 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 460 of 560 (NoContext vs Contextualized)
+Finished game 450 (Ensemble vs Contextualized): 1-0 {White mates}
+Started game 461 of 560 (Contextualized vs Debate)
+Finished game 449 (Contextualized vs Ensemble): 0-1 {Black mates}
+Started game 462 of 560 (Debate vs Contextualized)
+Finished game 459 (Contextualized vs NoContext): 1-0 {White mates}
+Started game 463 of 560 (Ensemble vs ChainOfThought)
+Finished game 457 (Contextualized vs LangGraph): 1-0 {White mates}
+Started game 464 of 560 (ChainOfThought vs Ensemble)
+Finished game 460 (NoContext vs Contextualized): 0-1 {Black mates}
+Rank Name                             Elo        +/-       nElo        +/-      Games      Score       Draw           Ptnml(0-2)
+Started game 465 of 560 (Ensemble vs OneshotReAct)
+Finished game 458 (LangGraph vs Contextualized): 0-1 {Black mates}
+Started game 466 of 560 (OneshotReAct vs Ensemble)
+Finished game 466 (OneshotReAct vs Ensemble): 0-1 {Black mates}
+Started game 467 of 560 (Ensemble vs RLM)
+Finished game 464 (ChainOfThought vs Ensemble): 0-1 {Black mates}
+Started game 468 of 560 (RLM vs Ensemble)
+Finished game 465 (Ensemble vs OneshotReAct): 1-0 {White mates}
+Started game 469 of 560 (Ensemble vs LangGraph)
+Finished game 463 (Ensemble vs ChainOfThought): 1-0 {White mates}
+Started game 470 of 560 (LangGraph vs Ensemble)
+Finished game 467 (Ensemble vs RLM): 1-0 {White mates}
+Started game 471 of 560 (Ensemble vs NoContext)
+Finished game 461 (Contextualized vs Debate): 0-1 {Black mates}
+Started game 472 of 560 (NoContext vs Ensemble)
+Finished game 468 (RLM vs Ensemble): 0-1 {Black mates}
+Started game 473 of 560 (Ensemble vs Debate)
+Finished game 471 (Ensemble vs NoContext): 1-0 {White mates}
+Started game 474 of 560 (Debate vs Ensemble)
+Finished game 462 (Debate vs Contextualized): 0-1 {Black mates}
+Started game 475 of 560 (ChainOfThought vs OneshotReAct)
+Finished game 470 (LangGraph vs Ensemble): 0-1 {Black mates}
+Started game 476 of 560 (OneshotReAct vs ChainOfThought)
+Finished game 469 (Ensemble vs LangGraph): 1-0 {White mates}
+Started game 477 of 560 (ChainOfThought vs RLM)
+Finished game 472 (NoContext vs Ensemble): 0-1 {Black mates}
+Started game 478 of 560 (RLM vs ChainOfThought)
+Finished game 473 (Ensemble vs Debate): 1-0 {White mates}
+Started game 479 of 560 (ChainOfThought vs LangGraph)
+Finished game 474 (Debate vs Ensemble): 1-0 {White mates}
+Started game 480 of 560 (LangGraph vs ChainOfThought)
+Finished game 477 (ChainOfThought vs RLM): 0-1 {White loses on time}
+Started game 481 of 560 (ChainOfThought vs NoContext)
+Finished game 475 (ChainOfThought vs OneshotReAct): 0-1 {White loses on time}
+Started game 482 of 560 (NoContext vs ChainOfThought)
+Finished game 478 (RLM vs ChainOfThought): 1-0 {Black loses on time}
+Started game 483 of 560 (ChainOfThought vs Debate)
+Finished game 476 (OneshotReAct vs ChainOfThought): 1-0 {Black loses on time}
+Started game 484 of 560 (Debate vs ChainOfThought)
+Finished game 482 (NoContext vs ChainOfThought): 0-1 {Black mates}
+Started game 485 of 560 (OneshotReAct vs RLM)
+Finished game 484 (Debate vs ChainOfThought): 1-0 {White mates}
+Started game 486 of 560 (RLM vs OneshotReAct)
+Finished game 480 (LangGraph vs ChainOfThought): 0-1 {White loses on time}
+Started game 487 of 560 (OneshotReAct vs LangGraph)
+Finished game 483 (ChainOfThought vs Debate): 0-1 {Black mates}
+Started game 488 of 560 (LangGraph vs OneshotReAct)
+Finished game 485 (OneshotReAct vs RLM): 0-1 {Black mates}
+Started game 489 of 560 (OneshotReAct vs NoContext)
+Finished game 479 (ChainOfThought vs LangGraph): 0-1 {Black mates}
+Rank Name                             Elo        +/-       nElo        +/-      Games      Score       Draw           Ptnml(0-2)
+Started game 490 of 560 (NoContext vs OneshotReAct)
+Finished game 481 (ChainOfThought vs NoContext): 1-0 {White mates}
+Started game 491 of 560 (OneshotReAct vs Debate)
+Finished game 491 (OneshotReAct vs Debate): 0-1 {Black mates}
+Started game 492 of 560 (Debate vs OneshotReAct)
+Finished game 486 (RLM vs OneshotReAct): 1-0 {White mates}
+Started game 493 of 560 (RLM vs LangGraph)
+Finished game 487 (OneshotReAct vs LangGraph): 0-1 {Black mates}
+Started game 494 of 560 (LangGraph vs RLM)
+Finished game 492 (Debate vs OneshotReAct): 1-0 {White mates}
+Started game 495 of 560 (RLM vs NoContext)
+Finished game 488 (LangGraph vs OneshotReAct): 1-0 {White mates}
+Started game 496 of 560 (NoContext vs RLM)
+Finished game 494 (LangGraph vs RLM): 0-1 {White makes an illegal move}
+Started game 497 of 560 (RLM vs Debate)
+Finished game 493 (RLM vs LangGraph): 0-1 {Black mates}
+Started game 498 of 560 (Debate vs RLM)
+Finished game 495 (RLM vs NoContext): 1/2-1/2 {Draw by 3-fold repetition}
+Started game 499 of 560 (LangGraph vs NoContext)
+Finished game 497 (RLM vs Debate): 0-1 {Black mates}
+Started game 500 of 560 (NoContext vs LangGraph)
+Finished game 490 (NoContext vs OneshotReAct): 1/2-1/2 {Draw by stalemate}
+Started game 501 of 560 (LangGraph vs Debate)
+Finished game 498 (Debate vs RLM): 1-0 {White mates}
+Started game 502 of 560 (Debate vs LangGraph)
+Finished game 496 (NoContext vs RLM): 0-1 {Black mates}
+Started game 503 of 560 (NoContext vs Debate)
+Finished game 502 (Debate vs LangGraph): 1-0 {White mates}
+Started game 504 of 560 (Debate vs NoContext)
+Finished game 504 (Debate vs NoContext): 1-0 {White mates}
+Started game 505 of 560 (Contextualized vs Ensemble)
+Finished game 499 (LangGraph vs NoContext): 1-0 {White mates}
+Started game 506 of 560 (Ensemble vs Contextualized)
+Finished game 503 (NoContext vs Debate): 0-1 {Black mates}
+Started game 507 of 560 (Contextualized vs ChainOfThought)
+Finished game 501 (LangGraph vs Debate): 0-1 {Black mates}
+Started game 508 of 560 (ChainOfThought vs Contextualized)
+Finished game 500 (NoContext vs LangGraph): 0-1 {Black mates}
+Rank Name                             Elo        +/-       nElo        +/-      Games      Score       Draw           Ptnml(0-2)
+Started game 509 of 560 (Contextualized vs OneshotReAct)
+Finished game 508 (ChainOfThought vs Contextualized): 0-1 {Black mates}
+Started game 510 of 560 (OneshotReAct vs Contextualized)
+Finished game 507 (Contextualized vs ChainOfThought): 1-0 {White mates}
+Started game 511 of 560 (Contextualized vs RLM)
+Finished game 489 (OneshotReAct vs NoContext): 0-1 {Black mates}
+Started game 512 of 560 (RLM vs Contextualized)
+Finished game 509 (Contextualized vs OneshotReAct): 1-0 {White mates}
+Started game 513 of 560 (Contextualized vs LangGraph)
+Finished game 511 (Contextualized vs RLM): 1-0 {White mates}
+Started game 514 of 560 (LangGraph vs Contextualized)
+Finished game 512 (RLM vs Contextualized): 0-1 {Black mates}
+Started game 515 of 560 (Contextualized vs NoContext)
+Finished game 510 (OneshotReAct vs Contextualized): 0-1 {Black mates}
+Started game 516 of 560 (NoContext vs Contextualized)
+Finished game 513 (Contextualized vs LangGraph): 1-0 {White mates}
+Started game 517 of 560 (Contextualized vs Debate)
+Finished game 505 (Contextualized vs Ensemble): 0-1 {Black mates}
+Started game 518 of 560 (Debate vs Contextualized)
+Finished game 515 (Contextualized vs NoContext): 1-0 {White mates}
+Started game 519 of 560 (Ensemble vs ChainOfThought)
+Finished game 516 (NoContext vs Contextualized): 0-1 {Black mates}
+Started game 520 of 560 (ChainOfThought vs Ensemble)
+Finished game 506 (Ensemble vs Contextualized): 1/2-1/2 {Draw by insufficient mating material}
+Started game 521 of 560 (Ensemble vs OneshotReAct)
+Finished game 514 (LangGraph vs Contextualized): 0-1 {White loses on time}
+Started game 522 of 560 (OneshotReAct vs Ensemble)
+Finished game 521 (Ensemble vs OneshotReAct): 1-0 {White mates}
+Started game 523 of 560 (Ensemble vs RLM)
+Finished game 522 (OneshotReAct vs Ensemble): 0-1 {Black mates}
+Started game 524 of 560 (RLM vs Ensemble)
+Finished game 523 (Ensemble vs RLM): 1-0 {White mates}
+Started game 525 of 560 (Ensemble vs LangGraph)
+Finished game 520 (ChainOfThought vs Ensemble): 0-1 {Black mates}
+Started game 526 of 560 (LangGraph vs Ensemble)
+Finished game 517 (Contextualized vs Debate): 1-0 {White mates}
+Started game 527 of 560 (Ensemble vs NoContext)
+Finished game 519 (Ensemble vs ChainOfThought): 1-0 {White mates}
+Rank Name                             Elo        +/-       nElo        +/-      Games      Score       Draw           Ptnml(0-2)
+Started game 528 of 560 (NoContext vs Ensemble)
+Finished game 518 (Debate vs Contextualized): 1-0 {White mates}
+Started game 529 of 560 (Ensemble vs Debate)
+Finished game 525 (Ensemble vs LangGraph): 1-0 {White mates}
+Started game 530 of 560 (Debate vs Ensemble)
+Finished game 524 (RLM vs Ensemble): 0-1 {Black mates}
+Started game 531 of 560 (ChainOfThought vs OneshotReAct)
+Finished game 527 (Ensemble vs NoContext): 1-0 {White mates}
+Started game 532 of 560 (OneshotReAct vs ChainOfThought)
+Finished game 528 (NoContext vs Ensemble): 0-1 {Black mates}
+Started game 533 of 560 (ChainOfThought vs RLM)
+Finished game 526 (LangGraph vs Ensemble): 0-1 {Black mates}
+Started game 534 of 560 (RLM vs ChainOfThought)
+Finished game 533 (ChainOfThought vs RLM): 1/2-1/2 {Draw by 3-fold repetition}
+Started game 535 of 560 (ChainOfThought vs LangGraph)
+Finished game 534 (RLM vs ChainOfThought): 1/2-1/2 {Draw by 3-fold repetition}
+Started game 536 of 560 (LangGraph vs ChainOfThought)
+Finished game 529 (Ensemble vs Debate): 0-1 {Black mates}
+Started game 537 of 560 (ChainOfThought vs NoContext)
+Finished game 530 (Debate vs Ensemble): 0-1 {Black mates}
+Started game 538 of 560 (NoContext vs ChainOfThought)
+Finished game 532 (OneshotReAct vs ChainOfThought): 1-0 {Black loses on time}
+Started game 539 of 560 (ChainOfThought vs Debate)
+Finished game 535 (ChainOfThought vs LangGraph): 1-0 {Black loses on time}
+Started game 540 of 560 (Debate vs ChainOfThought)
+Finished game 531 (ChainOfThought vs OneshotReAct): 0-1 {White loses on time}
+Started game 541 of 560 (OneshotReAct vs RLM)
+Finished game 536 (LangGraph vs ChainOfThought): 0-1 {White loses on time}
+Started game 542 of 560 (RLM vs OneshotReAct)
+Finished game 542 (RLM vs OneshotReAct): 1/2-1/2 {Draw by 3-fold repetition}
+Started game 543 of 560 (OneshotReAct vs LangGraph)
+Finished game 539 (ChainOfThought vs Debate): 0-1 {Black mates}
+Started game 544 of 560 (LangGraph vs OneshotReAct)
+Finished game 541 (OneshotReAct vs RLM): 0-1 {Black mates}
+Started game 545 of 560 (OneshotReAct vs NoContext)
+Finished game 537 (ChainOfThought vs NoContext): 1-0 {White mates}
+Started game 546 of 560 (NoContext vs OneshotReAct)
+Finished game 540 (Debate vs ChainOfThought): 1-0 {White mates}
+Rank Name                             Elo        +/-       nElo        +/-      Games      Score       Draw           Ptnml(0-2)
+Started game 547 of 560 (OneshotReAct vs Debate)
+Finished game 547 (OneshotReAct vs Debate): 0-1 {Black mates}
+Started game 548 of 560 (Debate vs OneshotReAct)
+Finished game 548 (Debate vs OneshotReAct): 1-0 {White mates}
+Started game 549 of 560 (RLM vs LangGraph)
+Finished game 538 (NoContext vs ChainOfThought): 0-1 {Black mates}
+Started game 550 of 560 (LangGraph vs RLM)
+Finished game 543 (OneshotReAct vs LangGraph): 0-1 {Black mates}
+Started game 551 of 560 (RLM vs NoContext)
+Finished game 544 (LangGraph vs OneshotReAct): 1-0 {White mates}
+Started game 552 of 560 (NoContext vs RLM)
+Finished game 546 (NoContext vs OneshotReAct): 1/2-1/2 {Draw by stalemate}
+Started game 553 of 560 (RLM vs Debate)
+Finished game 545 (OneshotReAct vs NoContext): 0-1 {Black mates}
+Started game 554 of 560 (Debate vs RLM)
+Finished game 551 (RLM vs NoContext): 1-0 {White mates}
+Started game 555 of 560 (LangGraph vs NoContext)
+Finished game 552 (NoContext vs RLM): 0-1 {Black mates}
+Started game 556 of 560 (NoContext vs LangGraph)
+Finished game 554 (Debate vs RLM): 1-0 {White mates}
+Started game 557 of 560 (LangGraph vs Debate)
+Finished game 553 (RLM vs Debate): 0-1 {Black mates}
+Started game 558 of 560 (Debate vs LangGraph)
+Finished game 549 (RLM vs LangGraph): 0-1 {Black mates}
+Started game 559 of 560 (NoContext vs Debate)
+Finished game 550 (LangGraph vs RLM): 0-1 {White loses on time}
+Started game 560 of 560 (Debate vs NoContext)
+Finished game 559 (NoContext vs Debate): 0-1 {Black mates}
+Finished game 558 (Debate vs LangGraph): 1-0 {Black loses on time}
+Finished game 560 (Debate vs NoContext): 1-0 {White mates}
+Rank Name                             Elo        +/-       nElo        +/-      Games      Score       Draw           Ptnml(0-2)
+Finished game 556 (NoContext vs LangGraph): 0-1 {Black mates}
+Finished game 557 (LangGraph vs Debate): 0-1 {Black mates}
+Finished game 555 (LangGraph vs NoContext): 1-0 {White mates}
+Rank Name                             Elo        +/-       nElo        +/-      Games      Score       Draw           Ptnml(0-2)
