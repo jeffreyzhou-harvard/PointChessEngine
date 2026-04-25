@@ -1,0 +1,11 @@
+# Chess Engine Requirements
+
+# Testing
+pytest>=7.0.0
+pytest-cov>=4.0.0
+
+# Type checking (optional, for development)
+mypy>=1.0.0
+
+# No external chess libraries for core functionality
+# (python-chess may be used in tests for validation only)

@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess Engine</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            gap: 30px;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .board-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .board {
+            display: grid;
+            grid-template-columns: repeat(8, 60px);
+            grid-template-rows: repeat(8, 60px);
+            border: 3px solid #333;
+            margin: 0 auto;
+        }
+
+        .square {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            cursor: pointer;
+            user-select: none;
+            position: relative;
+        }
+
+        .square.light {
+            background-color: #f0d9b5;
+        }
+
+        .square.dark {
+            background-color: #b58863;
+        }
+
+        .square.selected {
+            background-color: #baca44 !important;
+        }
+
+        .square.legal-move::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 50%;
+        }
+
+        .square.legal-capture::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 3px solid rgba(255, 0, 0, 0.5);
+            border-radius: 50%;
+        }
+
+        .square.check {
+            background-color: #ff6b6b !important;
+        }
+
+        .controls {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            min-width: 300px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .control-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: 600;
+        }
+
+        select, input[type="range"] {
+            width: 100%;
+            padding: 8px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        input[type="range"] {
+            padding: 0;
+        }
+
+        .elo-value {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #667eea;
+            margin-top: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .status {
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .status-message {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .status-info {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .move-list {
+            max-height: 300px;
+            overflow-y: auto;
+            background: #f8f9fa;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .move-list h3 {
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .move-item {
+            padding: 5px;
+            margin-bottom: 3px;
+            background: white;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+
+        .move-number {
+            font-weight: bold;
+            color: #667eea;
+            margin-right: 10px;
+        }
+
+        .promotion-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .promotion-modal.active {
+            display: flex;
+        }
+
+        .promotion-content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .promotion-content h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .promotion-pieces {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .promotion-piece {
+            font-size: 60px;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background 0.2s;
+        }
+
+        .promotion-piece:hover {
+            background: #f0f0f0;
+        }
+
+        .thinking {
+            color: #667eea;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .board {
+                grid-template-columns: repeat(8, 45px);
+                grid-template-rows: repeat(8, 45px);
+            }
+
+            .square {
+                width: 45px;
+                height: 45px;
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="board-container">
+            <div id="board" class="board"></div>
+        </div>
+
+        <div class="controls">
+            <h1>♔ Chess Engine</h1>
+
+            <div class="status">
+                <div class="status-message" id="statusMessage">White to move</div>
+                <div class="status-info" id="statusInfo"></div>
+            </div>
+
+            <div class="control-group">
+                <label for="humanColor">Your Color:</label>
+                <select id="humanColor">
+                    <option value="white">White</option>
+                    <option value="black">Black</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label for="eloSlider">Engine Strength:</label>
+                <input type="range" id="eloSlider" min="400" max="2400" step="100" value="1500">
+                <div class="elo-value" id="eloValue">1500 ELO</div>
+            </div>
+
+            <button id="newGameBtn">New Game</button>
+            <button id="resignBtn">Resign</button>
+
+            <div class="move-list">
+                <h3>Move History</h3>
+                <div id="moveList"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="promotionModal" class="promotion-modal">
+        <div class="promotion-content">
+            <h2>Choose Promotion Piece</h2>
+            <div class="promotion-pieces">
+                <div class="promotion-piece" data-piece="q">♛</div>
+                <div class="promotion-piece" data-piece="r">♜</div>
+                <div class="promotion-piece" data-piece="b">♝</div>
+                <div class="promotion-piece" data-piece="n">♞</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Piece symbols (Unicode)
+        const PIECES = {
+            'K': '♔', 'Q': '♕', 'R': '♖', 'B': '♗', 'N': '♘', 'P': '♙',
+            'k': '♚', 'q': '♛', 'r': '♜', 'b': '♝', 'n': '♞', 'p': '♟'
+        };
+
+        // Game state
+        let gameState = null;
+        let selectedSquare = null;
+        let legalMovesFromSquare = [];
+        let pendingPromotion = null;
+        let isThinking = false;
+
+        // DOM elements
+        const boardEl = document.getElementById('board');
+        const statusMessageEl = document.getElementById('statusMessage');
+        const statusInfoEl = document.getElementById('statusInfo');
+        const humanColorEl = document.getElementById('humanColor');
+        const eloSliderEl = document.getElementById('eloSlider');
+        const eloValueEl = document.getElementById('eloValue');
+        const newGameBtnEl = document.getElementById('newGameBtn');
+        const resignBtnEl = document.getElementById('resignBtn');
+        const moveListEl = document.getElementById('moveList');
+        const promotionModalEl = document.getElementById('promotionModal');
+
+        // Initialize
+        init();
+
+        async function init() {
+            createBoard();
+            setupEventListeners();
+            await loadGameState();
+        }
+
+        function createBoard() {
+            boardEl.innerHTML = '';
+            for (let rank = 7; rank >= 0; rank--) {
+                for (let file = 0; file < 8; file++) {
+                    const square = document.createElement('div');
+                    square.className = 'square ' + ((rank + file) % 2 === 0 ? 'dark' : 'light');
+                    square.dataset.rank = rank;
+                    square.dataset.file = file;
+                    square.dataset.square = String.fromCharCode(97 + file) + (rank + 1);
+                    square.addEventListener('click', handleSquareClick);
+                    boardEl.appendChild(square);
+                }
+            }
+        }
+
+        function setupEventListeners() {
+            newGameBtnEl.addEventListener('click', handleNewGame);
+            resignBtnEl.addEventListener('click', handleResign);
+            eloSliderEl.addEventListener('input', handleEloChange);
+            
+            document.querySelectorAll('.promotion-piece').forEach(piece => {
+                piece.addEventListener('click', handlePromotionChoice);
+            });
+        }
+
+        async function loadGameState() {
+            try {
+                const response = await fetch('/api/status');
+                gameState = await response.json();
+                updateUI();
+                
+                // If engine should move first, trigger it
+                if (!gameState.is_human_turn && !gameState.result) {
+                    setTimeout(makeEngineMove, 500);
+                }
+            } catch (error) {
+                console.error('Error loading game state:', error);
+                statusMessageEl.textContent = 'Error loading game';
+            }
+        }
+
+        function updateUI() {
+            updateBoard();
+            updateStatus();
+            updateMoveList();
+        }
+
+        function updateBoard() {
+            const squares = boardEl.querySelectorAll('.square');
+            squares.forEach(square => {
+                const rank = parseInt(square.dataset.rank);
+                const file = parseInt(square.dataset.file);
+                const boardRank = 7 - rank;
+                const piece = gameState.board[boardRank][file];
+                
+                square.textContent = piece ? PIECES[piece] : '';
+                square.classList.remove('selected', 'legal-move', 'legal-capture', 'check');
+                
+                // Highlight selected square
+                if (selectedSquare === square.dataset.square) {
+                    square.classList.add('selected');
+                }
+                
+                // Highlight legal moves
+                const squareNotation = square.dataset.square;
+                if (legalMovesFromSquare.some(move => move.endsWith(squareNotation))) {
+                    if (piece) {
+                        square.classList.add('legal-capture');
+                    } else {
+                        square.classList.add('legal-move');
+                    }
+                }
+            });
+        }
+
+        function updateStatus() {
+            if (gameState.result) {
+                statusMessageEl.textContent = gameState.message;
+                statusInfoEl.textContent = `Game Over: ${gameState.result}`;
+            } else if (isThinking) {
+                statusMessageEl.textContent = 'Engine thinking...';
+                statusMessageEl.classList.add('thinking');
+                statusInfoEl.textContent = '';
+            } else {
+                statusMessageEl.classList.remove('thinking');
+                statusMessageEl.textContent = gameState.message || 
+                    (gameState.active_color === 'white' ? 'White to move' : 'Black to move');
+                statusInfoEl.textContent = gameState.is_human_turn ? 'Your turn' : 'Engine\'s turn';
+            }
+        }
+
+        function updateMoveList() {
+            moveListEl.innerHTML = '';
+            for (let i = 0; i < gameState.move_list.length; i += 2) {
+                const moveNum = Math.floor(i / 2) + 1;
+                const whiteMove = gameState.move_list[i];
+                const blackMove = gameState.move_list[i + 1] || '';
+                
+                const moveItem = document.createElement('div');
+                moveItem.className = 'move-item';
+                moveItem.innerHTML = `<span class="move-number">${moveNum}.</span>${whiteMove} ${blackMove}`;
+                moveListEl.appendChild(moveItem);
+            }
+            moveListEl.scrollTop = moveListEl.scrollHeight;
+        }
+
+        async function handleSquareClick(event) {
+            if (gameState.result || isThinking || !gameState.is_human_turn) {
+                return;
+            }
+
+            const square = event.currentTarget;
+            const squareNotation = square.dataset.square;
+
+            // If a square is already selected, try to make a move
+            if (selectedSquare) {
+                const move = selectedSquare + squareNotation;
+                
+                // Check if this is a legal move
+                if (legalMovesFromSquare.includes(move)) {
+                    // Check for pawn promotion
+                    const fromRank = parseInt(selectedSquare[1]);
+                    const toRank = parseInt(squareNotation[1]);
+                    const piece = gameState.board[7 - (fromRank - 1)][selectedSquare.charCodeAt(0) - 97];
+                    
+                    if (piece && piece.toLowerCase() === 'p' && (toRank === 8 || toRank === 1)) {
+                        // Show promotion modal
+                        pendingPromotion = move;
+                        promotionModalEl.classList.add('active');
+                        return;
+                    }
+                    
+                    await makeMove(move);
+                } else {
+                    // Deselect and potentially select new square
+                    selectedSquare = null;
+                    legalMovesFromSquare = [];
+                    
+                    // If clicked on own piece, select it
+                    const rank = parseInt(square.dataset.rank);
+                    const file = parseInt(square.dataset.file);
+                    const boardRank = 7 - rank;
+                    const clickedPiece = gameState.board[boardRank][file];
+                    
+                    if (clickedPiece) {
+                        const pieceColor = clickedPiece === clickedPiece.toUpperCase() ? 'white' : 'black';
+                        if (pieceColor === gameState.human_color) {
+                            await selectSquare(squareNotation);
+                        }
+                    }
+                }
+            } else {
+                // Select square if it has a piece of the human's color
+                const rank = parseInt(square.dataset.rank);
+                const file = parseInt(square.dataset.file);
+                const boardRank = 7 - rank;
+                const piece = gameState.board[boardRank][file];
+                
+                if (piece) {
+                    const pieceColor = piece === piece.toUpperCase() ? 'white' : 'black';
+                    if (pieceColor === gameState.human_color) {
+                        await selectSquare(squareNotation);
+                    }
+                }
+            }
+        }
+
+        async function selectSquare(square) {
+            selectedSquare = square;
+            
+            try {
+                const response = await fetch(`/api/legal_moves?square=${square}`);
+                const data = await response.json();
+                legalMovesFromSquare = data.legal_moves;
+                updateBoard();
+            } catch (error) {
+                console.error('Error getting legal moves:', error);
+            }
+        }
+
+        async function handlePromotionChoice(event) {
+            const piece = event.currentTarget.dataset.piece;
+            promotionModalEl.classList.remove('active');
+            
+            if (pendingPromotion) {
+                await makeMove(pendingPromotion + piece);
+                pendingPromotion = null;
+            }
+        }
+
+        async function makeMove(move) {
+            selectedSquare = null;
+            legalMovesFromSquare = [];
+            
+            try {
+                const response = await fetch('/api/move', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ move })
+                });
+                
+                if (!response.ok) {
+                    const error = await response.json();
+                    console.error('Illegal move:', error);
+                    return;
+                }
+                
+                gameState = await response.json();
+                updateUI();
+                
+                // If game is not over and it's engine's turn, make engine move
+                if (!gameState.result && !gameState.is_human_turn) {
+                    setTimeout(makeEngineMove, 500);
+                }
+            } catch (error) {
+                console.error('Error making move:', error);
+            }
+        }
+
+        async function makeEngineMove() {
+            if (gameState.result || isThinking) {
+                return;
+            }
+            
+            isThinking = true;
+            updateStatus();
+            
+            try {
+                const response = await fetch('/api/engine_move', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ time_ms: 2000 })
+                });
+                
+                gameState = await response.json();
+                isThinking = false;
+                updateUI();
+            } catch (error) {
+                console.error('Error getting engine move:', error);
+                isThinking = false;
+                updateStatus();
+            }
+        }
+
+        async function handleNewGame() {
+            const humanColor = humanColorEl.value;
+            const eloRating = parseInt(eloSliderEl.value);
+            
+            try {
+                const response = await fetch('/api/new_game', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ human_color: humanColor, elo_rating: eloRating })
+                });
+                
+                gameState = await response.json();
+                selectedSquare = null;
+                legalMovesFromSquare = [];
+                isThinking = false;
+                updateUI();
+                
+                // If engine should move first, trigger it
+                if (!gameState.is_human_turn && !gameState.result) {
+                    setTimeout(makeEngineMove, 500);
+                }
+            } catch (error) {
+                console.error('Error starting new game:', error);
+            }
+        }
+
+        async function handleResign() {
+            if (gameState.result) {
+                return;
+            }
+            
+            if (!confirm('Are you sure you want to resign?')) {
+                return;
+            }
+            
+            try {
+                const response = await fetch('/api/resign', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({})
+                });
+                
+                gameState = await response.json();
+                updateUI();
+            } catch (error) {
+                console.error('Error resigning:', error);
+            }
+        }
+
+        function handleEloChange() {
+            const elo = parseInt(eloSliderEl.value);
+            eloValueEl.textContent = `${elo} ELO`;
+            
+            // Update engine strength
+            fetch('/api/set_elo', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ elo_rating: elo })
+            }).catch(error => console.error('Error setting ELO:', error));
+        }
+    </script>
+</body>
+</html>
