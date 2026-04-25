@@ -12,6 +12,8 @@ class TestUCI(unittest.TestCase):
         output_stream = io.StringIO()
         protocol = UCIProtocol(input_stream=input_stream, output_stream=output_stream)
         protocol.run()
+        if protocol.search_thread:
+            protocol.search_thread.join(timeout=2.0)
         return output_stream.getvalue()
 
     def test_uci_command(self):
