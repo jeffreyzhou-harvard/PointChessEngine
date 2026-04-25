@@ -5,6 +5,8 @@
 
   const $ = (id) => document.getElementById(id);
   const boardEl     = $("board");
+  const arrowsEl    = $("arrows");
+  const SVG_NS      = "http://www.w3.org/2000/svg";
   const statusEl    = $("status");
   const statusText  = $("status-text");
   const startBtn    = $("start-btn");
@@ -95,6 +97,50 @@
       const b = boardEl.querySelector(`[data-sq="${toSq}"]`);
       if (b) b.classList.add("to");
     }
+    drawArrow(fromSq, toSq);
+  }
+
+  // ---- move arrow (chess.com-style) ----
+  // viewBox is 0..80, each square = 10 units, file a..h on x, rank 8..1 on y.
+  function sqCenter(sq) {
+    const file = sq.charCodeAt(0) - 97;       // 0..7
+    const rank = parseInt(sq[1], 10) - 1;     // 0..7
+    return { x: file * 10 + 5, y: (7 - rank) * 10 + 5 };
+  }
+  function isKnightMove(from, to) {
+    const dx = Math.abs(from.x - to.x), dy = Math.abs(from.y - to.y);
+    return (dx === 10 && dy === 20) || (dx === 20 && dy === 10);
+  }
+  function shortenedEndpoint(from, to, shortenBy = 3.2) {
+    const dx = to.x - from.x, dy = to.y - from.y;
+    const len = Math.hypot(dx, dy);
+    if (len === 0) return to;
+    const k = (len - shortenBy) / len;
+    return { x: from.x + dx * k, y: from.y + dy * k };
+  }
+  function drawArrow(fromSq, toSq) {
+    // Clear previous arrow but keep <defs>.
+    arrowsEl.querySelectorAll(".move-arrow").forEach((n) => n.remove());
+    if (!fromSq || !toSq || fromSq === toSq) return;
+    const from = sqCenter(fromSq);
+    const to   = sqCenter(toSq);
+    const path = document.createElementNS(SVG_NS, "path");
+    path.setAttribute("class", "move-arrow");
+    let d;
+    if (isKnightMove(from, to)) {
+      // L-shape: long leg first, then the short leg into the destination.
+      const dx = to.x - from.x, dy = to.y - from.y;
+      const corner = Math.abs(dx) > Math.abs(dy)
+        ? { x: to.x, y: from.y }
+        : { x: from.x, y: to.y };
+      const end = shortenedEndpoint(corner, to);
+      d = `M ${from.x} ${from.y} L ${corner.x} ${corner.y} L ${end.x} ${end.y}`;
+    } else {
+      const end = shortenedEndpoint(from, to);
+      d = `M ${from.x} ${from.y} L ${end.x} ${end.y}`;
+    }
+    path.setAttribute("d", d);
+    arrowsEl.appendChild(path);
   }
 
   function stripPiece(sq) {
